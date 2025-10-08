@@ -48,7 +48,12 @@ class ToolController extends Controller
 
         return Inertia::render('Tools/Index', [
             'tools' => $tools,
-            'filters' => $request->only(['category', 'pricing', 'search', 'sort']),
+            'filters' => [
+                'category' => $request->get('category', ''),
+                'pricing' => $request->get('pricing', ''),
+                'search' => $request->get('search', ''),
+                'sort' => $request->get('sort', 'name'),
+            ],
         ]);
     }
 

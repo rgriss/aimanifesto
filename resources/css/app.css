@@ -41,6 +41,18 @@
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
 
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+
+    --color-info: var(--info);
+    --color-info-foreground: var(--info-foreground);
+
+    --color-warning: var(--warning);
+    --color-warning-foreground: var(--warning-foreground);
+
+    --color-danger: var(--danger);
+    --color-danger-foreground: var(--danger-foreground);
+
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
@@ -90,76 +102,143 @@
 }
 
 :root {
-    --background: hsl(0 0% 100%);
-    --foreground: hsl(0 0% 3.9%);
-    --card: hsl(0 0% 100%);
-    --card-foreground: hsl(0 0% 3.9%);
-    --popover: hsl(0 0% 100%);
-    --popover-foreground: hsl(0 0% 3.9%);
-    --primary: hsl(0 0% 9%);
-    --primary-foreground: hsl(0 0% 98%);
-    --secondary: hsl(0 0% 92.1%);
-    --secondary-foreground: hsl(0 0% 9%);
-    --muted: hsl(0 0% 96.1%);
-    --muted-foreground: hsl(0 0% 45.1%);
-    --accent: hsl(0 0% 96.1%);
-    --accent-foreground: hsl(0 0% 9%);
-    --destructive: hsl(0 84.2% 60.2%);
-    --destructive-foreground: hsl(0 0% 98%);
-    --border: hsl(0 0% 92.8%);
-    --input: hsl(0 0% 89.8%);
-    --ring: hsl(0 0% 3.9%);
-    --chart-1: hsl(12 76% 61%);
-    --chart-2: hsl(173 58% 39%);
-    --chart-3: hsl(197 37% 24%);
-    --chart-4: hsl(43 74% 66%);
-    --chart-5: hsl(27 87% 67%);
+    /* Polaris Pixels Brand Colors - Using oklch for better color accuracy */
+
+    /* Base colors - Light mode */
+    --background: oklch(0.99 0 0); /* Stellar White #F8FAFC */
+    --foreground: oklch(0.19 0.02 254); /* Constellation Navy #0A1929 */
+
+    /* Card colors */
+    --card: oklch(0.99 0 0); /* Stellar White */
+    --card-foreground: oklch(0.19 0.02 254); /* Constellation Navy */
+
+    /* Popover colors */
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.19 0.02 254);
+
+    /* Semantic colors (Bootstrap-style tokens) */
+    --primary: oklch(0.35 0.08 254); /* Polaris Blue #1B3A5F */
+    --primary-foreground: oklch(0.99 0 0); /* Stellar White */
+
+    --secondary: oklch(0.19 0.02 254); /* Constellation Navy #0A1929 */
+    --secondary-foreground: oklch(0.99 0 0); /* Stellar White */
+
+    --success: oklch(0.7 0.15 180); /* Aurora Teal #14B8A6 */
+    --success-foreground: oklch(1 0 0);
+
+    --info: oklch(0.7 0.16 210); /* North Star Cyan #06B6D4 */
+    --info-foreground: oklch(1 0 0);
+
+    --warning: oklch(0.75 0.15 70); /* Solar Amber #F59E0B */
+    --warning-foreground: oklch(0.19 0.02 254);
+
+    --danger: oklch(0.63 0.24 25); /* Supernova Red #EF4444 */
+    --danger-foreground: oklch(1 0 0);
+
+    /* Accent & muted */
+    --accent: oklch(0.7 0.16 210); /* North Star Cyan */
+    --accent-foreground: oklch(0.19 0.02 254);
+
+    --muted: oklch(0.55 0.03 254); /* Nebula Gray #64748B */
+    --muted-foreground: oklch(0.45 0.02 254); /* Horizon Slate */
+
+    /* Destructive (alias for danger) */
+    --destructive: oklch(0.63 0.24 25); /* Supernova Red */
+    --destructive-foreground: oklch(1 0 0);
+
+    /* UI elements */
+    --border: oklch(0.92 0.01 254); /* Light border */
+    --input: oklch(0.92 0.01 254);
+    --ring: oklch(0.7 0.16 210); /* North Star Cyan for focus rings */
+
+    /* Chart colors using brand palette */
+    --chart-1: oklch(0.35 0.08 254); /* Polaris Blue */
+    --chart-2: oklch(0.7 0.16 210); /* North Star Cyan */
+    --chart-3: oklch(0.7 0.15 180); /* Aurora Teal */
+    --chart-4: oklch(0.75 0.15 70); /* Solar Amber */
+    --chart-5: oklch(0.45 0.02 254); /* Horizon Slate */
+
     --radius: 0.5rem;
-    --sidebar-background: hsl(0 0% 98%);
-    --sidebar-foreground: hsl(240 5.3% 26.1%);
-    --sidebar-primary: hsl(0 0% 10%);
-    --sidebar-primary-foreground: hsl(0 0% 98%);
-    --sidebar-accent: hsl(0 0% 94%);
-    --sidebar-accent-foreground: hsl(0 0% 30%);
-    --sidebar-border: hsl(0 0% 91%);
-    --sidebar-ring: hsl(217.2 91.2% 59.8%);
-    --sidebar: hsl(0 0% 98%);
+
+    /* Sidebar */
+    --sidebar-background: oklch(0.99 0 0);
+    --sidebar-foreground: oklch(0.35 0.08 254);
+    --sidebar-primary: oklch(0.35 0.08 254);
+    --sidebar-primary-foreground: oklch(0.99 0 0);
+    --sidebar-accent: oklch(0.7 0.16 210);
+    --sidebar-accent-foreground: oklch(0.19 0.02 254);
+    --sidebar-border: oklch(0.92 0.01 254);
+    --sidebar-ring: oklch(0.7 0.16 210);
+    --sidebar: oklch(0.99 0 0);
 }
 
 .dark {
-    --background: hsl(0 0% 3.9%);
-    --foreground: hsl(0 0% 98%);
-    --card: hsl(0 0% 3.9%);
-    --card-foreground: hsl(0 0% 98%);
-    --popover: hsl(0 0% 3.9%);
-    --popover-foreground: hsl(0 0% 98%);
-    --primary: hsl(0 0% 98%);
-    --primary-foreground: hsl(0 0% 9%);
-    --secondary: hsl(0 0% 14.9%);
-    --secondary-foreground: hsl(0 0% 98%);
-    --muted: hsl(0 0% 16.08%);
-    --muted-foreground: hsl(0 0% 63.9%);
-    --accent: hsl(0 0% 14.9%);
-    --accent-foreground: hsl(0 0% 98%);
-    --destructive: hsl(0 84% 60%);
-    --destructive-foreground: hsl(0 0% 98%);
-    --border: hsl(0 0% 14.9%);
-    --input: hsl(0 0% 14.9%);
-    --ring: hsl(0 0% 83.1%);
-    --chart-1: hsl(220 70% 50%);
-    --chart-2: hsl(160 60% 45%);
-    --chart-3: hsl(30 80% 55%);
-    --chart-4: hsl(280 65% 60%);
-    --chart-5: hsl(340 75% 55%);
-    --sidebar-background: hsl(0 0% 7%);
-    --sidebar-foreground: hsl(0 0% 95.9%);
-    --sidebar-primary: hsl(360, 100%, 100%);
-    --sidebar-primary-foreground: hsl(0 0% 100%);
-    --sidebar-accent: hsl(0 0% 15.9%);
-    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-    --sidebar-border: hsl(0 0% 15.9%);
-    --sidebar-ring: hsl(217.2 91.2% 59.8%);
-    --sidebar: hsl(240 5.9% 10%);
+    /* Polaris Pixels Dark Mode */
+
+    /* Base colors - Dark mode */
+    --background: oklch(0.19 0.02 254); /* Constellation Navy #0A1929 */
+    --foreground: oklch(0.99 0 0); /* Stellar White */
+
+    /* Card colors */
+    --card: oklch(0.35 0.08 254); /* Polaris Blue for cards in dark mode */
+    --card-foreground: oklch(0.99 0 0);
+
+    /* Popover colors */
+    --popover: oklch(0.35 0.08 254);
+    --popover-foreground: oklch(0.99 0 0);
+
+    /* Semantic colors */
+    --primary: oklch(0.35 0.08 254); /* Polaris Blue */
+    --primary-foreground: oklch(0.99 0 0);
+
+    --secondary: oklch(0.45 0.02 254); /* Horizon Slate (lighter for dark mode) */
+    --secondary-foreground: oklch(0.99 0 0);
+
+    --success: oklch(0.7 0.15 180); /* Aurora Teal */
+    --success-foreground: oklch(1 0 0);
+
+    --info: oklch(0.7 0.16 210); /* North Star Cyan */
+    --info-foreground: oklch(1 0 0);
+
+    --warning: oklch(0.75 0.15 70); /* Solar Amber */
+    --warning-foreground: oklch(0.19 0.02 254);
+
+    --danger: oklch(0.63 0.24 25); /* Supernova Red */
+    --danger-foreground: oklch(1 0 0);
+
+    /* Accent & muted */
+    --accent: oklch(0.7 0.16 210); /* North Star Cyan */
+    --accent-foreground: oklch(0.19 0.02 254);
+
+    --muted: oklch(0.55 0.03 254); /* Nebula Gray */
+    --muted-foreground: oklch(0.65 0.02 254); /* Lighter gray for dark mode */
+
+    /* Destructive */
+    --destructive: oklch(0.63 0.24 25);
+    --destructive-foreground: oklch(1 0 0);
+
+    /* UI elements */
+    --border: oklch(0.45 0.02 254); /* Horizon Slate for borders */
+    --input: oklch(0.45 0.02 254);
+    --ring: oklch(0.7 0.16 210); /* North Star Cyan */
+
+    /* Chart colors */
+    --chart-1: oklch(0.35 0.08 254);
+    --chart-2: oklch(0.7 0.16 210);
+    --chart-3: oklch(0.7 0.15 180);
+    --chart-4: oklch(0.75 0.15 70);
+    --chart-5: oklch(0.45 0.02 254);
+
+    /* Sidebar */
+    --sidebar-background: oklch(0.19 0.02 254);
+    --sidebar-foreground: oklch(0.99 0 0);
+    --sidebar-primary: oklch(0.35 0.08 254);
+    --sidebar-primary-foreground: oklch(0.99 0 0);
+    --sidebar-accent: oklch(0.7 0.16 210);
+    --sidebar-accent-foreground: oklch(0.19 0.02 254);
+    --sidebar-border: oklch(0.45 0.02 254);
+    --sidebar-ring: oklch(0.7 0.16 210);
+    --sidebar: oklch(0.19 0.02 254);
 }
 
 @layer base {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToolController;
@@ -14,6 +15,8 @@ Route::get('/tools/{tool:slug}', [ToolController::class, 'show'])->name('tools.s
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::get('/brand', [BrandController::class, 'index'])->name('brand');
 
 // Authenticated routes
 Route::get('dashboard', function () {

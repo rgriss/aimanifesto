@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AppLayout from '@/layouts/AppLayout.vue';
+import GuestLayout from '@/layouts/GuestLayout.vue';
+import { Card, Badge, SectionHeading } from '@/components';
 
 defineProps({
     tool: Object,
@@ -11,207 +12,192 @@ defineProps({
 <template>
     <Head :title="`${tool.name} - AI Manifesto`" />
 
-    <AppLayout>
+    <GuestLayout>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Back Navigation -->
                 <div class="mb-6">
                     <Link
-                        :href="route('tools.index')"
-                        class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                        href="/tools"
+                        class="text-info hover:text-info/80 font-semibold transition-colors"
                     >
                         ← Back to all tools
                     </Link>
                 </div>
 
                 <!-- Tool Header -->
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-8">
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-6">
-                            <div>
-                                <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                                    {{ tool.name }}
-                                </h1>
-                                <Link
-                                    :href="route('categories.show', tool.category.slug)"
-                                    class="text-blue-600 hover:text-blue-800 dark:text-blue-400"
-                                >
-                                    {{ tool.category.name }}
-                                </Link>
-                            </div>
-                            <span
-                                v-if="tool.is_featured"
-                                class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold"
+                <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-lg p-8 mb-8">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h1 class="text-4xl font-bold mb-2">
+                                {{ tool.name }}
+                            </h1>
+                            <Link
+                                :href="`/categories/${tool.category.slug}`"
+                                class="text-white/90 hover:text-white font-semibold transition-colors"
                             >
-                                Featured
+                                {{ tool.category.name }}
+                            </Link>
+                        </div>
+                        <Badge v-if="tool.is_featured" variant="warning">
+                            Featured
+                        </Badge>
+                    </div>
+
+                    <p class="text-xl text-white/90 mb-6">
+                        {{ tool.description }}
+                    </p>
+
+                    <!-- Metadata Row -->
+                    <div class="flex flex-wrap gap-6 text-sm mb-6">
+                        <div v-if="tool.ryan_rating">
+                            <span class="text-white/80">Ryan's Rating:</span>
+                            <Badge variant="success" class="ml-2">
+                                ⭐ {{ tool.ryan_rating }}/10
+                            </Badge>
+                        </div>
+                        <div>
+                            <span class="text-white/80">Pricing:</span>
+                            <Badge variant="default" class="ml-2 capitalize">
+                                {{ tool.pricing_model }}
+                            </Badge>
+                        </div>
+                        <div v-if="tool.price_description">
+                            <span class="text-white/80">Cost:</span>
+                            <span class="ml-2 text-white font-semibold">
+                                {{ tool.price_description }}
                             </span>
                         </div>
-
-                        <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
-                            {{ tool.description }}
-                        </p>
-
-                        <!-- Metadata Row -->
-                        <div class="flex flex-wrap gap-6 text-sm">
-                            <div v-if="tool.ryan_rating">
-                                <span class="text-gray-500 dark:text-gray-500">Ryan's Rating:</span>
-                                <span class="ml-2 text-yellow-500 font-semibold text-lg">
-                                    ⭐ {{ tool.ryan_rating }}/10
-                                </span>
-                            </div>
-                            <div>
-                                <span class="text-gray-500 dark:text-gray-500">Pricing:</span>
-                                <span class="ml-2 text-gray-900 dark:text-gray-100 capitalize">
-                                    {{ tool.pricing_model }}
-                                </span>
-                            </div>
-                            <div v-if="tool.price_description">
-                                <span class="text-gray-500 dark:text-gray-500">Cost:</span>
-                                <span class="ml-2 text-gray-900 dark:text-gray-100">
-                                    {{ tool.price_description }}
-                                </span>
-                            </div>
-                            <div v-if="tool.views_count">
-                                <span class="text-gray-500 dark:text-gray-500">Views:</span>
-                                <span class="ml-2 text-gray-900 dark:text-gray-100">
-                                    {{ tool.views_count.toLocaleString() }}
-                                </span>
-                            </div>
+                        <div v-if="tool.views_count">
+                            <span class="text-white/80">Views:</span>
+                            <span class="ml-2 text-white font-semibold">
+                                {{ tool.views_count.toLocaleString() }}
+                            </span>
                         </div>
+                    </div>
 
-                        <!-- Action Buttons -->
-                        <div class="mt-6 flex gap-4">
-                            <a
-                                :href="tool.website_url"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg"
-                            >
-                                Visit Website →
-                            </a>
-                            <a
-                                v-if="tool.documentation_url"
-                                :href="tool.documentation_url"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-lg"
-                            >
-                                Documentation
-                            </a>
-                        </div>
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-4">
+                        <a
+                            :href="tool.website_url"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-white text-primary hover:bg-white/90 font-semibold py-3 px-6 rounded-lg transition-colors"
+                        >
+                            Visit Website →
+                        </a>
+                        <a
+                            v-if="tool.documentation_url"
+                            :href="tool.documentation_url"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-white/10 text-white hover:bg-white/20 font-semibold py-3 px-6 rounded-lg transition-colors border border-white/30"
+                        >
+                            Documentation
+                        </a>
                     </div>
                 </div>
 
                 <!-- Long Description -->
-                <div v-if="tool.long_description" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-8">
-                    <div class="p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">About</h2>
-                        <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">
-                            {{ tool.long_description }}
-                        </p>
-                    </div>
-                </div>
+                <Card v-if="tool.long_description" class="mb-8">
+                    <SectionHeading title="About" />
+                    <p class="text-foreground whitespace-pre-line">
+                        {{ tool.long_description }}
+                    </p>
+                </Card>
 
                 <!-- Ryan's Notes -->
-                <div v-if="tool.ryan_notes" class="bg-blue-50 dark:bg-blue-900/20 overflow-hidden shadow-sm sm:rounded-lg mb-8">
-                    <div class="p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                            Ryan's Take
-                        </h2>
-                        <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line italic">
-                            "{{ tool.ryan_notes }}"
-                        </p>
-                        <p v-if="tool.ryan_last_used" class="text-sm text-gray-500 dark:text-gray-500 mt-4">
-                            Last used: {{ new Date(tool.ryan_last_used).toLocaleDateString() }}
-                        </p>
-                    </div>
+                <div v-if="tool.ryan_notes" class="bg-gradient-to-br from-success/20 to-info/20 rounded-lg shadow p-8 mb-8 border-2 border-success/30">
+                    <SectionHeading title="Ryan's Take" />
+                    <p class="text-foreground italic text-lg leading-relaxed">
+                        "{{ tool.ryan_notes }}"
+                    </p>
+                    <p v-if="tool.ryan_last_used" class="text-sm text-muted-foreground mt-4">
+                        Last used: {{ new Date(tool.ryan_last_used).toLocaleDateString() }}
+                    </p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Features, Use Cases, Integrations -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                     <!-- Features -->
-                    <div v-if="tool.features && tool.features.length > 0" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                                Key Features
-                            </h3>
-                            <ul class="space-y-2">
-                                <li
-                                    v-for="(feature, index) in tool.features"
-                                    :key="index"
-                                    class="flex items-start"
-                                >
-                                    <span class="text-blue-600 mr-2">✓</span>
-                                    <span class="text-gray-600 dark:text-gray-400">{{ feature }}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <Card v-if="tool.features && tool.features.length > 0">
+                        <h3 class="text-xl font-bold text-info mb-4">
+                            Key Features
+                        </h3>
+                        <ul class="space-y-2">
+                            <li
+                                v-for="(feature, index) in tool.features"
+                                :key="index"
+                                class="flex items-start"
+                            >
+                                <span class="text-success mr-2 font-bold">✓</span>
+                                <span class="text-foreground">{{ feature }}</span>
+                            </li>
+                        </ul>
+                    </Card>
 
                     <!-- Use Cases -->
-                    <div v-if="tool.use_cases && tool.use_cases.length > 0" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                                Use Cases
-                            </h3>
-                            <ul class="space-y-2">
-                                <li
-                                    v-for="(useCase, index) in tool.use_cases"
-                                    :key="index"
-                                    class="flex items-start"
-                                >
-                                    <span class="text-green-600 mr-2">→</span>
-                                    <span class="text-gray-600 dark:text-gray-400">{{ useCase }}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <Card v-if="tool.use_cases && tool.use_cases.length > 0">
+                        <h3 class="text-xl font-bold text-info mb-4">
+                            Use Cases
+                        </h3>
+                        <ul class="space-y-2">
+                            <li
+                                v-for="(useCase, index) in tool.use_cases"
+                                :key="index"
+                                class="flex items-start"
+                            >
+                                <span class="text-info mr-2 font-bold">→</span>
+                                <span class="text-foreground">{{ useCase }}</span>
+                            </li>
+                        </ul>
+                    </Card>
 
                     <!-- Integrations -->
-                    <div v-if="tool.integrations && tool.integrations.length > 0" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                                Integrations
-                            </h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span
-                                    v-for="(integration, index) in tool.integrations"
-                                    :key="index"
-                                    class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm"
-                                >
-                                    {{ integration }}
-                                </span>
-                            </div>
+                    <Card v-if="tool.integrations && tool.integrations.length > 0">
+                        <h3 class="text-xl font-bold text-info mb-4">
+                            Integrations
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <Badge
+                                v-for="(integration, index) in tool.integrations"
+                                :key="index"
+                                variant="default"
+                            >
+                                {{ integration }}
+                            </Badge>
                         </div>
-                    </div>
+                    </Card>
                 </div>
 
                 <!-- Related Tools -->
-                <div v-if="relatedTools && relatedTools.length > 0" class="mt-8">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                        More in {{ tool.category.name }}
-                    </h2>
+                <div v-if="relatedTools && relatedTools.length > 0">
+                    <SectionHeading
+                        :title="`More in ${tool.category.name}`"
+                        subtitle="Other tools you might find useful"
+                    />
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Link
                             v-for="relatedTool in relatedTools"
                             :key="relatedTool.id"
-                            :href="route('tools.show', relatedTool.slug)"
-                            class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg hover:shadow-lg transition-shadow"
+                            :href="`/tools/${relatedTool.slug}`"
+                            class="group"
                         >
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                            <Card>
+                                <h3 class="text-xl font-bold text-foreground group-hover:text-info transition-colors mb-2">
                                     {{ relatedTool.name }}
                                 </h3>
-                                <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                <p class="text-muted-foreground mb-4 text-sm">
                                     {{ relatedTool.description }}
                                 </p>
-                                <span v-if="relatedTool.ryan_rating" class="text-yellow-500 font-semibold">
+                                <Badge v-if="relatedTool.ryan_rating" variant="success" size="sm">
                                     ⭐ {{ relatedTool.ryan_rating }}/10
-                                </span>
-                            </div>
+                                </Badge>
+                            </Card>
                         </Link>
                     </div>
                 </div>
             </div>
         </div>
-    </AppLayout>
+    </GuestLayout>
 </template>

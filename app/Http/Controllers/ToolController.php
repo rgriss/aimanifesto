@@ -14,20 +14,8 @@ class ToolController extends Controller
         $query = Tool::with('category')
             ->active();
 
-        // Filter by category if provided
-        if ($request->has('category')) {
-            $query->whereHas('category', function ($q) use ($request) {
-                $q->where('slug', $request->category);
-            });
-        }
-
-        // Filter by pricing model if provided
-        if ($request->has('pricing')) {
-            $query->where('pricing_model', $request->pricing);
-        }
-
         // Search functionality
-        if ($request->has('search')) {
+        if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
@@ -49,8 +37,6 @@ class ToolController extends Controller
         return Inertia::render('Tools/Index', [
             'tools' => $tools,
             'filters' => [
-                'category' => $request->get('category', ''),
-                'pricing' => $request->get('pricing', ''),
                 'search' => $request->get('search', ''),
                 'sort' => $request->get('sort', 'name'),
             ],

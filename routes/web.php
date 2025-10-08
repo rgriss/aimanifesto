@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToolController;
+use App\Http\Controllers\WhyController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,6 +18,7 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('/brand', [BrandController::class, 'index'])->name('brand');
+Route::get('/why', [WhyController::class, 'index'])->name('why');
 
 // Authenticated routes
 Route::get('dashboard', function () {

@@ -13,15 +13,11 @@ const props = defineProps({
 });
 
 const search = ref(props.filters?.search || '');
-const category = ref(props.filters?.category || '');
-const pricing = ref(props.filters?.pricing || '');
 const sort = ref(props.filters?.sort || 'name');
 
 const applyFilters = () => {
     router.get('/tools', {
         search: search.value,
-        category: category.value,
-        pricing: pricing.value,
         sort: sort.value,
     }, {
         preserveState: true,
@@ -43,66 +39,47 @@ const applyFilters = () => {
                     :gradient="true"
                 />
 
-                <!-- Filters -->
+                <!-- Search & Sort -->
                 <Card class="mb-8">
-                    <h3 class="text-lg font-bold text-foreground mb-4">Filter & Search</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="flex flex-col sm:flex-row gap-4">
                         <!-- Search -->
-                        <div>
+                        <div class="flex-1">
                             <label class="block text-sm font-medium text-foreground mb-2">
-                                Search
+                                Search Tools
                             </label>
                             <input
                                 v-model="search"
                                 @input="applyFilters"
                                 type="text"
-                                placeholder="Search tools..."
-                                class="w-full rounded-md border-border bg-background text-foreground px-3 py-2 focus:outline-none focus:ring-2 focus:ring-info"
+                                placeholder="Search by name or description..."
+                                class="w-full rounded-md border border-border bg-background text-foreground px-4 py-2 focus:outline-none focus:ring-2 focus:ring-info focus:border-transparent"
                             />
                         </div>
 
-                        <!-- Pricing Filter -->
-                        <div>
-                            <label class="block text-sm font-medium text-foreground mb-2">
-                                Pricing
-                            </label>
-                            <select
-                                v-model="pricing"
-                                @change="applyFilters"
-                                class="w-full rounded-md border-border bg-background text-foreground px-3 py-2 focus:outline-none focus:ring-2 focus:ring-info"
-                            >
-                                <option value="">All</option>
-                                <option value="free">Free</option>
-                                <option value="freemium">Freemium</option>
-                                <option value="paid">Paid</option>
-                                <option value="enterprise">Enterprise</option>
-                            </select>
-                        </div>
-
                         <!-- Sort -->
-                        <div>
+                        <div class="w-full sm:w-48">
                             <label class="block text-sm font-medium text-foreground mb-2">
                                 Sort By
                             </label>
                             <select
                                 v-model="sort"
                                 @change="applyFilters"
-                                class="w-full rounded-md border-border bg-background text-foreground px-3 py-2 focus:outline-none focus:ring-2 focus:ring-info"
+                                class="w-full rounded-md border border-border bg-background text-foreground px-4 py-2 focus:outline-none focus:ring-2 focus:ring-info focus:border-transparent"
                             >
                                 <option value="name">Name</option>
-                                <option value="rating">Rating</option>
+                                <option value="rating">Highest Rated</option>
                                 <option value="views">Most Viewed</option>
                                 <option value="recent">Recently Added</option>
                             </select>
                         </div>
 
-                        <!-- Clear Filters -->
-                        <div class="flex items-end">
+                        <!-- Clear Search (only show if search is active) -->
+                        <div v-if="search" class="flex items-end">
                             <Link
                                 href="/tools"
-                                class="w-full px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 text-center font-semibold transition-colors"
+                                class="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 text-center font-semibold transition-colors whitespace-nowrap"
                             >
-                                Clear Filters
+                                Clear Search
                             </Link>
                         </div>
                     </div>
@@ -166,12 +143,15 @@ const applyFilters = () => {
                 <!-- Empty State -->
                 <Card v-else padding="p-12">
                     <div class="text-center">
-                        <p class="text-xl text-muted-foreground mb-4">No tools found</p>
+                        <p class="text-xl text-muted-foreground mb-4">
+                            {{ search ? `No tools found for "${search}"` : 'No tools found' }}
+                        </p>
                         <Link
+                            v-if="search"
                             href="/tools"
                             class="text-info hover:text-info/80 font-semibold"
                         >
-                            Clear filters
+                            Clear search
                         </Link>
                     </div>
                 </Card>

@@ -13,100 +13,261 @@ defineProps({
         default: () => []
     },
 });
+
+const coreValues = [
+    { priority: 'Human judgment', over: 'algorithmic automation' },
+    { priority: 'Transparency', over: 'black-box efficiency' },
+    { priority: 'Augmentation', over: 'replacement' },
+    { priority: 'Ethical responsibility', over: 'unchecked innovation' },
+    { priority: 'Long-term trust', over: 'short-term gain' }
+];
+
+const guidingPrinciples = [
+    { icon: '🎯', title: 'AI is a tool, not a master', description: 'It amplifies human creativity, decision-making, and productivity.' },
+    { icon: '⚖️', title: 'Fairness & accountability are non-negotiable', description: 'Measure, mitigate, and disclose risks and bias.' },
+    { icon: '🌍', title: 'Opportunity for all scales', description: 'Individuals, SMBs, and enterprises should benefit without widening gaps.' },
+    { icon: '🤝', title: 'Human connection matters', description: 'Design to enhance empathy, dignity, and community.' },
+    { icon: '🔄', title: 'Iterate responsibly', description: 'Pair innovation with governance, safety, and continuous learning.' },
+    { icon: '🔒', title: 'Data stewardship is a duty', description: 'Privacy, consent, security, and minimal collection by default.' },
+    { icon: '🤲', title: 'Open collaboration', description: 'Policymakers, businesses, academia, and the public co-create the path.' },
+    { icon: '🌱', title: 'Adaptive systems', description: 'Evolve responsibly as contexts and capabilities change.' }
+];
+
+const scopes = [
+    { title: 'Personal', description: 'Use AI to learn, create, and decide—own your inputs & outputs.', color: 'info' },
+    { title: 'Small Business', description: 'Focus on productivity, customer value, and clear ROI with lightweight governance.', color: 'success' },
+    { title: 'Enterprise', description: 'Formal risk management, model lifecycle oversight, and transparent vendor controls.', color: 'warning' },
+    { title: 'Society', description: 'Safety, rights, and equitable access as first-order concerns.', color: 'danger' }
+];
 </script>
 
 <template>
-    <Head title="AI Manifesto - Curated AI Tools & Reviews" />
+    <Head title="Artificial Intelligence Manifesto - Responsible AI Principles" />
 
     <GuestLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Hero Header -->
-                <PageHeader
-                    title="AI Manifesto"
-                    description="A curated collection of AI tools, tested and reviewed by Ryan Grissinger. Real experience from building a $200M company with AI."
-                    :gradient="true"
-                >
-                    <div class="flex flex-wrap gap-4 mt-6">
-                        <Link
-                            href="/tools"
-                            class="bg-info text-info-foreground hover:bg-info/90 font-semibold py-3 px-6 rounded-lg transition-colors"
-                        >
-                            Browse Tools
-                        </Link>
-                        <Link
-                            href="/categories"
-                            class="bg-white/20 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary font-semibold py-3 px-6 rounded-lg transition-colors"
-                        >
-                            Explore Categories
-                        </Link>
-                    </div>
-                </PageHeader>
-
-                <!-- Featured Tools -->
-                <div v-if="featuredTools.length > 0" class="mb-12">
-                    <SectionHeading
-                        title="Featured Tools"
-                        subtitle="Hand-picked tools that deliver exceptional value"
-                    />
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <Link
-                            v-for="tool in featuredTools"
-                            :key="tool.id"
-                            :href="`/tools/${tool.slug}`"
-                            class="group"
-                        >
-                            <Card>
-                                <div class="flex items-start justify-between mb-3">
-                                    <h3 class="text-xl font-bold text-foreground group-hover:text-info transition-colors">
-                                        {{ tool.name }}
-                                    </h3>
-                                    <Badge v-if="tool.is_featured" variant="warning" size="sm">
-                                        Featured
-                                    </Badge>
-                                </div>
-                                <p class="text-muted-foreground mb-4 text-sm">
-                                    {{ tool.description }}
-                                </p>
-                                <div class="flex items-center justify-between text-sm">
-                                    <span class="text-muted-foreground">
-                                        {{ tool.category.name }}
-                                    </span>
-                                    <Badge v-if="tool.ryan_rating" variant="success" size="sm">
-                                        ⭐ {{ tool.ryan_rating }}/10
-                                    </Badge>
-                                </div>
-                            </Card>
-                        </Link>
+                <!-- Manifesto Hero -->
+                <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-xl p-6 sm:p-8 md:p-12 mb-8 md:mb-12 text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 leading-tight">
+                        Artificial Intelligence Manifesto
+                    </h1>
+                    <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-6 px-2">
+                        A framework for responsible AI development and deployment
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm text-white/80">
+                        <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Draft 0.1</span>
+                        <span class="hidden sm:inline">Last updated October 8, 2025</span>
+                        <span class="sm:hidden">Oct 8, 2025</span>
+                        <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Public consultation</span>
                     </div>
                 </div>
 
-                <!-- Categories -->
-                <div v-if="categories.length > 0">
+                <!-- Core Values -->
+                <div class="mb-12 md:mb-16">
                     <SectionHeading
-                        title="Browse by Category"
-                        subtitle="Explore tools organized by their primary use case"
+                        title="Core Values"
+                        subtitle="We value… over…"
                     />
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <Link
-                            v-for="category in categories"
-                            :key="category.id"
-                            :href="`/categories/${category.slug}`"
-                            class="group"
+                    <Card class="bg-gradient-to-br from-info/5 to-success/5 border-2 border-info/20">
+                        <div class="space-y-3 md:space-y-4">
+                            <div
+                                v-for="(value, index) in coreValues"
+                                :key="index"
+                                class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base md:text-lg"
+                            >
+                                <div class="flex items-center gap-2 sm:gap-3">
+                                    <span class="text-info font-bold text-xl sm:text-2xl flex-shrink-0">→</span>
+                                    <span class="font-bold text-info">{{ value.priority }}</span>
+                                </div>
+                                <div class="flex items-center gap-2 sm:gap-3 pl-7 sm:pl-0">
+                                    <span class="text-muted-foreground text-xs sm:text-sm">over</span>
+                                    <span class="text-foreground/70">{{ value.over }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+
+                <!-- Guiding Principles -->
+                <div class="mb-12 md:mb-16">
+                    <SectionHeading
+                        title="Guiding Principles"
+                        subtitle="Our commitment to responsible AI development"
+                    />
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                        <Card
+                            v-for="(principle, index) in guidingPrinciples"
+                            :key="index"
+                            class="hover:shadow-lg transition-shadow"
                         >
-                            <Card>
-                                <div class="text-5xl mb-4">{{ category.icon }}</div>
-                                <h3 class="text-lg font-bold text-foreground group-hover:text-info transition-colors mb-2">
-                                    {{ category.name }}
-                                </h3>
-                                <p class="text-sm text-muted-foreground mb-3">
-                                    {{ category.description }}
-                                </p>
-                                <Badge variant="default" size="sm">
-                                    {{ category.active_tools_count }} tools
-                                </Badge>
-                            </Card>
-                        </Link>
+                            <div class="text-3xl sm:text-4xl mb-2 md:mb-3">{{ principle.icon }}</div>
+                            <h3 class="text-base md:text-lg font-bold text-info mb-2 leading-tight">{{ principle.title }}</h3>
+                            <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">{{ principle.description }}</p>
+                        </Card>
+                    </div>
+                </div>
+
+                <!-- Scopes of Application -->
+                <div class="mb-12 md:mb-16">
+                    <SectionHeading
+                        title="Scopes of Application"
+                        subtitle="AI for everyone, adapted to your context"
+                    />
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                        <Card
+                            v-for="(scope, index) in scopes"
+                            :key="index"
+                        >
+                            <Badge :variant="scope.color" class="mb-3">{{ scope.title }}</Badge>
+                            <p class="text-xs sm:text-sm text-foreground leading-relaxed">{{ scope.description }}</p>
+                        </Card>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="border-t-2 border-border my-12 md:my-16"></div>
+
+                <!-- Supporting Content: Tools & Categories -->
+                <div class="mb-8 md:mb-12">
+                    <SectionHeading
+                        title="Curated AI Tools"
+                        subtitle="Tested and reviewed tools that align with our principles"
+                    />
+
+                    <!-- Featured Tools Preview -->
+                    <div v-if="featuredTools.length > 0" class="mb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                            <Link
+                                v-for="tool in featuredTools.slice(0, 3)"
+                                :key="tool.id"
+                                :href="`/tools/${tool.slug}`"
+                                class="group"
+                            >
+                                <Card>
+                                    <div class="flex items-start justify-between mb-2 gap-2">
+                                        <h3 class="text-base md:text-lg font-bold text-foreground group-hover:text-info transition-colors leading-tight">
+                                            {{ tool.name }}
+                                        </h3>
+                                        <Badge v-if="tool.ryan_rating" variant="success" size="sm" class="flex-shrink-0">
+                                            ⭐ {{ tool.ryan_rating }}/10
+                                        </Badge>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-muted-foreground mb-3 leading-relaxed">
+                                        {{ tool.description }}
+                                    </p>
+                                    <Badge variant="default" size="sm" class="capitalize">
+                                        {{ tool.pricing_model }}
+                                    </Badge>
+                                </Card>
+                            </Link>
+                        </div>
+                        <div class="text-center mt-6">
+                            <Link
+                                href="/tools"
+                                class="inline-block bg-info text-info-foreground hover:bg-info/90 font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition-colors text-sm sm:text-base"
+                            >
+                                Browse All Tools →
+                            </Link>
+                        </div>
+                    </div>
+
+                    <!-- Categories Preview -->
+                    <div v-if="categories.length > 0" class="mt-8 md:mt-12">
+                        <h3 class="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">Explore by Category</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+                            <Link
+                                v-for="category in categories.slice(0, 6)"
+                                :key="category.id"
+                                :href="`/categories/${category.slug}`"
+                                class="group"
+                            >
+                                <Card class="text-center hover:shadow-lg transition-shadow">
+                                    <div class="text-3xl sm:text-4xl mb-2">{{ category.icon }}</div>
+                                    <h4 class="text-xs sm:text-sm font-bold text-foreground group-hover:text-info transition-colors mb-1 leading-tight px-1">
+                                        {{ category.name }}
+                                    </h4>
+                                    <Badge variant="default" size="sm">
+                                        {{ category.active_tools_count }}
+                                    </Badge>
+                                </Card>
+                            </Link>
+                        </div>
+                        <div class="text-center mt-6">
+                            <Link
+                                href="/categories"
+                                class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition-colors text-sm sm:text-base"
+                            >
+                                View All Categories →
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Navigation -->
+                <div class="border-t-2 border-border mt-12 md:mt-16 pt-8 md:pt-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                        <!-- About Section -->
+                        <div>
+                            <h3 class="text-lg font-bold text-foreground mb-4">About</h3>
+                            <ul class="space-y-2">
+                                <li>
+                                    <Link
+                                        href="/why"
+                                        class="text-muted-foreground hover:text-info transition-colors"
+                                    >
+                                        Why This Manifesto
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/brand"
+                                        class="text-muted-foreground hover:text-info transition-colors"
+                                    >
+                                        Brand Guidelines
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Resources Section -->
+                        <div>
+                            <h3 class="text-lg font-bold text-foreground mb-4">Resources</h3>
+                            <ul class="space-y-2">
+                                <li>
+                                    <Link
+                                        href="/tools"
+                                        class="text-muted-foreground hover:text-info transition-colors"
+                                    >
+                                        AI Tools Directory
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/categories"
+                                        class="text-muted-foreground hover:text-info transition-colors"
+                                    >
+                                        Browse Categories
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Manifesto Section -->
+                        <div>
+                            <h3 class="text-lg font-bold text-foreground mb-4">The Manifesto</h3>
+                            <p class="text-sm text-muted-foreground leading-relaxed">
+                                A framework for responsible AI development that prioritizes human judgment,
+                                transparency, and ethical accountability.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="text-center pt-8 border-t border-border">
+                        <p class="text-sm text-muted-foreground">
+                            © {{ new Date().getFullYear() }} AI Manifesto. All rights reserved.
+                        </p>
                     </div>
                 </div>
             </div>

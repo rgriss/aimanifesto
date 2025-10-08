@@ -10,7 +10,7 @@ import { Link } from '@inertiajs/vue3';
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <Link 
-                            :href="route('home')" 
+                            href="/" 
                             class="flex items-center text-2xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
                         >
                             AI Manifesto
@@ -18,13 +18,13 @@ import { Link } from '@inertiajs/vue3';
                     </div>
                     <div class="flex items-center space-x-8">
                         <Link 
-                            :href="route('tools.index')" 
+                            href="/tools" 
                             class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium"
                         >
                             Tools
                         </Link>
                         <Link 
-                            :href="route('categories.index')" 
+                            href="/categories" 
                             class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium"
                         >
                             Categories

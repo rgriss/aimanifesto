@@ -2,6 +2,9 @@
 
 A modern tool directory and catalog for AI tools, built with Laravel 12, Vue 3, and Inertia.js.
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-rgriss%2Faimanifesto-blue?logo=github)](https://github.com/rgriss/aimanifesto)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Overview
 
 AI Manifesto is a curated directory of AI tools featuring:
@@ -33,7 +36,7 @@ AI Manifesto is a curated directory of AI tools featuring:
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/rgriss/aimanifesto.git
 cd aimanifesto
 ```
 
@@ -118,10 +121,18 @@ php artisan test      # Direct test execution
 
 See [CLAUDE.md](CLAUDE.md) for detailed architecture documentation and AI code assistant guidance.
 
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
+## Code of Conduct
+
+This project adheres to a Code of Conduct. By participating, you are expected to uphold this code. Please see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details.
+
 ## Questions?
 
 For questions or support, please email Ryan at **polarispixels.com**
 
 ## License
 
-[Add your license here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

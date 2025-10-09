@@ -50,7 +50,7 @@ const scopes = [
                 <!-- Manifesto Hero -->
                 <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-xl p-6 sm:p-8 md:p-12 mb-8 md:mb-12 text-center">
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 leading-tight flex items-center justify-center gap-4 md:gap-6">
-                        <img src="/images/polaris-star.svg" alt="Polaris Pixels" class="h-12 w-auto sm:h-16 md:h-20 lg:h-24 flex-shrink-0" />
+                        <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels" class="h-12 w-auto sm:h-16 md:h-20 lg:h-24 flex-shrink-0" />
                         <span>Artificial Intelligence Manifesto</span>
                     </h1>
                     <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-6 px-2">

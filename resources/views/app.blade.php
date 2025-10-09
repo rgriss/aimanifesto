@@ -33,8 +33,9 @@
         <title inertia>{{ config('app.name', 'AI Manifesto') }}</title>
 
         <!-- Favicon -->
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/images/polaris-star.svg">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="/images/Polaris Pixels Star Logo.png">
 
         <!-- Meta Tags -->
         <meta name="description" content="AI Manifesto - A framework for responsible AI development. Curated tools, ethical principles, and guidance for building with artificial intelligence.">
@@ -46,14 +47,14 @@
         <meta property="og:url" content="{{ url('/') }}">
         <meta property="og:title" content="AI Manifesto - Responsible AI Development Framework">
         <meta property="og:description" content="A framework for responsible AI development. Curated tools, ethical principles, and guidance for building with artificial intelligence.">
-        <meta property="og:image" content="{{ url('/images/polaris-star.svg') }}">
+        <meta property="og:image" content="{{ url('/images/Polaris Pixels Star Logo.png') }}">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url('/') }}">
         <meta property="twitter:title" content="AI Manifesto - Responsible AI Development Framework">
         <meta property="twitter:description" content="A framework for responsible AI development. Curated tools, ethical principles, and guidance for building with artificial intelligence.">
-        <meta property="twitter:image" content="{{ url('/images/polaris-star.svg') }}">
+        <meta property="twitter:image" content="{{ url('/images/Polaris Pixels Star Logo.png') }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

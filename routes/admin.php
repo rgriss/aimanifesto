@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DataManagementController;
+use App\Http\Controllers\Admin\ToolController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -12,6 +14,12 @@ Route::prefix('admin')
         Route::get('/', function () {
             return Inertia::render('Admin/Index');
         })->name('index');
+
+        // Categories CRUD
+        Route::resource('categories', CategoryController::class)->except(['show']);
+
+        // Tools CRUD
+        Route::resource('tools', ToolController::class)->except(['show']);
 
         // Data Management (Import/Export)
         Route::get('/data', [DataManagementController::class, 'index'])->name('data.index');

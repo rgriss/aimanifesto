@@ -59,48 +59,52 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </Link>
                 </Card>
 
-                <!-- Tool Management -->
-                <Card class="hover:shadow-lg transition-shadow cursor-pointer opacity-60">
-                    <CardHeader>
-                        <div class="flex items-center justify-between">
-                            <Settings class="h-10 w-10 text-purple-500" />
-                            <div class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-                                Coming Soon
+                <!-- Category Management -->
+                <Card class="hover:shadow-lg transition-shadow cursor-pointer">
+                    <Link :href="'/admin/categories'" class="block">
+                        <CardHeader>
+                            <div class="flex items-center justify-between">
+                                <BarChart3 class="h-10 w-10 text-green-500" />
+                                <div class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 dark:bg-green-900 dark:text-green-300">
+                                    Active
+                                </div>
                             </div>
-                        </div>
-                        <CardTitle class="mt-4">Tool Management</CardTitle>
-                        <CardDescription>
-                            Create, edit, and delete AI tools in your directory
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Database class="h-4 w-4" />
-                            <span>CRUD Operations</span>
-                        </div>
-                    </CardContent>
+                            <CardTitle class="mt-4">Category Management</CardTitle>
+                            <CardDescription>
+                                Organize and manage tool categories
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Settings class="h-4 w-4" />
+                                <span>Category Organization</span>
+                            </div>
+                        </CardContent>
+                    </Link>
                 </Card>
 
-                <!-- Category Management -->
-                <Card class="hover:shadow-lg transition-shadow cursor-pointer opacity-60">
-                    <CardHeader>
-                        <div class="flex items-center justify-between">
-                            <BarChart3 class="h-10 w-10 text-green-500" />
-                            <div class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-                                Coming Soon
+                <!-- Tool Management -->
+                <Card class="hover:shadow-lg transition-shadow cursor-pointer">
+                    <Link :href="'/admin/tools'" class="block">
+                        <CardHeader>
+                            <div class="flex items-center justify-between">
+                                <Settings class="h-10 w-10 text-purple-500" />
+                                <div class="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700 dark:bg-purple-900 dark:text-purple-300">
+                                    Active
+                                </div>
                             </div>
-                        </div>
-                        <CardTitle class="mt-4">Category Management</CardTitle>
-                        <CardDescription>
-                            Organize and manage tool categories
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Settings class="h-4 w-4" />
-                            <span>Category Organization</span>
-                        </div>
-                    </CardContent>
+                            <CardTitle class="mt-4">Tool Management</CardTitle>
+                            <CardDescription>
+                                Create, edit, and delete AI tools in your directory
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Database class="h-4 w-4" />
+                                <span>CRUD Operations</span>
+                            </div>
+                        </CardContent>
+                    </Link>
                 </Card>
 
                 <!-- User Management -->

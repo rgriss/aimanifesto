@@ -10,7 +10,8 @@
       "Bash(php artisan:*)",
       "mcp__ide__getDiagnostics",
       "Bash(curl:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

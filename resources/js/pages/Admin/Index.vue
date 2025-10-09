@@ -20,14 +20,17 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-6 overflow-x-auto p-6">
             <!-- Page Header -->
-            <div>
-                <h1 class="text-3xl font-bold tracking-tight flex items-center gap-3">
-                    <Shield class="h-8 w-8 text-primary" />
-                    Admin Dashboard
-                </h1>
-                <p class="text-muted-foreground mt-2">
-                    Manage your AI Manifesto application
-                </p>
+            <div class="flex items-start gap-6">
+                <img src="/images/polaris-star.svg" alt="Polaris Pixels" class="h-16 w-auto flex-shrink-0" />
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight flex items-center gap-3">
+                        <Shield class="h-8 w-8 text-primary" />
+                        Admin Dashboard
+                    </h1>
+                    <p class="text-muted-foreground mt-2">
+                        Manage your AI Manifesto application
+                    </p>
+                </div>
             </div>
 
             <!-- Admin Actions Grid -->

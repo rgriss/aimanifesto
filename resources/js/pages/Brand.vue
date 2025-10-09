@@ -117,9 +117,17 @@ const copyToClipboard = (text) => {
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->
                 <div class="bg-gradient-to-br from-[#1B3A5F] via-[#0A1929] to-[#06B6D4] rounded-lg shadow-lg p-8 mb-8 text-white">
-                    <h1 class="text-5xl font-bold mb-4">
-                        Polaris Pixels Brand Color Palette
-                    </h1>
+                    <div class="flex items-center gap-6 mb-6">
+                        <img src="/images/polaris-star.svg" alt="Polaris Pixels Logo" class="h-20 w-auto" />
+                        <div>
+                            <h1 class="text-5xl font-bold">
+                                Polaris Pixels
+                            </h1>
+                            <p class="text-xl text-[#06B6D4] font-semibold">
+                                Brand Guidelines
+                            </p>
+                        </div>
+                    </div>
                     <p class="text-xl text-[#06B6D4] mb-2 font-semibold">
                         Version 1.0 - October 2025
                     </p>

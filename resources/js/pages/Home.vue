@@ -49,6 +49,9 @@ const scopes = [
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Manifesto Hero -->
                 <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-xl p-6 sm:p-8 md:p-12 mb-8 md:mb-12 text-center">
+                    <div class="flex justify-center mb-6">
+                        <img src="/images/polaris-star.svg" alt="Polaris Pixels" class="h-24 w-auto sm:h-32 md:h-40" />
+                    </div>
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 leading-tight">
                         Artificial Intelligence Manifesto
                     </h1>

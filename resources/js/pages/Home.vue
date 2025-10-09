@@ -49,11 +49,9 @@ const scopes = [
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Manifesto Hero -->
                 <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-xl p-6 sm:p-8 md:p-12 mb-8 md:mb-12 text-center">
-                    <div class="flex justify-center mb-6">
-                        <img src="/images/polaris-star.svg" alt="Polaris Pixels" class="h-24 w-auto sm:h-32 md:h-40" />
-                    </div>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 leading-tight">
-                        Artificial Intelligence Manifesto
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 leading-tight flex items-center justify-center gap-4 md:gap-6">
+                        <img src="/images/polaris-star.svg" alt="Polaris Pixels" class="h-12 w-auto sm:h-16 md:h-20 lg:h-24 flex-shrink-0" />
+                        <span>Artificial Intelligence Manifesto</span>
                     </h1>
                     <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-6 px-2">
                         A framework for responsible AI development and deployment

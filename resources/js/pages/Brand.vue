@@ -118,7 +118,7 @@ const copyToClipboard = (text) => {
                 <!-- Header -->
                 <div class="bg-gradient-to-br from-[#1B3A5F] via-[#0A1929] to-[#06B6D4] rounded-lg shadow-lg p-8 mb-8 text-white">
                     <div class="flex items-center gap-6 mb-6">
-                        <img src="/images/polaris-star.svg" alt="Polaris Pixels Logo" class="h-20 w-auto" />
+                        <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels Logo" class="h-20 w-auto" />
                         <div>
                             <h1 class="text-5xl font-bold">
                                 Polaris Pixels

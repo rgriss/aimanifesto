@@ -162,14 +162,21 @@ const scopes = [
                         <Card
                             v-for="(principle, index) in guidingPrinciples"
                             :key="index"
-                            class="hover:shadow-lg transition-shadow"
+                            class="hover:shadow-lg transition-shadow relative pl-20 sm:pl-24 pr-6 sm:pr-8 py-6 sm:py-8"
                         >
-                            <div class="flex items-start gap-3 mb-3">
-                                <div class="text-2xl sm:text-3xl flex-shrink-0">{{ principle.icon }}</div>
-                                <div class="text-sm font-semibold text-muted-foreground pt-1">{{ index + 1 }}</div>
+                            <!-- Number Badge - Left Side, Vertically Centered -->
+                            <div class="absolute left-5 sm:left-6 top-1/2 -translate-y-1/2">
+                                <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border-2 border-primary/20">
+                                    <span class="text-base sm:text-lg font-bold text-primary">{{ index + 1 }}</span>
+                                </div>
                             </div>
-                            <h3 class="text-base md:text-lg font-bold text-info mb-2 leading-tight">{{ principle.title }}</h3>
-                            <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">{{ principle.description }}</p>
+
+                            <!-- Content Area - Left Aligned -->
+                            <div class="space-y-3">
+                                <div class="text-2xl sm:text-3xl">{{ principle.icon }}</div>
+                                <h3 class="text-base md:text-lg font-bold text-info leading-tight">{{ principle.title }}</h3>
+                                <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed" style="line-height: 1.6;">{{ principle.description }}</p>
+                            </div>
                         </Card>
                     </div>
                 </div>

@@ -1,216 +1,420 @@
 # Contributing to AI Manifesto
 
-Thank you for your interest in contributing to AI Manifesto! This document provides guidelines and instructions for contributing to the project.
+First off, thank you for considering contributing to AI Manifesto! 🎉
 
-## Table of Contents
+We welcome contributions from developers of all skill levels. Whether you're fixing a typo, improving documentation, or adding a major feature, your help is appreciated.
+
+## 📋 Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [How Can I Contribute?](#how-can-i-contribute)
-- [Development Setup](#development-setup)
-- [Pull Request Process](#pull-request-process)
+- [Getting Started](#getting-started)
+- [Development Workflow](#development-workflow)
 - [Coding Standards](#coding-standards)
-- [Commit Message Guidelines](#commit-message-guidelines)
+- [Commit Messages](#commit-messages)
+- [Pull Request Process](#pull-request-process)
+- [Issue Guidelines](#issue-guidelines)
+- [Questions?](#questions)
 
-## Code of Conduct
+---
 
-This project adheres to a Code of Conduct. By participating, you are expected to uphold this code. Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before contributing.
+## 📜 Code of Conduct
 
-## How Can I Contribute?
+This project adheres to a Code of Conduct that we expect all contributors to follow. Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before contributing.
+
+**TL;DR:** Be respectful, inclusive, and professional. We're all here to build something great together.
+
+---
+
+## 🤝 How Can I Contribute?
 
 ### Reporting Bugs
 
-Before creating bug reports, please check the issue tracker to avoid duplicates. When creating a bug report, include:
+Found a bug? Help us fix it!
 
-- **Clear title and description**
-- **Steps to reproduce** the issue
-- **Expected behavior** vs actual behavior
-- **Screenshots** if applicable
-- **Environment details** (OS, PHP version, Node version, browser, etc.)
+1. **Check existing issues** - Someone might have already reported it
+2. **Create a new issue** - Use our bug report template
+3. **Provide details** - Include steps to reproduce, expected vs actual behavior, screenshots if applicable
 
-### Suggesting Enhancements
+### Suggesting Features
 
-Enhancement suggestions are tracked as GitHub issues. When creating an enhancement suggestion, include:
+Have an idea? We'd love to hear it!
 
-- **Clear title and description**
-- **Use case** - why would this be useful?
-- **Examples** from other projects (if applicable)
+1. **Check the roadmap** - See our [GitHub Project Board](https://github.com/rgriss/aimanifesto/projects/2)
+2. **Search existing issues** - Someone might have suggested it already
+3. **Open an issue** - Describe the feature, why it's needed, and how it should work
 
-### Adding New Tools
+### Writing Code
 
-To add a new AI tool to the directory:
+Ready to contribute code?
 
-1. Ensure the tool isn't already listed
-2. Gather complete information: name, description, URL, category, pricing model, features, use cases
-3. Submit via a pull request or create an issue with the tool details
+1. **Find an issue** - Look for issues labeled [`good first issue`](https://github.com/rgriss/aimanifesto/labels/good%20first%20issue) if you're new
+2. **Comment on the issue** - Let us know you're working on it
+3. **Follow the workflow** - See [Development Workflow](#development-workflow) below
 
-### Code Contributions
+### Improving Documentation
 
-We welcome code contributions! Areas where you can help:
+Documentation is just as important as code!
 
-- **New features** - Check open issues tagged with "enhancement"
-- **Bug fixes** - Check issues tagged with "bug"
-- **Documentation** - Improve README, CLAUDE.md, or inline code documentation
-- **Tests** - Add or improve test coverage
-- **UI/UX improvements** - Enhance the user interface or experience
+- Fix typos or unclear explanations
+- Add examples or screenshots
+- Improve setup instructions
+- Write tutorials or guides
 
-## Development Setup
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- PHP 8.2+
-- Composer
-- Node.js 18+
-- MySQL or PostgreSQL
+- **PHP 8.2+** with required extensions
+- **Composer** for PHP dependencies
+- **Node.js 18+** and npm for frontend dependencies
+- **MySQL or PostgreSQL** database
+- **Git** for version control
 
-### Setup Instructions
+### Fork and Clone
 
-1. **Fork and clone** the repository:
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally:
    ```bash
    git clone https://github.com/YOUR-USERNAME/aimanifesto.git
    cd aimanifesto
    ```
-
-2. **Install dependencies**:
+3. **Add upstream remote:**
    ```bash
-   composer install
-   npm install
+   git remote add upstream https://github.com/rgriss/aimanifesto.git
    ```
 
-3. **Environment setup**:
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
+### Install Dependencies
 
-4. **Configure database** in `.env` file
+```bash
+# Install PHP dependencies
+composer install
 
-5. **Run migrations**:
-   ```bash
-   php artisan migrate
-   ```
+# Install Node dependencies
+npm install
+```
 
-6. **Start development server**:
-   ```bash
-   composer dev
-   ```
+### Configure Environment
 
-## Pull Request Process
+```bash
+# Copy environment file
+cp .env.example .env
 
-1. **Create a feature branch** from `main`:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+# Generate application key
+php artisan key:generate
 
-2. **Make your changes** following our coding standards
+# Configure your database in .env
+# Then run migrations
+php artisan migrate
 
-3. **Test your changes**:
-   ```bash
-   composer test           # Run PHP tests
-   npm run lint           # Check JS/TS code
-   npm run format:check   # Check formatting
-   ```
+# Create an admin user (optional)
+php artisan admin:create
+```
 
-4. **Commit your changes** with clear, descriptive commit messages
+### Start Development Server
 
-5. **Push to your fork**:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+```bash
+# Start all services (PHP server, Vite, queue worker)
+composer dev
 
-6. **Open a Pull Request** with:
-   - Clear title describing the change
-   - Detailed description of what changed and why
-   - Reference to any related issues
-   - Screenshots (for UI changes)
+# Or with SSR enabled
+composer dev:ssr
+```
 
-7. **Address review feedback** if requested
+Visit **http://localhost:8000** to see the app running!
 
-### PR Requirements
+---
 
-- All tests must pass
-- Code must follow our coding standards
-- No linting or formatting errors
-- Documentation updated (if applicable)
-- Commits should be clean and well-organized
+## 🔄 Development Workflow
 
-## Coding Standards
+### 1. Create a Feature Branch
 
-### PHP
+Always create a new branch for your work:
+
+```bash
+# Update your main branch
+git checkout main
+git pull upstream main
+
+# Create a new branch
+git checkout -b feature/your-feature-name
+# or
+git checkout -b fix/bug-description
+```
+
+**Branch naming conventions:**
+- `feature/` - New features (e.g., `feature/search-functionality`)
+- `fix/` - Bug fixes (e.g., `fix/login-validation`)
+- `docs/` - Documentation updates (e.g., `docs/api-guide`)
+- `refactor/` - Code refactoring (e.g., `refactor/auth-controllers`)
+- `test/` - Adding tests (e.g., `test/tool-crud`)
+
+### 2. Make Your Changes
+
+- Write clean, readable code
+- Follow our [Coding Standards](#coding-standards)
+- Add tests for new features
+- Update documentation as needed
+
+### 3. Test Your Changes
+
+```bash
+# Run PHP tests
+composer test
+
+# Run linters
+npm run lint
+./vendor/bin/pint
+
+# Format code
+npm run format
+
+# Build assets to ensure no errors
+npm run build
+```
+
+### 4. Commit Your Changes
+
+```bash
+git add .
+git commit -m "Add feature: description of what you did"
+```
+
+See [Commit Messages](#commit-messages) for guidelines.
+
+### 5. Push and Create Pull Request
+
+```bash
+# Push to your fork
+git push origin feature/your-feature-name
+```
+
+Then open a Pull Request on GitHub!
+
+---
+
+## 🎨 Coding Standards
+
+### PHP (Laravel/Backend)
 
 - Follow **PSR-12** coding standards
-- Run Laravel Pint before committing:
-  ```bash
-  ./vendor/bin/pint
-  ```
-- Write **PHPDoc** comments for classes and methods
-- Use **type hints** for parameters and return types
+- Use **Laravel Pint** for formatting: `./vendor/bin/pint`
+- Write **type hints** for all parameters and return types
+- Use **meaningful variable names** (no `$x`, `$temp`, etc.)
+- Add **PHPDoc blocks** for complex methods
+- Follow **Laravel best practices** and conventions
 
-### JavaScript/TypeScript
+**Example:**
+```php
+public function store(StoreToolRequest $request): RedirectResponse
+{
+    $tool = Tool::create($request->validated());
+    
+    return redirect()->route('admin.tools.index')
+        ->with('success', 'Tool created successfully.');
+}
+```
 
-- Follow the **ESLint** configuration
-- Run linter and formatter:
-  ```bash
-  npm run lint      # Auto-fix issues
-  npm run format    # Format code
-  ```
-- Use **TypeScript** types properly (avoid `any`)
-- Use **Vue 3 Composition API** for new components
-- Follow **component naming** conventions (PascalCase for components)
+### JavaScript/TypeScript (Vue/Frontend)
 
-### CSS
+- Use **TypeScript** for all new code
+- Follow **Vue 3 Composition API** with `<script setup>`
+- Use **ESLint** for linting: `npm run lint`
+- Use **Prettier** for formatting: `npm run format`
+- Use **meaningful component names** (PascalCase)
+- Add **TypeScript types** for all props and emits
 
-- Use **Tailwind CSS** utility classes
-- Follow the project's design system
-- Avoid custom CSS unless absolutely necessary
-- Use **Reka UI** components when available
+**Example:**
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+interface Props {
+  modelValue: string
+}
+
+const props = defineProps<Props>()
+const emit = defineEmits<{
+  'update:modelValue': [value: string]
+}>()
+
+const localValue = ref(props.modelValue)
+</script>
+```
+
+### CSS (Tailwind)
+
+- Use **Tailwind utility classes** (don't write custom CSS unless absolutely necessary)
+- Follow **mobile-first** approach
+- Use **Reka UI components** for interactive elements
+- Keep classes **organized and readable**
 
 ### Testing
 
-- Write **Pest tests** for new PHP features
-- Test both happy paths and edge cases
-- Aim for meaningful test coverage
-- Use descriptive test names
+- Write **Pest tests** for all new features
+- Use **descriptive test names**: `it('allows admin to create a new tool', ...)`
+- Test **both happy paths and edge cases**
+- Aim for **high test coverage** (80%+)
 
-## Commit Message Guidelines
+---
 
-We follow conventional commit format:
+## 💬 Commit Messages
+
+Write clear, descriptive commit messages:
+
+### Format
 
 ```
-type(scope): subject
+<type>: <subject>
 
-body (optional)
-
-footer (optional)
+<optional body>
 ```
 
 ### Types
 
-- **feat**: New feature
-- **fix**: Bug fix
-- **docs**: Documentation changes
-- **style**: Code style changes (formatting, etc.)
-- **refactor**: Code refactoring
-- **test**: Adding or updating tests
-- **chore**: Maintenance tasks
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `docs:` - Documentation changes
+- `style:` - Code formatting (no functional changes)
+- `refactor:` - Code refactoring
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks
 
 ### Examples
 
+**Good:**
 ```
-feat(tools): add filtering by pricing model
+feat: add search and filtering to tools directory
 
-fix(auth): resolve 2FA recovery code validation issue
-
-docs(readme): update installation instructions
-
-test(categories): add tests for category ordering
+- Implement real-time search by name and description
+- Add filters for category and pricing model
+- Persist filter state in URL query parameters
 ```
 
-## Questions?
+**Also Good (simple changes):**
+```
+fix: correct logo path on login page
+docs: update installation instructions
+test: add tests for 2FA authentication flow
+```
 
-If you have questions about contributing, please:
+**Bad:**
+```
+updated stuff
+fixes
+WIP
+asdfasdf
+```
 
-- Check existing issues and discussions
-- Email Ryan at **polarispixels.com**
-- Open a discussion on GitHub
+---
 
-Thank you for contributing to AI Manifesto!
+## 🔀 Pull Request Process
+
+### Before Submitting
+
+- ✅ Tests pass (`composer test`)
+- ✅ Code is formatted (`npm run format`, `./vendor/bin/pint`)
+- ✅ No linting errors (`npm run lint`)
+- ✅ Documentation is updated (if needed)
+- ✅ Commits are clean and descriptive
+
+### PR Title and Description
+
+**Title:** Clear and concise summary of changes
+```
+Add search and filtering to tools directory
+```
+
+**Description:** Explain what, why, and how
+```markdown
+## What
+Implements search and filtering functionality for the tools directory.
+
+## Why
+Users need better ways to discover tools beyond browsing categories (#1).
+
+## How
+- Added real-time search input component
+- Implemented filter dropdowns for category and pricing
+- Used URL query parameters for shareable filtered views
+- Added tests for search and filter logic
+
+## Screenshots
+[Include screenshots if UI changes]
+
+## Related Issues
+Closes #1
+```
+
+### Review Process
+
+1. **Automated checks** will run (tests, linting)
+2. **Maintainers will review** your code
+3. **Address feedback** if requested
+4. **Approval and merge** once everything looks good
+
+### After Merge
+
+- Your PR will be merged to `main`
+- Changes will be deployed to production
+- You'll be added to our contributors list! 🎉
+
+---
+
+## 📝 Issue Guidelines
+
+### Creating Issues
+
+Use our issue templates when available:
+- **Bug Report** - For reporting bugs
+- **Feature Request** - For suggesting new features
+- **Documentation** - For docs improvements
+
+### Issue Labels
+
+We use labels to organize issues:
+- **Type:** `feature`, `bug`, `enhancement`, `documentation`, `spike`
+- **Priority:** `priority: high`, `priority: medium`, `priority: low`
+- **Area:** `area: frontend`, `area: backend`, `area: admin`, `area: auth`
+- **Status:** `good first issue`, `help wanted`
+
+### Good First Issues
+
+New to the project? Look for issues labeled [`good first issue`](https://github.com/rgriss/aimanifesto/labels/good%20first%20issue):
+- Clearly defined scope
+- Good introduction to the codebase
+- Support available if you get stuck
+
+---
+
+## ❓ Questions?
+
+### Get Help
+
+- 💬 **Comment on an issue** - Ask questions directly on the issue
+- 📧 **Email us** - Reach out to [Polaris Pixels](https://polarispixels.com)
+- 📖 **Read the docs** - Check [CLAUDE.md](CLAUDE.md) for architecture details
+
+### Stay Updated
+
+- ⭐ **Star the repo** - Get notified of updates
+- 👀 **Watch the repo** - See all activity
+- 🗺️ **Follow the roadmap** - Check our [Project Board](https://github.com/rgriss/aimanifesto/projects/2)
+
+---
+
+## 🙏 Thank You!
+
+Every contribution, no matter how small, makes a difference. Thank you for taking the time to contribute to AI Manifesto!
+
+**Happy coding!** 🚀
+
+---
+
+<div align="center">
+
+**[⬅️ Back to README](README.md)** • **[View Roadmap →](https://github.com/rgriss/aimanifesto/projects/2)**
+
+</div>

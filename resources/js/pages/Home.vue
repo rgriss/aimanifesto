@@ -30,7 +30,11 @@ const guidingPrinciples = [
     { icon: '🔄', title: 'Iterate responsibly', description: 'Pair innovation with governance, safety, and continuous learning.' },
     { icon: '🔒', title: 'Data stewardship is a duty', description: 'Privacy, consent, security, and minimal collection by default.' },
     { icon: '🤲', title: 'Open collaboration', description: 'Policymakers, businesses, academia, and the public co-create the path.' },
-    { icon: '🌱', title: 'Adaptive systems', description: 'Evolve responsibly as contexts and capabilities change.' }
+    { icon: '🌱', title: 'Adaptive systems', description: 'Evolve responsibly as contexts and capabilities change.' },
+    { icon: '💪', title: 'Expertise and execution are essential', description: 'AI requires skilled implementation, strategy, and sustained effort—not just access to tools.' },
+    { icon: '⏱️', title: 'Measured progress over rushed deployment', description: 'Moving beyond demonstrations to sustainable impact takes deliberate progression and patience.' },
+    { icon: '👁️', title: 'Clear-eyed realism about challenges', description: 'Acknowledge high failure rates, real difficulties, and learning from the industry\'s setbacks.' },
+    { icon: '🌿', title: 'Environmental responsibility', description: 'Consider energy costs and resource impacts in deployment decisions.' }
 ];
 
 const scopes = [
@@ -151,24 +155,19 @@ const scopes = [
                 <!-- Guiding Principles -->
                 <div class="mb-12 md:mb-16">
                     <SectionHeading
-                        title="Guiding Principles"
+                        title="Guiding Principles for AI Implementation"
                         subtitle="Practical guidelines for implementing our core values"
                     />
-                    <Card class="mb-6 bg-gradient-to-br from-secondary/5 to-warning/5 border-2 border-secondary/20">
-                        <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                            These principles translate our core values into actionable guidelines.
-                            They serve as practical checkpoints when developing, deploying, or evaluating AI systems.
-                            Use them to ask: "Does this AI implementation respect human agency? Is it transparent?
-                            Does it enhance rather than replace human judgment?"
-                        </p>
-                    </Card>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                         <Card
                             v-for="(principle, index) in guidingPrinciples"
                             :key="index"
                             class="hover:shadow-lg transition-shadow"
                         >
-                            <div class="text-3xl sm:text-4xl mb-2 md:mb-3">{{ principle.icon }}</div>
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="text-2xl sm:text-3xl flex-shrink-0">{{ principle.icon }}</div>
+                                <div class="text-sm font-semibold text-muted-foreground pt-1">{{ index + 1 }}</div>
+                            </div>
                             <h3 class="text-base md:text-lg font-bold text-info mb-2 leading-tight">{{ principle.title }}</h3>
                             <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">{{ principle.description }}</p>
                         </Card>

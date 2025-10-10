@@ -124,9 +124,18 @@ const scopes = [
                 <div class="mb-12 md:mb-16">
                     <SectionHeading
                         title="Core Values"
-                        subtitle="We value… over…"
+                        subtitle="Inspired by the Agile Manifesto"
                     />
                     <Card class="bg-gradient-to-br from-info/5 to-success/5 border-2 border-info/20">
+                        <div class="mb-4 pb-4 border-b border-border">
+                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                                Following the structure of the
+                                <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-info hover:underline font-medium">Agile Manifesto</a>,
+                                we value the items on the left more than those on the right.
+                                This is not to say that the items on the right have no value—they do.
+                                However, we prioritize the items on the left as more important for responsible AI development.
+                            </p>
+                        </div>
                         <div class="space-y-3 md:space-y-4">
                             <div
                                 v-for="(value, index) in coreValues"
@@ -150,8 +159,16 @@ const scopes = [
                 <div class="mb-12 md:mb-16">
                     <SectionHeading
                         title="Guiding Principles"
-                        subtitle="Our commitment to responsible AI development"
+                        subtitle="Practical guidelines for implementing our core values"
                     />
+                    <Card class="mb-6 bg-gradient-to-br from-secondary/5 to-warning/5 border-2 border-secondary/20">
+                        <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                            These principles translate our core values into actionable guidelines.
+                            They serve as practical checkpoints when developing, deploying, or evaluating AI systems.
+                            Use them to ask: "Does this AI implementation respect human agency? Is it transparent?
+                            Does it enhance rather than replace human judgment?"
+                        </p>
+                    </Card>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         <Card
                             v-for="(principle, index) in guidingPrinciples"

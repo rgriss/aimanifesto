@@ -73,35 +73,45 @@ const scopes = [
                             </h2>
                             <p class="text-base sm:text-lg text-muted-foreground mb-6 leading-relaxed">
                                 AI Manifesto is your trusted guide to navigating the world of artificial intelligence.
-                                We believe AI should enhance human capabilities, not replace them. This site is a curated
-                                directory of AI tools that we've personally tested and reviewed, along with a set of
-                                principles for using AI responsibly.
+                                We believe AI should enhance human capabilities, not replace them. This site helps you discover
+                                and understand AI software, apps, and services through our curated directory with honest reviews,
+                                alongside principles for using AI responsibly.
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left">
-                                <div class="flex items-start gap-3">
-                                    <div class="text-2xl flex-shrink-0">🔍</div>
+                                <Link href="/tools" class="group block">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border-2 border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all">
+                                        <div class="text-3xl flex-shrink-0">🔍</div>
+                                        <div>
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                                                Browse AI Software & Apps
+                                            </h3>
+                                            <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
+                                                Explore ChatGPT, Claude, Midjourney, and hundreds of other AI applications.
+                                                Each one includes our personal review, rating, and pricing details.
+                                            </p>
+                                            <span class="text-sm font-semibold text-primary group-hover:underline">
+                                                View All AI Tools →
+                                            </span>
+                                        </div>
+                                    </div>
+                                </Link>
+                                <div class="flex items-start gap-3 p-4">
+                                    <div class="text-3xl flex-shrink-0">✨</div>
                                     <div>
-                                        <h3 class="font-bold text-foreground mb-1">Discover Tools</h3>
-                                        <p class="text-sm text-muted-foreground">
-                                            Browse our handpicked collection of AI tools, each with honest reviews and ratings
+                                        <h3 class="font-bold text-foreground mb-2">Learn Our Principles</h3>
+                                        <p class="text-sm text-muted-foreground leading-relaxed">
+                                            Understand the core values and guidelines for using AI responsibly—prioritizing
+                                            transparency, fairness, and human judgment.
                                         </p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-3">
-                                    <div class="text-2xl flex-shrink-0">✨</div>
+                                <div class="flex items-start gap-3 p-4">
+                                    <div class="text-3xl flex-shrink-0">🎯</div>
                                     <div>
-                                        <h3 class="font-bold text-foreground mb-1">Learn Principles</h3>
-                                        <p class="text-sm text-muted-foreground">
-                                            Understand the core values and guidelines for responsible AI use
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div class="text-2xl flex-shrink-0">🎯</div>
-                                    <div>
-                                        <h3 class="font-bold text-foreground mb-1">Make Better Choices</h3>
-                                        <p class="text-sm text-muted-foreground">
-                                            Find the right AI tools for your needs, whether personal or professional
+                                        <h3 class="font-bold text-foreground mb-2">Make Informed Choices</h3>
+                                        <p class="text-sm text-muted-foreground leading-relaxed">
+                                            Find the right AI software for your needs—whether you're writing, coding,
+                                            creating images, or analyzing data.
                                         </p>
                                     </div>
                                 </div>

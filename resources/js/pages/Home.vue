@@ -82,14 +82,14 @@ const scopes = [
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
                                         <div class="text-3xl flex-shrink-0">🔍</div>
                                         <div>
-                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-info transition-colors">
                                                 Browse AI Software & Apps
                                             </h3>
                                             <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
                                                 Explore ChatGPT, Claude, Midjourney, and hundreds of other AI applications.
                                                 Each one includes our personal review, rating, and pricing details.
                                             </p>
-                                            <span class="text-sm font-semibold text-primary group-hover:underline">
+                                            <span class="text-sm font-semibold text-info group-hover:underline">
                                                 View All AI Tools →
                                             </span>
                                         </div>

@@ -45,23 +45,69 @@ const scopes = [
     <Head title="Artificial Intelligence Manifesto - Responsible AI Principles" />
 
     <GuestLayout>
-        <div class="py-12">
+        <div class="py-8 md:py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Manifesto Hero -->
-                <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-xl p-6 sm:p-8 md:p-12 mb-8 md:mb-12 text-center">
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 leading-tight flex items-center justify-center gap-4 md:gap-6">
-                        <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels" class="h-12 w-auto sm:h-16 md:h-20 lg:h-24 flex-shrink-0" />
+                <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-xl p-6 sm:p-8 mb-8 text-center">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight flex items-center justify-center gap-3 md:gap-4">
+                        <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0" />
                         <span>Artificial Intelligence Manifesto</span>
                     </h1>
-                    <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-6 px-2">
+                    <p class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-3 md:mb-4 px-2">
                         A framework for responsible AI development and deployment
                     </p>
-                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm text-white/80">
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80">
                         <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Draft 0.1</span>
                         <span class="hidden sm:inline">Last updated October 8, 2025</span>
                         <span class="sm:hidden">Oct 8, 2025</span>
                         <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Public consultation</span>
                     </div>
+                </div>
+
+                <!-- What is AI Manifesto? -->
+                <div class="mb-12 md:mb-16">
+                    <Card class="bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20">
+                        <div class="text-center max-w-4xl mx-auto">
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+                                What is AI Manifesto?
+                            </h2>
+                            <p class="text-base sm:text-lg text-muted-foreground mb-6 leading-relaxed">
+                                AI Manifesto is your trusted guide to navigating the world of artificial intelligence.
+                                We believe AI should enhance human capabilities, not replace them. This site is a curated
+                                directory of AI tools that we've personally tested and reviewed, along with a set of
+                                principles for using AI responsibly.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left">
+                                <div class="flex items-start gap-3">
+                                    <div class="text-2xl flex-shrink-0">🔍</div>
+                                    <div>
+                                        <h3 class="font-bold text-foreground mb-1">Discover Tools</h3>
+                                        <p class="text-sm text-muted-foreground">
+                                            Browse our handpicked collection of AI tools, each with honest reviews and ratings
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="text-2xl flex-shrink-0">✨</div>
+                                    <div>
+                                        <h3 class="font-bold text-foreground mb-1">Learn Principles</h3>
+                                        <p class="text-sm text-muted-foreground">
+                                            Understand the core values and guidelines for responsible AI use
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="text-2xl flex-shrink-0">🎯</div>
+                                    <div>
+                                        <h3 class="font-bold text-foreground mb-1">Make Better Choices</h3>
+                                        <p class="text-sm text-muted-foreground">
+                                            Find the right AI tools for your needs, whether personal or professional
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
                 </div>
 
                 <!-- Core Values -->

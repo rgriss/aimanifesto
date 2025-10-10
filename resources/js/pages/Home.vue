@@ -57,9 +57,9 @@ const scopes = [
                         A framework for responsible AI development and deployment
                     </p>
                     <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80">
-                        <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Draft 0.1</span>
-                        <span class="hidden sm:inline">Last updated October 8, 2025</span>
-                        <span class="sm:hidden">Oct 8, 2025</span>
+                        <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Draft 0.2</span>
+                        <span class="hidden sm:inline">Last updated October 10, 2025</span>
+                        <span class="sm:hidden">Oct 10, 2025</span>
                         <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Public consultation</span>
                     </div>
                 </div>

@@ -79,7 +79,7 @@ const scopes = [
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left">
                                 <Link href="/tools" class="group block">
-                                    <div class="flex items-start gap-3 p-4 rounded-lg border-2 border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
                                         <div class="text-3xl flex-shrink-0">🔍</div>
                                         <div>
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">

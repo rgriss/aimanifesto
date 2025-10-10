@@ -156,7 +156,6 @@ const scopes = [
                 <div class="mb-12 md:mb-16">
                     <SectionHeading
                         title="Guiding Principles for AI Implementation"
-                        subtitle="How to put our values into practice"
                     />
                     <Card class="mb-6 md:mb-8 bg-gradient-to-br from-secondary/5 to-info/5 border-2 border-secondary/20">
                         <div class="max-w-4xl mx-auto text-center">

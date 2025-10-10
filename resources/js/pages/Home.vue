@@ -156,8 +156,22 @@ const scopes = [
                 <div class="mb-12 md:mb-16">
                     <SectionHeading
                         title="Guiding Principles for AI Implementation"
-                        subtitle="Practical guidelines for implementing our core values"
+                        subtitle="How to put our values into practice"
                     />
+                    <Card class="mb-6 md:mb-8 bg-gradient-to-br from-secondary/5 to-info/5 border-2 border-secondary/20">
+                        <div class="max-w-4xl mx-auto text-center">
+                            <p class="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
+                                These twelve principles translate our core values into actionable guidance. They address the real-world challenges
+                                of using AI responsibly—from protecting privacy and ensuring fairness to acknowledging limitations and measuring
+                                true progress.
+                            </p>
+                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                                Whether you're an individual exploring AI tools, a business evaluating AI solutions, or an organization developing
+                                AI systems, these principles provide a practical framework for making informed, ethical decisions that keep
+                                human judgment and accountability at the center.
+                            </p>
+                        </div>
+                    </Card>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                         <Card
                             v-for="(principle, index) in guidingPrinciples"

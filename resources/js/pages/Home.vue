@@ -125,17 +125,16 @@ const scopes = [
 
                 <!-- Core Values -->
                 <div class="mb-12 md:mb-16">
-                    <div class="mb-4 md:mb-6">
-                        <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-3 leading-tight text-center">
-                            Core Values
-                        </h2>
-                        <p class="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl mx-auto text-center">
-                            Following the structure of the
-                            <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-info hover:underline font-medium">Agile Manifesto</a>,
-                            we value the items on the left more than those on the right.
-                            While there is value in the items on the right, we value the items on the left more.
-                        </p>
-                    </div>
+                    <SectionHeading title="Core Values">
+                        <template #subtitle>
+                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                                Following the structure of the
+                                <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-info hover:underline font-medium">Agile Manifesto</a>,
+                                we value the items on the left more than those on the right.
+                                While there is value in the items on the right, we value the items on the left more.
+                            </p>
+                        </template>
+                    </SectionHeading>
                     <Card class="bg-gradient-to-br from-info/5 to-success/5 border-2 border-info/20">
                         <div class="space-y-4 md:space-y-5 text-center">
                             <div
@@ -153,12 +152,9 @@ const scopes = [
 
                 <!-- Guiding Principles -->
                 <div class="mb-12 md:mb-16">
-                    <SectionHeading
-                        title="Guiding Principles for AI Implementation"
-                    />
-                    <Card class="mb-6 md:mb-8 bg-gradient-to-br from-secondary/5 to-info/5 border-2 border-secondary/20">
-                        <div class="max-w-4xl mx-auto text-center">
-                            <p class="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
+                    <SectionHeading title="Guiding Principles for AI Implementation">
+                        <template #subtitle>
+                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mb-3">
                                 These twelve principles translate our core values into actionable guidance. They address the real-world challenges
                                 of using AI responsibly—from protecting privacy and ensuring fairness to acknowledging limitations and measuring
                                 true progress.
@@ -168,8 +164,8 @@ const scopes = [
                                 AI systems, these principles provide a practical framework for making informed, ethical decisions that keep
                                 human judgment and accountability at the center.
                             </p>
-                        </div>
-                    </Card>
+                        </template>
+                    </SectionHeading>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                         <Card
                             v-for="(principle, index) in guidingPrinciples"

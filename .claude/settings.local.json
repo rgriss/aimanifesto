@@ -11,7 +11,9 @@
       "mcp__ide__getDiagnostics",
       "Bash(curl:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(magick:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

@@ -125,19 +125,18 @@ const scopes = [
 
                 <!-- Core Values -->
                 <div class="mb-12 md:mb-16">
-                    <SectionHeading
-                        title="Core Values"
-                        subtitle="Inspired by the Agile Manifesto"
-                    />
+                    <div class="mb-4 md:mb-6">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-3 leading-tight text-center">
+                            Core Values
+                        </h2>
+                        <p class="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl mx-auto text-center">
+                            Following the structure of the
+                            <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-info hover:underline font-medium">Agile Manifesto</a>,
+                            we value the items on the left more than those on the right.
+                            While there is value in the items on the right, we value the items on the left more.
+                        </p>
+                    </div>
                     <Card class="bg-gradient-to-br from-info/5 to-success/5 border-2 border-info/20">
-                        <div class="mb-6 pb-6 border-b border-border text-center">
-                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                                Following the structure of the
-                                <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-info hover:underline font-medium">Agile Manifesto</a>,
-                                we value the items on the left more than those on the right.
-                                While there is value in the items on the right, we value the items on the left more.
-                            </p>
-                        </div>
                         <div class="space-y-4 md:space-y-5 text-center">
                             <div
                                 v-for="(value, index) in coreValues"

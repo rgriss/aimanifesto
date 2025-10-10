@@ -126,29 +126,23 @@ const scopes = [
                         subtitle="Inspired by the Agile Manifesto"
                     />
                     <Card class="bg-gradient-to-br from-info/5 to-success/5 border-2 border-info/20">
-                        <div class="mb-4 pb-4 border-b border-border">
-                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                        <div class="mb-6 pb-6 border-b border-border text-center">
+                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl mx-auto">
                                 Following the structure of the
                                 <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-info hover:underline font-medium">Agile Manifesto</a>,
                                 we value the items on the left more than those on the right.
-                                This is not to say that the items on the right have no value—they do.
-                                However, we prioritize the items on the left as more important for responsible AI development.
+                                While there is value in the items on the right, we value the items on the left more.
                             </p>
                         </div>
-                        <div class="space-y-3 md:space-y-4">
+                        <div class="space-y-4 md:space-y-5 text-center">
                             <div
                                 v-for="(value, index) in coreValues"
                                 :key="index"
-                                class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base md:text-lg"
+                                class="text-base sm:text-lg md:text-xl leading-relaxed"
                             >
-                                <div class="flex items-center gap-2 sm:gap-3">
-                                    <span class="text-info font-bold text-xl sm:text-2xl flex-shrink-0">→</span>
-                                    <span class="font-bold text-info">{{ value.priority }}</span>
-                                </div>
-                                <div class="flex items-center gap-2 sm:gap-3 pl-7 sm:pl-0">
-                                    <span class="text-muted-foreground text-xs sm:text-sm">over</span>
-                                    <span class="text-foreground/70">{{ value.over }}</span>
-                                </div>
+                                <span class="font-bold text-info text-lg sm:text-xl md:text-2xl">{{ value.priority }}</span>
+                                <span class="text-muted-foreground mx-2 sm:mx-3">over</span>
+                                <span class="text-foreground/70">{{ value.over }}</span>
                             </div>
                         </div>
                     </Card>

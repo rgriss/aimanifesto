@@ -166,8 +166,8 @@ const scopes = [
                         >
                             <!-- Number Badge - Left Side, Vertically Centered -->
                             <div class="absolute left-5 sm:left-6 top-1/2 -translate-y-1/2">
-                                <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 border-2 border-primary/20">
-                                    <span class="text-base sm:text-lg font-bold text-primary">{{ index + 1 }}</span>
+                                <div class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-info/20 border-2 border-info">
+                                    <span class="text-base sm:text-lg font-bold text-info">{{ index + 1 }}</span>
                                 </div>
                             </div>
 

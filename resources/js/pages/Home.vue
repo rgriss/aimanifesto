@@ -61,9 +61,9 @@ const scopes = [
                         A framework for responsible AI development and deployment
                     </p>
                     <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80">
-                        <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Draft 0.2</span>
-                        <span class="hidden sm:inline">Last updated October 10, 2025</span>
-                        <span class="sm:hidden">Oct 10, 2025</span>
+                        <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Version {{ $page.props.manifestoVersion }}</span>
+                        <span class="hidden sm:inline">Last updated {{ $page.props.manifestoLastUpdated }}</span>
+                        <span class="sm:hidden">{{ new Date($page.props.manifestoLastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}</span>
                     </div>
                 </div>
 
@@ -98,33 +98,47 @@ const scopes = [
                                         </div>
                                     </div>
                                 </Link>
-                                <div class="flex items-start gap-3 p-4">
-                                    <div class="text-3xl flex-shrink-0">✨</div>
-                                    <div>
-                                        <h3 class="font-bold text-foreground mb-2">Learn Our Principles</h3>
-                                        <p class="text-sm text-muted-foreground leading-relaxed">
-                                            Understand the core values and guidelines for using AI responsibly—prioritizing
-                                            transparency, fairness, and human judgment.
-                                        </p>
+                                <a href="#core-values" class="group block">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
+                                        <div class="text-3xl flex-shrink-0">✨</div>
+                                        <div>
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-info transition-colors">
+                                                Learn Our Principles
+                                            </h3>
+                                            <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
+                                                Understand the core values and guidelines for using AI responsibly—prioritizing
+                                                transparency, fairness, and human judgment.
+                                            </p>
+                                            <span class="text-sm font-semibold text-info group-hover:underline">
+                                                View Core Values →
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-start gap-3 p-4">
-                                    <div class="text-3xl flex-shrink-0">🎯</div>
-                                    <div>
-                                        <h3 class="font-bold text-foreground mb-2">Make Informed Choices</h3>
-                                        <p class="text-sm text-muted-foreground leading-relaxed">
-                                            Find the right AI software for your needs—whether you're writing, coding,
-                                            creating images, or analyzing data.
-                                        </p>
+                                </a>
+                                <Link href="/tools" class="group block">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
+                                        <div class="text-3xl flex-shrink-0">🎯</div>
+                                        <div>
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-info transition-colors">
+                                                Make Informed Choices
+                                            </h3>
+                                            <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
+                                                Find the right AI software for your needs—whether you're writing, coding,
+                                                creating images, or analyzing data.
+                                            </p>
+                                            <span class="text-sm font-semibold text-info group-hover:underline">
+                                                Explore AI Tools →
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         </div>
                     </Card>
                 </div>
 
                 <!-- Core Values -->
-                <div class="mb-12 md:mb-16">
+                <div id="core-values" class="mb-12 md:mb-16">
                     <SectionHeading title="Core Values">
                         <template #subtitle>
                             <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -211,7 +225,7 @@ const scopes = [
                 <div class="mb-8 md:mb-12">
                     <SectionHeading
                         title="Curated AI Tools"
-                        subtitle="Tested and reviewed tools that align with our principles"
+                        subtitle="Save hours of research—we've tested hundreds of AI tools so you can quickly find the right one for your needs"
                     />
 
                     <!-- Featured Tools Preview -->

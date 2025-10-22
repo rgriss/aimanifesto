@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Process;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -46,6 +48,55 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'manifestoVersion' => $this->getManifestoVersion(),
+            'manifestoLastUpdated' => $this->getManifestoLastUpdated(),
         ];
+    }
+
+    /**
+     * Get the current manifesto version from git tags.
+     */
+    protected function getManifestoVersion(): string
+    {
+        return Cache::remember('manifesto_version', 3600, function () {
+            $result = Process::path(base_path())->run('git describe --tags --abbrev=0');
+
+            if ($result->successful() && ! empty($result->output())) {
+                // Remove 'v' prefix if present (e.g., v0.2.0 -> 0.2.0)
+                return ltrim(trim($result->output()), 'v');
+            }
+
+            // Fallback to counting commits if no tags exist
+            $result = Process::path(base_path())->run('git rev-list --count HEAD');
+
+            if ($result->successful() && ! empty($result->output())) {
+                return '0.'.trim($result->output());
+            }
+
+            return '0.0';
+        });
+    }
+
+    /**
+     * Get the last commit date for the manifesto.
+     */
+    protected function getManifestoLastUpdated(): string
+    {
+        return Cache::remember('manifesto_last_updated', 3600, function () {
+            $result = Process::path(base_path())->run('git log -1 --format=%cd --date=format:%B_%d_%Y');
+
+            if ($result->successful() && ! empty($result->output())) {
+                // Replace underscores with proper formatting: October_10_2025 -> October 10, 2025
+                $date = trim($result->output());
+                $parts = explode('_', $date);
+                if (count($parts) === 3) {
+                    return $parts[0].' '.$parts[1].', '.$parts[2];
+                }
+
+                return str_replace('_', ' ', $date);
+            }
+
+            return now()->format('F d, Y');
+        });
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DocsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\WhyController;
@@ -19,6 +20,9 @@ Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->
 
 Route::get('/brand', [BrandController::class, 'index'])->name('brand');
 Route::get('/why', [WhyController::class, 'index'])->name('why');
+
+Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
+Route::get('/docs/{slug}', [DocsController::class, 'show'])->name('docs.show');
 
 // Authenticated routes
 Route::get('dashboard', function () {

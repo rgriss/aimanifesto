@@ -52,7 +52,7 @@
 ### Admin Features
 - **🛠️ Tool Management** - Full CRUD operations for tools
 - **📂 Category Management** - Organize tools by category
-- **📊 Data Management** - Import/export database as JSON
+- **🔄 Database Sync** - Export/import tools & categories as JSON (upsert mode)
 - **🔐 Admin Dashboard** - Dedicated admin interface
 
 ### Developer Features
@@ -212,12 +212,78 @@ composer test         # Run Pest test suite
 php artisan test      # Direct test execution
 
 # Database
-php artisan migrate              # Run migrations
-php artisan migrate:fresh --seed # Fresh database with sample data
-php artisan admin:create         # Create admin user
-php artisan db:export            # Export database to JSON
-php artisan db:import {file}     # Import from JSON
+php artisan migrate                    # Run migrations
+php artisan migrate:fresh --seed       # Fresh database with sample data
+php artisan admin:create               # Create admin user
+
+# Database Synchronization (Phase 1)
+php artisan content:export             # Export tools & categories to JSON snapshot
+php artisan content:import             # Import from latest snapshot (upsert mode)
+php artisan content:import {file}      # Import from specific snapshot file
 ```
+
+---
+
+## 🔄 Database Synchronization
+
+Keep your local and production tool databases in sync with our export/import system.
+
+### Quick Start
+
+**On Production:**
+```bash
+php artisan content:export
+```
+This creates a timestamped snapshot in `database/content/snapshots/` and updates `latest.json`.
+
+**On Local:**
+```bash
+# Download the latest.json from production
+scp user@server:/path/to/database/content/latest.json database/content/
+
+# Import it
+php artisan content:import
+```
+
+### How It Works
+
+- **Export** serializes all tools and categories to JSON with metadata
+- **Import** uses **upsert logic** (creates new or updates existing by slug)
+- **Preserves** view counts and other volatile data
+- **Validates** schema version compatibility
+- **Transactional** - all-or-nothing imports
+
+### Common Workflows
+
+**Sync Production → Local:**
+```bash
+# On production
+php artisan content:export
+
+# Copy latest.json to local, then
+php artisan content:import
+```
+
+**Create Versioned Snapshots:**
+```bash
+php artisan content:export --output=database/content/snapshots/v1.0.0.json
+git add database/content/snapshots/v1.0.0.json
+git commit -m "Snapshot: v1.0.0 with 87 tools"
+```
+
+**Import Specific Version:**
+```bash
+php artisan content:import database/content/snapshots/v1.0.0.json
+```
+
+### Best Practices
+
+1. ✅ **Export before major changes** - Create safety snapshots
+2. ✅ **Commit snapshots to git** - Version control your content
+3. ✅ **Test imports locally first** - Verify before production
+4. ✅ **Run exports weekly** - Keep local environments fresh
+
+> 📚 **Architecture Details:** See [Tool List Maintenance System docs](docs/TOOL_LIST_MAINTENANCE_SYSTEM.md)
 
 ---
 
@@ -226,9 +292,16 @@ php artisan db:import {file}     # Import from JSON
 ```
 aimanifesto/
 ├── app/
-│   ├── Http/Controllers/      # Controllers (public, admin, auth, settings)
+│   ├── Console/Commands/       # Artisan commands (ContentExport, ContentImport)
+│   ├── Http/Controllers/       # Controllers (public, admin, auth, settings)
 │   ├── Models/                 # Eloquent models (Tool, Category, User)
 │   └── ...
+├── database/
+│   ├── content/
+│   │   ├── snapshots/          # Timestamped JSON exports
+│   │   └── latest.json         # Most recent export
+│   └── migrations/             # Database migrations
+├── docs/                       # Technical documentation
 ├── resources/
 │   ├── js/
 │   │   ├── components/         # Vue components
@@ -250,6 +323,7 @@ aimanifesto/
 ## 📚 Documentation
 
 - **[Architecture Guide](CLAUDE.md)** - Detailed technical documentation
+- **[Tool Maintenance System](docs/TOOL_LIST_MAINTENANCE_SYSTEM.md)** - Database sync architecture & roadmap
 - **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
 - **[Code of Conduct](CODE_OF_CONDUCT.md)** - Community guidelines
 

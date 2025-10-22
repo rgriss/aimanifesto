@@ -137,6 +137,148 @@ const scopes = [
                     </Card>
                 </div>
 
+                <!-- Who is AI Manifesto for? -->
+                <div class="mb-12 md:mb-16">
+                    <SectionHeading title="Who is AI Manifesto for?">
+                        <template #subtitle>
+                            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                                Whether you're building with AI or leading teams through AI transformation, we're here to help.
+                                Our mission is to spread awareness and achieve unity, consistency, and mutual commitment across
+                                companies, organizations, and the world. We need your voice.
+                            </p>
+                        </template>
+                    </SectionHeading>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <!-- Developers & Builders -->
+                        <Card class="hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col h-full">
+                                <div class="flex items-start gap-3 mb-4">
+                                    <div class="text-3xl flex-shrink-0">👨‍💻</div>
+                                    <div class="flex-1">
+                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">Developers & Builders</h3>
+                                        <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                                            Find tools to accelerate your workflow, compare AI coding assistants, and discover
+                                            APIs that power the next generation of applications. Your insights help others
+                                            choose wisely.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-border">
+                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Help Wanted:</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <Link
+                                            href="/tools"
+                                            class="inline-block bg-info text-info-foreground hover:bg-info/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Suggest a Tool
+                                        </Link>
+                                        <a
+                                            href="https://github.com/rgriss/aimanifesto"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Contribute Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+
+                        <!-- Business Leaders -->
+                        <Card class="hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col h-full">
+                                <div class="flex items-start gap-3 mb-4">
+                                    <div class="text-3xl flex-shrink-0">💼</div>
+                                    <div class="flex-1">
+                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">Business Leaders</h3>
+                                        <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                                            Navigate AI adoption with confidence. Learn which tools deliver ROI, understand
+                                            responsible implementation, and make informed decisions that align with your values
+                                            and business goals.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-border">
+                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Help Wanted:</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <a
+                                            href="mailto:hello@aimanifesto.dev?subject=My AI Story"
+                                            class="inline-block bg-info text-info-foreground hover:bg-info/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Share Your AI Story
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+
+                        <!-- AI Beginners -->
+                        <Card class="hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col h-full">
+                                <div class="flex items-start gap-3 mb-4">
+                                    <div class="text-3xl flex-shrink-0">🌱</div>
+                                    <div class="flex-1">
+                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">AI Beginners</h3>
+                                        <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                                            Just getting started? Perfect. We break down the jargon, show you what's actually
+                                            useful, and help you take your first steps with AI tools that won't overwhelm you.
+                                            Start simple, learn fast.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-border">
+                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Get Started:</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <Link
+                                            href="/tools"
+                                            class="inline-block bg-success text-success-foreground hover:bg-success/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Browse Beginner-Friendly Tools
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+
+                        <!-- AI Experts -->
+                        <Card class="hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col h-full">
+                                <div class="flex items-start gap-3 mb-4">
+                                    <div class="text-3xl flex-shrink-0">🚀</div>
+                                    <div class="flex-1">
+                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">AI Experts</h3>
+                                        <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                                            You've mastered the tools. Now help others. Share your deep knowledge, review
+                                            emerging platforms, and contribute to building responsible AI practices that
+                                            scale across the industry.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-border">
+                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Help Wanted:</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <Link
+                                            href="/tools"
+                                            class="inline-block bg-warning text-warning-foreground hover:bg-warning/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Review & Rate Tools
+                                        </Link>
+                                        <a
+                                            href="https://github.com/rgriss/aimanifesto"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Join the Project
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+
                 <!-- Core Values -->
                 <div id="core-values" class="mb-12 md:mb-16">
                     <SectionHeading title="Core Values">

@@ -102,143 +102,145 @@
 }
 
 :root {
-    /* Polaris Pixels Brand Colors - Using oklch for better color accuracy */
+    /* Simplified Black & White Theme - Clean and minimal */
 
     /* Base colors - Light mode */
-    --background: oklch(0.99 0 0); /* Stellar White #F8FAFC */
-    --foreground: oklch(0.19 0.02 254); /* Constellation Navy #0A1929 */
+    --background: oklch(1 0 0); /* Pure white */
+    --foreground: oklch(0.15 0 0); /* Near black #1a1a1a */
 
     /* Card colors */
-    --card: oklch(0.99 0 0); /* Stellar White */
-    --card-foreground: oklch(0.19 0.02 254); /* Constellation Navy */
+    --card: oklch(1 0 0); /* Pure white */
+    --card-foreground: oklch(0.15 0 0); /* Near black */
 
     /* Popover colors */
     --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.19 0.02 254);
+    --popover-foreground: oklch(0.15 0 0);
 
-    /* Semantic colors (Bootstrap-style tokens) */
-    --primary: oklch(0.35 0.08 254); /* Polaris Blue #1B3A5F */
-    --primary-foreground: oklch(0.99 0 0); /* Stellar White */
+    /* Primary & Secondary - Neutral blacks and grays */
+    --primary: oklch(0.15 0 0); /* Near black */
+    --primary-foreground: oklch(1 0 0); /* White */
 
-    --secondary: oklch(0.19 0.02 254); /* Constellation Navy #0A1929 */
-    --secondary-foreground: oklch(0.99 0 0); /* Stellar White */
+    --secondary: oklch(0.95 0 0); /* Light gray #f0f0f0 */
+    --secondary-foreground: oklch(0.15 0 0); /* Near black */
 
-    --success: oklch(0.7 0.15 180); /* Aurora Teal #14B8A6 */
+    /* Semantic colors - Keep for badges (success, info, warning, danger) */
+    --success: oklch(0.7 0.15 180); /* Teal #14B8A6 */
     --success-foreground: oklch(1 0 0);
 
-    --info: oklch(0.7 0.16 210); /* North Star Cyan #06B6D4 */
+    --info: oklch(0.7 0.16 210); /* Cyan #06B6D4 */
     --info-foreground: oklch(1 0 0);
 
-    --warning: oklch(0.75 0.15 70); /* Solar Amber #F59E0B */
-    --warning-foreground: oklch(0.19 0.02 254);
+    --warning: oklch(0.75 0.15 70); /* Amber #F59E0B */
+    --warning-foreground: oklch(0.15 0 0);
 
-    --danger: oklch(0.63 0.24 25); /* Supernova Red #EF4444 */
+    --danger: oklch(0.63 0.24 25); /* Red #EF4444 */
     --danger-foreground: oklch(1 0 0);
 
-    /* Accent & muted */
-    --accent: oklch(0.7 0.16 210); /* North Star Cyan */
-    --accent-foreground: oklch(0.19 0.02 254);
+    /* Accent & muted - Neutral grays */
+    --accent: oklch(0.95 0 0); /* Light gray */
+    --accent-foreground: oklch(0.15 0 0); /* Near black */
 
-    --muted: oklch(0.55 0.03 254); /* Nebula Gray #64748B */
-    --muted-foreground: oklch(0.45 0.02 254); /* Horizon Slate */
+    --muted: oklch(0.95 0 0); /* Light gray #f0f0f0 */
+    --muted-foreground: oklch(0.5 0 0); /* Medium gray #737373 */
 
     /* Destructive (alias for danger) */
-    --destructive: oklch(0.63 0.24 25); /* Supernova Red */
+    --destructive: oklch(0.63 0.24 25); /* Red */
     --destructive-foreground: oklch(1 0 0);
 
     /* UI elements */
-    --border: oklch(0.92 0.01 254); /* Light border */
-    --input: oklch(0.92 0.01 254);
-    --ring: oklch(0.7 0.16 210); /* North Star Cyan for focus rings */
+    --border: oklch(0.88 0 0); /* Light gray border #e0e0e0 */
+    --input: oklch(0.88 0 0);
+    --ring: oklch(0.15 0 0); /* Black focus ring */
 
-    /* Chart colors using brand palette */
-    --chart-1: oklch(0.35 0.08 254); /* Polaris Blue */
-    --chart-2: oklch(0.7 0.16 210); /* North Star Cyan */
-    --chart-3: oklch(0.7 0.15 180); /* Aurora Teal */
-    --chart-4: oklch(0.75 0.15 70); /* Solar Amber */
-    --chart-5: oklch(0.45 0.02 254); /* Horizon Slate */
+    /* Chart colors - Neutral grayscale */
+    --chart-1: oklch(0.15 0 0); /* Near black */
+    --chart-2: oklch(0.35 0 0); /* Dark gray */
+    --chart-3: oklch(0.55 0 0); /* Medium gray */
+    --chart-4: oklch(0.75 0 0); /* Light gray */
+    --chart-5: oklch(0.85 0 0); /* Very light gray */
 
     --radius: 0.5rem;
 
     /* Sidebar */
-    --sidebar-background: oklch(0.99 0 0);
-    --sidebar-foreground: oklch(0.35 0.08 254);
-    --sidebar-primary: oklch(0.35 0.08 254);
-    --sidebar-primary-foreground: oklch(0.99 0 0);
-    --sidebar-accent: oklch(0.7 0.16 210);
-    --sidebar-accent-foreground: oklch(0.19 0.02 254);
-    --sidebar-border: oklch(0.92 0.01 254);
-    --sidebar-ring: oklch(0.7 0.16 210);
-    --sidebar: oklch(0.99 0 0);
+    --sidebar-background: oklch(1 0 0); /* White */
+    --sidebar-foreground: oklch(0.15 0 0); /* Near black */
+    --sidebar-primary: oklch(0.15 0 0); /* Near black */
+    --sidebar-primary-foreground: oklch(1 0 0); /* White */
+    --sidebar-accent: oklch(0.95 0 0); /* Light gray */
+    --sidebar-accent-foreground: oklch(0.15 0 0); /* Near black */
+    --sidebar-border: oklch(0.88 0 0); /* Light gray border */
+    --sidebar-ring: oklch(0.15 0 0); /* Black */
+    --sidebar: oklch(1 0 0); /* White */
 }
 
 .dark {
-    /* Polaris Pixels Dark Mode */
+    /* Simplified Dark Mode - Black & White */
 
     /* Base colors - Dark mode */
-    --background: oklch(0.19 0.02 254); /* Constellation Navy #0A1929 */
-    --foreground: oklch(0.99 0 0); /* Stellar White */
+    --background: oklch(0.12 0 0); /* Near black #1a1a1a */
+    --foreground: oklch(0.98 0 0); /* Off-white #f5f5f5 */
 
     /* Card colors */
-    --card: oklch(0.35 0.08 254); /* Polaris Blue for cards in dark mode */
-    --card-foreground: oklch(0.99 0 0);
+    --card: oklch(0.18 0 0); /* Dark gray card #262626 */
+    --card-foreground: oklch(0.98 0 0);
 
     /* Popover colors */
-    --popover: oklch(0.35 0.08 254);
-    --popover-foreground: oklch(0.99 0 0);
+    --popover: oklch(0.18 0 0);
+    --popover-foreground: oklch(0.98 0 0);
 
-    /* Semantic colors */
-    --primary: oklch(0.35 0.08 254); /* Polaris Blue */
-    --primary-foreground: oklch(0.99 0 0);
+    /* Primary & Secondary - Neutral */
+    --primary: oklch(0.98 0 0); /* Off-white */
+    --primary-foreground: oklch(0.12 0 0); /* Near black */
 
-    --secondary: oklch(0.45 0.02 254); /* Horizon Slate (lighter for dark mode) */
-    --secondary-foreground: oklch(0.99 0 0);
+    --secondary: oklch(0.25 0 0); /* Dark gray #333333 */
+    --secondary-foreground: oklch(0.98 0 0);
 
-    --success: oklch(0.7 0.15 180); /* Aurora Teal */
+    /* Semantic colors - Keep for badges */
+    --success: oklch(0.7 0.15 180); /* Teal */
     --success-foreground: oklch(1 0 0);
 
-    --info: oklch(0.7 0.16 210); /* North Star Cyan */
+    --info: oklch(0.7 0.16 210); /* Cyan */
     --info-foreground: oklch(1 0 0);
 
-    --warning: oklch(0.75 0.15 70); /* Solar Amber */
-    --warning-foreground: oklch(0.19 0.02 254);
+    --warning: oklch(0.75 0.15 70); /* Amber */
+    --warning-foreground: oklch(0.12 0 0);
 
-    --danger: oklch(0.63 0.24 25); /* Supernova Red */
+    --danger: oklch(0.63 0.24 25); /* Red */
     --danger-foreground: oklch(1 0 0);
 
     /* Accent & muted */
-    --accent: oklch(0.7 0.16 210); /* North Star Cyan */
-    --accent-foreground: oklch(0.19 0.02 254);
+    --accent: oklch(0.25 0 0); /* Dark gray */
+    --accent-foreground: oklch(0.98 0 0);
 
-    --muted: oklch(0.55 0.03 254); /* Nebula Gray */
-    --muted-foreground: oklch(0.65 0.02 254); /* Lighter gray for dark mode */
+    --muted: oklch(0.25 0 0); /* Dark gray #333333 */
+    --muted-foreground: oklch(0.6 0 0); /* Medium gray #8a8a8a */
 
     /* Destructive */
     --destructive: oklch(0.63 0.24 25);
     --destructive-foreground: oklch(1 0 0);
 
     /* UI elements */
-    --border: oklch(0.45 0.02 254); /* Horizon Slate for borders */
-    --input: oklch(0.45 0.02 254);
-    --ring: oklch(0.7 0.16 210); /* North Star Cyan */
+    --border: oklch(0.3 0 0); /* Dark gray border #404040 */
+    --input: oklch(0.3 0 0);
+    --ring: oklch(0.98 0 0); /* White focus ring */
 
-    /* Chart colors */
-    --chart-1: oklch(0.35 0.08 254);
-    --chart-2: oklch(0.7 0.16 210);
-    --chart-3: oklch(0.7 0.15 180);
-    --chart-4: oklch(0.75 0.15 70);
-    --chart-5: oklch(0.45 0.02 254);
+    /* Chart colors - Grayscale */
+    --chart-1: oklch(0.98 0 0); /* Off-white */
+    --chart-2: oklch(0.75 0 0); /* Light gray */
+    --chart-3: oklch(0.55 0 0); /* Medium gray */
+    --chart-4: oklch(0.35 0 0); /* Dark gray */
+    --chart-5: oklch(0.25 0 0); /* Very dark gray */
 
     /* Sidebar */
-    --sidebar-background: oklch(0.19 0.02 254);
-    --sidebar-foreground: oklch(0.99 0 0);
-    --sidebar-primary: oklch(0.35 0.08 254);
-    --sidebar-primary-foreground: oklch(0.99 0 0);
-    --sidebar-accent: oklch(0.7 0.16 210);
-    --sidebar-accent-foreground: oklch(0.19 0.02 254);
-    --sidebar-border: oklch(0.45 0.02 254);
-    --sidebar-ring: oklch(0.7 0.16 210);
-    --sidebar: oklch(0.19 0.02 254);
+    --sidebar-background: oklch(0.12 0 0); /* Near black */
+    --sidebar-foreground: oklch(0.98 0 0); /* Off-white */
+    --sidebar-primary: oklch(0.98 0 0); /* Off-white */
+    --sidebar-primary-foreground: oklch(0.12 0 0); /* Near black */
+    --sidebar-accent: oklch(0.25 0 0); /* Dark gray */
+    --sidebar-accent-foreground: oklch(0.98 0 0);
+    --sidebar-border: oklch(0.3 0 0); /* Dark gray border */
+    --sidebar-ring: oklch(0.98 0 0); /* White */
+    --sidebar: oklch(0.12 0 0); /* Near black */
 }
 
 @layer base {

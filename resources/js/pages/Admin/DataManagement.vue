@@ -292,7 +292,7 @@ const formatDate = (timestamp: number): string => {
                             class="flex items-center justify-between rounded-lg border border-sidebar-border/70 p-4 dark:border-sidebar-border"
                         >
                             <div class="flex items-center gap-3">
-                                <FileJson class="h-5 w-5 text-blue-500" />
+                                <FileJson class="h-5 w-5 text-muted-foreground" />
                                 <div>
                                     <div class="font-medium">{{ file.name }}</div>
                                     <div class="text-sm text-muted-foreground">

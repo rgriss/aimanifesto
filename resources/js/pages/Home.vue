@@ -52,16 +52,16 @@ const scopes = [
         <div class="py-8 md:py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Manifesto Hero -->
-                <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-xl p-6 sm:p-8 mb-8 text-center">
-                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight flex items-center justify-center gap-3 md:gap-4">
+                <div class="bg-background border-2 border-border rounded-lg shadow-lg p-6 sm:p-8 mb-8 text-center">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight flex items-center justify-center gap-3 md:gap-4 text-foreground">
                         <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0" />
                         <span>Artificial Intelligence Manifesto</span>
                     </h1>
-                    <p class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-3 md:mb-4 px-2">
+                    <p class="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-3 md:mb-4 px-2">
                         A framework for responsible AI development and deployment
                     </p>
-                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80">
-                        <span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full whitespace-nowrap">Version {{ $page.props.manifestoVersion }}</span>
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
+                        <span class="px-2 sm:px-3 py-1 bg-secondary rounded-full whitespace-nowrap">Version {{ $page.props.manifestoVersion }}</span>
                         <span class="hidden sm:inline">Last updated {{ $page.props.manifestoLastUpdated }}</span>
                         <span class="sm:hidden">{{ new Date($page.props.manifestoLastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}</span>
                     </div>
@@ -69,7 +69,7 @@ const scopes = [
 
                 <!-- What is AI Manifesto? -->
                 <div class="mb-12 md:mb-16">
-                    <Card class="bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20">
+                    <Card class="bg-background border border-border">
                         <div class="text-center max-w-4xl mx-auto">
                             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
                                 What is AI Manifesto?
@@ -85,14 +85,14 @@ const scopes = [
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
                                         <div class="text-3xl flex-shrink-0">🔍</div>
                                         <div>
-                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-info transition-colors">
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                                                 Browse AI Software & Apps
                                             </h3>
                                             <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
                                                 Explore ChatGPT, Claude, Midjourney, and hundreds of other AI applications.
                                                 Each one includes our personal review, rating, and pricing details.
                                             </p>
-                                            <span class="text-sm font-semibold text-info group-hover:underline">
+                                            <span class="text-sm font-semibold text-foreground group-hover:underline">
                                                 View All AI Tools →
                                             </span>
                                         </div>
@@ -102,14 +102,14 @@ const scopes = [
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
                                         <div class="text-3xl flex-shrink-0">✨</div>
                                         <div>
-                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-info transition-colors">
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                                                 Learn Our Principles
                                             </h3>
                                             <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
                                                 Understand the core values and guidelines for using AI responsibly—prioritizing
                                                 transparency, fairness, and human judgment.
                                             </p>
-                                            <span class="text-sm font-semibold text-info group-hover:underline">
+                                            <span class="text-sm font-semibold text-foreground group-hover:underline">
                                                 View Core Values →
                                             </span>
                                         </div>
@@ -119,14 +119,14 @@ const scopes = [
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
                                         <div class="text-3xl flex-shrink-0">🎯</div>
                                         <div>
-                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-info transition-colors">
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                                                 Make Informed Choices
                                             </h3>
                                             <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
                                                 Find the right AI software for your needs—whether you're writing, coding,
                                                 creating images, or analyzing data.
                                             </p>
-                                            <span class="text-sm font-semibold text-info group-hover:underline">
+                                            <span class="text-sm font-semibold text-foreground group-hover:underline">
                                                 Explore AI Tools →
                                             </span>
                                         </div>
@@ -168,7 +168,7 @@ const scopes = [
                                     <div class="flex flex-wrap gap-2">
                                         <Link
                                             href="/tools"
-                                            class="inline-block bg-info text-info-foreground hover:bg-info/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                            class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
                                             Suggest a Tool
                                         </Link>
@@ -204,7 +204,7 @@ const scopes = [
                                     <div class="flex flex-wrap gap-2">
                                         <a
                                             href="mailto:hello@aimanifesto.dev?subject=My AI Story"
-                                            class="inline-block bg-info text-info-foreground hover:bg-info/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                            class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
                                             Share Your AI Story
                                         </a>
@@ -232,7 +232,7 @@ const scopes = [
                                     <div class="flex flex-wrap gap-2">
                                         <Link
                                             href="/tools"
-                                            class="inline-block bg-success text-success-foreground hover:bg-success/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                            class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
                                             Browse Beginner-Friendly Tools
                                         </Link>
@@ -260,7 +260,7 @@ const scopes = [
                                     <div class="flex flex-wrap gap-2">
                                         <Link
                                             href="/tools"
-                                            class="inline-block bg-warning text-warning-foreground hover:bg-warning/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                            class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
                                             Review & Rate Tools
                                         </Link>
@@ -285,20 +285,20 @@ const scopes = [
                         <template #subtitle>
                             <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
                                 Following the structure of the
-                                <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-info hover:underline font-medium">Agile Manifesto</a>,
+                                <a href="https://agilemanifesto.org/" target="_blank" rel="noopener noreferrer" class="text-foreground underline hover:text-foreground/70 font-medium">Agile Manifesto</a>,
                                 we value the items on the left more than those on the right.
                                 While there is value in the items on the right, we value the items on the left more.
                             </p>
                         </template>
                     </SectionHeading>
-                    <Card class="bg-gradient-to-br from-info/5 to-success/5 border-2 border-info/20">
+                    <Card class="bg-background border border-border">
                         <div class="space-y-4 md:space-y-5 text-center">
                             <div
                                 v-for="(value, index) in coreValues"
                                 :key="index"
                                 class="text-base sm:text-lg md:text-xl leading-relaxed"
                             >
-                                <span class="font-bold text-info text-lg sm:text-xl md:text-2xl">{{ value.priority }}</span>
+                                <span class="font-bold text-foreground text-lg sm:text-xl md:text-2xl">{{ value.priority }}</span>
                                 <span class="text-muted-foreground mx-2 sm:mx-3">over</span>
                                 <span class="text-foreground/70">{{ value.over }}</span>
                             </div>
@@ -336,7 +336,7 @@ const scopes = [
                             <!-- Centered Content -->
                             <div class="flex flex-col items-center space-y-3">
                                 <div class="text-2xl sm:text-3xl mb-3">{{ principle.icon }}</div>
-                                <h3 class="text-base md:text-lg font-bold text-info leading-tight">{{ principle.title }}</h3>
+                                <h3 class="text-base md:text-lg font-bold text-foreground leading-tight">{{ principle.title }}</h3>
                                 <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed" style="line-height: 1.6;">{{ principle.description }}</p>
                             </div>
                         </Card>
@@ -381,7 +381,7 @@ const scopes = [
                             >
                                 <Card>
                                     <div class="flex items-start justify-between mb-2 gap-2">
-                                        <h3 class="text-base md:text-lg font-bold text-foreground group-hover:text-info transition-colors leading-tight">
+                                        <h3 class="text-base md:text-lg font-bold text-foreground group-hover:text-foreground/70 transition-colors leading-tight">
                                             {{ tool.name }}
                                         </h3>
                                         <Badge v-if="tool.ryan_rating" variant="success" size="sm" class="flex-shrink-0">
@@ -400,7 +400,7 @@ const scopes = [
                         <div class="text-center mt-6">
                             <Link
                                 href="/tools"
-                                class="inline-block bg-info text-info-foreground hover:bg-info/90 font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition-colors text-sm sm:text-base"
+                                class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition-colors text-sm sm:text-base"
                             >
                                 Browse All Tools →
                             </Link>
@@ -419,7 +419,7 @@ const scopes = [
                             >
                                 <Card class="text-center hover:shadow-lg transition-shadow">
                                     <div class="text-3xl sm:text-4xl mb-2">{{ category.icon }}</div>
-                                    <h4 class="text-xs sm:text-sm font-bold text-foreground group-hover:text-info transition-colors mb-1 leading-tight px-1">
+                                    <h4 class="text-xs sm:text-sm font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-1 leading-tight px-1">
                                         {{ category.name }}
                                     </h4>
                                     <Badge variant="default" size="sm">
@@ -449,7 +449,7 @@ const scopes = [
                                 <li>
                                     <Link
                                         href="/why"
-                                        class="text-muted-foreground hover:text-info transition-colors"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         Why This Manifesto
                                     </Link>
@@ -457,7 +457,7 @@ const scopes = [
                                 <li>
                                     <Link
                                         href="/brand"
-                                        class="text-muted-foreground hover:text-info transition-colors"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         Brand Guidelines
                                     </Link>
@@ -472,7 +472,7 @@ const scopes = [
                                 <li>
                                     <Link
                                         href="/tools"
-                                        class="text-muted-foreground hover:text-info transition-colors"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         AI Tools Directory
                                     </Link>
@@ -480,7 +480,7 @@ const scopes = [
                                 <li>
                                     <Link
                                         href="/categories"
-                                        class="text-muted-foreground hover:text-info transition-colors"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         Browse Categories
                                     </Link>

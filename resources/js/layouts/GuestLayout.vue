@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { getInitials } from '@/composables/useInitials';
 import { User, Settings, LogOut, LayoutDashboard, Shield } from 'lucide-vue-next';
+import ThemeToggle from '@/components/ThemeToggle.vue';
 
 const page = usePage();
 const user = computed(() => page.props.auth?.user);
@@ -130,9 +131,15 @@ const user = computed(() => page.props.auth?.user);
         <!-- Footer -->
         <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <p class="text-center text-gray-600 dark:text-gray-400 text-sm">
-                    AI Manifesto © 2025 - Curated by Ryan Grissinger
-                </p>
+                <div class="flex items-center justify-between">
+                    <!-- Theme Toggle - Far Left -->
+                    <ThemeToggle />
+
+                    <!-- Copyright - Center/Right -->
+                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 text-center sm:text-right">
+                        AI Manifesto © 2025 - Curated by Ryan Grissinger
+                    </p>
+                </div>
             </div>
         </footer>
     </div>

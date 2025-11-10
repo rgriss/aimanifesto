@@ -40,8 +40,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <Link :href="'/admin/data'" class="block">
                         <CardHeader>
                             <div class="flex items-center justify-between">
-                                <Database class="h-10 w-10 text-blue-500" />
-                                <div class="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900 dark:text-blue-300">
+                                <Database class="h-10 w-10 text-muted-foreground" />
+                                <div class="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
                                     Active
                                 </div>
                             </div>

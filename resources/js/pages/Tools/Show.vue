@@ -44,7 +44,60 @@ const momentumInfo = computed(() => {
 
 // Show the intelligence section if any field is present
 const hasIntelligenceData = computed(() => {
-    return props.tool.company_name || props.tool.popularity_tier || props.tool.momentum_score;
+    return props.tool.company_name || props.tool.popularity_tier || props.tool.momentum_score || props.tool.intelligence;
+});
+
+// Helper functions for formatting enum values
+const formatCompanyStatus = (status) => {
+    const map = {
+        private: 'Private',
+        public: 'Public',
+        acquired: 'Acquired',
+        subsidiary: 'Subsidiary',
+        open_source: 'Open Source',
+    };
+    return map[status] || status;
+};
+
+const formatMarketPosition = (position) => {
+    const map = {
+        market_leader: 'Market Leader',
+        major_player: 'Major Player',
+        challenger: 'Challenger',
+        niche_specialist: 'Niche Specialist',
+        emerging: 'Emerging',
+    };
+    return map[position] || position;
+};
+
+const formatSentiment = (sentiment) => {
+    const map = {
+        very_positive: { label: 'Very Positive', icon: '😍', variant: 'success' },
+        positive: { label: 'Positive', icon: '😊', variant: 'success' },
+        mixed: { label: 'Mixed', icon: '😐', variant: 'default' },
+        negative: { label: 'Negative', icon: '😕', variant: 'warning' },
+        very_negative: { label: 'Very Negative', icon: '😢', variant: 'danger' },
+    };
+    return map[sentiment] || null;
+};
+
+const formatFundingStage = (stage) => {
+    const map = {
+        bootstrapped: 'Bootstrapped',
+        seed: 'Seed',
+        series_a: 'Series A',
+        series_b: 'Series B',
+        'series_c+': 'Series C+',
+        public: 'Public',
+        profitable: 'Profitable',
+        acquired: 'Acquired',
+    };
+    return map[stage] || stage;
+};
+
+// Check if intelligence data exists and has meaningful content
+const hasExtendedIntelligence = computed(() => {
+    return props.tool.intelligence && Object.keys(props.tool.intelligence).length > 0;
 });
 </script>
 
@@ -147,69 +200,265 @@ const hasIntelligenceData = computed(() => {
                 </Card>
 
                 <!-- Business Intelligence -->
-                <Card v-if="hasIntelligenceData" class="mb-8 bg-gradient-to-br from-foreground/5 to-foreground/10 border-2 border-foreground/20">
-                    <SectionHeading title="Business Intelligence" />
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Company -->
-                        <div v-if="tool.company_name" class="flex items-start space-x-3">
-                            <div class="flex-shrink-0 mt-1">
-                                <Building2 :size="24" class="text-foreground/70" />
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-semibold text-muted-foreground mb-1">
-                                    Company
-                                </h4>
-                                <p class="text-lg font-bold text-foreground">
-                                    {{ tool.company_name }}
-                                </p>
-                            </div>
+                <div v-if="hasIntelligenceData">
+                    <Card class="mb-8 bg-gradient-to-br from-foreground/5 to-foreground/10 border-2 border-foreground/20">
+                        <div class="flex justify-between items-start mb-6">
+                            <SectionHeading title="Business Intelligence" />
+                            <Badge v-if="hasExtendedIntelligence" variant="info" class="text-sm">
+                                {{ tool.intelligence.data_completeness_score }}% Complete
+                            </Badge>
                         </div>
 
-                        <!-- Popularity Tier -->
-                        <div v-if="popularityInfo" class="flex items-start space-x-3">
-                            <div class="flex-shrink-0 mt-1 text-2xl">
-                                {{ popularityInfo.icon }}
+                        <!-- Phase 1: Basic Intelligence -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <!-- Company -->
+                            <div v-if="tool.company_name" class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 mt-1">
+                                    <Building2 :size="24" class="text-foreground/70" />
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-muted-foreground mb-1">
+                                        Company
+                                    </h4>
+                                    <p class="text-lg font-bold text-foreground">
+                                        {{ tool.company_name }}
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-semibold text-muted-foreground mb-1">
-                                    Market Recognition
-                                </h4>
-                                <Badge :variant="popularityInfo.variant" class="text-base">
-                                    {{ popularityInfo.label }}
-                                </Badge>
-                                <p class="text-xs text-muted-foreground mt-1">
-                                    {{ popularityInfo.description }}
-                                </p>
-                            </div>
-                        </div>
 
-                        <!-- Momentum Score -->
-                        <div v-if="momentumInfo" class="flex items-start space-x-3">
-                            <div class="flex-shrink-0 mt-1">
-                                <TrendingUp v-if="tool.momentum_score >= 4" :size="24" :class="momentumInfo.color" />
-                                <Activity v-else-if="tool.momentum_score === 3" :size="24" :class="momentumInfo.color" />
-                                <TrendingDown v-else :size="24" :class="momentumInfo.color" />
+                            <!-- Popularity Tier -->
+                            <div v-if="popularityInfo" class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 mt-1 text-2xl">
+                                    {{ popularityInfo.icon }}
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-muted-foreground mb-1">
+                                        Market Recognition
+                                    </h4>
+                                    <Badge :variant="popularityInfo.variant" class="text-base">
+                                        {{ popularityInfo.label }}
+                                    </Badge>
+                                    <p class="text-xs text-muted-foreground mt-1">
+                                        {{ popularityInfo.description }}
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-semibold text-muted-foreground mb-1">
-                                    Momentum
-                                </h4>
-                                <Badge :variant="momentumInfo.variant" class="text-base">
-                                    {{ momentumInfo.label }}
-                                </Badge>
-                                <div class="flex items-center space-x-1 mt-2">
-                                    <div
-                                        v-for="i in 5"
-                                        :key="i"
-                                        class="h-2 w-8 rounded-full"
-                                        :class="i <= tool.momentum_score ? momentumInfo.bgColor : 'bg-foreground/10'"
-                                    />
+
+                            <!-- Momentum Score -->
+                            <div v-if="momentumInfo" class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 mt-1">
+                                    <TrendingUp v-if="tool.momentum_score >= 4" :size="24" :class="momentumInfo.color" />
+                                    <Activity v-else-if="tool.momentum_score === 3" :size="24" :class="momentumInfo.color" />
+                                    <TrendingDown v-else :size="24" :class="momentumInfo.color" />
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-muted-foreground mb-1">
+                                        Momentum
+                                    </h4>
+                                    <Badge :variant="momentumInfo.variant" class="text-base">
+                                        {{ momentumInfo.label }}
+                                    </Badge>
+                                    <div class="flex items-center space-x-1 mt-2">
+                                        <div
+                                            v-for="i in 5"
+                                            :key="i"
+                                            class="h-2 w-8 rounded-full"
+                                            :class="i <= tool.momentum_score ? momentumInfo.bgColor : 'bg-foreground/10'"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </Card>
+
+                        <!-- Phase 2: Extended Intelligence Data -->
+                        <div v-if="hasExtendedIntelligence" class="space-y-8 pt-8 border-t-2 border-foreground/10">
+                            <!-- Company Metadata -->
+                            <div v-if="tool.intelligence.founded_year || tool.intelligence.company_status || tool.intelligence.headquarters || tool.intelligence.employee_count_range">
+                                <h3 class="text-lg font-bold text-foreground mb-4">Company Information</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div v-if="tool.intelligence.founded_year">
+                                        <p class="text-sm text-muted-foreground">Founded</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.founded_year }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.tool_launched_year">
+                                        <p class="text-sm text-muted-foreground">Tool Launched</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.tool_launched_year }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.company_status">
+                                        <p class="text-sm text-muted-foreground">Status</p>
+                                        <Badge variant="default">{{ formatCompanyStatus(tool.intelligence.company_status) }}</Badge>
+                                    </div>
+                                    <div v-if="tool.intelligence.stock_ticker">
+                                        <p class="text-sm text-muted-foreground">Stock Ticker</p>
+                                        <p class="text-base font-semibold text-foreground">${{ tool.intelligence.stock_ticker }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.parent_company">
+                                        <p class="text-sm text-muted-foreground">Parent Company</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.parent_company }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.headquarters">
+                                        <p class="text-sm text-muted-foreground">Headquarters</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.headquarters }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.employee_count_range">
+                                        <p class="text-sm text-muted-foreground">Employees</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.employee_count_range }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.acquisition_date">
+                                        <p class="text-sm text-muted-foreground">Acquired</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.acquisition_date }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Market Position -->
+                            <div v-if="tool.intelligence.estimated_users || tool.intelligence.market_position || tool.intelligence.target_market || tool.intelligence.primary_competitors">
+                                <h3 class="text-lg font-bold text-foreground mb-4">Market Position</h3>
+                                <div class="space-y-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div v-if="tool.intelligence.estimated_users">
+                                            <p class="text-sm text-muted-foreground">Estimated Users</p>
+                                            <Badge variant="info" class="text-base">{{ tool.intelligence.estimated_users }}</Badge>
+                                        </div>
+                                        <div v-if="tool.intelligence.market_position">
+                                            <p class="text-sm text-muted-foreground">Market Position</p>
+                                            <Badge variant="success" class="text-base">{{ formatMarketPosition(tool.intelligence.market_position) }}</Badge>
+                                        </div>
+                                    </div>
+                                    <div v-if="tool.intelligence.target_market && tool.intelligence.target_market.length > 0">
+                                        <p class="text-sm text-muted-foreground mb-2">Target Markets</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <Badge v-for="market in tool.intelligence.target_market" :key="market" variant="default">
+                                                {{ market.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) }}
+                                            </Badge>
+                                        </div>
+                                    </div>
+                                    <div v-if="tool.intelligence.primary_competitors && tool.intelligence.primary_competitors.length > 0">
+                                        <p class="text-sm text-muted-foreground mb-2">Primary Competitors</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <Badge v-for="competitor in tool.intelligence.primary_competitors" :key="competitor" variant="default">
+                                                {{ competitor }}
+                                            </Badge>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Financial Information -->
+                            <div v-if="tool.intelligence.funding_stage || tool.intelligence.latest_funding_amount || tool.intelligence.estimated_annual_revenue">
+                                <h3 class="text-lg font-bold text-foreground mb-4">Financial</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div v-if="tool.intelligence.funding_stage">
+                                        <p class="text-sm text-muted-foreground">Funding Stage</p>
+                                        <Badge variant="info" class="text-base">{{ formatFundingStage(tool.intelligence.funding_stage) }}</Badge>
+                                    </div>
+                                    <div v-if="tool.intelligence.latest_funding_amount">
+                                        <p class="text-sm text-muted-foreground">Latest Funding</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.latest_funding_amount }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.latest_funding_date">
+                                        <p class="text-sm text-muted-foreground">Funding Date</p>
+                                        <p class="text-base font-semibold text-foreground">{{ tool.intelligence.latest_funding_date }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.estimated_annual_revenue">
+                                        <p class="text-sm text-muted-foreground">Est. Revenue</p>
+                                        <Badge variant="success" class="text-base">{{ tool.intelligence.estimated_annual_revenue }}</Badge>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sentiment & Momentum -->
+                            <div v-if="tool.intelligence.customer_sentiment || tool.intelligence.sentiment_notes || tool.intelligence.momentum_notes || tool.intelligence.last_major_update">
+                                <h3 class="text-lg font-bold text-foreground mb-4">Customer Sentiment & Momentum</h3>
+                                <div class="space-y-4">
+                                    <div v-if="tool.intelligence.customer_sentiment" class="flex items-center space-x-3">
+                                        <span class="text-2xl">{{ formatSentiment(tool.intelligence.customer_sentiment)?.icon }}</span>
+                                        <div>
+                                            <p class="text-sm text-muted-foreground">Customer Sentiment</p>
+                                            <Badge :variant="formatSentiment(tool.intelligence.customer_sentiment)?.variant" class="text-base">
+                                                {{ formatSentiment(tool.intelligence.customer_sentiment)?.label }}
+                                            </Badge>
+                                        </div>
+                                    </div>
+                                    <div v-if="tool.intelligence.sentiment_notes">
+                                        <p class="text-sm text-muted-foreground mb-1">Sentiment Notes</p>
+                                        <p class="text-foreground">{{ tool.intelligence.sentiment_notes }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.momentum_notes">
+                                        <p class="text-sm text-muted-foreground mb-1">Momentum Analysis</p>
+                                        <p class="text-foreground">{{ tool.intelligence.momentum_notes }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.last_major_update">
+                                        <p class="text-sm text-muted-foreground mb-1">Last Major Update</p>
+                                        <p class="text-foreground">{{ tool.intelligence.last_major_update }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Competitive Intelligence -->
+                            <div v-if="tool.intelligence.key_differentiators || tool.intelligence.strengths || tool.intelligence.weaknesses || tool.intelligence.market_threats || tool.intelligence.growth_opportunities">
+                                <h3 class="text-lg font-bold text-foreground mb-4">Competitive Intelligence</h3>
+                                <div class="space-y-4">
+                                    <div v-if="tool.intelligence.key_differentiators && tool.intelligence.key_differentiators.length > 0">
+                                        <p class="text-sm text-muted-foreground mb-2">Key Differentiators</p>
+                                        <ul class="space-y-1">
+                                            <li v-for="item in tool.intelligence.key_differentiators" :key="item" class="flex items-start">
+                                                <span class="text-foreground mr-2">✨</span>
+                                                <span class="text-foreground">{{ item }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div v-if="tool.intelligence.strengths && tool.intelligence.strengths.length > 0">
+                                        <p class="text-sm text-muted-foreground mb-2">Strengths</p>
+                                        <ul class="space-y-1">
+                                            <li v-for="item in tool.intelligence.strengths" :key="item" class="flex items-start">
+                                                <span class="text-success mr-2">✓</span>
+                                                <span class="text-foreground">{{ item }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div v-if="tool.intelligence.weaknesses && tool.intelligence.weaknesses.length > 0">
+                                        <p class="text-sm text-muted-foreground mb-2">Weaknesses</p>
+                                        <ul class="space-y-1">
+                                            <li v-for="item in tool.intelligence.weaknesses" :key="item" class="flex items-start">
+                                                <span class="text-warning mr-2">⚠</span>
+                                                <span class="text-foreground">{{ item }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div v-if="tool.intelligence.market_threats">
+                                        <p class="text-sm text-muted-foreground mb-1">Market Threats</p>
+                                        <p class="text-foreground">{{ tool.intelligence.market_threats }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.growth_opportunities">
+                                        <p class="text-sm text-muted-foreground mb-1">Growth Opportunities</p>
+                                        <p class="text-foreground">{{ tool.intelligence.growth_opportunities }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analyst Notes -->
+                            <div v-if="tool.intelligence.analyst_summary || tool.intelligence.strategic_notes">
+                                <h3 class="text-lg font-bold text-foreground mb-4">Analyst Insights</h3>
+                                <div class="space-y-4">
+                                    <div v-if="tool.intelligence.analyst_summary" class="bg-foreground/5 rounded-lg p-4 border border-foreground/10">
+                                        <p class="text-sm text-muted-foreground mb-2">Summary</p>
+                                        <p class="text-foreground leading-relaxed">{{ tool.intelligence.analyst_summary }}</p>
+                                    </div>
+                                    <div v-if="tool.intelligence.strategic_notes" class="bg-foreground/5 rounded-lg p-4 border border-foreground/10">
+                                        <p class="text-sm text-muted-foreground mb-2">Strategic Notes</p>
+                                        <p class="text-foreground leading-relaxed">{{ tool.intelligence.strategic_notes }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Research Timestamp -->
+                            <div v-if="tool.intelligence.last_researched_at" class="text-xs text-muted-foreground pt-4 border-t border-foreground/10">
+                                Last researched: {{ new Date(tool.intelligence.last_researched_at).toLocaleDateString() }}
+                            </div>
+                        </div>
+                    </Card>
+                </div>
 
                 <!-- Ryan's Notes -->
                 <div v-if="tool.ryan_notes" class="bg-foreground/5 rounded-lg shadow p-8 mb-8 border-2 border-foreground/10">

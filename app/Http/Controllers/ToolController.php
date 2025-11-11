@@ -45,7 +45,7 @@ class ToolController extends Controller
 
     public function show(Tool $tool): Response
     {
-        $tool->load('category');
+        $tool->load(['category', 'intelligence']);
         $tool->incrementViews();
 
         // Get related tools from same category

@@ -283,4 +283,5 @@ export interface Tool {
   created_at: string;
   updated_at: string;
   category?: ToolCategory;
+  intelligence?: import('./tool-intelligence').ToolIntelligence;
 }

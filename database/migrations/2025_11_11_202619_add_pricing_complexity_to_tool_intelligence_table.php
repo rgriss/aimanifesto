@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::table('tool_intelligence', function (Blueprint $table) {
             // Pricing complexity indicators (1-5 scale, like restaurant dollar signs)
-            $table->unsignedTinyInteger('pricing_individual_cost')->nullable()->after('last_funding_amount');
-            $table->unsignedTinyInteger('pricing_smb_cost')->nullable()->after('pricing_individual_cost');
-            $table->unsignedTinyInteger('pricing_enterprise_cost')->nullable()->after('pricing_smb_cost');
-            $table->text('pricing_cost_notes')->nullable()->after('pricing_enterprise_cost');
+            // Don't specify column position for better compatibility across environments
+            $table->unsignedTinyInteger('pricing_individual_cost')->nullable();
+            $table->unsignedTinyInteger('pricing_smb_cost')->nullable();
+            $table->unsignedTinyInteger('pricing_enterprise_cost')->nullable();
+            $table->text('pricing_cost_notes')->nullable();
 
             // Typical spend ranges for reference
-            $table->string('pricing_individual_range')->nullable()->after('pricing_cost_notes');
-            $table->string('pricing_smb_range')->nullable()->after('pricing_individual_range');
-            $table->string('pricing_enterprise_range')->nullable()->after('pricing_smb_range');
+            $table->string('pricing_individual_range')->nullable();
+            $table->string('pricing_smb_range')->nullable();
+            $table->string('pricing_enterprise_range')->nullable();
         });
     }
 

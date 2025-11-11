@@ -6,6 +6,7 @@ import { ref } from 'vue';
 
 const props = defineProps({
     tools: Object,
+    totalCount: Number,
     filters: {
         type: Object,
         default: () => ({})
@@ -38,6 +39,16 @@ const applyFilters = () => {
                     description="Curated AI tools tested and reviewed by Ryan Grissinger. Real insights from years of AI implementation experience."
                     :gradient="true"
                 />
+
+                <!-- Tool Count -->
+                <div class="mb-6 text-center">
+                    <p class="text-lg text-muted-foreground">
+                        <span class="font-bold text-foreground">{{ totalCount }}</span> {{ totalCount === 1 ? 'tool' : 'tools' }} in the database
+                        <span v-if="tools.total && tools.total !== totalCount" class="text-sm">
+                            (showing {{ tools.total }} {{ tools.total === 1 ? 'result' : 'results' }})
+                        </span>
+                    </p>
+                </div>
 
                 <!-- Search & Sort -->
                 <Card class="mb-8">

@@ -14,6 +14,9 @@ class ToolController extends Controller
         $query = Tool::with('category')
             ->active();
 
+        // Get total count before filtering
+        $totalCount = Tool::active()->count();
+
         // Search functionality
         if ($request->filled('search')) {
             $search = $request->search;
@@ -36,6 +39,7 @@ class ToolController extends Controller
 
         return Inertia::render('Tools/Index', [
             'tools' => $tools,
+            'totalCount' => $totalCount,
             'filters' => [
                 'search' => $request->get('search', ''),
                 'sort' => $request->get('sort', 'name'),

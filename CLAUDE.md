@@ -168,6 +168,32 @@ Tests in tests/:
 - **Feature/** - HomepageTest, ToolsTest, CategoriesTest, DashboardTest
 - Uses Pest syntax with Laravel-specific helpers
 
+## Documentation
+
+### Version History
+- **CHANGELOG.md** - Complete version history with detailed feature descriptions
+- Check this file for recent changes, new features, and bug fixes
+- Current version available in `config/app.php` as `'version'`
+
+### API Documentation (docs/api/)
+- **tool-creation-api.md** - REST API for creating tools programmatically
+- **tool-intelligence-api.md** - REST API for adding business intelligence data
+- **tool-intelligence.d.ts** - TypeScript definitions for intelligence API
+- **tool.d.ts** - TypeScript definitions for tool creation API
+- **mcp-setup-guide.md** - Claude Desktop MCP integration guide
+
+### Business Intelligence
+Tools can have optional `intelligence` relationship with business/market data:
+- **Company Metadata**: Founded year, headquarters, employee count
+- **Market Position**: User base, target markets, competitive positioning
+- **Pricing Complexity**: Restaurant-style ratings ($-$$$$$) for three tiers:
+  - Individual users (1-5 scale)
+  - SMB 10-50 users (1-5 scale)
+  - Enterprise 500+ users (1-5 scale)
+- **Financial Data**: Funding stage, revenue estimates
+- **Competitive Intelligence**: SWOT analysis, differentiators
+- Accessible via MCP server: `update_tool_intelligence` tool
+
 ## Important Files
 
 - **vite.config.ts** - Vite config with Wayfinder plugin, Vue, Tailwind v4

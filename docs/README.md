@@ -14,6 +14,13 @@ We believe in:
 
 ## Directory Structure
 
+### `/api`
+API documentation and schemas:
+- [Tool Creation API](./api/tool-creation-api.md) - REST API for creating tools
+- [Tool Intelligence API](./api/tool-intelligence-api.md) - REST API for business intelligence data
+- [MCP Setup Guide](./api/mcp-setup-guide.md) - Claude Desktop integration
+- TypeScript definitions and JSON schemas
+
 ### `/features`
 Feature requests and product requirements documents (PRDs). Each feature gets a document that describes:
 - User story and motivation
@@ -56,7 +63,21 @@ New team members should read:
 1. This README
 2. `/processes/development-workflow.md`
 3. `/architecture/system-overview.md`
+4. [CHANGELOG.md](../CHANGELOG.md) - Version history and recent changes
+
+## Quick Links
+
+### For Developers
+- [API Documentation](./api/) - REST APIs and integrations
+- [Tool Creation API](./api/tool-creation-api.md) - Add tools programmatically
+- [Tool Intelligence API](./api/tool-intelligence-api.md) - Add business intelligence data
+- [MCP Setup Guide](./api/mcp-setup-guide.md) - Claude Desktop integration
+
+### For Product/Business
+- [CHANGELOG](../CHANGELOG.md) - Feature releases and changes
+- [System Overview](./architecture/system-overview.md) - High-level architecture
 
 ## Version History
 
+- 2025-11-11: Added API documentation, CHANGELOG, and tool intelligence docs
 - 2025-10-10: Documentation structure created

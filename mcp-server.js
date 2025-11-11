@@ -1039,6 +1039,31 @@ Updated fields: ${Object.keys(updateData).join(', ')}`,
         details += `\n`;
       }
 
+      // Pricing Complexity
+      if (intel.pricing_individual_cost || intel.pricing_smb_cost || intel.pricing_enterprise_cost) {
+        const dollarSigns = (level) => '$'.repeat(level);
+        details += `💵 Pricing Complexity:\n`;
+        if (intel.pricing_individual_cost) {
+          details += `  • Individual: ${dollarSigns(intel.pricing_individual_cost)}`;
+          if (intel.pricing_individual_range) details += ` (${intel.pricing_individual_range})`;
+          details += `\n`;
+        }
+        if (intel.pricing_smb_cost) {
+          details += `  • SMB (10-50 users): ${dollarSigns(intel.pricing_smb_cost)}`;
+          if (intel.pricing_smb_range) details += ` (${intel.pricing_smb_range})`;
+          details += `\n`;
+        }
+        if (intel.pricing_enterprise_cost) {
+          details += `  • Enterprise (500+ users): ${dollarSigns(intel.pricing_enterprise_cost)}`;
+          if (intel.pricing_enterprise_range) details += ` (${intel.pricing_enterprise_range})`;
+          details += `\n`;
+        }
+        if (intel.pricing_cost_notes) {
+          details += `  ℹ️ ${intel.pricing_cost_notes}\n`;
+        }
+        details += `\n`;
+      }
+
       // Sentiment
       if (intel.customer_sentiment) {
         details += `💭 Sentiment: ${intel.customer_sentiment}\n`;

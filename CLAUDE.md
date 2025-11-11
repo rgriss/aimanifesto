@@ -111,6 +111,33 @@ php artisan migrate              # Run migrations
 php artisan migrate:fresh --seed # Fresh database with seeders
 ```
 
+### Admin User Management
+When the database is reset or freshly seeded, admin access is automatically restored:
+
+**Automatic Admin Creation (via Seeder)**
+```bash
+php artisan migrate:fresh --seed  # Creates admin user automatically
+php artisan db:seed --class=UserSeeder  # Create/restore admin user only
+```
+
+The UserSeeder reads credentials from .env:
+- `ADMIN_EMAIL` (default: admin@aimanifesto.net)
+- `ADMIN_PASSWORD` (default: password)
+- `ADMIN_NAME` (default: Admin User)
+
+**Manual Admin Creation (via Command)**
+```bash
+php artisan admin:create  # Interactive prompts
+php artisan admin:create --email=admin@example.com --password=secret --name="Admin"  # With flags
+```
+
+The admin:create command can:
+- Create new admin users with email verification
+- Promote existing users to admin status
+- Work interactively or with command-line flags
+
+**Important:** Always change default passwords after first login for security.
+
 ## Key Conventions
 
 ### Route Model Binding

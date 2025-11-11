@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('🌱 Seeding database with production-like data...');
 
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
             ToolSeeder::class,
         ]);

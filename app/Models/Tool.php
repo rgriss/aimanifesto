@@ -43,6 +43,8 @@ class Tool extends Model
         'ryan_rating' => 'integer',
         'ryan_last_used' => 'date',
         'first_reviewed_at' => 'date',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**

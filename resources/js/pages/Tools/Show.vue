@@ -199,6 +199,19 @@ const hasExtendedIntelligence = computed(() => {
                     </p>
                 </Card>
 
+                <!-- Screenshot -->
+                <Card v-if="tool.screenshot_url" class="mb-8">
+                    <SectionHeading title="Screenshot" />
+                    <div class="rounded-lg overflow-hidden border-2 border-border">
+                        <img
+                            :src="tool.screenshot_url"
+                            :alt="`Screenshot of ${tool.name}`"
+                            class="w-full h-auto"
+                            loading="lazy"
+                        />
+                    </div>
+                </Card>
+
                 <!-- Business Intelligence -->
                 <div v-if="hasIntelligenceData">
                     <Card class="mb-8 bg-gradient-to-br from-foreground/5 to-foreground/10 border-2 border-foreground/20">

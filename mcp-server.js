@@ -110,6 +110,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               type: 'string',
               description: 'Logo image URL (optional)',
             },
+            screenshot_url: {
+              type: 'string',
+              description: 'Screenshot image URL (optional)',
+            },
             category: {
               type: 'string',
               description: 'Category name (e.g., "AI Assistants", "Code Generation", "Image Generation"). Will be created if it doesn\'t exist.',
@@ -208,6 +212,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             logo_url: {
               type: 'string',
               description: 'Updated logo URL',
+            },
+            screenshot_url: {
+              type: 'string',
+              description: 'Updated screenshot URL',
             },
             category: {
               type: 'string',

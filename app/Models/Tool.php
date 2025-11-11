@@ -20,6 +20,7 @@ class Tool extends Model
         'website_url',
         'documentation_url',
         'logo_url',
+        'screenshot_url',
         'pricing_model',
         'price_description',
         'company_name',

@@ -46,6 +46,9 @@ export interface CreateToolRequest {
   /** Logo image URL (optional, must be valid URL) */
   logo_url?: string | null;
 
+  /** Screenshot image URL (optional, must be valid URL) */
+  screenshot_url?: string | null;
+
   /** Category name - will be created if doesn't exist (required) */
   category: string;
 
@@ -265,6 +268,7 @@ export interface Tool {
   website_url: string;
   documentation_url: string | null;
   logo_url: string | null;
+  screenshot_url: string | null;
   pricing_model: PricingModel | null;
   price_description: string | null;
   company_name: string | null;

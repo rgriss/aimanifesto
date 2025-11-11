@@ -206,14 +206,20 @@ const getPricingBadgeVariant = (pricing: string) => {
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div class="flex items-center justify-end gap-2">
+                                        <Link :href="`/tools/${tool.slug}`" target="_blank">
+                                            <Button variant="ghost" size="sm" title="View public page">
+                                                <Eye class="h-4 w-4" />
+                                            </Button>
+                                        </Link>
                                         <Link :href="`/admin/tools/${tool.slug}/edit`">
-                                            <Button variant="ghost" size="sm">
+                                            <Button variant="ghost" size="sm" title="Edit tool">
                                                 <Pencil class="h-4 w-4" />
                                             </Button>
                                         </Link>
                                         <Button
                                             variant="ghost"
                                             size="sm"
+                                            title="Delete tool"
                                             @click="deleteTool(tool)"
                                         >
                                             <Trash2 class="h-4 w-4 text-destructive" />

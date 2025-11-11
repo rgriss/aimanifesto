@@ -1,0 +1,231 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aimanifesto.net/schemas/tool.json",
+  "title": "AI Tool",
+  "description": "Schema for AI tool entries in the AI Manifesto directory",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the AI tool",
+      "minLength": 1,
+      "maxLength": 255,
+      "examples": ["ChatGPT", "Midjourney", "Claude"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the tool (1-2 sentences)",
+      "minLength": 1,
+      "examples": [
+        "AI assistant by Anthropic with 200K context window",
+        "Text-to-image AI model that creates art from descriptions"
+      ]
+    },
+    "long_description": {
+      "type": ["string", "null"],
+      "description": "Detailed description with more context (optional)",
+      "examples": [
+        "Claude is an AI assistant created by Anthropic. It can help with a wide variety of tasks including writing, analysis, math, coding, and more. Claude has a context window of up to 200,000 tokens."
+      ]
+    },
+    "website_url": {
+      "type": "string",
+      "description": "Main website URL for the tool",
+      "format": "uri",
+      "maxLength": 500,
+      "pattern": "^https?://",
+      "examples": [
+        "https://claude.ai",
+        "https://chat.openai.com",
+        "https://midjourney.com"
+      ]
+    },
+    "documentation_url": {
+      "type": ["string", "null"],
+      "description": "Documentation URL (optional)",
+      "format": "uri",
+      "maxLength": 500,
+      "pattern": "^https?://",
+      "examples": [
+        "https://docs.anthropic.com",
+        "https://platform.openai.com/docs"
+      ]
+    },
+    "logo_url": {
+      "type": ["string", "null"],
+      "description": "Logo image URL (optional)",
+      "format": "uri",
+      "maxLength": 500,
+      "pattern": "^https?://",
+      "examples": [
+        "https://example.com/logo.png",
+        "https://cdn.example.com/images/tool-logo.jpg"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "description": "Category name (will be created if it doesn't exist)",
+      "minLength": 1,
+      "maxLength": 255,
+      "examples": [
+        "AI Assistants",
+        "Code Generation",
+        "Image Generation",
+        "Video Editing",
+        "Writing Tools"
+      ]
+    },
+    "pricing_model": {
+      "type": ["string", "null"],
+      "description": "Pricing model type",
+      "enum": ["free", "freemium", "paid", "enterprise", null],
+      "examples": ["free", "freemium", "paid", "enterprise"]
+    },
+    "price_description": {
+      "type": ["string", "null"],
+      "description": "Details about pricing",
+      "examples": [
+        "$20/month for Pro plan, free tier available",
+        "Free with usage limits, $10/month unlimited",
+        "Enterprise pricing available on request"
+      ]
+    },
+    "features": {
+      "type": ["array", "null"],
+      "description": "Array of key features",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "examples": [
+        [
+          "200K context window",
+          "Artifacts for code generation",
+          "Computer use capabilities"
+        ],
+        [
+          "Text-to-image generation",
+          "Style transfer",
+          "Inpainting and outpainting"
+        ]
+      ]
+    },
+    "use_cases": {
+      "type": ["array", "null"],
+      "description": "Array of use cases",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "examples": [
+        [
+          "Code generation and review",
+          "Research and analysis",
+          "Content creation"
+        ],
+        [
+          "Marketing materials",
+          "Social media graphics",
+          "Concept art"
+        ]
+      ]
+    },
+    "integrations": {
+      "type": ["array", "null"],
+      "description": "Array of available integrations",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "examples": [
+        ["API", "Web interface", "Mobile apps"],
+        ["Slack", "Discord", "Zapier", "API"]
+      ]
+    },
+    "ryan_rating": {
+      "type": ["integer", "null"],
+      "description": "Personal rating from 1-10",
+      "minimum": 1,
+      "maximum": 10,
+      "examples": [8, 9, 7]
+    },
+    "ryan_notes": {
+      "type": ["string", "null"],
+      "description": "Personal notes about the tool",
+      "examples": [
+        "Best AI assistant for coding tasks",
+        "Great for quick prototypes, needs refinement for production",
+        "Expensive but worth it for professional use"
+      ]
+    },
+    "ryan_last_used": {
+      "type": ["string", "null"],
+      "description": "Date last used (ISO 8601 format: YYYY-MM-DD)",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "examples": ["2025-11-11", "2025-01-15"]
+    },
+    "is_featured": {
+      "type": ["boolean", "null"],
+      "description": "Whether to feature this tool on the homepage",
+      "default": false,
+      "examples": [true, false]
+    },
+    "is_active": {
+      "type": ["boolean", "null"],
+      "description": "Whether the tool is active and visible",
+      "default": true,
+      "examples": [true, false]
+    }
+  },
+  "required": ["name", "description", "website_url", "category"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "name": "Claude",
+      "description": "AI assistant by Anthropic with 200K context window",
+      "long_description": "Claude is an AI assistant created by Anthropic that excels at complex reasoning, coding, and analysis tasks.",
+      "website_url": "https://claude.ai",
+      "documentation_url": "https://docs.anthropic.com",
+      "logo_url": "https://claude.ai/logo.png",
+      "category": "AI Assistants",
+      "pricing_model": "freemium",
+      "price_description": "$20/month for Pro plan, free tier available",
+      "features": [
+        "200K context window",
+        "Artifacts for code generation",
+        "Computer use capabilities",
+        "Vision and document analysis"
+      ],
+      "use_cases": [
+        "Code generation and review",
+        "Research and analysis",
+        "Content creation",
+        "Technical writing"
+      ],
+      "integrations": ["API", "Web interface", "Mobile apps"],
+      "ryan_rating": 9,
+      "ryan_notes": "Best AI assistant for coding and complex analysis tasks",
+      "ryan_last_used": "2025-11-11",
+      "is_featured": true,
+      "is_active": true
+    },
+    {
+      "name": "Lovable",
+      "description": "AI-powered full-stack web app builder",
+      "website_url": "https://lovable.dev",
+      "category": "Code Generation",
+      "pricing_model": "freemium",
+      "price_description": "Free tier, paid plans from $20/month",
+      "features": [
+        "Full-stack app generation",
+        "React + TypeScript",
+        "Supabase integration"
+      ],
+      "use_cases": ["Rapid prototyping", "MVP development"],
+      "ryan_rating": 8,
+      "is_featured": false,
+      "is_active": true
+    }
+  ]
+}

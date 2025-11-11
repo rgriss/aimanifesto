@@ -100,6 +100,12 @@ Authorization: Bearer {your-token}
 
 ---
 
+## Schema Files
+
+**Machine-readable schemas available:**
+- **JSON Schema:** [tool-schema.json](./tool-schema.json) - Complete JSON Schema (draft-07)
+- **TypeScript:** [tool.d.ts](./tool.d.ts) - TypeScript type definitions
+
 ## Field Reference
 
 | Field | Type | Required | Validation | Description |

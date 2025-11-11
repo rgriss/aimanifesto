@@ -126,6 +126,15 @@ class ApiToolIntelligenceController extends Controller
             'latest_funding_date' => ['nullable', 'string', 'max:255'],
             'estimated_annual_revenue' => ['nullable', 'string', 'in:< $1M,$1M-$10M,$10M-$50M,$50M-$100M,$100M-$500M,$500M-$1B,$1B+'],
 
+            // Pricing Complexity
+            'pricing_individual_cost' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'pricing_smb_cost' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'pricing_enterprise_cost' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'pricing_cost_notes' => ['nullable', 'string'],
+            'pricing_individual_range' => ['nullable', 'string', 'max:255'],
+            'pricing_smb_range' => ['nullable', 'string', 'max:255'],
+            'pricing_enterprise_range' => ['nullable', 'string', 'max:255'],
+
             // Competitive Intelligence
             'key_differentiators' => ['nullable', 'array'],
             'key_differentiators.*' => ['string'],
@@ -181,6 +190,15 @@ class ApiToolIntelligenceController extends Controller
             'latest_funding_amount' => $intelligence->latest_funding_amount,
             'latest_funding_date' => $intelligence->latest_funding_date,
             'estimated_annual_revenue' => $intelligence->estimated_annual_revenue,
+
+            // Pricing Complexity
+            'pricing_individual_cost' => $intelligence->pricing_individual_cost,
+            'pricing_smb_cost' => $intelligence->pricing_smb_cost,
+            'pricing_enterprise_cost' => $intelligence->pricing_enterprise_cost,
+            'pricing_cost_notes' => $intelligence->pricing_cost_notes,
+            'pricing_individual_range' => $intelligence->pricing_individual_range,
+            'pricing_smb_range' => $intelligence->pricing_smb_range,
+            'pricing_enterprise_range' => $intelligence->pricing_enterprise_range,
 
             // Competitive Intelligence
             'key_differentiators' => $intelligence->key_differentiators,

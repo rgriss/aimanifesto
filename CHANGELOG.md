@@ -5,6 +5,17 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.16.3] - 2025-11-11
+
+### Fixed
+- **CRITICAL**: Pricing complexity fields now properly saved and returned by API
+  - Added validation rules for pricing fields in API controller
+  - Added pricing fields to API response formatter
+  - Fields were being silently dropped before this fix
+
+### Added
+- Comprehensive test suite for pricing complexity API endpoints (4 tests, 24 assertions)
+
 ## [0.16.2] - 2025-11-11
 
 ### Fixed

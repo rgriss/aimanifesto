@@ -123,6 +123,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               type: 'string',
               description: 'Details about pricing (e.g., "$20/month for Pro")',
             },
+            company_name: {
+              type: 'string',
+              description: 'Parent company/organization behind the tool (e.g., "OpenAI", "Google", "Anthropic")',
+            },
+            popularity_tier: {
+              type: 'string',
+              enum: ['mainstream', 'well_known', 'growing', 'niche', 'emerging'],
+              description: 'Market recognition level: mainstream (household name), well_known (known in industry), growing (gaining recognition), niche (specialized audience), emerging (new/unknown)',
+            },
+            momentum_score: {
+              type: 'integer',
+              minimum: 1,
+              maximum: 5,
+              description: 'Trajectory assessment (1-5): 1=Strongly declining, 2=Declining, 3=Stable, 4=Growing, 5=Rapidly growing',
+            },
             features: {
               type: 'array',
               items: { type: 'string' },
@@ -206,6 +221,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             price_description: {
               type: 'string',
               description: 'Updated pricing details',
+            },
+            company_name: {
+              type: 'string',
+              description: 'Updated company name',
+            },
+            popularity_tier: {
+              type: 'string',
+              enum: ['mainstream', 'well_known', 'growing', 'niche', 'emerging'],
+              description: 'Updated popularity tier',
+            },
+            momentum_score: {
+              type: 'integer',
+              minimum: 1,
+              maximum: 5,
+              description: 'Updated momentum score (1-5)',
             },
             features: {
               type: 'array',

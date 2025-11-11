@@ -2,10 +2,49 @@
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import { PageHero, Card, Badge, SectionHeading } from '@/components';
+import { Building2, TrendingUp, TrendingDown, Activity } from 'lucide-vue-next';
+import { computed } from 'vue';
 
-defineProps({
+const props = defineProps({
     tool: Object,
     relatedTools: Array,
+});
+
+// Helper to get popularity tier display info
+const popularityInfo = computed(() => {
+    const tier = props.tool.popularity_tier;
+    if (!tier) return null;
+
+    const info = {
+        mainstream: { label: 'Mainstream', variant: 'success', icon: '🌟', description: 'Household name' },
+        well_known: { label: 'Well Known', variant: 'info', icon: '⭐', description: 'Known in industry' },
+        growing: { label: 'Growing', variant: 'default', icon: '📈', description: 'Gaining recognition' },
+        niche: { label: 'Niche', variant: 'default', icon: '🎯', description: 'Specialized audience' },
+        emerging: { label: 'Emerging', variant: 'default', icon: '🌱', description: 'New/unknown' },
+    };
+
+    return info[tier] || null;
+});
+
+// Helper to get momentum score display info
+const momentumInfo = computed(() => {
+    const score = props.tool.momentum_score;
+    if (!score) return null;
+
+    const info = {
+        1: { label: 'Strongly Declining', variant: 'danger', color: 'text-danger', bgColor: 'bg-danger/10' },
+        2: { label: 'Declining', variant: 'warning', color: 'text-warning', bgColor: 'bg-warning/10' },
+        3: { label: 'Stable', variant: 'default', color: 'text-foreground', bgColor: 'bg-foreground/10' },
+        4: { label: 'Growing', variant: 'success', color: 'text-success', bgColor: 'bg-success/10' },
+        5: { label: 'Rapidly Growing', variant: 'success', color: 'text-success', bgColor: 'bg-success/10' },
+    };
+
+    return info[score] || null;
+});
+
+// Show the intelligence section if any field is present
+const hasIntelligenceData = computed(() => {
+    return props.tool.company_name || props.tool.popularity_tier || props.tool.momentum_score;
 });
 </script>
 
@@ -105,6 +144,71 @@ defineProps({
                     <p class="text-foreground whitespace-pre-line">
                         {{ tool.long_description }}
                     </p>
+                </Card>
+
+                <!-- Business Intelligence -->
+                <Card v-if="hasIntelligenceData" class="mb-8 bg-gradient-to-br from-foreground/5 to-foreground/10 border-2 border-foreground/20">
+                    <SectionHeading title="Business Intelligence" />
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Company -->
+                        <div v-if="tool.company_name" class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 mt-1">
+                                <Building2 :size="24" class="text-foreground/70" />
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-muted-foreground mb-1">
+                                    Company
+                                </h4>
+                                <p class="text-lg font-bold text-foreground">
+                                    {{ tool.company_name }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Popularity Tier -->
+                        <div v-if="popularityInfo" class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 mt-1 text-2xl">
+                                {{ popularityInfo.icon }}
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-muted-foreground mb-1">
+                                    Market Recognition
+                                </h4>
+                                <Badge :variant="popularityInfo.variant" class="text-base">
+                                    {{ popularityInfo.label }}
+                                </Badge>
+                                <p class="text-xs text-muted-foreground mt-1">
+                                    {{ popularityInfo.description }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Momentum Score -->
+                        <div v-if="momentumInfo" class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 mt-1">
+                                <TrendingUp v-if="tool.momentum_score >= 4" :size="24" :class="momentumInfo.color" />
+                                <Activity v-else-if="tool.momentum_score === 3" :size="24" :class="momentumInfo.color" />
+                                <TrendingDown v-else :size="24" :class="momentumInfo.color" />
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-muted-foreground mb-1">
+                                    Momentum
+                                </h4>
+                                <Badge :variant="momentumInfo.variant" class="text-base">
+                                    {{ momentumInfo.label }}
+                                </Badge>
+                                <div class="flex items-center space-x-1 mt-2">
+                                    <div
+                                        v-for="i in 5"
+                                        :key="i"
+                                        class="h-2 w-8 rounded-full"
+                                        :class="i <= tool.momentum_score ? momentumInfo.bgColor : 'bg-foreground/10'"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </Card>
 
                 <!-- Ryan's Notes -->

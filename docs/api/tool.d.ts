@@ -14,6 +14,17 @@
 export type PricingModel = 'free' | 'freemium' | 'paid' | 'enterprise';
 
 /**
+ * Popularity tier options for AI tools
+ * Indicates market recognition level
+ */
+export type PopularityTier =
+  | 'mainstream'  // Household name (ChatGPT, Photoshop)
+  | 'well_known'  // Known in industry (Cursor, Midjourney)
+  | 'growing'     // Gaining recognition (Bolt, Perplexity)
+  | 'niche'       // Specialized audience (Remove.bg)
+  | 'emerging';   // New/unknown
+
+/**
  * Request payload for creating a new tool via API
  */
 export interface CreateToolRequest {
@@ -43,6 +54,15 @@ export interface CreateToolRequest {
 
   /** Details about pricing (optional) */
   price_description?: string | null;
+
+  /** Parent company/organization behind the tool (required for new tools, max 255 chars) */
+  company_name?: string | null;
+
+  /** Market recognition level (optional) */
+  popularity_tier?: PopularityTier | null;
+
+  /** Trajectory assessment 1-5 (1=Strongly declining, 2=Declining, 3=Stable, 4=Growing, 5=Rapidly growing) (optional) */
+  momentum_score?: number | null;
 
   /** Array of key features (optional) */
   features?: string[] | null;
@@ -247,6 +267,9 @@ export interface Tool {
   logo_url: string | null;
   pricing_model: PricingModel | null;
   price_description: string | null;
+  company_name: string | null;
+  popularity_tier: PopularityTier | null;
+  momentum_score: number | null;
   features: string[];
   use_cases: string[];
   integrations: string[];

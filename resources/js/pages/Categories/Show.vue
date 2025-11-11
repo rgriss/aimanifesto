@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { Card, Badge, SectionHeading } from '@/components';
+import { PageHero, Card, Badge, SectionHeading } from '@/components';
 
 defineProps({
     category: Object,
@@ -19,27 +19,24 @@ defineProps({
                 <div class="mb-6">
                     <Link
                         href="/categories"
-                        class="text-info hover:text-info/80 font-semibold transition-colors"
+                        class="text-foreground hover:text-foreground/70 font-semibold transition-colors"
                     >
                         ← Back to all categories
                     </Link>
                 </div>
 
                 <!-- Category Header -->
-                <div class="bg-gradient-to-br from-primary via-secondary to-info text-white rounded-lg shadow-lg p-8 mb-8">
-                    <div class="flex items-start gap-6 mb-4">
-                        <div class="text-7xl">{{ category.icon }}</div>
-                        <div class="flex-1">
-                            <h1 class="text-4xl font-bold mb-3">{{ category.name }}</h1>
-                            <p class="text-xl text-white/90 mb-4">
-                                {{ category.description }}
-                            </p>
-                            <Badge variant="default">
-                                {{ toolCount }} tools
-                            </Badge>
-                        </div>
-                    </div>
-                </div>
+                <PageHero
+                    :title="category.name"
+                    :description="category.description"
+                    :icon="category.icon"
+                >
+                    <template #badges>
+                        <Badge variant="default">
+                            {{ toolCount }} tools
+                        </Badge>
+                    </template>
+                </PageHero>
 
                 <!-- Tools in Category -->
                 <div v-if="category.active_tools && category.active_tools.length > 0">
@@ -55,7 +52,7 @@ defineProps({
                             class="group"
                         >
                             <Card>
-                                <h3 class="text-xl font-bold text-foreground group-hover:text-info transition-colors mb-2">
+                                <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-2">
                                     {{ tool.name }}
                                 </h3>
                                 <p class="text-muted-foreground mb-4 text-sm">

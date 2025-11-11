@@ -1,11 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Cache;
 use Inertia\Testing\AssertableInertia as Assert;
-
-beforeEach(function () {
-    Cache::flush();
-});
 
 test('homepage includes manifesto version in shared props', function () {
     $response = $this->get('/');
@@ -49,12 +44,12 @@ test('manifesto last updated date is in correct format', function () {
     );
 });
 
-test('manifesto version reflects git tag when available', function () {
-    // This test verifies the actual git tag is being used
+test('manifesto version matches config value', function () {
+    // This test verifies the config-based version is being used
     $response = $this->get('/');
 
     $response->assertStatus(200);
     $response->assertInertia(fn (Assert $page) => $page
-        ->where('manifestoVersion', '0.2') // Expecting v0.2 tag
+        ->where('manifestoVersion', config('app.version'))
     );
 });

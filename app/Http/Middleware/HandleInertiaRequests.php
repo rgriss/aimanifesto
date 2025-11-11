@@ -54,27 +54,13 @@ class HandleInertiaRequests extends Middleware
     }
 
     /**
-     * Get the current manifesto version from git tags.
+     * Get the current manifesto version.
+     *
+     * Uses the version defined in config/app.php for reliability.
      */
     protected function getManifestoVersion(): string
     {
-        return Cache::remember('manifesto_version', 3600, function () {
-            $result = Process::path(base_path())->run('git describe --tags --abbrev=0');
-
-            if ($result->successful() && ! empty($result->output())) {
-                // Remove 'v' prefix if present (e.g., v0.2.0 -> 0.2.0)
-                return ltrim(trim($result->output()), 'v');
-            }
-
-            // Fallback to counting commits if no tags exist
-            $result = Process::path(base_path())->run('git rev-list --count HEAD');
-
-            if ($result->successful() && ! empty($result->output())) {
-                return '0.'.trim($result->output());
-            }
-
-            return '0.0';
-        });
+        return config('app.version', '0.0.0');
     }
 
     /**

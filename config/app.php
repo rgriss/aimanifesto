@@ -17,6 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Version
+    |--------------------------------------------------------------------------
+    |
+    | This value is the current version of the application. Update this value
+    | whenever you tag a new release to ensure the version is displayed
+    | correctly throughout the application.
+    |
+    */
+
+    'version' => '0.8.0',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

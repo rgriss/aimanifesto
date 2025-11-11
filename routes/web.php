@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToolController;
@@ -23,6 +24,9 @@ Route::get('/why', [WhyController::class, 'index'])->name('why');
 
 Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
 Route::get('/docs/{slug}', [DocsController::class, 'show'])->name('docs.show');
+
+// Developer documentation
+Route::get('/developer/tool-schema', [DeveloperController::class, 'toolSchema'])->name('developer.tool-schema');
 
 // Authenticated routes
 Route::get('dashboard', function () {

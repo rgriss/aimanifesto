@@ -52,7 +52,7 @@ const applyFilters = () => {
                                 @input="applyFilters"
                                 type="text"
                                 placeholder="Search by name or description..."
-                                class="w-full rounded-md border border-border bg-background text-foreground px-4 py-2 focus:outline-none focus:ring-2 focus:ring-info focus:border-transparent"
+                                class="w-full rounded-md border border-border bg-background text-foreground px-4 py-2 focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent"
                             />
                         </div>
 
@@ -64,7 +64,7 @@ const applyFilters = () => {
                             <select
                                 v-model="sort"
                                 @change="applyFilters"
-                                class="w-full rounded-md border border-border bg-background text-foreground px-4 py-2 focus:outline-none focus:ring-2 focus:ring-info focus:border-transparent"
+                                class="w-full rounded-md border border-border bg-background text-foreground px-4 py-2 focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent"
                             >
                                 <option value="name">Name</option>
                                 <option value="rating">Highest Rated</option>
@@ -96,7 +96,7 @@ const applyFilters = () => {
                         >
                             <Card>
                                 <div class="flex items-start justify-between mb-3">
-                                    <h3 class="text-xl font-bold text-foreground group-hover:text-info transition-colors">
+                                    <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors">
                                         {{ tool.name }}
                                     </h3>
                                     <Badge v-if="tool.is_featured" variant="warning" size="sm">
@@ -131,9 +131,9 @@ const applyFilters = () => {
                             :class="[
                                 'px-4 py-2 rounded-md font-semibold transition-colors',
                                 link.active
-                                    ? 'bg-primary text-primary-foreground'
-                                    : 'bg-card text-foreground',
-                                link.url ? 'hover:bg-info hover:text-info-foreground' : 'opacity-50 cursor-not-allowed'
+                                    ? 'bg-foreground text-background'
+                                    : 'bg-card text-foreground border border-border',
+                                link.url ? 'hover:bg-secondary' : 'opacity-50 cursor-not-allowed'
                             ]"
                             v-html="link.label"
                         />
@@ -149,7 +149,7 @@ const applyFilters = () => {
                         <Link
                             v-if="search"
                             href="/tools"
-                            class="text-info hover:text-info/80 font-semibold"
+                            class="text-foreground hover:text-foreground/70 font-semibold underline"
                         >
                             Clear search
                         </Link>

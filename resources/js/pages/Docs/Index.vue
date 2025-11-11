@@ -43,15 +43,15 @@ defineProps<{
                         :href="`/docs/${doc.slug}`"
                         class="group"
                     >
-                        <Card class="h-full hover:shadow-lg transition-all border-l-4 border-l-info">
+                        <Card class="h-full hover:shadow-lg transition-all border-l-4 border-l-foreground">
                             <div class="flex items-start justify-between mb-4">
-                                <div class="bg-info/10 p-3 rounded-lg">
-                                    <FileText class="h-6 w-6 text-info" />
+                                <div class="bg-secondary p-3 rounded-lg">
+                                    <FileText class="h-6 w-6 text-foreground" />
                                 </div>
                                 <Badge variant="secondary" size="sm">{{ doc.size }}</Badge>
                             </div>
 
-                            <h3 class="text-lg font-bold text-foreground mb-2 group-hover:text-info transition-colors">
+                            <h3 class="text-lg font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                                 {{ doc.title }}
                             </h3>
 
@@ -67,7 +67,7 @@ defineProps<{
                             </div>
 
                             <div class="mt-4">
-                                <span class="text-sm font-semibold text-info group-hover:underline">
+                                <span class="text-sm font-semibold text-foreground group-hover:underline">
                                     Read Document →
                                 </span>
                             </div>

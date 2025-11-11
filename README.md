@@ -29,10 +29,11 @@
 
 ### What Makes This Special?
 
-- 🎨 **Beautiful UI** - Tailwind CSS v4 with Reka UI component library
+- 🎨 **Minimalist Design** - Clean black/white aesthetic with Tailwind CSS v4 and Reka UI components
 - 🔒 **Secure** - Full authentication with 2FA support
 - ⚡ **Fast** - Server-side rendering (SSR) with Inertia.js
 - 📱 **Responsive** - Works perfectly on all devices
+- 🌓 **Theme Support** - Light, dark, and system modes with user toggle
 - 🎯 **Type-Safe** - TypeScript + Laravel Wayfinder for end-to-end type safety
 - 🧪 **Well-Tested** - Comprehensive test suite with Pest
 - 📚 **Well-Documented** - Clear code, detailed docs, and inline comments
@@ -46,7 +47,7 @@
 - **⭐ Personal Ratings** - Track ratings (1-10 scale) and usage notes
 - **🏷️ Rich Metadata** - Features, use cases, integrations, pricing models
 - **🔍 Slug-Based URLs** - SEO-friendly routes for tools and categories
-- **🌓 Theme Support** - Light, dark, and system theme modes
+- **🌓 Theme Support** - Light/dark modes with footer toggle (overrides system preference)
 - **👤 User Management** - Profile settings, password changes, 2FA
 
 ### Admin Features

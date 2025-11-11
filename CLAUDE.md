@@ -51,6 +51,21 @@ Uses Reka UI (Radix-like) components in resources/js/components/ui/:
 - Pre-built components: Button, Card, Dialog, Dropdown, Sidebar, Tooltip, Badge, Alert, etc.
 - Styled with Tailwind + class-variance-authority (CVA)
 
+### Design System & Theming
+**Philosophy:** Minimalist black/white design with high contrast
+- **Primary colors:** Near-black (#1A1A1A) and pure white (#FFFFFF)
+- **Semantic colors:** Reserved only for functional purposes (success, info, warning, danger badges)
+- **Theme tokens:** CSS custom properties in resources/css/app.css (--background, --foreground, --primary, etc.)
+- **Light/Dark modes:** Full theme support with system preference detection
+- **Accessibility:** WCAG AA compliant contrast ratios (4.5:1 for text)
+
+**Theme Management:**
+- `useAppearance()` composable manages theme state
+- `HandleAppearance` middleware syncs cookie with server
+- `ThemeToggle.vue` component provides user toggle
+- Cookie-based persistence: `appearance` cookie (values: 'light', 'dark', 'system')
+- Client-side initialization in app.ts via `initializeTheme()`
+
 ## Development Commands
 
 ### Start Development Environment
@@ -113,7 +128,7 @@ Always available in Vue components via `$page.props`:
 - `sidebarOpen` - Sidebar state from cookie
 
 ### Theme/Appearance
-Managed via `appearance` cookie (values: 'light', 'dark', 'system'). Initialized client-side in app.ts via `initializeTheme()`. Server-side available in blade templates via shared `appearance` variable.
+See "Design System & Theming" section above for complete details. Quick reference: `appearance` cookie controls theme, `useAppearance()` composable for Vue components, `ThemeToggle.vue` for user switching.
 
 ### Two-Factor Authentication
 Uses Laravel Fortify with custom Inertia views. Recovery codes handled in TwoFactorRecoveryCodes.vue component.

@@ -20,15 +20,15 @@ const user = computed(() => page.props.auth?.user);
 </script>
 
 <template>
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-background">
         <!-- Navigation -->
-        <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <nav class="bg-card border-b border-border">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex">
-                        <Link 
-                            href="/" 
-                            class="flex items-center text-2xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+                        <Link
+                            href="/"
+                            class="flex items-center text-2xl font-bold text-foreground hover:text-foreground/70"
                         >
                             AI Manifesto
                         </Link>
@@ -36,13 +36,13 @@ const user = computed(() => page.props.auth?.user);
                     <div class="flex items-center space-x-8">
                         <Link
                             href="/tools"
-                            class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium"
+                            class="text-muted-foreground hover:text-foreground font-medium"
                         >
                             Tools
                         </Link>
                         <Link
                             href="/categories"
-                            class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium"
+                            class="text-muted-foreground hover:text-foreground font-medium"
                         >
                             Categories
                         </Link>
@@ -129,14 +129,14 @@ const user = computed(() => page.props.auth?.user);
         </main>
 
         <!-- Footer -->
-        <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
+        <footer class="bg-card border-t border-border mt-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div class="flex items-center justify-between">
                     <!-- Theme Toggle - Far Left -->
                     <ThemeToggle />
 
                     <!-- Copyright - Center/Right -->
-                    <p class="text-gray-600 dark:text-gray-400 text-sm flex-1 text-center sm:text-right">
+                    <p class="text-muted-foreground text-sm flex-1 text-center sm:text-right">
                         AI Manifesto © 2025 - Curated by Ryan Grissinger
                     </p>
                 </div>

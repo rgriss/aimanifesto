@@ -15,16 +15,16 @@ defineProps({
 <template>
     <div
         :class="[
-            'rounded-lg shadow-lg p-8 mb-8',
+            'rounded-lg p-8 mb-8',
             gradient
-                ? 'bg-gradient-to-br from-primary via-secondary to-info text-white'
-                : 'bg-card'
+                ? 'bg-gradient-to-br from-foreground to-foreground/90 text-background shadow-xl border-2 border-foreground/10'
+                : 'bg-card shadow-lg'
         ]"
     >
         <h1
             :class="[
                 'text-4xl md:text-5xl font-bold mb-4',
-                gradient ? 'text-white' : 'text-primary'
+                gradient ? 'text-background' : 'text-foreground'
             ]"
         >
             {{ title }}
@@ -33,7 +33,7 @@ defineProps({
             v-if="description"
             :class="[
                 'text-lg md:text-xl',
-                gradient ? 'text-gray-200' : 'text-muted-foreground'
+                gradient ? 'text-background/90' : 'text-muted-foreground'
             ]"
         >
             {{ description }}

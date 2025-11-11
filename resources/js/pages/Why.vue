@@ -94,8 +94,8 @@ const howItWorks = [
                             {{ audience.description }}
                         </p>
 
-                        <div class="bg-gradient-to-br from-info/5 to-success/5 rounded-lg p-4 sm:p-6 mb-6">
-                            <h3 class="text-lg font-bold text-info mb-4">When you sign this manifesto, you're declaring:</h3>
+                        <div class="bg-secondary rounded-lg p-4 sm:p-6 mb-6 border-2 border-border">
+                            <h3 class="text-lg font-bold text-foreground mb-4">When you sign this manifesto, you're declaring:</h3>
                             <ul class="space-y-3">
                                 <li
                                     v-for="(commitment, idx) in audience.commitments"
@@ -112,8 +112,8 @@ const howItWorks = [
                             </ul>
                         </div>
 
-                        <div class="bg-gradient-to-r from-primary/10 to-info/10 rounded-lg p-4 sm:p-6">
-                            <h3 class="text-base font-bold text-primary mb-2">The benefit to you:</h3>
+                        <div class="bg-foreground/5 rounded-lg p-4 sm:p-6 border border-border">
+                            <h3 class="text-base font-bold text-foreground mb-2">The benefit to you:</h3>
                             <p class="text-sm sm:text-base text-foreground leading-relaxed">
                                 {{ audience.benefit }}
                             </p>
@@ -134,24 +134,24 @@ const howItWorks = [
                             :key="item.step"
                             class="text-center hover:shadow-lg transition-shadow"
                         >
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-info to-primary text-white rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 sm:mb-4 mx-auto">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-foreground text-background rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 sm:mb-4 mx-auto">
                                 {{ item.step }}
                             </div>
-                            <h3 class="text-base sm:text-lg font-bold text-info mb-2">{{ item.title }}</h3>
+                            <h3 class="text-base sm:text-lg font-bold text-foreground mb-2">{{ item.title }}</h3>
                             <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">{{ item.description }}</p>
                         </Card>
                     </div>
                 </div>
 
                 <!-- CTA -->
-                <Card class="bg-gradient-to-br from-primary via-secondary to-info text-white text-center">
+                <Card class="bg-foreground text-background text-center border-2 border-foreground">
                     <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Make a Commitment?</h2>
-                    <p class="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8">
+                    <p class="text-base sm:text-lg md:text-xl text-background/90 mb-6 sm:mb-8">
                         Join practitioners who are building AI the right way
                     </p>
                     <Link
                         href="/"
-                        class="inline-block bg-white text-primary hover:bg-white/90 font-semibold py-3 px-8 rounded-lg transition-colors text-sm sm:text-base"
+                        class="inline-block bg-background text-foreground hover:bg-background/90 font-semibold py-3 px-8 rounded-lg transition-colors text-sm sm:text-base border-2 border-background"
                     >
                         Read the Manifesto →
                     </Link>

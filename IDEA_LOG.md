@@ -6,6 +6,77 @@ This document serves as a running list of ideas, suggestions, and potential impr
 
 ---
 
+## 2025-11-11: Design System v2.0 Completion
+
+**Context:** Completed major redesign from colorful blue-themed UI to minimalist black/white design system. This was a significant shift in visual philosophy aimed at reducing visual complexity and improving focus.
+
+### What Changed
+
+**Design Philosophy Shift:**
+- **Old:** Multi-color blue theme with gradients (Polaris Blue, North Star Cyan, Constellation Navy)
+- **New:** Minimalist black/white with high contrast (near-black #1A1A1A, pure white #FFFFFF)
+- **Rationale:** User feedback indicated the site felt "overdone" with too many blues and gradients
+
+**Color Usage:**
+- **Primary Palette:** Reduced to black/white/grey only
+- **Semantic Colors:** Preserved only for functional purposes (success, info, warning, danger badges)
+- **Gradients:** Removed entirely from the design system
+- **Theme Tokens:** Implemented CSS custom properties (--background, --foreground, etc.)
+
+**Components Updated:**
+- `resources/css/app.css` - Complete color token overhaul (both light & dark modes)
+- `resources/js/pages/Home.vue` - Removed all blue gradients from hero and CTAs
+- `resources/js/pages/Brand.vue` - Complete rewrite documenting new design system
+- `resources/js/layouts/GuestLayout.vue` - Fixed dark mode showing navy instead of black
+- `resources/js/components/ThemeToggle.vue` - New component added to footer
+- Admin pages - Changed blue icons to neutral colors
+
+**Documentation Created:**
+- Brand page (`/brand`) - Complete design system documentation with:
+  - Light mode palette (5 colors)
+  - Dark mode palette (5 colors)
+  - Semantic colors (4 functional colors)
+  - Design principles (Simplicity, Contrast, Accessibility, Consistency)
+  - Usage guidelines (Do's and Don'ts)
+  - WCAG accessibility information
+  - Version history
+
+**Theme System Features:**
+- Light/dark mode support
+- System preference detection
+- User toggle in footer (far left)
+- Cookie-based persistence
+- WCAG AA compliant (4.5:1 contrast minimum)
+
+### Benefits Realized
+
+1. **Reduced Visual Complexity:** Cleaner, less busy interface
+2. **Better Focus:** Content stands out without competing with colorful backgrounds
+3. **Accessibility:** Higher contrast ratios improve readability
+4. **Consistency:** Single color philosophy across entire application
+5. **Modern Aesthetic:** Aligns with current minimalist design trends
+
+### Technical Debt Addressed
+
+- Fixed hardcoded Tailwind classes in `GuestLayout.vue` (was causing navy blue in dark mode)
+- Replaced all component color references to use theme tokens
+- Ensured all components respect theme system
+
+### Version
+
+- **Design System Version:** 2.0 (November 2025)
+- **Previous Version:** 1.0 (Polaris Pixels blue theme)
+- **Git Tag:** v0.5
+
+### Future Considerations
+
+- Monitor user feedback on new minimalist design
+- Consider A/B testing if conversion metrics change
+- May add subtle accent color in future if needed (currently 100% monochrome except badges)
+- Could add option for "classic blue theme" as alternate appearance mode
+
+---
+
 ## 2025-11-10: Documentation Improvement Priorities
 
 **Context:** After completing the architecture documentation (system-overview.md, authentication-flow.md, data-model.md), identified next priorities for improving project documentation.
@@ -196,4 +267,4 @@ This document serves as a running list of ideas, suggestions, and potential impr
 
 ---
 
-**Last Updated:** 2025-11-10
+**Last Updated:** 2025-11-11

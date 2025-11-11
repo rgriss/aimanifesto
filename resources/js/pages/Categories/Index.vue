@@ -29,7 +29,7 @@ defineProps({
                     >
                         <Card>
                             <div class="text-6xl mb-4">{{ category.icon }}</div>
-                            <h2 class="text-2xl font-bold mb-2 text-foreground group-hover:text-info transition-colors">
+                            <h2 class="text-2xl font-bold mb-2 text-foreground group-hover:text-foreground/70 transition-colors">
                                 {{ category.name }}
                             </h2>
                             <p class="text-muted-foreground mb-4">

@@ -2,106 +2,125 @@
 import { Head } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 
-const colors = {
-    primary: [
-        {
-            name: 'Polaris Blue',
-            subtitle: 'Primary Brand Color',
-            hex: '#1B3A5F',
-            rgb: '27, 58, 95',
-            cmyk: '72, 39, 0, 63',
-            description: 'A sophisticated dark blue that evokes trust, depth, and technical expertise. Named after the North Star (Polaris), suggesting guidance and direction.',
-            token: 'primary'
-        },
-        {
-            name: 'Constellation Navy',
-            subtitle: 'Deep Accent',
-            hex: '#0A1929',
-            rgb: '10, 25, 41',
-            cmyk: '76, 39, 0, 84',
-            description: 'A rich, almost-black navy for backgrounds and creating depth. Great for headers and establishing hierarchy.',
-            token: 'secondary'
-        }
-    ],
-    secondary: [
-        {
-            name: 'Stellar White',
-            subtitle: 'Primary Light',
-            hex: '#F8FAFC',
-            rgb: '248, 250, 252',
-            cmyk: '2, 1, 0, 1',
-            description: 'A crisp, clean off-white for backgrounds and text contrast.'
-        },
-        {
-            name: 'Nebula Gray',
-            subtitle: 'Neutral',
-            hex: '#64748B',
-            rgb: '100, 116, 139',
-            cmyk: '28, 17, 0, 45',
-            description: 'A balanced gray for secondary text and UI elements.'
-        }
-    ],
-    accent: [
-        {
-            name: 'North Star Cyan',
-            subtitle: 'Highlight/CTA/Info',
-            hex: '#06B6D4',
-            rgb: '6, 182, 212',
-            cmyk: '97, 14, 0, 17',
-            description: 'A vibrant cyan that pops against the dark blues. Perfect for CTAs, links, and highlighting key information. Also used for informational states and help text.',
-            token: 'info'
-        },
-        {
-            name: 'Aurora Teal',
-            subtitle: 'Success/Growth',
-            hex: '#14B8A6',
-            rgb: '20, 184, 166',
-            cmyk: '89, 0, 10, 28',
-            description: 'Suggests innovation and forward movement. Use for success states and growth metrics.',
-            token: 'success'
-        },
-        {
-            name: 'Horizon Slate',
-            subtitle: 'Subtle Accent/Dark',
-            hex: '#475569',
-            rgb: '71, 85, 105',
-            cmyk: '32, 19, 0, 59',
-            description: 'A muted slate for borders, dividers, and subtle elements. Can also serve as a dark variant for text on light backgrounds.',
-            token: 'dark'
-        }
-    ],
-    functional: [
-        {
-            name: 'Solar Amber',
-            subtitle: 'Warning/Caution',
-            hex: '#F59E0B',
-            rgb: '245, 158, 11',
-            cmyk: '0, 36, 96, 4',
-            description: 'A warm amber for warning states, important notices, and cautionary alerts. Use sparingly to maintain impact.',
-            token: 'warning'
-        },
-        {
-            name: 'Supernova Red',
-            subtitle: 'Error/Danger',
-            hex: '#EF4444',
-            rgb: '239, 68, 68',
-            cmyk: '0, 72, 72, 6',
-            description: 'A vibrant red for error states and destructive actions. Use only for critical alerts and validation errors.',
-            token: 'danger'
-        }
-    ]
-};
+const lightModeColors = [
+    {
+        name: 'Background',
+        hex: '#FFFFFF',
+        rgb: '255, 255, 255',
+        description: 'Pure white for page backgrounds',
+        token: 'background',
+        textColor: 'text-foreground'
+    },
+    {
+        name: 'Foreground',
+        hex: '#1A1A1A',
+        rgb: '26, 26, 26',
+        description: 'Near black for primary text and headings',
+        token: 'foreground',
+        textColor: 'text-background'
+    },
+    {
+        name: 'Muted Text',
+        hex: '#737373',
+        rgb: '115, 115, 115',
+        description: 'Medium grey for secondary text',
+        token: 'muted-foreground',
+        textColor: 'text-background'
+    },
+    {
+        name: 'Border',
+        hex: '#E0E0E0',
+        rgb: '224, 224, 224',
+        description: 'Light grey for borders and dividers',
+        token: 'border',
+        textColor: 'text-foreground'
+    },
+    {
+        name: 'Secondary',
+        hex: '#F0F0F0',
+        rgb: '240, 240, 240',
+        description: 'Light grey for subtle backgrounds',
+        token: 'secondary',
+        textColor: 'text-foreground'
+    }
+];
 
-const colorTokens = [
-    { token: 'primary', name: 'Polaris Blue', hex: '#1B3A5F', use: 'Primary brand, headers, sections' },
-    { token: 'secondary', name: 'Constellation Navy', hex: '#0A1929', use: 'Text, dark backgrounds' },
-    { token: 'success', name: 'Aurora Teal', hex: '#14B8A6', use: 'Success states, growth metrics' },
-    { token: 'info', name: 'North Star Cyan', hex: '#06B6D4', use: 'Informational states, tips, help text' },
-    { token: 'warning', name: 'Solar Amber', hex: '#F59E0B', use: 'Warnings, caution, important notices' },
-    { token: 'danger', name: 'Supernova Red', hex: '#EF4444', use: 'Errors, destructive actions' },
-    { token: 'light', name: 'Stellar White', hex: '#F8FAFC', use: 'Light backgrounds, text on dark' },
-    { token: 'dark', name: 'Horizon Slate', hex: '#475569', use: 'Dark text, borders, dividers' },
-    { token: 'muted', name: 'Nebula Gray', hex: '#64748B', use: 'Secondary text, subtle UI elements' },
+const darkModeColors = [
+    {
+        name: 'Background',
+        hex: '#1A1A1A',
+        rgb: '26, 26, 26',
+        description: 'Near black for page backgrounds',
+        token: 'background',
+        textColor: 'text-background'
+    },
+    {
+        name: 'Foreground',
+        hex: '#F5F5F5',
+        rgb: '245, 245, 245',
+        description: 'Off-white for primary text',
+        token: 'foreground',
+        textColor: 'text-foreground'
+    },
+    {
+        name: 'Card',
+        hex: '#262626',
+        rgb: '38, 38, 38',
+        description: 'Dark grey for elevated surfaces',
+        token: 'card',
+        textColor: 'text-background'
+    },
+    {
+        name: 'Muted Text',
+        hex: '#8A8A8A',
+        rgb: '138, 138, 138',
+        description: 'Medium grey for secondary text',
+        token: 'muted-foreground',
+        textColor: 'text-foreground'
+    },
+    {
+        name: 'Border',
+        hex: '#404040',
+        rgb: '64, 64, 64',
+        description: 'Dark grey for borders',
+        token: 'border',
+        textColor: 'text-background'
+    }
+];
+
+const semanticColors = [
+    {
+        name: 'Success',
+        hex: '#14B8A6',
+        rgb: '20, 184, 166',
+        description: 'Teal for success states, positive actions',
+        token: 'success',
+        usage: 'Tool ratings, success messages, positive metrics'
+    },
+    {
+        name: 'Info',
+        hex: '#06B6D4',
+        rgb: '6, 182, 212',
+        description: 'Cyan for informational badges',
+        token: 'info',
+        usage: 'Informational badges, neutral states'
+    },
+    {
+        name: 'Warning',
+        hex: '#F59E0B',
+        rgb: '245, 158, 11',
+        description: 'Amber for warnings, caution',
+        token: 'warning',
+        usage: 'Warning messages, cautionary alerts'
+    },
+    {
+        name: 'Danger',
+        hex: '#EF4444',
+        rgb: '239, 68, 68',
+        description: 'Red for errors, destructive actions',
+        token: 'danger',
+        usage: 'Error states, delete actions, critical alerts'
+    }
 ];
 
 const copyToClipboard = (text) => {
@@ -110,59 +129,90 @@ const copyToClipboard = (text) => {
 </script>
 
 <template>
-    <Head title="Brand Color Palette - Polaris Pixels" />
+    <Head title="Brand Guidelines - AI Manifesto" />
 
     <GuestLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->
-                <div class="bg-gradient-to-br from-[#1B3A5F] via-[#0A1929] to-[#06B6D4] rounded-lg shadow-lg p-8 mb-8 text-white">
+                <div class="bg-card border-2 border-border rounded-lg shadow-lg p-8 mb-8">
                     <div class="flex items-center gap-6 mb-6">
-                        <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels Logo" class="h-20 w-auto" />
+                        <img src="/images/Polaris Pixels Star Logo.png" alt="AI Manifesto Logo" class="h-20 w-auto" />
                         <div>
-                            <h1 class="text-5xl font-bold">
-                                Polaris Pixels
+                            <h1 class="text-5xl font-bold text-foreground">
+                                AI Manifesto
                             </h1>
-                            <p class="text-xl text-[#06B6D4] font-semibold">
+                            <p class="text-xl text-muted-foreground font-semibold">
                                 Brand Guidelines
                             </p>
                         </div>
                     </div>
-                    <p class="text-xl text-[#06B6D4] mb-2 font-semibold">
-                        Version 1.0 - October 2025
+                    <p class="text-lg text-muted-foreground mb-2">
+                        Version 2.0 - November 2025
                     </p>
-                    <p class="text-gray-200">
-                        A sophisticated color system designed to communicate technical expertise, innovation, and guidance.
+                    <p class="text-muted-foreground">
+                        A minimalist black and white design system that prioritizes clarity, readability, and timeless aesthetics.
+                        Semantic colors are used sparingly and only for functional purposes.
                     </p>
                 </div>
 
-                <!-- Primary Colors -->
+                <!-- Design Philosophy -->
                 <div class="mb-12">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Primary Colors</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div v-for="color in colors.primary" :key="color.hex" class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-                            <div :style="{ backgroundColor: color.hex }" class="h-48 flex items-center justify-center">
-                                <span class="text-white text-2xl font-bold">{{ color.hex }}</span>
-                            </div>
-                            <div class="p-6">
-                                <div class="flex items-center justify-between mb-1">
-                                    <h3 class="text-2xl font-bold">{{ color.name }}</h3>
-                                    <span v-if="color.token" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded font-mono">{{ color.token }}</span>
+                    <h2 class="text-3xl font-bold mb-6 text-foreground">Design Philosophy</h2>
+                    <div class="bg-card border border-border rounded-lg p-6">
+                        <ul class="space-y-4 text-muted-foreground">
+                            <li class="flex items-start gap-3">
+                                <span class="text-2xl">🎯</span>
+                                <div>
+                                    <strong class="text-foreground">Minimalist First:</strong> Predominantly white/black/grey palette creates a clean, unbusy experience
                                 </div>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{{ color.subtitle }}</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ color.description }}</p>
-                                <div class="space-y-2 text-sm">
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-2xl">📖</span>
+                                <div>
+                                    <strong class="text-foreground">Readability:</strong> High contrast text ensures content is accessible and easy to read
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-2xl">🎨</span>
+                                <div>
+                                    <strong class="text-foreground">Functional Color:</strong> Color is used only for semantic purposes (badges, states, alerts)
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-2xl">🌓</span>
+                                <div>
+                                    <strong class="text-foreground">Dark Mode Native:</strong> Designed with both light and dark themes as first-class experiences
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Light Mode Colors -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold mb-6 text-foreground">Light Mode Palette</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div v-for="color in lightModeColors" :key="color.hex" class="bg-card border border-border rounded-lg shadow overflow-hidden">
+                            <div :style="{ backgroundColor: color.hex }" class="h-32 flex items-center justify-center border-b border-border">
+                                <span :class="color.textColor + ' text-xl font-mono font-bold'">{{ color.hex }}</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-lg font-bold text-foreground">{{ color.name }}</h3>
+                                    <button @click="copyToClipboard(color.hex)" class="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors">
+                                        Copy
+                                    </button>
+                                </div>
+                                <p class="text-sm text-muted-foreground mb-3">{{ color.description }}</p>
+                                <div class="space-y-1 text-xs">
                                     <div class="flex justify-between">
-                                        <span class="text-gray-500">HEX:</span>
-                                        <button @click="copyToClipboard(color.hex)" class="font-mono hover:text-blue-600">{{ color.hex }}</button>
+                                        <span class="text-muted-foreground">RGB:</span>
+                                        <button @click="copyToClipboard(color.rgb)" class="font-mono text-foreground hover:text-muted-foreground">{{ color.rgb }}</button>
                                     </div>
                                     <div class="flex justify-between">
-                                        <span class="text-gray-500">RGB:</span>
-                                        <span class="font-mono">{{ color.rgb }}</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500">CMYK:</span>
-                                        <span class="font-mono">{{ color.cmyk }}</span>
+                                        <span class="text-muted-foreground">Token:</span>
+                                        <button @click="copyToClipboard(color.token)" class="font-mono text-foreground hover:text-muted-foreground">{{ color.token }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -170,30 +220,30 @@ const copyToClipboard = (text) => {
                     </div>
                 </div>
 
-                <!-- Secondary Colors -->
+                <!-- Dark Mode Colors -->
                 <div class="mb-12">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Secondary Colors</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div v-for="color in colors.secondary" :key="color.hex" class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-                            <div :style="{ backgroundColor: color.hex }" class="h-48 flex items-center justify-center border border-gray-200">
-                                <span :class="color.hex === '#F8FAFC' ? 'text-gray-900' : 'text-white'" class="text-2xl font-bold">{{ color.hex }}</span>
+                    <h2 class="text-3xl font-bold mb-6 text-foreground">Dark Mode Palette</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div v-for="color in darkModeColors" :key="color.hex" class="bg-card border border-border rounded-lg shadow overflow-hidden">
+                            <div :style="{ backgroundColor: color.hex }" class="h-32 flex items-center justify-center border-b border-border">
+                                <span :class="color.textColor + ' text-xl font-mono font-bold'">{{ color.hex }}</span>
                             </div>
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold mb-1">{{ color.name }}</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{{ color.subtitle }}</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ color.description }}</p>
-                                <div class="space-y-2 text-sm">
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-lg font-bold text-foreground">{{ color.name }}</h3>
+                                    <button @click="copyToClipboard(color.hex)" class="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors">
+                                        Copy
+                                    </button>
+                                </div>
+                                <p class="text-sm text-muted-foreground mb-3">{{ color.description }}</p>
+                                <div class="space-y-1 text-xs">
                                     <div class="flex justify-between">
-                                        <span class="text-gray-500">HEX:</span>
-                                        <button @click="copyToClipboard(color.hex)" class="font-mono hover:text-blue-600">{{ color.hex }}</button>
+                                        <span class="text-muted-foreground">RGB:</span>
+                                        <button @click="copyToClipboard(color.rgb)" class="font-mono text-foreground hover:text-muted-foreground">{{ color.rgb }}</button>
                                     </div>
                                     <div class="flex justify-between">
-                                        <span class="text-gray-500">RGB:</span>
-                                        <span class="font-mono">{{ color.rgb }}</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500">CMYK:</span>
-                                        <span class="font-mono">{{ color.cmyk }}</span>
+                                        <span class="text-muted-foreground">Token:</span>
+                                        <button @click="copyToClipboard(color.token)" class="font-mono text-foreground hover:text-muted-foreground">{{ color.token }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -201,29 +251,37 @@ const copyToClipboard = (text) => {
                     </div>
                 </div>
 
-                <!-- Accent Colors -->
+                <!-- Semantic Colors -->
                 <div class="mb-12">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Accent Colors</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div v-for="color in colors.accent" :key="color.hex" class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-                            <div :style="{ backgroundColor: color.hex }" class="h-48 flex items-center justify-center">
-                                <span class="text-white text-2xl font-bold">{{ color.hex }}</span>
+                    <h2 class="text-3xl font-bold mb-6 text-foreground">Semantic Colors</h2>
+                    <p class="text-muted-foreground mb-6">
+                        These colors are reserved exclusively for functional, semantic purposes. They should be used sparingly
+                        and only for badges, alerts, and state indicators—never for decorative elements or general UI.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div v-for="color in semanticColors" :key="color.hex" class="bg-card border border-border rounded-lg shadow overflow-hidden">
+                            <div :style="{ backgroundColor: color.hex }" class="h-24 flex items-center justify-center">
+                                <span class="text-white text-xl font-mono font-bold">{{ color.hex }}</span>
                             </div>
-                            <div class="p-6">
-                                <div class="flex items-center justify-between mb-1">
-                                    <h3 class="text-xl font-bold">{{ color.name }}</h3>
-                                    <span v-if="color.token" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded font-mono">{{ color.token }}</span>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-lg font-bold text-foreground">{{ color.name }}</h3>
+                                    <button @click="copyToClipboard(color.hex)" class="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors">
+                                        Copy
+                                    </button>
                                 </div>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{{ color.subtitle }}</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">{{ color.description }}</p>
-                                <div class="space-y-2 text-sm">
+                                <p class="text-sm text-muted-foreground mb-2">{{ color.description }}</p>
+                                <div class="text-xs text-muted-foreground mb-3">
+                                    <strong class="text-foreground">Use for:</strong> {{ color.usage }}
+                                </div>
+                                <div class="space-y-1 text-xs">
                                     <div class="flex justify-between">
-                                        <span class="text-gray-500">HEX:</span>
-                                        <button @click="copyToClipboard(color.hex)" class="font-mono hover:text-blue-600">{{ color.hex }}</button>
+                                        <span class="text-muted-foreground">RGB:</span>
+                                        <button @click="copyToClipboard(color.rgb)" class="font-mono text-foreground hover:text-muted-foreground">{{ color.rgb }}</button>
                                     </div>
                                     <div class="flex justify-between">
-                                        <span class="text-gray-500">RGB:</span>
-                                        <span class="font-mono text-xs">{{ color.rgb }}</span>
+                                        <span class="text-muted-foreground">Token:</span>
+                                        <button @click="copyToClipboard(color.token)" class="font-mono text-foreground hover:text-muted-foreground">{{ color.token }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -231,135 +289,82 @@ const copyToClipboard = (text) => {
                     </div>
                 </div>
 
-                <!-- Functional Colors -->
+                <!-- Usage Guidelines -->
                 <div class="mb-12">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Functional Colors</h2>
+                    <h2 class="text-3xl font-bold mb-6 text-foreground">Usage Guidelines</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div v-for="color in colors.functional" :key="color.hex" class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-                            <div :style="{ backgroundColor: color.hex }" class="h-48 flex items-center justify-center">
-                                <span class="text-white text-2xl font-bold">{{ color.hex }}</span>
-                            </div>
-                            <div class="p-6">
-                                <div class="flex items-center justify-between mb-1">
-                                    <h3 class="text-xl font-bold">{{ color.name }}</h3>
-                                    <span v-if="color.token" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded font-mono">{{ color.token }}</span>
-                                </div>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{{ color.subtitle }}</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">{{ color.description }}</p>
-                                <div class="space-y-2 text-sm">
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500">HEX:</span>
-                                        <button @click="copyToClipboard(color.hex)" class="font-mono hover:text-blue-600">{{ color.hex }}</button>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500">RGB:</span>
-                                        <span class="font-mono text-xs">{{ color.rgb }}</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-500">CMYK:</span>
-                                        <span class="font-mono text-xs">{{ color.cmyk }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="bg-card border border-border rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                                <span class="text-2xl">✅</span> Do
+                            </h3>
+                            <ul class="space-y-2 text-sm text-muted-foreground">
+                                <li>• Use white backgrounds with black text for optimal readability</li>
+                                <li>• Apply semantic colors only to badges and state indicators</li>
+                                <li>• Maintain high contrast ratios (WCAG AA minimum)</li>
+                                <li>• Use grey for secondary information and subtle elements</li>
+                                <li>• Test designs in both light and dark modes</li>
+                                <li>• Keep color usage minimal and intentional</li>
+                            </ul>
+                        </div>
+                        <div class="bg-card border border-border rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                                <span class="text-2xl">❌</span> Don't
+                            </h3>
+                            <ul class="space-y-2 text-sm text-muted-foreground">
+                                <li>• Use semantic colors for decorative purposes</li>
+                                <li>• Create colorful gradients or backgrounds</li>
+                                <li>• Mix multiple bright colors in one interface</li>
+                                <li>• Use low-contrast color combinations</li>
+                                <li>• Override the established color tokens</li>
+                                <li>• Add colors "just because" — every color needs a purpose</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-                        <p class="text-sm text-yellow-800 dark:text-yellow-200">
-                            <strong>Note:</strong> Functional colors should be used sparingly and only for their intended purpose (warnings, errors). They are not part of the primary brand expression.
+                </div>
+
+                <!-- Accessibility -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold mb-6 text-foreground">Accessibility</h2>
+                    <div class="bg-card border border-border rounded-lg p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-foreground mb-2">4.5:1</div>
+                                <div class="text-sm text-muted-foreground">Minimum contrast ratio for body text (WCAG AA)</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-foreground mb-2">3:1</div>
+                                <div class="text-sm text-muted-foreground">Minimum contrast ratio for large text (WCAG AA)</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-foreground mb-2">7:1</div>
+                                <div class="text-sm text-muted-foreground">Target contrast ratio for enhanced readability (WCAG AAA)</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-muted-foreground">
+                            All color combinations in this design system meet or exceed WCAG 2.1 Level AA standards.
+                            The high-contrast black and white palette ensures excellent readability for all users,
+                            including those with visual impairments or color blindness.
                         </p>
                     </div>
                 </div>
 
-                <!-- Brand Personality -->
-                <div class="bg-gradient-to-r from-[#1B3A5F] to-[#0A1929] rounded-lg shadow p-8 mb-8 text-white">
-                    <h2 class="text-3xl font-bold mb-6">Brand Personality</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-3">The Polaris Pixels color palette communicates:</h3>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <span class="text-[#06B6D4] mr-2">✓</span>
-                                    <span>Technical expertise without being cold</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-[#06B6D4] mr-2">✓</span>
-                                    <span>Innovation without being flashy</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-[#06B6D4] mr-2">✓</span>
-                                    <span>Guidance and navigation (celestial theme)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-[#06B6D4] mr-2">✓</span>
-                                    <span>Professional but human</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-3">Color Psychology:</h3>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <span class="text-[#14B8A6] mr-2">→</span>
-                                    <span><strong>Professional Authority:</strong> Dark blue foundation establishes credibility</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-[#14B8A6] mr-2">→</span>
-                                    <span><strong>Innovation:</strong> Cyan and teal suggest forward-thinking</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-[#14B8A6] mr-2">→</span>
-                                    <span><strong>Navigation:</strong> Celestial naming reinforces guidance theme</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Color Tokens (Bootstrap-style) -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-8 mb-8">
-                    <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Color Tokens</h2>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">Bootstrap-style semantic color tokens for consistent usage across the application.</p>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead>
-                                <tr class="border-b-2 border-gray-200 dark:border-gray-700">
-                                    <th class="text-left py-3 px-4">Token</th>
-                                    <th class="text-left py-3 px-4">Color Name</th>
-                                    <th class="text-left py-3 px-4">Hex Code</th>
-                                    <th class="text-left py-3 px-4">Primary Use</th>
-                                    <th class="py-3 px-4">Swatch</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="token in colorTokens" :key="token.token" class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                                    <td class="py-3 px-4">
-                                        <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs font-mono">{{ token.token }}</code>
-                                    </td>
-                                    <td class="py-3 px-4 font-semibold">{{ token.name }}</td>
-                                    <td class="py-3 px-4">
-                                        <button @click="copyToClipboard(token.hex)" class="font-mono hover:text-blue-600">{{ token.hex }}</button>
-                                    </td>
-                                    <td class="py-3 px-4 text-gray-600 dark:text-gray-400">{{ token.use }}</td>
-                                    <td class="py-3 px-4">
-                                        <div class="w-16 h-8 rounded shadow-sm border border-gray-200 dark:border-gray-600" :style="{ background: token.hex }"></div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Quick Reference -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-8">
-                    <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Complete Color Reference</h2>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6">All colors in the Polaris Pixels palette at a glance.</p>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div v-for="color in [...colors.primary, ...colors.secondary, ...colors.accent, ...colors.functional]" :key="color.hex" class="text-center">
-                            <div :style="{ backgroundColor: color.hex }" class="h-24 rounded-lg shadow-md mb-2 flex items-center justify-center border border-gray-200 dark:border-gray-600">
-                                <span :class="[color.hex === '#F8FAFC' ? 'text-gray-900' : 'text-white']" class="text-xs font-bold">{{ color.hex }}</span>
+                <!-- Version History -->
+                <div class="border-t border-border pt-8">
+                    <h2 class="text-2xl font-bold mb-4 text-foreground">Version History</h2>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex gap-4">
+                            <div class="font-mono font-bold text-foreground">v2.0</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-foreground mb-1">November 2025 - Minimalist Redesign</div>
+                                <div class="text-muted-foreground">Complete overhaul to black/white/grey palette. Removed all decorative blues. Semantic colors reserved for badges only. Added comprehensive dark mode support.</div>
                             </div>
-                            <p class="font-semibold text-sm mb-1">{{ color.name }}</p>
-                            <button @click="copyToClipboard(color.hex)" class="text-xs font-mono text-gray-500 hover:text-blue-600">{{ color.hex }}</button>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="font-mono font-bold text-muted-foreground">v1.0</div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-muted-foreground mb-1">October 2025 - Polaris Pixels</div>
+                                <div class="text-muted-foreground">Initial brand identity with blue-based color system (deprecated).</div>
+                            </div>
                         </div>
                     </div>
                 </div>

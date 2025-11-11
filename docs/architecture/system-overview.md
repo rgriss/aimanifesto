@@ -1,7 +1,7 @@
 # System Architecture Overview
 
-**Document Version:** 1.0
-**Last Updated:** November 10, 2025
+**Document Version:** 1.1
+**Last Updated:** November 11, 2025
 **Status:** Current
 **Audience:** Developers, Architects, Technical Stakeholders
 
@@ -181,6 +181,13 @@ AI Manifesto follows the **"Modern Monolith"** pattern using Inertia.js:
 - ✅ **Accessibility** - WAI-ARIA compliant components
 - ✅ **Radix-like** - Familiar API from React ecosystem
 - ✅ **Composable** - Build complex components from primitives
+
+**Design Philosophy: Minimalism & High Contrast**
+- ✅ **Black & White** - Primary palette of near-black (#1A1A1A) and pure white (#FFFFFF)
+- ✅ **Semantic Color Only** - Reserved for functional purposes (badges: success, info, warning, danger)
+- ✅ **High Contrast** - WCAG AA compliant (4.5:1 minimum for text)
+- ✅ **Clean & Unbusy** - Reduced visual complexity for better focus
+- ✅ **Theme Support** - Full light/dark mode with system preference detection
 
 **Alternatives considered:**
 - Bootstrap: Too opinionated, harder to customize
@@ -840,6 +847,66 @@ const appearance = ref('system') // 'light' | 'dark' | 'system'
 6. Blade template applies class to <html>
 7. Vue reads initial state from cookie on mount
 ```
+
+### Theme System Architecture
+
+**CSS Custom Properties (Theme Tokens):**
+```css
+/* resources/css/app.css */
+:root {
+    /* Light Mode */
+    --background: oklch(1 0 0);           /* Pure white #FFFFFF */
+    --foreground: oklch(0.15 0 0);        /* Near black #1A1A1A */
+    --primary: oklch(0.15 0 0);           /* Near black #1A1A1A */
+    --secondary: oklch(0.95 0 0);         /* Light gray #F0F0F0 */
+    --muted: oklch(0.95 0 0);             /* Light gray #F0F0F0 */
+    --muted-foreground: oklch(0.5 0 0);   /* Medium gray #737373 */
+    --border: oklch(0.88 0 0);            /* Border gray #E0E0E0 */
+
+    /* Semantic colors (badges only) */
+    --success: oklch(0.7 0.15 180);       /* Teal */
+    --info: oklch(0.7 0.16 210);          /* Cyan */
+    --warning: oklch(0.75 0.15 70);       /* Amber */
+    --danger: oklch(0.63 0.24 25);        /* Red */
+}
+
+.dark {
+    /* Dark Mode */
+    --background: oklch(0.12 0 0);        /* Near black #1A1A1A */
+    --foreground: oklch(0.98 0 0);        /* Off-white #F5F5F5 */
+    --card: oklch(0.18 0 0);              /* Dark gray #262626 */
+    --secondary: oklch(0.25 0 0);         /* Dark gray #333333 */
+    --border: oklch(0.3 0 0);             /* Border gray #404040 */
+}
+```
+
+**Theme Management Components:**
+1. **HandleAppearance Middleware** (app/Http/Middleware/HandleAppearance.php)
+   - Reads `appearance` cookie
+   - Shares theme to Blade templates
+   - Applies `.dark` class to `<html>` element server-side
+
+2. **useAppearance Composable** (resources/js/composables/useAppearance.ts)
+   - Manages theme state in Vue
+   - Syncs with cookie on change
+   - Detects system preference when set to 'system'
+
+3. **ThemeToggle Component** (resources/js/components/ThemeToggle.vue)
+   - User-facing toggle in footer
+   - Switches between light/dark (bypasses 'system')
+   - Shows Sun icon in dark mode, Moon in light mode
+
+4. **Theme Initialization** (resources/js/app.ts)
+   - `initializeTheme()` runs on page load
+   - Reads cookie and applies `.dark` class client-side
+   - Ensures consistent theme before Vue hydration
+
+**Design System Benefits:**
+- **Consistency:** All components use same theme tokens
+- **Maintainability:** Change color once, applies everywhere
+- **Performance:** No JavaScript needed for theming (CSS-only)
+- **Accessibility:** WCAG AA compliant contrast ratios enforced
+- **User Choice:** Respects system preference or allows override
 
 ---
 

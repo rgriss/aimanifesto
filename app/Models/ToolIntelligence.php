@@ -35,13 +35,15 @@ class ToolIntelligence extends Model
         'latest_funding_amount',
         'latest_funding_date',
         'estimated_annual_revenue',
-        // Pricing Complexity
+        // Pricing Complexity (displayed as "Cost Analysis")
         'pricing_individual_cost',
         'pricing_smb_cost',
+        'pricing_midmarket_cost',
         'pricing_enterprise_cost',
         'pricing_cost_notes',
         'pricing_individual_range',
         'pricing_smb_range',
+        'pricing_midmarket_range',
         'pricing_enterprise_range',
         // Competitive Intelligence
         'key_differentiators',
@@ -68,6 +70,7 @@ class ToolIntelligence extends Model
         'weaknesses' => 'array',
         'pricing_individual_cost' => 'integer',
         'pricing_smb_cost' => 'integer',
+        'pricing_midmarket_cost' => 'integer',
         'pricing_enterprise_cost' => 'integer',
         'data_completeness_score' => 'integer',
         'last_researched_at' => 'datetime',

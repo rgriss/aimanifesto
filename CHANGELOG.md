@@ -5,6 +5,37 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.0] - 2025-11-11
+
+### Added
+- **Mid-Market Pricing Tier**: New tier for organizations with 50-500 users
+  - Added `pricing_midmarket_cost` field (1-5 dollar signs)
+  - Added `pricing_midmarket_range` field for typical spend ranges
+  - Database migration to add new fields to `tool_intelligence` table
+
+### Changed
+- **"Pricing Complexity" renamed to "Cost Analysis"** throughout the system
+  - Updated API documentation to reflect holistic cost assessment concept
+  - Cost Analysis now represents: raw cost + implementation + value + flexibility + predictability
+  - NOT just subscription price - it's a comprehensive rating like story points in agile
+- **Updated Cost Analysis Scale Definitions**:
+  - Individual: Emphasizes value, flexibility, and complexity
+  - SMB (10-50 users): Highlights value proposition and implementation complexity
+  - Mid-Market (50-500 users): New tier with $5K-$100K+/month ranges
+  - Enterprise (500+ users): Strategic investment level assessment
+- Updated all documentation:
+  - `docs/api/tool-intelligence-api.md` - Complete rewrite of cost analysis section
+  - `docs/api/tool-intelligence.d.ts` - TypeScript definitions with mid-market fields
+  - MCP server tool descriptions with holistic cost analysis explanations
+- Updated MCP server response formatting to display "Cost Analysis" instead of "Pricing Complexity"
+- API controller comments updated to reflect holistic assessment approach
+
+### Technical
+- Updated `ToolIntelligence` model with new fillable fields and casts
+- Updated API validation rules for mid-market tier
+- Updated API response formatter to include mid-market fields
+- All existing tests continue to pass (4 tests, 24 assertions)
+
 ## [0.16.3] - 2025-11-11
 
 ### Fixed

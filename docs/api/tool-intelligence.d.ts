@@ -155,20 +155,24 @@ export interface UpdateToolIntelligenceRequest {
     /** Estimated annual revenue range */
     estimated_annual_revenue?: EstimatedAnnualRevenue | null;
 
-    // Pricing Complexity (1-5 scale, like restaurant dollar signs)
-    /** Pricing complexity for individuals (1-5) */
+    // Cost Analysis (holistic: raw cost + implementation + value + flexibility + predictability)
+    /** Cost analysis for individuals (1-5 dollar signs) - NOT just price, includes value/flexibility */
     pricing_individual_cost?: number | null;
-    /** Pricing complexity for SMB 10-50 users (1-5) */
+    /** Cost analysis for SMB 10-50 users (1-5 dollar signs) */
     pricing_smb_cost?: number | null;
-    /** Pricing complexity for Enterprise 500+ users (1-5) */
+    /** Cost analysis for mid-market 50-500 users (1-5 dollar signs) */
+    pricing_midmarket_cost?: number | null;
+    /** Cost analysis for Enterprise 500+ users (1-5 dollar signs) */
     pricing_enterprise_cost?: number | null;
-    /** Notes about pricing structure and complexity */
+    /** Notes about cost analysis: pricing, implementation, value, flexibility, predictability */
     pricing_cost_notes?: string | null;
     /** Typical spend range for individuals */
     pricing_individual_range?: string | null;
-    /** Typical spend range for SMB */
+    /** Typical spend range for SMB (10-50 users) */
     pricing_smb_range?: string | null;
-    /** Typical spend range for Enterprise */
+    /** Typical spend range for mid-market (50-500 users) */
+    pricing_midmarket_range?: string | null;
+    /** Typical spend range for Enterprise (500+ users) */
     pricing_enterprise_range?: string | null;
 
     // Competitive Intelligence
@@ -228,13 +232,15 @@ export interface ToolIntelligence {
     latest_funding_date: string | null;
     estimated_annual_revenue: EstimatedAnnualRevenue | null;
 
-    // Pricing Complexity
+    // Cost Analysis (holistic assessment)
     pricing_individual_cost: number | null;
     pricing_smb_cost: number | null;
+    pricing_midmarket_cost: number | null;
     pricing_enterprise_cost: number | null;
     pricing_cost_notes: string | null;
     pricing_individual_range: string | null;
     pricing_smb_range: string | null;
+    pricing_midmarket_range: string | null;
     pricing_enterprise_range: string | null;
 
     // Competitive Intelligence

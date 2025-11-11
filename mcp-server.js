@@ -521,28 +521,34 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               enum: ['< $1M', '$1M-$10M', '$10M-$50M', '$50M-$100M', '$100M-$500M', '$500M-$1B', '$1B+'],
               description: 'Estimated annual revenue range',
             },
-            // Pricing Complexity
+            // Cost Analysis (holistic: raw cost + implementation + value + flexibility + predictability)
             pricing_individual_cost: {
               type: 'integer',
               minimum: 1,
               maximum: 5,
-              description: 'Pricing complexity for individuals (1-5, like restaurant dollar signs). 1=$0-20/mo, 2=$20-50/mo, 3=$50-100/mo, 4=$100-250/mo, 5=$250+/mo',
+              description: 'Cost analysis for individuals (1-5 dollar signs). NOT just price - includes implementation cost, value, and flexibility. 1($)=$0-20/mo high value, 2($$)=$20-50/mo standard, 3($$$)=$50-100/mo premium, 4($$$$)=$100-250/mo high cost/low flex, 5($$$$$)=$250+/mo very expensive/inflexible',
             },
             pricing_smb_cost: {
               type: 'integer',
               minimum: 1,
               maximum: 5,
-              description: 'Pricing complexity for SMB 10-50 users (1-5). 1=<$1K/mo, 2=$1K-5K/mo, 3=$5K-15K/mo, 4=$15K-40K/mo, 5=$40K+/mo',
+              description: 'Cost analysis for SMB 10-50 users (1-5). Holistic assessment. 1($)=<$1K/mo budget-friendly, 2($$)=$1K-5K/mo standard, 3($$$)=$5K-15K/mo mid-tier, 4($$$$)=$15K-40K/mo premium/complex, 5($$$$$)=$40K+/mo very expensive/poor value',
+            },
+            pricing_midmarket_cost: {
+              type: 'integer',
+              minimum: 1,
+              maximum: 5,
+              description: 'Cost analysis for mid-market 50-500 users (1-5). 1($)=<$5K/mo exceptional value, 2($$)=$5K-20K/mo good value, 3($$$)=$20K-50K/mo standard, 4($$$$)=$50K-100K/mo premium/inflexible, 5($$$$$)=$100K+/mo very expensive/complex',
             },
             pricing_enterprise_cost: {
               type: 'integer',
               minimum: 1,
               maximum: 5,
-              description: 'Pricing complexity for Enterprise 500+ users (1-5). 1=<$50K/yr, 2=$50K-150K/yr, 3=$150K-500K/yr, 4=$500K-1M/yr, 5=$1M+/yr',
+              description: 'Cost analysis for Enterprise 500+ users (1-5). 1($)=<$50K/yr entry value, 2($$)=$50K-150K/yr standard, 3($$$)=$150K-500K/yr mid-tier, 4($$$$)=$500K-1M/yr premium, 5($$$$$)=$1M+/yr strategic investment',
             },
             pricing_cost_notes: {
               type: 'string',
-              description: 'Notes about pricing structure, tiers, and complexity',
+              description: 'Notes about cost analysis: pricing structure, implementation costs, value proposition, flexibility (monthly vs forced annual), predictability (fixed vs usage spikes)',
             },
             pricing_individual_range: {
               type: 'string',
@@ -550,11 +556,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
             pricing_smb_range: {
               type: 'string',
-              description: 'Typical spend range for SMB (e.g., "$600-2,250/month for 10-50 users")',
+              description: 'Typical spend range for SMB 10-50 users (e.g., "$600-2,250/month")',
+            },
+            pricing_midmarket_range: {
+              type: 'string',
+              description: 'Typical spend range for mid-market 50-500 users (e.g., "$15K-40K/month")',
             },
             pricing_enterprise_range: {
               type: 'string',
-              description: 'Typical spend range for Enterprise (e.g., "$270K+/year for 500+ users")',
+              description: 'Typical spend range for Enterprise 500+ users (e.g., "$270K+/year")',
             },
             // Competitive Intelligence
             key_differentiators: {
@@ -1039,10 +1049,10 @@ Updated fields: ${Object.keys(updateData).join(', ')}`,
         details += `\n`;
       }
 
-      // Pricing Complexity
-      if (intel.pricing_individual_cost || intel.pricing_smb_cost || intel.pricing_enterprise_cost) {
+      // Cost Analysis (holistic: raw cost + implementation + value + flexibility)
+      if (intel.pricing_individual_cost || intel.pricing_smb_cost || intel.pricing_midmarket_cost || intel.pricing_enterprise_cost) {
         const dollarSigns = (level) => '$'.repeat(level);
-        details += `💵 Pricing Complexity:\n`;
+        details += `💰 Cost Analysis:\n`;
         if (intel.pricing_individual_cost) {
           details += `  • Individual: ${dollarSigns(intel.pricing_individual_cost)}`;
           if (intel.pricing_individual_range) details += ` (${intel.pricing_individual_range})`;
@@ -1053,13 +1063,18 @@ Updated fields: ${Object.keys(updateData).join(', ')}`,
           if (intel.pricing_smb_range) details += ` (${intel.pricing_smb_range})`;
           details += `\n`;
         }
+        if (intel.pricing_midmarket_cost) {
+          details += `  • Mid-Market (50-500 users): ${dollarSigns(intel.pricing_midmarket_cost)}`;
+          if (intel.pricing_midmarket_range) details += ` (${intel.pricing_midmarket_range})`;
+          details += `\n`;
+        }
         if (intel.pricing_enterprise_cost) {
           details += `  • Enterprise (500+ users): ${dollarSigns(intel.pricing_enterprise_cost)}`;
           if (intel.pricing_enterprise_range) details += ` (${intel.pricing_enterprise_range})`;
           details += `\n`;
         }
         if (intel.pricing_cost_notes) {
-          details += `  ℹ️ ${intel.pricing_cost_notes}\n`;
+          details += `  ℹ️  ${intel.pricing_cost_notes}\n`;
         }
         details += `\n`;
       }

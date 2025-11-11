@@ -16,7 +16,7 @@ Tool Intelligence is a comprehensive business intelligence layer for AI tools th
 - **Market Position**: User base size, target markets, competitive positioning
 - **Momentum & Sentiment**: Growth trajectory, customer feedback, recent updates
 - **Financial Data**: Funding stage, revenue estimates, latest funding rounds
-- **Pricing Complexity**: Restaurant-style dollar sign ratings for different organization sizes
+- **Cost Analysis**: Holistic cost assessment (1-5 dollar signs) combining raw cost, implementation, value, and flexibility
 - **Competitive Intelligence**: Differentiators, SWOT analysis, market opportunities
 - **Analyst Notes**: Strategic analysis and expert summaries
 
@@ -110,10 +110,12 @@ Authorization: Bearer {your-token}
 
   "pricing_individual_cost": 2,
   "pricing_smb_cost": 3,
+  "pricing_midmarket_cost": 4,
   "pricing_enterprise_cost": 5,
-  "pricing_cost_notes": "Pro at $20/mo, API usage-based, enterprise contracts $100K+",
+  "pricing_cost_notes": "Pro at $20/mo (great value). API usage-based with unpredictable spikes. Enterprise contracts $100K+ with complex implementation.",
   "pricing_individual_range": "$20/month",
   "pricing_smb_range": "$500-10,000/month",
+  "pricing_midmarket_range": "$15K-75K/month",
   "pricing_enterprise_range": "$100K-5M+/year",
 
   "key_differentiators": [
@@ -223,42 +225,60 @@ Authorization: Bearer {your-token}
 **Estimated Annual Revenue Options:**
 - `< $1M`, `$1M-$10M`, `$10M-$50M`, `$50M-$100M`, `$100M-$500M`, `$500M-$1B`, `$1B+`
 
-### Pricing Complexity
+### Cost Analysis
 
-**Restaurant-style dollar sign ratings (1-5 scale) for three organizational tiers:**
+**Holistic cost assessment combining raw cost, implementation effort, value delivered, flexibility, and predictability.**
+
+This is NOT just the subscription price - it's a comprehensive rating (like story points in agile) that considers:
+- Raw monthly/annual cost
+- Implementation and onboarding costs
+- Value delivered relative to price
+- Flexibility (monthly vs forced annual contracts)
+- Predictability (fixed pricing vs usage-based that can spike)
+
+**Restaurant-style dollar sign ratings (1-5 scale) for four organizational tiers:**
 
 | Field | Type | Validation | Description |
 |-------|------|------------|-------------|
-| `pricing_individual_cost` | integer | null, 1-5 | Individual pricing complexity |
-| `pricing_smb_cost` | integer | null, 1-5 | SMB (10-50 users) pricing complexity |
-| `pricing_enterprise_cost` | integer | null, 1-5 | Enterprise (500+ users) pricing complexity |
-| `pricing_cost_notes` | text | null | Notes about pricing structure |
+| `pricing_individual_cost` | integer | null, 1-5 | Individual cost analysis (1-5 $) |
+| `pricing_smb_cost` | integer | null, 1-5 | SMB (10-50 users) cost analysis (1-5 $) |
+| `pricing_midmarket_cost` | integer | null, 1-5 | Mid-Market (50-500 users) cost analysis (1-5 $) |
+| `pricing_enterprise_cost` | integer | null, 1-5 | Enterprise (500+ users) cost analysis (1-5 $) |
+| `pricing_cost_notes` | text | null | Notes about pricing, implementation costs, value, flexibility |
 | `pricing_individual_range` | string | null, max:255 | Typical spend for individuals |
-| `pricing_smb_range` | string | null, max:255 | Typical spend for SMB |
-| `pricing_enterprise_range` | string | null, max:255 | Typical spend for Enterprise |
+| `pricing_smb_range` | string | null, max:255 | Typical spend for SMB (10-50 users) |
+| `pricing_midmarket_range` | string | null, max:255 | Typical spend for Mid-Market (50-500 users) |
+| `pricing_enterprise_range` | string | null, max:255 | Typical spend for Enterprise (500+ users) |
 
-**Pricing Complexity Scale:**
+**Cost Analysis Scale:**
 
 **Individual Users:**
-- `1` ($): $0-20/month - Free or very low cost
-- `2` ($$): $20-50/month - Standard SaaS pricing
-- `3` ($$$): $50-100/month - Premium individual plans
-- `4` ($$$$): $100-250/month - High-end professional
-- `5` ($$$$$): $250+/month - Ultra-premium
+- `1` ($): $0-20/mo - Free or low cost, high value, simple pricing
+- `2` ($$): $20-50/mo - Standard pricing, good value proposition
+- `3` ($$$): $50-100/mo - Premium pricing or more complex
+- `4` ($$$$): $100-250/mo - High cost or low flexibility/value
+- `5` ($$$$$): $250+/mo - Very expensive or very inflexible/low value
 
 **SMB (10-50 users):**
-- `1` ($): <$1K/month - Budget-friendly team tools
-- `2` ($$): $1K-5K/month - Standard team pricing
-- `3` ($$$): $5K-15K/month - Mid-market solutions
-- `4` ($$$$): $15K-40K/month - Premium team tools
-- `5` ($$$$$): $40K+/month - High-end team solutions
+- `1` ($): <$1K/mo - Budget-friendly, high value, straightforward
+- `2` ($$): $1K-5K/mo - Standard team pricing, good flexibility
+- `3` ($$$): $5K-15K/mo - Mid-tier solutions, moderate complexity
+- `4` ($$$$): $15K-40K/mo - Premium or complex implementation
+- `5` ($$$$$): $40K+/mo - Very expensive or poor value proposition
+
+**Mid-Market (50-500 users):**
+- `1` ($): <$5K/mo - Exceptional value for mid-market scale
+- `2` ($$): $5K-20K/mo - Good value proposition, flexible
+- `3` ($$$): $20K-50K/mo - Standard mid-market pricing
+- `4` ($$$$): $50K-100K/mo - Premium or inflexible terms
+- `5` ($$$$$): $100K+/mo - Very expensive or complex/inflexible
 
 **Enterprise (500+ users):**
-- `1` ($): <$50K/year - Entry-level enterprise
-- `2` ($$): $50K-150K/year - Standard enterprise
-- `3` ($$$): $150K-500K/year - Mid-market enterprise
-- `4` ($$$$): $500K-1M/year - Premium enterprise
-- `5` ($$$$$): $1M+/year - Strategic enterprise investment
+- `1` ($): <$50K/yr - Entry-level enterprise, good value
+- `2` ($$): $50K-150K/yr - Standard enterprise pricing
+- `3` ($$$): $150K-500K/yr - Mid-tier enterprise solutions
+- `4` ($$$$): $500K-1M/yr - Premium enterprise pricing
+- `5` ($$$$$): $1M+/yr - Strategic investment level pricing
 
 ### Competitive Intelligence
 | Field | Type | Validation | Description |
@@ -298,9 +318,11 @@ Authorization: Bearer {your-token}
     "market_position": "major_player",
     "pricing_individual_cost": 2,
     "pricing_smb_cost": 3,
+    "pricing_midmarket_cost": 4,
     "pricing_enterprise_cost": 5,
     "pricing_individual_range": "$20/month",
     "pricing_smb_range": "$500-10,000/month",
+    "pricing_midmarket_range": "$15K-75K/month",
     "pricing_enterprise_range": "$100K-5M+/year",
     "data_completeness_score": 75,
     "created_at": "2025-11-11T12:00:00.000000Z",

@@ -70,12 +70,12 @@ class Tool extends Model
     }
 
     /**
-     * Scope to order by Ryan's rating
+     * Scope to order by Ryan's rating (highest first, unrated last)
      */
     public function scopeHighestRated($query)
     {
-        return $query->whereNotNull('ryan_rating')
-                    ->orderByDesc('ryan_rating');
+        return $query->orderByDesc('ryan_rating')
+                    ->orderBy('name');
     }
 
     /**

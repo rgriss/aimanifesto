@@ -441,7 +441,7 @@ const scopes = [
 
                 <!-- Footer Navigation -->
                 <div class="border-t-2 border-border mt-12 md:mt-16 pt-8 md:pt-12">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                         <!-- About Section -->
                         <div>
                             <h3 class="text-lg font-bold text-foreground mb-4">About</h3>
@@ -484,6 +484,39 @@ const scopes = [
                                     >
                                         Browse Categories
                                     </Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Developer Section -->
+                        <div>
+                            <h3 class="text-lg font-bold text-foreground mb-4">Developer</h3>
+                            <ul class="space-y-2">
+                                <li>
+                                    <Link
+                                        href="/developer/tool-schema"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        Tool Schema
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/docs"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        Documentation
+                                    </Link>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://github.com/rgriss/aimanifesto"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        GitHub →
+                                    </a>
                                 </li>
                             </ul>
                         </div>

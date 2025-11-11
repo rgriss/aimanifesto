@@ -391,6 +391,169 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['slug'],
         },
       },
+
+      // ===== TOOL INTELLIGENCE OPERATIONS =====
+      {
+        name: 'get_tool_intelligence',
+        description: 'Get business intelligence and market research data for a specific AI tool.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            slug: {
+              type: 'string',
+              description: 'The slug of the tool (e.g., "claude", "chatgpt")',
+            },
+          },
+          required: ['slug'],
+        },
+      },
+      {
+        name: 'update_tool_intelligence',
+        description: 'Update business intelligence and market research data for an AI tool. Creates intelligence record if it doesn\'t exist. All fields are optional.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            slug: {
+              type: 'string',
+              description: 'The slug of the tool to update',
+            },
+            // Company Metadata
+            founded_year: {
+              type: 'integer',
+              description: 'Year company was founded',
+            },
+            tool_launched_year: {
+              type: 'integer',
+              description: 'Year the tool was launched',
+            },
+            company_status: {
+              type: 'string',
+              enum: ['private', 'public', 'acquired', 'subsidiary', 'open_source'],
+              description: 'Company ownership/status type',
+            },
+            stock_ticker: {
+              type: 'string',
+              description: 'Stock ticker symbol (for public companies)',
+            },
+            parent_company: {
+              type: 'string',
+              description: 'Parent company name (for subsidiaries)',
+            },
+            acquisition_date: {
+              type: 'string',
+              description: 'Date of acquisition',
+            },
+            headquarters: {
+              type: 'string',
+              description: 'Headquarters location',
+            },
+            employee_count_range: {
+              type: 'string',
+              enum: ['1-10', '11-50', '51-200', '201-500', '501-1000', '1000-5000', '5000-10000', '10000+'],
+              description: 'Company employee count range',
+            },
+            // Market Position
+            estimated_users: {
+              type: 'string',
+              enum: ['< 10K', '10K-100K', '100K-1M', '1M-10M', '10M-50M', '50M-100M', '100M+'],
+              description: 'Estimated user base size',
+            },
+            target_market: {
+              type: 'array',
+              items: {
+                type: 'string',
+                enum: ['individual', 'small_business', 'mid_market', 'enterprise', 'developer', 'creative_professional'],
+              },
+              description: 'Target market segments',
+            },
+            market_position: {
+              type: 'string',
+              enum: ['market_leader', 'major_player', 'challenger', 'niche_specialist', 'emerging'],
+              description: 'Market position classification',
+            },
+            primary_competitors: {
+              type: 'array',
+              items: { type: 'string' },
+              description: 'Array of primary competitor names',
+            },
+            // Momentum & Sentiment
+            momentum_notes: {
+              type: 'string',
+              description: 'Explanation of momentum score from primary table',
+            },
+            customer_sentiment: {
+              type: 'string',
+              enum: ['very_positive', 'positive', 'mixed', 'negative', 'very_negative'],
+              description: 'Customer sentiment assessment',
+            },
+            sentiment_notes: {
+              type: 'string',
+              description: 'Notes about customer sentiment',
+            },
+            last_major_update: {
+              type: 'string',
+              description: 'Date/description of last major update',
+            },
+            // Financial
+            funding_stage: {
+              type: 'string',
+              enum: ['bootstrapped', 'seed', 'series_a', 'series_b', 'series_c+', 'public', 'profitable', 'acquired'],
+              description: 'Current funding stage',
+            },
+            latest_funding_amount: {
+              type: 'string',
+              description: 'Latest funding round amount (e.g., "$50M")',
+            },
+            latest_funding_date: {
+              type: 'string',
+              description: 'Date of latest funding',
+            },
+            estimated_annual_revenue: {
+              type: 'string',
+              enum: ['< $1M', '$1M-$10M', '$10M-$50M', '$50M-$100M', '$100M-$500M', '$500M-$1B', '$1B+'],
+              description: 'Estimated annual revenue range',
+            },
+            // Competitive Intelligence
+            key_differentiators: {
+              type: 'array',
+              items: { type: 'string' },
+              description: 'Array of key differentiators',
+            },
+            strengths: {
+              type: 'array',
+              items: { type: 'string' },
+              description: 'Array of strengths',
+            },
+            weaknesses: {
+              type: 'array',
+              items: { type: 'string' },
+              description: 'Array of weaknesses',
+            },
+            market_threats: {
+              type: 'string',
+              description: 'Market threats description',
+            },
+            growth_opportunities: {
+              type: 'string',
+              description: 'Growth opportunities description',
+            },
+            // Analyst Notes
+            strategic_notes: {
+              type: 'string',
+              description: 'Strategic analysis notes',
+            },
+            analyst_summary: {
+              type: 'string',
+              description: 'Analyst summary',
+            },
+            last_researched_at: {
+              type: 'string',
+              description: 'When this data was last researched (ISO 8601 date)',
+            },
+          },
+          required: ['slug'],
+        },
+      },
     ],
   };
 });
@@ -768,6 +931,141 @@ Updated fields: ${Object.keys(updateData).join(', ')}`,
         content: [{
           type: 'text',
           text: `✓ ${data.message}\n\n⚠️ This action cannot be undone.`,
+        }],
+      };
+    }
+
+    // ===== TOOL INTELLIGENCE OPERATIONS =====
+
+    if (toolName === 'get_tool_intelligence') {
+      const { response, data } = await makeApiCall(`/api/tools/${args.slug}/intelligence`);
+
+      if (!response.ok) {
+        return {
+          content: [{ type: 'text', text: data.message || 'Failed to get intelligence data' }],
+          isError: true,
+        };
+      }
+
+      if (!data.data) {
+        return {
+          content: [{
+            type: 'text',
+            text: `📊 No intelligence data found for this tool.\n\nUse update_tool_intelligence to add business intelligence and market research data.`,
+          }],
+        };
+      }
+
+      const intel = data.data;
+      let details = `📊 Business Intelligence for ${args.slug}\n\n`;
+      details += `Data Completeness: ${intel.data_completeness_score}%\n\n`;
+
+      // Company Metadata
+      if (intel.founded_year || intel.company_status || intel.headquarters) {
+        details += `🏢 Company Information:\n`;
+        if (intel.founded_year) details += `  • Founded: ${intel.founded_year}\n`;
+        if (intel.tool_launched_year) details += `  • Tool Launched: ${intel.tool_launched_year}\n`;
+        if (intel.company_status) details += `  • Status: ${intel.company_status}\n`;
+        if (intel.stock_ticker) details += `  • Ticker: ${intel.stock_ticker}\n`;
+        if (intel.parent_company) details += `  • Parent: ${intel.parent_company}\n`;
+        if (intel.headquarters) details += `  • HQ: ${intel.headquarters}\n`;
+        if (intel.employee_count_range) details += `  • Employees: ${intel.employee_count_range}\n`;
+        details += `\n`;
+      }
+
+      // Market Position
+      if (intel.estimated_users || intel.market_position) {
+        details += `📈 Market Position:\n`;
+        if (intel.estimated_users) details += `  • Users: ${intel.estimated_users}\n`;
+        if (intel.market_position) details += `  • Position: ${intel.market_position}\n`;
+        if (intel.target_market && intel.target_market.length > 0) {
+          details += `  • Target Markets: ${intel.target_market.join(', ')}\n`;
+        }
+        if (intel.primary_competitors && intel.primary_competitors.length > 0) {
+          details += `  • Competitors: ${intel.primary_competitors.join(', ')}\n`;
+        }
+        details += `\n`;
+      }
+
+      // Financial
+      if (intel.funding_stage || intel.estimated_annual_revenue) {
+        details += `💰 Financial:\n`;
+        if (intel.funding_stage) details += `  • Funding: ${intel.funding_stage}\n`;
+        if (intel.latest_funding_amount) details += `  • Latest Round: ${intel.latest_funding_amount} (${intel.latest_funding_date || 'date unknown'})\n`;
+        if (intel.estimated_annual_revenue) details += `  • Revenue: ${intel.estimated_annual_revenue}\n`;
+        details += `\n`;
+      }
+
+      // Sentiment
+      if (intel.customer_sentiment) {
+        details += `💭 Sentiment: ${intel.customer_sentiment}\n`;
+        if (intel.sentiment_notes) details += `   "${intel.sentiment_notes}"\n`;
+        details += `\n`;
+      }
+
+      // Competitive Intelligence
+      if (intel.key_differentiators && intel.key_differentiators.length > 0) {
+        details += `✨ Key Differentiators:\n${intel.key_differentiators.map(d => `  • ${d}`).join('\n')}\n\n`;
+      }
+      if (intel.strengths && intel.strengths.length > 0) {
+        details += `💪 Strengths:\n${intel.strengths.map(s => `  • ${s}`).join('\n')}\n\n`;
+      }
+      if (intel.weaknesses && intel.weaknesses.length > 0) {
+        details += `⚠️ Weaknesses:\n${intel.weaknesses.map(w => `  • ${w}`).join('\n')}\n\n`;
+      }
+
+      // Analyst Notes
+      if (intel.analyst_summary) {
+        details += `📝 Analyst Summary:\n${intel.analyst_summary}\n\n`;
+      }
+
+      if (intel.last_researched_at) {
+        details += `🔍 Last Researched: ${new Date(intel.last_researched_at).toLocaleDateString()}\n`;
+      }
+
+      return {
+        content: [{ type: 'text', text: details }],
+      };
+    }
+
+    if (toolName === 'update_tool_intelligence') {
+      const { slug, ...intelligenceData } = args;
+      const { response, data } = await makeApiCall(`/api/tools/${slug}/intelligence`, 'PUT', intelligenceData);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          return {
+            content: [{ type: 'text', text: `Tool "${slug}" not found.` }],
+            isError: true,
+          };
+        }
+
+        if (response.status === 422) {
+          const errors = Object.entries(data.errors || {})
+            .map(([field, messages]) => `- ${field}: ${messages.join(', ')}`)
+            .join('\n');
+          return {
+            content: [{ type: 'text', text: `Validation failed:\n\n${errors}` }],
+            isError: true,
+          };
+        }
+
+        return {
+          content: [{ type: 'text', text: `Error: ${data.message || 'Unknown error'}` }],
+          isError: true,
+        };
+      }
+
+      const intel = data.data;
+      return {
+        content: [{
+          type: 'text',
+          text: `✓ Successfully updated intelligence data for "${slug}"!
+
+📊 Data Completeness: ${intel.data_completeness_score}%
+🔗 View tool: /tools/${slug}
+
+Updated ${Object.keys(intelligenceData).length} field(s)`,
         }],
       };
     }

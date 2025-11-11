@@ -1,7 +1,7 @@
 # Data Model & Database Schema
 
-**Document Version:** 1.0
-**Last Updated:** November 10, 2025
+**Document Version:** 1.1
+**Last Updated:** November 11, 2025
 **Status:** Current
 **Database:** MySQL 8.0+ / PostgreSQL 13+
 **Related:** [System Overview](./system-overview.md), [Authentication Flow](./authentication-flow.md)
@@ -117,6 +117,7 @@
 | Relationship | Type | Foreign Key | On Delete |
 |-------------|------|-------------|-----------|
 | Category → Tools | One-to-Many | tools.category_id | CASCADE |
+| Tool → Intelligence | One-to-One | tool_intelligence.tool_id | CASCADE |
 | User → Sessions | One-to-Many | sessions.user_id | SET NULL |
 | User → Password Resets | One-to-Many | password_reset_tokens.email | CASCADE |
 
@@ -208,6 +209,11 @@ CREATE TABLE tools (
     -- Pricing
     pricing_model ENUM('free', 'freemium', 'paid', 'enterprise') NOT NULL DEFAULT 'freemium',
     price_description VARCHAR(255) NULL,
+
+    -- Business Intelligence (Phase 1)
+    company_name VARCHAR(255) NULL,
+    popularity_tier ENUM('mainstream', 'well_known', 'growing', 'niche', 'emerging') NULL,
+    momentum_score INT NULL,
 
     -- Ryan's Personal Rating
     ryan_rating INT NULL,
@@ -314,6 +320,94 @@ CREATE TABLE tools (
   "updated_at": "2025-11-09 10:15:00"
 }
 ```
+
+---
+
+### Tool Intelligence Table (Phase 2)
+
+**Purpose:** Deep business intelligence and market research data for AI tools (one-to-one relationship with tools).
+
+```sql
+CREATE TABLE tool_intelligence (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    tool_id BIGINT UNSIGNED NOT NULL UNIQUE,
+
+    -- Company Metadata
+    founded_year INT NULL,
+    tool_launched_year INT NULL,
+    company_status ENUM('private', 'public', 'acquired', 'subsidiary', 'open_source') NULL,
+    stock_ticker VARCHAR(255) NULL,
+    parent_company VARCHAR(255) NULL,
+    acquisition_date VARCHAR(255) NULL,
+    headquarters VARCHAR(255) NULL,
+    employee_count_range ENUM('1-10', '11-50', '51-200', '201-500', '501-1000', '1000-5000', '5000-10000', '10000+') NULL,
+
+    -- Market Position
+    estimated_users ENUM('< 10K', '10K-100K', '100K-1M', '1M-10M', '10M-50M', '50M-100M', '100M+') NULL,
+    target_market JSON NULL,
+    market_position ENUM('market_leader', 'major_player', 'challenger', 'niche_specialist', 'emerging') NULL,
+    primary_competitors JSON NULL,
+
+    -- Momentum & Sentiment
+    momentum_notes TEXT NULL,
+    customer_sentiment ENUM('very_positive', 'positive', 'mixed', 'negative', 'very_negative') NULL,
+    sentiment_notes TEXT NULL,
+    last_major_update VARCHAR(255) NULL,
+
+    -- Financial
+    funding_stage ENUM('bootstrapped', 'seed', 'series_a', 'series_b', 'series_c+', 'public', 'profitable', 'acquired') NULL,
+    latest_funding_amount VARCHAR(255) NULL,
+    latest_funding_date VARCHAR(255) NULL,
+    estimated_annual_revenue ENUM('< $1M', '$1M-$10M', '$10M-$50M', '$50M-$100M', '$100M-$500M', '$500M-$1B', '$1B+') NULL,
+
+    -- Competitive Intelligence
+    key_differentiators JSON NULL,
+    strengths JSON NULL,
+    weaknesses JSON NULL,
+    market_threats TEXT NULL,
+    growth_opportunities TEXT NULL,
+
+    -- Analyst Notes
+    strategic_notes TEXT NULL,
+    analyst_summary TEXT NULL,
+
+    -- Metadata
+    data_completeness_score INT NOT NULL DEFAULT 0,
+    last_researched_at TIMESTAMP NULL,
+
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,
+
+    -- Foreign Keys
+    FOREIGN KEY (tool_id) REFERENCES tools(id) ON DELETE CASCADE,
+
+    -- Indexes
+    INDEX tool_intelligence_tool_id_index (tool_id),
+    INDEX tool_intelligence_completeness_index (data_completeness_score)
+);
+```
+
+**Key Features:**
+- **One-to-one relationship** with tools table via unique `tool_id`
+- **30+ optional fields** for comprehensive business intelligence
+- **Automatic completeness scoring** calculated on save (0-100%)
+- **Organized by category**: Company, Market, Financial, Competitive, Analyst
+- **CASCADE delete** - intelligence removed when tool is deleted
+
+**Completeness Score:**
+- Automatically calculated based on filled fields
+- Excludes metadata fields (id, tool_id, timestamps, score itself)
+- Formula: `(filled_fields / total_fields) × 100`
+- Updates automatically via Eloquent model events
+
+**Access via API:**
+- `GET /api/tools/{slug}/intelligence` - Retrieve intelligence data
+- `PUT /api/tools/{slug}/intelligence` - Update/create intelligence data
+- All fields optional in updates
+
+**Access via MCP:**
+- `get_tool_intelligence` - Formatted intelligence display
+- `update_tool_intelligence` - Update with auto-completeness calculation
 
 ---
 
@@ -716,6 +810,8 @@ CREATE FULLTEXT INDEX tools_name_description ON tools(name, description);
 | 2025-10-08 | `create_categories_table` | Tool categories |
 | 2025-10-08 | `create_tools_table` | AI tools directory |
 | 2025-10-09 | `add_is_admin_to_users_table` | Admin authorization |
+| 2025-11-11 | `add_intelligence_fields_to_tools_table` | Add company_name, popularity_tier, momentum_score |
+| 2025-11-11 | `create_tool_intelligence_table` | Business intelligence & market research data |
 
 **Running Migrations:**
 ```bash

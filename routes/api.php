@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\Api\ApiToolController;
+use App\Http\Controllers\Api\ApiToolIntelligenceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,9 @@ Route::middleware(['api.token', 'throttle:60,1'])->group(function () {
     Route::put('/categories/{slug}', [ApiCategoryController::class, 'update'])->name('api.categories.update');
     Route::patch('/categories/{slug}', [ApiCategoryController::class, 'update'])->name('api.categories.patch');
     Route::delete('/categories/{slug}', [ApiCategoryController::class, 'destroy'])->name('api.categories.destroy');
+
+    // Tool Intelligence Resource
+    Route::get('/tools/{slug}/intelligence', [ApiToolIntelligenceController::class, 'show'])->name('api.tool-intelligence.show');
+    Route::put('/tools/{slug}/intelligence', [ApiToolIntelligenceController::class, 'update'])->name('api.tool-intelligence.update');
+    Route::patch('/tools/{slug}/intelligence', [ApiToolIntelligenceController::class, 'update'])->name('api.tool-intelligence.patch');
 });

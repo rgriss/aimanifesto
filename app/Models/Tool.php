@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Tool extends Model
 {
@@ -57,6 +58,14 @@ class Tool extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the intelligence data for this tool
+     */
+    public function intelligence(): HasOne
+    {
+        return $this->hasOne(ToolIntelligence::class);
     }
 
     /**

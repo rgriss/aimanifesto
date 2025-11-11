@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\Api\ApiToolController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['api.token', 'throttle:30,1'])->group(function () {
+Route::middleware(['api.token', 'throttle:60,1'])->group(function () {
+    // Tools Resource
+    Route::get('/tools', [ApiToolController::class, 'index'])->name('api.tools.index');
+    Route::get('/tools/{slug}', [ApiToolController::class, 'show'])->name('api.tools.show');
     Route::post('/tools', [ApiToolController::class, 'store'])->name('api.tools.store');
+    Route::put('/tools/{slug}', [ApiToolController::class, 'update'])->name('api.tools.update');
+    Route::patch('/tools/{slug}', [ApiToolController::class, 'update'])->name('api.tools.patch');
+    Route::delete('/tools/{slug}', [ApiToolController::class, 'destroy'])->name('api.tools.destroy');
+
+    // Categories Resource
+    Route::get('/categories', [ApiCategoryController::class, 'index'])->name('api.categories.index');
+    Route::get('/categories/{slug}', [ApiCategoryController::class, 'show'])->name('api.categories.show');
+    Route::post('/categories', [ApiCategoryController::class, 'store'])->name('api.categories.store');
+    Route::put('/categories/{slug}', [ApiCategoryController::class, 'update'])->name('api.categories.update');
+    Route::patch('/categories/{slug}', [ApiCategoryController::class, 'update'])->name('api.categories.patch');
+    Route::delete('/categories/{slug}', [ApiCategoryController::class, 'destroy'])->name('api.categories.destroy');
 });

@@ -279,8 +279,8 @@ test('generates unique slug for duplicate names', function () {
 test('rate limiting works', function () {
     $category = Category::factory()->create();
 
-    // Make 31 requests (limit is 30 per minute)
-    for ($i = 0; $i < 31; $i++) {
+    // Make 61 requests (limit is 60 per minute)
+    for ($i = 0; $i < 61; $i++) {
         $response = $this->postJson('/api/tools', [
             'name' => "Tool {$i}",
             'description' => 'Test',
@@ -290,7 +290,7 @@ test('rate limiting works', function () {
             'Authorization' => 'Bearer test-token-12345',
         ]);
 
-        if ($i < 30) {
+        if ($i < 60) {
             $response->assertStatus(201);
         } else {
             $response->assertStatus(429); // Too Many Requests
@@ -314,4 +314,236 @@ test('returns correct tool URL in response', function () {
 
     $data = $response->json('data');
     expect($data['url'])->toContain('/tools/url-test-tool');
+});
+
+// ====== GET /api/tools (Index) Tests ======
+
+test('lists all active tools', function () {
+    $category = Category::factory()->create();
+    Tool::factory()->count(5)->create(['category_id' => $category->id, 'is_active' => true]);
+    Tool::factory()->create(['category_id' => $category->id, 'is_active' => false]); // Should be excluded
+
+    $response = $this->getJson('/api/tools', [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJson(['success' => true])
+        ->assertJsonCount(5, 'data');
+});
+
+test('filters tools by category', function () {
+    $category1 = Category::factory()->create(['name' => 'Category One', 'slug' => 'category-one']);
+    $category2 = Category::factory()->create(['name' => 'Category Two', 'slug' => 'category-two']);
+
+    Tool::factory()->count(3)->create(['category_id' => $category1->id, 'is_active' => true]);
+    Tool::factory()->count(2)->create(['category_id' => $category2->id, 'is_active' => true]);
+
+    $response = $this->getJson('/api/tools?category=category-one', [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJsonCount(3, 'data');
+});
+
+test('filters tools by search term', function () {
+    $category = Category::factory()->create();
+    Tool::factory()->create(['name' => 'Claude Code', 'category_id' => $category->id]);
+    Tool::factory()->create(['name' => 'ChatGPT', 'category_id' => $category->id]);
+    Tool::factory()->create(['name' => 'GitHub Copilot', 'category_id' => $category->id]);
+
+    $response = $this->getJson('/api/tools?search=Claude', [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJsonCount(1, 'data');
+});
+
+test('filters featured tools', function () {
+    $category = Category::factory()->create();
+    Tool::factory()->count(2)->create(['category_id' => $category->id, 'is_featured' => true]);
+    Tool::factory()->count(3)->create(['category_id' => $category->id, 'is_featured' => false]);
+
+    $response = $this->getJson('/api/tools?featured=true', [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJsonCount(2, 'data');
+});
+
+test('paginates tools', function () {
+    $category = Category::factory()->create();
+    Tool::factory()->count(25)->create(['category_id' => $category->id]);
+
+    $response = $this->getJson('/api/tools?per_page=10', [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJsonCount(10, 'data')
+        ->assertJsonStructure(['success', 'data', 'meta' => ['current_page', 'last_page', 'per_page', 'total']]);
+});
+
+// ====== GET /api/tools/{slug} (Show) Tests ======
+
+test('shows specific tool by slug', function () {
+    $category = Category::factory()->create();
+    $tool = Tool::factory()->create([
+        'name' => 'Test Tool',
+        'slug' => 'test-tool',
+        'category_id' => $category->id,
+    ]);
+
+    $response = $this->getJson('/api/tools/test-tool', [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJson([
+            'success' => true,
+            'data' => [
+                'id' => $tool->id,
+                'name' => 'Test Tool',
+                'slug' => 'test-tool',
+            ],
+        ]);
+});
+
+test('returns 404 for non-existent tool', function () {
+    $response = $this->getJson('/api/tools/non-existent-tool', [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(404)
+        ->assertJson([
+            'success' => false,
+            'message' => 'Tool not found',
+        ]);
+});
+
+// ====== PUT/PATCH /api/tools/{slug} (Update) Tests ======
+
+test('updates tool with partial data', function () {
+    $category = Category::factory()->create();
+    $tool = Tool::factory()->create([
+        'name' => 'Original Name',
+        'slug' => 'original-name',
+        'description' => 'Original description',
+        'category_id' => $category->id,
+    ]);
+
+    $response = $this->putJson('/api/tools/original-name', [
+        'name' => 'Updated Name',
+    ], [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJson([
+            'success' => true,
+            'message' => 'Tool updated successfully',
+            'data' => [
+                'name' => 'Updated Name',
+                'slug' => 'updated-name',
+                'description' => 'Original description', // Should remain unchanged
+            ],
+        ]);
+});
+
+test('updates tool with all fields', function () {
+    $category1 = Category::factory()->create(['name' => 'Old Category']);
+    $category2 = Category::factory()->create(['name' => 'New Category']);
+
+    $tool = Tool::factory()->create([
+        'name' => 'Tool to Update',
+        'slug' => 'tool-to-update',
+        'category_id' => $category1->id,
+        'ryan_rating' => null,
+    ]);
+
+    $response = $this->patchJson('/api/tools/tool-to-update', [
+        'description' => 'Updated description',
+        'category' => 'New Category',
+        'ryan_rating' => 9,
+        'ryan_notes' => 'Excellent after updates',
+        'is_featured' => true,
+    ], [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200);
+
+    $tool->refresh();
+    expect($tool->description)->toBe('Updated description');
+    expect($tool->category_id)->toBe($category2->id);
+    expect($tool->ryan_rating)->toBe(9);
+    expect($tool->is_featured)->toBeTrue();
+    expect($tool->first_reviewed_at)->not->toBeNull(); // Should be set when rating is added
+});
+
+test('returns 404 when updating non-existent tool', function () {
+    $response = $this->putJson('/api/tools/non-existent', [
+        'name' => 'Updated',
+    ], [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(404)
+        ->assertJson([
+            'success' => false,
+            'message' => 'Tool not found',
+        ]);
+});
+
+test('validates updated fields', function () {
+    $category = Category::factory()->create();
+    $tool = Tool::factory()->create(['category_id' => $category->id]);
+
+    $response = $this->putJson("/api/tools/{$tool->slug}", [
+        'website_url' => 'not-a-url',
+        'ryan_rating' => 15,
+    ], [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors(['website_url', 'ryan_rating']);
+});
+
+// ====== DELETE /api/tools/{slug} (Destroy) Tests ======
+
+test('deletes tool', function () {
+    $category = Category::factory()->create();
+    $tool = Tool::factory()->create([
+        'name' => 'Tool to Delete',
+        'slug' => 'tool-to-delete',
+        'category_id' => $category->id,
+    ]);
+
+    $response = $this->deleteJson('/api/tools/tool-to-delete', [], [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(200)
+        ->assertJson([
+            'success' => true,
+            'message' => "Tool 'Tool to Delete' deleted successfully",
+        ]);
+
+    $this->assertDatabaseMissing('tools', ['id' => $tool->id]);
+});
+
+test('returns 404 when deleting non-existent tool', function () {
+    $response = $this->deleteJson('/api/tools/non-existent', [], [
+        'Authorization' => 'Bearer test-token-12345',
+    ]);
+
+    $response->assertStatus(404)
+        ->assertJson([
+            'success' => false,
+            'message' => 'Tool not found',
+        ]);
 });

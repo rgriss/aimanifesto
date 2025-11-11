@@ -23,6 +23,7 @@ interface FormData {
     website_url: string;
     documentation_url: string;
     logo_url: string;
+    screenshot_url: string;
     pricing_model: string;
     price_description: string;
     ryan_rating: number | null;
@@ -49,6 +50,7 @@ const emit = defineEmits(['submit']);
 const newFeature = ref('');
 const newUseCase = ref('');
 const newIntegration = ref('');
+const screenshotPreview = ref<string | null>(null);
 
 const addFeature = () => {
     if (newFeature.value.trim()) {
@@ -81,6 +83,22 @@ const addIntegration = () => {
 
 const removeIntegration = (index: number) => {
     props.form.integrations.splice(index, 1);
+};
+
+const handleScreenshotUpload = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.[0];
+
+    if (file) {
+        props.form.screenshot = file;
+
+        // Create preview URL
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            screenshotPreview.value = e.target?.result as string;
+        };
+        reader.readAsDataURL(file);
+    }
 };
 </script>
 
@@ -196,6 +214,47 @@ const removeIntegration = (index: number) => {
                         placeholder="https://example.com/logo.png"
                     />
                     <p v-if="form.errors.logo_url" class="text-sm text-destructive">{{ form.errors.logo_url }}</p>
+                </div>
+
+                <div class="space-y-2">
+                    <Label for="screenshot">Screenshot</Label>
+
+                    <!-- File Upload -->
+                    <div class="space-y-2">
+                        <Input
+                            id="screenshot"
+                            type="file"
+                            accept="image/*"
+                            @change="handleScreenshotUpload"
+                        />
+                        <p class="text-xs text-muted-foreground">Upload a screenshot of the tool interface (JPG, PNG, WebP)</p>
+                    </div>
+
+                    <!-- OR URL Input -->
+                    <div class="space-y-2">
+                        <Label for="screenshot_url" class="text-xs">Or provide a URL:</Label>
+                        <Input
+                            id="screenshot_url"
+                            v-model="form.screenshot_url"
+                            type="url"
+                            placeholder="https://example.com/screenshot.png"
+                        />
+                    </div>
+
+                    <!-- Current Screenshot Preview -->
+                    <div v-if="form.screenshot_url && !screenshotPreview" class="mt-2">
+                        <p class="text-xs text-muted-foreground mb-1">Current screenshot:</p>
+                        <img :src="form.screenshot_url" alt="Current screenshot" class="max-w-xs rounded border" />
+                    </div>
+
+                    <!-- New Screenshot Preview -->
+                    <div v-if="screenshotPreview" class="mt-2">
+                        <p class="text-xs text-muted-foreground mb-1">New screenshot preview:</p>
+                        <img :src="screenshotPreview" alt="Screenshot preview" class="max-w-xs rounded border" />
+                    </div>
+
+                    <p v-if="form.errors.screenshot_url" class="text-sm text-destructive">{{ form.errors.screenshot_url }}</p>
+                    <p v-if="form.errors.screenshot" class="text-sm text-destructive">{{ form.errors.screenshot }}</p>
                 </div>
             </CardContent>
         </Card>

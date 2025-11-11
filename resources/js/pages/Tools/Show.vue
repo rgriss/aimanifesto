@@ -188,6 +188,13 @@ const hasExtendedIntelligence = computed(() => {
                         >
                             Documentation
                         </a>
+                        <Link
+                            v-if="$page.props.auth?.user?.is_admin"
+                            :href="`/admin/tools/${tool.slug}/edit`"
+                            class="bg-warning text-warning-foreground hover:bg-warning/90 font-semibold py-3 px-6 rounded-lg transition-colors"
+                        >
+                            ✏️ Edit Tool
+                        </Link>
                     </template>
                 </PageHero>
 

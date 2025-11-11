@@ -20,6 +20,7 @@ interface Tool {
     website_url: string | null;
     documentation_url: string | null;
     logo_url: string | null;
+    screenshot_url: string | null;
     pricing_model: string;
     price_description: string | null;
     ryan_rating: number | null;
@@ -43,10 +44,11 @@ const props = defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Admin', href: '/admin' },
     { title: 'Tools', href: '/admin/tools' },
-    { title: 'Edit', href: `/admin/tools/${props.tool.id}/edit` },
+    { title: 'Edit', href: `/admin/tools/${props.tool.slug}/edit` },
 ];
 
 const form = useForm({
+    _method: 'put',
     category_id: props.tool.category_id.toString(),
     name: props.tool.name,
     slug: props.tool.slug,
@@ -55,6 +57,8 @@ const form = useForm({
     website_url: props.tool.website_url || '',
     documentation_url: props.tool.documentation_url || '',
     logo_url: props.tool.logo_url || '',
+    screenshot_url: props.tool.screenshot_url || '',
+    screenshot: null as File | null,
     pricing_model: props.tool.pricing_model,
     price_description: props.tool.price_description || '',
     ryan_rating: props.tool.ryan_rating,
@@ -69,7 +73,9 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.put(`/admin/tools/${props.tool.id}`);
+    form.post(`/admin/tools/${props.tool.slug}`, {
+        forceFormData: true,
+    });
 };
 </script>
 

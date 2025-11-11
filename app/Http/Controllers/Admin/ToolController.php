@@ -72,6 +72,8 @@ class ToolController extends Controller
             'website_url' => ['nullable', 'url', 'max:500'],
             'documentation_url' => ['nullable', 'url', 'max:500'],
             'logo_url' => ['nullable', 'url', 'max:500'],
+            'screenshot_url' => ['nullable', 'url', 'max:500'],
+            'screenshot' => ['nullable', 'image', 'max:5120'], // Max 5MB
             'pricing_model' => ['required', 'in:free,freemium,paid,enterprise'],
             'price_description' => ['nullable', 'string'],
             'ryan_rating' => ['nullable', 'integer', 'min:1', 'max:10'],
@@ -87,6 +89,15 @@ class ToolController extends Controller
             'is_active' => ['boolean'],
             'first_reviewed_at' => ['nullable', 'date'],
         ]);
+
+        // Handle screenshot file upload
+        if ($request->hasFile('screenshot')) {
+            $path = $request->file('screenshot')->store('screenshots', 'public');
+            $validated['screenshot_url'] = '/storage/' . $path;
+        }
+
+        // Remove the screenshot key as it's not in the database
+        unset($validated['screenshot']);
 
         // Auto-generate slug if not provided
         if (empty($validated['slug'])) {
@@ -126,6 +137,8 @@ class ToolController extends Controller
             'website_url' => ['nullable', 'url', 'max:500'],
             'documentation_url' => ['nullable', 'url', 'max:500'],
             'logo_url' => ['nullable', 'url', 'max:500'],
+            'screenshot_url' => ['nullable', 'url', 'max:500'],
+            'screenshot' => ['nullable', 'image', 'max:5120'], // Max 5MB
             'pricing_model' => ['required', 'in:free,freemium,paid,enterprise'],
             'price_description' => ['nullable', 'string'],
             'ryan_rating' => ['nullable', 'integer', 'min:1', 'max:10'],
@@ -141,6 +154,21 @@ class ToolController extends Controller
             'is_active' => ['boolean'],
             'first_reviewed_at' => ['nullable', 'date'],
         ]);
+
+        // Handle screenshot file upload
+        if ($request->hasFile('screenshot')) {
+            // Delete old screenshot if it exists and was uploaded (not external URL)
+            if ($tool->screenshot_url && str_starts_with($tool->screenshot_url, '/storage/')) {
+                $oldPath = str_replace('/storage/', '', $tool->screenshot_url);
+                \Storage::disk('public')->delete($oldPath);
+            }
+
+            $path = $request->file('screenshot')->store('screenshots', 'public');
+            $validated['screenshot_url'] = '/storage/' . $path;
+        }
+
+        // Remove the screenshot key as it's not in the database
+        unset($validated['screenshot']);
 
         // Auto-generate slug if not provided
         if (empty($validated['slug'])) {

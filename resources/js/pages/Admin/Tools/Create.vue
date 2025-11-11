@@ -31,6 +31,8 @@ const form = useForm({
     website_url: '',
     documentation_url: '',
     logo_url: '',
+    screenshot_url: '',
+    screenshot: null as File | null,
     pricing_model: '',
     price_description: '',
     ryan_rating: null as number | null,
@@ -45,7 +47,9 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post('/admin/tools');
+    form.post('/admin/tools', {
+        forceFormData: true,
+    });
 };
 </script>
 

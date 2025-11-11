@@ -67,7 +67,7 @@ watch([search, categoryFilter, statusFilter], () => {
 
 const deleteTool = (tool: Tool) => {
     if (confirm(`Are you sure you want to delete "${tool.name}"?`)) {
-        router.delete(`/admin/tools/${tool.id}`);
+        router.delete(`/admin/tools/${tool.slug}`);
     }
 };
 
@@ -206,7 +206,7 @@ const getPricingBadgeVariant = (pricing: string) => {
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div class="flex items-center justify-end gap-2">
-                                        <Link :href="`/admin/tools/${tool.id}/edit`">
+                                        <Link :href="`/admin/tools/${tool.slug}/edit`">
                                             <Button variant="ghost" size="sm">
                                                 <Pencil class="h-4 w-4" />
                                             </Button>

@@ -99,6 +99,21 @@ const formatFundingStage = (stage) => {
 const hasExtendedIntelligence = computed(() => {
     return props.tool.intelligence && Object.keys(props.tool.intelligence).length > 0;
 });
+
+// Convert pricing complexity level (1-5) to dollar signs
+const formatPricingComplexity = (level) => {
+    if (!level) return null;
+    return '$'.repeat(level);
+};
+
+// Check if pricing complexity data exists
+const hasPricingComplexity = computed(() => {
+    return props.tool.intelligence && (
+        props.tool.intelligence.pricing_individual_cost ||
+        props.tool.intelligence.pricing_smb_cost ||
+        props.tool.intelligence.pricing_enterprise_cost
+    );
+});
 </script>
 
 <template>
@@ -328,6 +343,54 @@ const hasExtendedIntelligence = computed(() => {
                                         <p class="text-sm text-muted-foreground">Acquired</p>
                                         <p class="text-base font-semibold text-foreground">{{ tool.intelligence.acquisition_date }}</p>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Pricing Complexity -->
+                            <div v-if="hasPricingComplexity" class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg p-6 border-2 border-primary/20">
+                                <div class="flex items-center gap-3 mb-6">
+                                    <span class="text-3xl">💰</span>
+                                    <h3 class="text-lg font-bold text-foreground">Pricing Complexity</h3>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <!-- Individual Pricing -->
+                                    <div v-if="tool.intelligence.pricing_individual_cost" class="bg-background/50 rounded-lg p-4">
+                                        <p class="text-sm text-muted-foreground mb-2">Individual</p>
+                                        <p class="text-3xl font-bold text-primary mb-1">
+                                            {{ formatPricingComplexity(tool.intelligence.pricing_individual_cost) }}
+                                        </p>
+                                        <p v-if="tool.intelligence.pricing_individual_range" class="text-sm text-foreground">
+                                            {{ tool.intelligence.pricing_individual_range }}
+                                        </p>
+                                    </div>
+
+                                    <!-- SMB Pricing -->
+                                    <div v-if="tool.intelligence.pricing_smb_cost" class="bg-background/50 rounded-lg p-4">
+                                        <p class="text-sm text-muted-foreground mb-2">SMB (10-50 users)</p>
+                                        <p class="text-3xl font-bold text-primary mb-1">
+                                            {{ formatPricingComplexity(tool.intelligence.pricing_smb_cost) }}
+                                        </p>
+                                        <p v-if="tool.intelligence.pricing_smb_range" class="text-sm text-foreground">
+                                            {{ tool.intelligence.pricing_smb_range }}
+                                        </p>
+                                    </div>
+
+                                    <!-- Enterprise Pricing -->
+                                    <div v-if="tool.intelligence.pricing_enterprise_cost" class="bg-background/50 rounded-lg p-4">
+                                        <p class="text-sm text-muted-foreground mb-2">Enterprise (500+ users)</p>
+                                        <p class="text-3xl font-bold text-primary mb-1">
+                                            {{ formatPricingComplexity(tool.intelligence.pricing_enterprise_cost) }}
+                                        </p>
+                                        <p v-if="tool.intelligence.pricing_enterprise_range" class="text-sm text-foreground">
+                                            {{ tool.intelligence.pricing_enterprise_range }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div v-if="tool.intelligence.pricing_cost_notes" class="mt-4 pt-4 border-t border-foreground/10">
+                                    <p class="text-sm text-muted-foreground mb-1">ℹ️ Pricing Notes</p>
+                                    <p class="text-sm text-foreground">{{ tool.intelligence.pricing_cost_notes }}</p>
                                 </div>
                             </div>
 

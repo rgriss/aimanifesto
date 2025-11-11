@@ -521,6 +521,41 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               enum: ['< $1M', '$1M-$10M', '$10M-$50M', '$50M-$100M', '$100M-$500M', '$500M-$1B', '$1B+'],
               description: 'Estimated annual revenue range',
             },
+            // Pricing Complexity
+            pricing_individual_cost: {
+              type: 'integer',
+              minimum: 1,
+              maximum: 5,
+              description: 'Pricing complexity for individuals (1-5, like restaurant dollar signs). 1=$0-20/mo, 2=$20-50/mo, 3=$50-100/mo, 4=$100-250/mo, 5=$250+/mo',
+            },
+            pricing_smb_cost: {
+              type: 'integer',
+              minimum: 1,
+              maximum: 5,
+              description: 'Pricing complexity for SMB 10-50 users (1-5). 1=<$1K/mo, 2=$1K-5K/mo, 3=$5K-15K/mo, 4=$15K-40K/mo, 5=$40K+/mo',
+            },
+            pricing_enterprise_cost: {
+              type: 'integer',
+              minimum: 1,
+              maximum: 5,
+              description: 'Pricing complexity for Enterprise 500+ users (1-5). 1=<$50K/yr, 2=$50K-150K/yr, 3=$150K-500K/yr, 4=$500K-1M/yr, 5=$1M+/yr',
+            },
+            pricing_cost_notes: {
+              type: 'string',
+              description: 'Notes about pricing structure, tiers, and complexity',
+            },
+            pricing_individual_range: {
+              type: 'string',
+              description: 'Typical spend range for individuals (e.g., "$12-15/month")',
+            },
+            pricing_smb_range: {
+              type: 'string',
+              description: 'Typical spend range for SMB (e.g., "$600-2,250/month for 10-50 users")',
+            },
+            pricing_enterprise_range: {
+              type: 'string',
+              description: 'Typical spend range for Enterprise (e.g., "$270K+/year for 500+ users")',
+            },
             // Competitive Intelligence
             key_differentiators: {
               type: 'array',

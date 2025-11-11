@@ -155,6 +155,22 @@ export interface UpdateToolIntelligenceRequest {
     /** Estimated annual revenue range */
     estimated_annual_revenue?: EstimatedAnnualRevenue | null;
 
+    // Pricing Complexity (1-5 scale, like restaurant dollar signs)
+    /** Pricing complexity for individuals (1-5) */
+    pricing_individual_cost?: number | null;
+    /** Pricing complexity for SMB 10-50 users (1-5) */
+    pricing_smb_cost?: number | null;
+    /** Pricing complexity for Enterprise 500+ users (1-5) */
+    pricing_enterprise_cost?: number | null;
+    /** Notes about pricing structure and complexity */
+    pricing_cost_notes?: string | null;
+    /** Typical spend range for individuals */
+    pricing_individual_range?: string | null;
+    /** Typical spend range for SMB */
+    pricing_smb_range?: string | null;
+    /** Typical spend range for Enterprise */
+    pricing_enterprise_range?: string | null;
+
     // Competitive Intelligence
     /** Array of key differentiators */
     key_differentiators?: string[] | null;
@@ -211,6 +227,15 @@ export interface ToolIntelligence {
     latest_funding_amount: string | null;
     latest_funding_date: string | null;
     estimated_annual_revenue: EstimatedAnnualRevenue | null;
+
+    // Pricing Complexity
+    pricing_individual_cost: number | null;
+    pricing_smb_cost: number | null;
+    pricing_enterprise_cost: number | null;
+    pricing_cost_notes: string | null;
+    pricing_individual_range: string | null;
+    pricing_smb_range: string | null;
+    pricing_enterprise_range: string | null;
 
     // Competitive Intelligence
     key_differentiators: string[] | null;

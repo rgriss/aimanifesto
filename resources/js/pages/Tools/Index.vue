@@ -103,9 +103,9 @@ const applyFilters = () => {
                             v-for="tool in tools.data"
                             :key="tool.id"
                             :href="`/tools/${tool.slug}`"
-                            class="group"
+                            class="group h-full flex"
                         >
-                            <Card>
+                            <Card class="flex-1 flex flex-col">
                                 <div class="flex items-start justify-between mb-3">
                                     <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors">
                                         {{ tool.name }}
@@ -119,7 +119,7 @@ const applyFilters = () => {
                                         </Badge>
                                     </div>
                                 </div>
-                                <p class="text-muted-foreground mb-4 text-sm">
+                                <p class="text-muted-foreground mb-4 text-sm flex-grow">
                                     {{ tool.description }}
                                 </p>
 
@@ -133,17 +133,19 @@ const applyFilters = () => {
                                     />
                                 </div>
 
-                                <div class="flex items-center justify-between text-sm mb-2">
-                                    <span class="text-muted-foreground">
-                                        {{ tool.category?.name }}
-                                    </span>
-                                    <Badge v-if="tool.ryan_rating" variant="success" size="sm">
-                                        ⭐ {{ tool.ryan_rating }}/10
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-sm mb-2">
+                                        <span class="text-muted-foreground">
+                                            {{ tool.category?.name }}
+                                        </span>
+                                        <Badge v-if="tool.ryan_rating" variant="success" size="sm">
+                                            ⭐ {{ tool.ryan_rating }}/10
+                                        </Badge>
+                                    </div>
+                                    <Badge variant="default" size="sm" class="capitalize">
+                                        {{ tool.pricing_model }}
                                     </Badge>
                                 </div>
-                                <Badge variant="default" size="sm" class="capitalize">
-                                    {{ tool.pricing_model }}
-                                </Badge>
                             </Card>
                         </Link>
                     </div>

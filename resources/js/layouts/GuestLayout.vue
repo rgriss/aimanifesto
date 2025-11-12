@@ -28,9 +28,11 @@ const user = computed(() => page.props.auth?.user);
                     <div class="flex">
                         <Link
                             href="/"
-                            class="flex items-center text-2xl font-bold text-foreground hover:text-foreground/70"
+                            class="flex items-center gap-3 text-2xl font-bold text-foreground hover:text-foreground/70"
                         >
-                            AI Manifesto
+                            <img src="/images/wave-logo-blue.png" alt="AI Manifesto" class="h-8 w-auto dark:hidden" />
+                            <img src="/images/wave-logo-white.png" alt="AI Manifesto" class="h-8 w-auto hidden dark:block" />
+                            <span>AI Manifesto</span>
                         </Link>
                     </div>
                     <div class="flex items-center space-x-8">

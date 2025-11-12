@@ -5,6 +5,19 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.9] - 2025-11-12
+
+### Added
+- **Navigation Bar Logo**: Added Wave logo to main navigation beside "AI Manifesto" text
+  - Theme-aware display (blue in light mode, white in dark mode)
+  - Appears on all public pages using GuestLayout
+  - 32px height with auto width to maintain aspect ratio
+  - Consistent with brand identity across the application
+
+### Technical
+- Updated GuestLayout.vue navigation header
+- Added dual-image approach with theme-responsive CSS classes
+
 ## [0.18.8] - 2025-11-12
 
 ### Changed

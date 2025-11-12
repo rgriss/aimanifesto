@@ -25,19 +25,21 @@ defineProps({
                         v-for="category in categories"
                         :key="category.id"
                         :href="`/categories/${category.slug}`"
-                        class="group"
+                        class="group h-full flex"
                     >
-                        <Card>
+                        <Card class="flex-1 flex flex-col">
                             <div class="text-6xl mb-4">{{ category.icon }}</div>
                             <h2 class="text-2xl font-bold mb-2 text-foreground group-hover:text-foreground/70 transition-colors">
                                 {{ category.name }}
                             </h2>
-                            <p class="text-muted-foreground mb-4">
+                            <p class="text-muted-foreground mb-4 flex-grow">
                                 {{ category.description }}
                             </p>
-                            <Badge variant="default">
-                                {{ category.active_tools_count }} tools
-                            </Badge>
+                            <div class="mt-auto">
+                                <Badge variant="default">
+                                    {{ category.active_tools_count }} tools
+                                </Badge>
+                            </div>
                         </Card>
                     </Link>
                 </div>

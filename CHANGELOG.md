@@ -5,6 +5,27 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.33.0] - 2025-11-12
+
+### Added
+- **Switch Component**: New toggle switch UI component for better boolean controls
+  - Created Switch.vue using Reka UI's SwitchRoot and SwitchThumb
+  - Smooth slide animation with proper focus states and accessibility
+  - Follows minimalist black/white design system
+
+### Changed
+- **Admin Tool Forms - Replace Checkboxes with Switches**: Better UX for boolean states
+  - Replaced Featured and Active checkboxes with toggle switches
+  - Label positioned on left, switch on right for better visual hierarchy
+  - Fixes reactivity issues that plagued checkbox implementation
+  - More intuitive on/off visual feedback with slide animation
+
+### Technical
+- Switch component uses v-model:checked with Reka UI SwitchRoot
+- Simpler boolean coercion with !! operator instead of complex comparisons
+- data-state attribute properly drives visual state (unchecked/checked)
+- Switch thumb translates 0→5 (translate-x-0 → translate-x-5) on state change
+
 ## [0.32.5] - 2025-11-12
 
 ### Fixed

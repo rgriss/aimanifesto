@@ -216,7 +216,7 @@ const navItems = [
                                         :key="item.href"
                                         :href="item.href"
                                         @click="mobileMenuOpen = false"
-                                        class="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                                        class="text-lg font-medium text-foreground hover:text-primary transition-colors pl-4"
                                     >
                                         {{ item.label }}
                                     </Link>
@@ -225,7 +225,7 @@ const navItems = [
                                     <div class="border-t border-border my-4"></div>
 
                                     <!-- Auth Actions for non-logged-in users -->
-                                    <div v-if="!user" class="flex flex-col space-y-2">
+                                    <div v-if="!user" class="flex flex-col space-y-2 px-4">
                                         <Link href="/login" @click="mobileMenuOpen = false">
                                             <Button variant="ghost" class="w-full justify-start" size="lg">
                                                 Log In
@@ -234,6 +234,22 @@ const navItems = [
                                         <Link href="/register" @click="mobileMenuOpen = false">
                                             <Button class="w-full justify-start" size="lg">
                                                 Sign the Manifesto
+                                            </Button>
+                                        </Link>
+                                    </div>
+
+                                    <!-- Logout for logged-in users -->
+                                    <div v-else class="px-4">
+                                        <Link
+                                            href="/logout"
+                                            method="post"
+                                            as="button"
+                                            @click="mobileMenuOpen = false"
+                                            class="w-full"
+                                        >
+                                            <Button variant="destructive" class="w-full justify-start" size="lg">
+                                                <LogOut class="mr-2 h-4 w-4" />
+                                                Log Out
                                             </Button>
                                         </Link>
                                     </div>

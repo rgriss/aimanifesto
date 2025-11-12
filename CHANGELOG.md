@@ -5,6 +5,21 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.5] - 2025-11-12
+
+### Fixed
+- **Card Heights on Home Page**: All card sections now have equal heights within each row
+  - "What is AI Manifesto?" section: 3 informational cards now have consistent heights
+  - "Explore by Category" section: Category cards now stretch to equal heights
+  - Matches the professional appearance of other card sections on the page
+  - Improved visual consistency across all home page sections
+
+### Technical
+- Added `h-full` classes to Link wrappers in "What is AI Manifesto?" section
+- Added flexbox layout to category cards (h-full flex, flex-1 flex flex-col)
+- Added `flex-grow` to category names and `mt-auto` to badges for bottom alignment
+- Consistent flexbox pattern applied across all card sections
+
 ## [0.18.4] - 2025-11-12
 
 ### Fixed

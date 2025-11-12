@@ -81,8 +81,8 @@ const scopes = [
                                 alongside principles for using AI responsibly.
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left">
-                                <Link href="/tools" class="group block">
-                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
+                                <Link href="/tools" class="group block h-full">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
                                         <div class="text-3xl flex-shrink-0">🔍</div>
                                         <div>
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
@@ -98,8 +98,8 @@ const scopes = [
                                         </div>
                                     </div>
                                 </Link>
-                                <a href="#core-values" class="group block">
-                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
+                                <a href="#core-values" class="group block h-full">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
                                         <div class="text-3xl flex-shrink-0">✨</div>
                                         <div>
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
@@ -115,8 +115,8 @@ const scopes = [
                                         </div>
                                     </div>
                                 </a>
-                                <Link href="/tools" class="group block">
-                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all">
+                                <Link href="/tools" class="group block h-full">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
                                         <div class="text-3xl flex-shrink-0">🎯</div>
                                         <div>
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
@@ -417,16 +417,18 @@ const scopes = [
                                 v-for="category in categories.slice(0, 6)"
                                 :key="category.id"
                                 :href="`/categories/${category.slug}`"
-                                class="group"
+                                class="group h-full flex"
                             >
-                                <Card class="text-center hover:shadow-lg transition-shadow">
+                                <Card class="text-center hover:shadow-lg transition-shadow flex-1 flex flex-col">
                                     <div class="text-3xl sm:text-4xl mb-2">{{ category.icon }}</div>
-                                    <h4 class="text-xs sm:text-sm font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-1 leading-tight px-1">
+                                    <h4 class="text-xs sm:text-sm font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-1 leading-tight px-1 flex-grow">
                                         {{ category.name }}
                                     </h4>
-                                    <Badge variant="default" size="sm">
-                                        {{ category.active_tools_count }}
-                                    </Badge>
+                                    <div class="mt-auto">
+                                        <Badge variant="default" size="sm">
+                                            {{ category.active_tools_count }}
+                                        </Badge>
+                                    </div>
                                 </Card>
                             </Link>
                         </div>

@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHero, Card, Badge, SectionHeading } from '@/components';
+import { PageHero, Card, Badge, SectionHeading, ToolCard } from '@/components';
 
 defineProps({
     category: Object,
@@ -45,29 +45,12 @@ defineProps({
                         :subtitle="`Explore ${toolCount} curated tools`"
                     />
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <Link
+                        <ToolCard
                             v-for="tool in category.active_tools"
                             :key="tool.id"
-                            :href="`/tools/${tool.slug}`"
-                            class="group h-full flex"
-                        >
-                            <Card class="flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-2">
-                                    {{ tool.name }}
-                                </h3>
-                                <p class="text-muted-foreground mb-4 text-sm flex-grow">
-                                    {{ tool.description }}
-                                </p>
-                                <div class="flex items-center justify-between mt-auto">
-                                    <Badge variant="default" size="sm" class="capitalize">
-                                        {{ tool.pricing_model }}
-                                    </Badge>
-                                    <Badge v-if="tool.ryan_rating" variant="success" size="sm">
-                                        ⭐ {{ tool.ryan_rating }}/10
-                                    </Badge>
-                                </div>
-                            </Card>
-                        </Link>
+                            :tool="tool"
+                            :show-category="false"
+                        />
                     </div>
                 </div>
 

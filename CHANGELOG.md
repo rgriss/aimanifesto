@@ -5,6 +5,19 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.31.2] - 2025-11-12
+
+### Changed
+- **Categories Show Page**: Now uses ToolCard component for consistency
+  - Replaced inline card markup with ToolCard component
+  - Configured with voting and momentum enabled, category display hidden
+  - Completes ToolCard rollout across all tool listing pages
+
+### Improved
+- Full application consistency - all tool cards now use the same component
+- Categories Show page now includes voting buttons and momentum indicators
+- Easier to maintain and update tool card design site-wide
+
 ## [0.31.1] - 2025-11-12
 
 ### Fixed

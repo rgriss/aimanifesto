@@ -5,6 +5,14 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.32.1] - 2025-11-12
+
+### Added
+- **View All Categories Button**: Added button below category preview grid
+  - Shows dynamic count: "View All 17 Categories →"
+  - Secondary button styling to complement main CTA
+  - Prevents misleading users by showing only 6 of 17 categories
+
 ## [0.32.0] - 2025-11-12
 
 ### Changed

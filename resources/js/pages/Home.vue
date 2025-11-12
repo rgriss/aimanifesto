@@ -220,7 +220,7 @@ const scopes = [
                             <div class="text-center mb-6">
                                 <p class="text-sm text-muted-foreground/70 italic">or browse by category</p>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+                            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-6">
                                 <Link
                                     v-for="category in categories.slice(0, 6)"
                                     :key="category.id"
@@ -236,6 +236,14 @@ const scopes = [
                                             {{ category.active_tools_count }}
                                         </Badge>
                                     </div>
+                                </Link>
+                            </div>
+                            <div class="text-center">
+                                <Link
+                                    href="/categories"
+                                    class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-6 rounded-lg transition-colors text-sm"
+                                >
+                                    View All {{ categories.length }} Categories →
                                 </Link>
                             </div>
                         </div>

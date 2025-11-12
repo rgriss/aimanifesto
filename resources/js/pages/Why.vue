@@ -55,7 +55,7 @@ const howItWorks = [
 </script>
 
 <template>
-    <Head title="Why This Manifesto Matters - AI Manifesto" />
+    <Head title="Why This Manifesto Matters - The AI Manifesto" />
 
     <GuestLayout>
         <div class="py-12">

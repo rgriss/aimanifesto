@@ -30,9 +30,9 @@ const user = computed(() => page.props.auth?.user);
                             href="/"
                             class="flex items-center gap-3 text-2xl font-bold text-foreground hover:text-foreground/70"
                         >
-                            <img src="/images/wave-logo-blue.png" alt="AI Manifesto" class="h-8 w-auto dark:hidden" />
-                            <img src="/images/wave-logo-white.png" alt="AI Manifesto" class="h-8 w-auto hidden dark:block" />
-                            <span>AI Manifesto</span>
+                            <img src="/images/wave-logo-blue.png" alt="The AI Manifesto" class="h-8 w-auto dark:hidden" />
+                            <img src="/images/wave-logo-white.png" alt="The AI Manifesto" class="h-8 w-auto hidden dark:block" />
+                            <span>The AI Manifesto</span>
                         </Link>
                     </div>
                     <div class="flex items-center space-x-8">
@@ -139,7 +139,7 @@ const user = computed(() => page.props.auth?.user);
 
                     <!-- Copyright - Center/Right -->
                     <p class="text-muted-foreground text-sm flex-1 text-center sm:text-right">
-                        AI Manifesto © 2025 - Curated by Ryan Grissinger
+                        The AI Manifesto © 2025 - Curated by Ryan Grissinger
                     </p>
                 </div>
             </div>

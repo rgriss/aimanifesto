@@ -118,7 +118,7 @@ const hasPricingComplexity = computed(() => {
 </script>
 
 <template>
-    <Head :title="`${tool.name} - AI Manifesto`" />
+    <Head :title="`${tool.name} - The AI Manifesto`" />
 
     <GuestLayout>
         <div class="py-12">

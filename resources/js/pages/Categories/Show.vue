@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-    <Head :title="`${category.name} - AI Manifesto`" />
+    <Head :title="`${category.name} - The AI Manifesto`" />
 
     <GuestLayout>
         <div class="py-12">

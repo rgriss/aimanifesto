@@ -108,7 +108,7 @@ const getTypeColor = (type: string): string => {
                     />
                     <div class="prose prose-slate dark:prose-invert max-w-none">
                         <p class="text-foreground">
-                            This page documents the complete schema for the <strong>Tool</strong> model in the AI Manifesto directory.
+                            This page documents the complete schema for the <strong>Tool</strong> model in The AI Manifesto directory.
                             Use this reference when:
                         </p>
                         <ul class="text-foreground">

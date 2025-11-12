@@ -21,8 +21,8 @@ const breadcrumbs: BreadcrumbItem[] = [
         <div class="flex h-full flex-1 flex-col gap-6 overflow-x-auto p-6">
             <!-- Page Header -->
             <div class="flex items-start gap-6">
-                <img src="/images/wave-logo-blue.png" alt="AI Manifesto" class="h-16 w-auto flex-shrink-0 dark:hidden" />
-                <img src="/images/wave-logo-white.png" alt="AI Manifesto" class="h-16 w-auto flex-shrink-0 hidden dark:block" />
+                <img src="/images/wave-logo-blue.png" alt="The AI Manifesto" class="h-16 w-auto flex-shrink-0 dark:hidden" />
+                <img src="/images/wave-logo-white.png" alt="The AI Manifesto" class="h-16 w-auto flex-shrink-0 hidden dark:block" />
                 <div>
                     <h1 class="text-3xl font-bold tracking-tight flex items-center gap-3">
                         <Shield class="h-8 w-8 text-primary" />

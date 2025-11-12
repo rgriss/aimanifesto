@@ -5,10 +5,29 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.0] - 2025-11-12
+
+### Changed
+- **Brand Name Update**: Updated all instances of "AI Manifesto" to "The AI Manifesto"
+  - Navigation bar now displays "The AI Manifesto"
+  - Page titles updated across all pages
+  - Meta tags (Open Graph, Twitter cards) updated
+  - Footer copyright updated
+  - Section headings updated ("What is The AI Manifesto?", "Who is The AI Manifesto for?")
+  - Home page hero updated to "The Artificial Intelligence Manifesto"
+  - Admin dashboard references updated
+  - All alt text for logos updated
+
+### Technical
+- Updated 15+ Vue components and pages
+- Updated app.blade.php meta tags
+- Updated GuestLayout navigation and footer
+- Consistent "The AI Manifesto" branding throughout application
+
 ## [0.18.9] - 2025-11-12
 
 ### Added
-- **Navigation Bar Logo**: Added Wave logo to main navigation beside "AI Manifesto" text
+- **Navigation Bar Logo**: Added Wave logo to main navigation beside "The AI Manifesto" text
   - Theme-aware display (blue in light mode, white in dark mode)
   - Appears on all public pages using GuestLayout
   - 32px height with auto width to maintain aspect ratio

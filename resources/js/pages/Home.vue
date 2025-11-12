@@ -54,9 +54,9 @@ const scopes = [
                 <!-- Manifesto Hero -->
                 <div class="bg-background border-2 border-border rounded-lg shadow-lg p-6 sm:p-8 mb-8 text-center">
                     <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight flex items-center justify-center gap-3 md:gap-4 text-foreground">
-                        <img src="/images/wave-logo-blue.png" alt="AI Manifesto" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0 dark:hidden" />
-                        <img src="/images/wave-logo-white.png" alt="AI Manifesto" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0 hidden dark:block" />
-                        <span>Artificial Intelligence Manifesto</span>
+                        <img src="/images/wave-logo-blue.png" alt="The AI Manifesto" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0 dark:hidden" />
+                        <img src="/images/wave-logo-white.png" alt="The AI Manifesto" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0 hidden dark:block" />
+                        <span>The Artificial Intelligence Manifesto</span>
                     </h1>
                     <p class="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-3 md:mb-4 px-2">
                         A framework for responsible AI development and deployment
@@ -68,15 +68,15 @@ const scopes = [
                     </div>
                 </div>
 
-                <!-- What is AI Manifesto? -->
+                <!-- What is The AI Manifesto? -->
                 <div class="mb-12 md:mb-16">
                     <Card class="bg-background border border-border">
                         <div class="text-center max-w-4xl mx-auto">
                             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-                                What is AI Manifesto?
+                                What is The AI Manifesto?
                             </h2>
                             <p class="text-base sm:text-lg text-muted-foreground mb-6 leading-relaxed">
-                                AI Manifesto is your trusted guide to navigating the world of artificial intelligence.
+                                The AI Manifesto is your trusted guide to navigating the world of artificial intelligence.
                                 We believe AI should enhance human capabilities, not replace them. This site helps you discover
                                 and understand AI software, apps, and services through our curated directory with honest reviews,
                                 alongside principles for using AI responsibly.
@@ -138,9 +138,9 @@ const scopes = [
                     </Card>
                 </div>
 
-                <!-- Who is AI Manifesto for? -->
+                <!-- Who is The AI Manifesto for? -->
                 <div class="mb-12 md:mb-16">
-                    <SectionHeading title="Who is AI Manifesto for?">
+                    <SectionHeading title="Who is The AI Manifesto for?">
                         <template #subtitle>
                             <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
                                 Whether you're building with AI or leading teams through AI transformation, we're here to help.
@@ -539,7 +539,7 @@ const scopes = [
                     <!-- Copyright -->
                     <div class="text-center pt-8 border-t border-border">
                         <p class="text-sm text-muted-foreground">
-                            © {{ new Date().getFullYear() }} AI Manifesto. All rights reserved.
+                            © {{ new Date().getFullYear() }} The AI Manifesto. All rights reserved.
                         </p>
                     </div>
                 </div>

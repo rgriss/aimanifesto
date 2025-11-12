@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Categories - AI Manifesto" />
+    <Head title="Categories - The AI Manifesto" />
 
     <GuestLayout>
         <div class="py-12">

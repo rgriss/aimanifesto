@@ -28,7 +28,7 @@ const applyFilters = () => {
 </script>
 
 <template>
-    <Head title="AI Tools Directory - AI Manifesto" />
+    <Head title="AI Tools Directory - The AI Manifesto" />
 
     <GuestLayout>
         <div class="py-12">

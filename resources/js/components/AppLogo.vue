@@ -4,18 +4,18 @@
     >
         <img
             src="/images/wave-logo-blue.png"
-            alt="AI Manifesto"
+            alt="The AI Manifesto"
             class="size-8 dark:hidden"
         />
         <img
             src="/images/wave-logo-white.png"
-            alt="AI Manifesto"
+            alt="The AI Manifesto"
             class="size-8 hidden dark:block"
         />
     </div>
     <div class="ml-1 grid flex-1 text-left text-sm">
         <span class="mb-0.5 truncate leading-tight font-semibold"
-            >AI Manifesto</span
+            >The AI Manifesto</span
         >
     </div>
 </template>

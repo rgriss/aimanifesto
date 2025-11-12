@@ -129,7 +129,7 @@ const copyToClipboard = (text) => {
 </script>
 
 <template>
-    <Head title="Brand Guidelines - AI Manifesto" />
+    <Head title="Brand Guidelines - The AI Manifesto" />
 
     <GuestLayout>
         <div class="py-12">
@@ -137,10 +137,10 @@ const copyToClipboard = (text) => {
                 <!-- Header -->
                 <div class="bg-card border-2 border-border rounded-lg shadow-lg p-8 mb-8">
                     <div class="flex items-center gap-6 mb-6">
-                        <img src="/images/wave-logo-blue.png" alt="AI Manifesto Logo" class="h-20 w-auto" />
+                        <img src="/images/wave-logo-blue.png" alt="The AI Manifesto Logo" class="h-20 w-auto" />
                         <div>
                             <h1 class="text-5xl font-bold text-foreground">
-                                AI Manifesto
+                                The AI Manifesto
                             </h1>
                             <p class="text-xl text-muted-foreground font-semibold">
                                 Brand Guidelines

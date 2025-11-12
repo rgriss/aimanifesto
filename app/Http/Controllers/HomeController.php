@@ -23,9 +23,12 @@ class HomeController extends Controller
             ->withCount('activeTools')
             ->get();
 
+        $totalToolCount = Tool::active()->count();
+
         return Inertia::render('Home', [
             'featuredTools' => $featuredTools,
             'categories' => $categories,
+            'totalToolCount' => $totalToolCount,
         ]);
     }
 }

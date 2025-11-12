@@ -13,6 +13,10 @@ defineProps({
         type: Array,
         default: () => []
     },
+    totalToolCount: {
+        type: Number,
+        default: 0
+    },
 });
 
 // Get momentum icon and styling based on score
@@ -254,7 +258,7 @@ const scopes = [
                                 href="/tools"
                                 class="inline-block bg-foreground text-background hover:bg-foreground/90 font-bold py-3 px-8 rounded-lg transition-all text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                             >
-                                Browse All {{ featuredTools.length > 0 ? '130+' : '' }} Tools →
+                                Browse All {{ totalToolCount }} Tools →
                             </Link>
                         </div>
                     </div>

@@ -5,6 +5,14 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.32.2] - 2025-11-12
+
+### Fixed
+- **Homepage Tool Count**: Display actual tool count instead of hardcoded "130+"
+  - HomeController now passes `totalToolCount` to homepage
+  - Button now shows dynamic count: "Browse All 137 Tools →"
+  - Removed misleading hardcoded number
+
 ## [0.32.1] - 2025-11-12
 
 ### Added

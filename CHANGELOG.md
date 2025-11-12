@@ -5,6 +5,22 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.30.0] - 2025-11-12
+
+### Added
+- **Hacker News Sort Toggle**: Added tabs to switch between "Popular" and "Recent" discussions
+  - Popular tab shows most relevant/discussed threads (default)
+  - Recent tab shows newest discussions sorted by date
+  - Recent view includes quality filter (minimum 5 points) to avoid spam
+  - Results cached per tab for better performance - no refetching when switching
+  - Each tab has independent loading states
+  - Icons for visual clarity (TrendingUp for Popular, Clock for Recent)
+
+### Technical
+- Uses HN Algolia's `search_by_date` endpoint for Recent sorting
+- Implements lazy loading - only fetches Recent data when user clicks tab
+- Responsive tab UI using existing Tabs component
+
 ## [0.29.7] - 2025-11-12
 
 ### Changed

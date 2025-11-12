@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'version' => '0.24.3',
+    'version' => '0.25.0',
 
     /*
     |--------------------------------------------------------------------------
@@ -55,6 +55,20 @@ return [
     'admin_email' => env('ADMIN_EMAIL', 'admin@aimanifesto.net'),
     'admin_password' => env('ADMIN_PASSWORD', 'password'),
     'admin_name' => env('ADMIN_NAME', 'Admin User'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Emergency Database Seeding
+    |--------------------------------------------------------------------------
+    |
+    | Enable emergency database seeding via the footer (10 clicks on version).
+    | This is a convenience mechanism for local development to quickly seed
+    | the database with sample data without running artisan commands.
+    | Recommended: only enable in local/staging environments.
+    |
+    */
+
+    'emergency_seed_enabled' => env('EMERGENCY_SEED_ENABLED', env('APP_ENV') === 'local'),
 
     /*
     |--------------------------------------------------------------------------

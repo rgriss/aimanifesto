@@ -21,6 +21,8 @@ import {
 import { getInitials } from '@/composables/useInitials';
 import { User, Settings, LogOut, LayoutDashboard, Shield, Menu } from 'lucide-vue-next';
 import ThemeToggle from '@/components/ThemeToggle.vue';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import axios from 'axios';
 
 const page = usePage();
 const user = computed(() => page.props.auth?.user);
@@ -32,6 +34,52 @@ const navItems = [
     // Future items can be added here:
     // { label: 'Learn', href: '/learn' },
 ];
+
+// Emergency seed mechanism
+const seedClickCount = ref(0);
+const seedMessage = ref('');
+const seedMessageType = ref('info'); // 'info' or 'error' or 'success'
+
+const handleVersionClick = async () => {
+    seedClickCount.value++;
+
+    if (seedClickCount.value === 10) {
+        seedClickCount.value = 0;
+        seedMessage.value = 'Seeding database...';
+        seedMessageType.value = 'info';
+
+        try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            const response = await axios.post('/emergency-seed', {}, {
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+            });
+
+            seedMessage.value = response.data.message;
+            seedMessageType.value = 'success';
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                seedMessage.value = '';
+            }, 5000);
+        } catch (error) {
+            if (error.response?.status === 404) {
+                seedMessage.value = 'Emergency seeding is not available in this environment.';
+            } else if (error.response?.status === 429) {
+                seedMessage.value = error.response.data.message || 'Too many attempts. Please try again later.';
+            } else {
+                seedMessage.value = error.response?.data?.message || 'Failed to seed database. Check console for details.';
+            }
+            seedMessageType.value = 'error';
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                seedMessage.value = '';
+            }, 5000);
+        }
+    }
+};
 </script>
 
 <template>
@@ -268,15 +316,40 @@ const navItems = [
 
         <!-- Footer -->
         <footer class="bg-card border-t border-border mt-12">
+            <!-- Emergency Seed Alert -->
+            <Transition
+                enter-active-class="transition-all duration-300 ease-out"
+                enter-from-class="opacity-0 -translate-y-2"
+                enter-to-class="opacity-100 translate-y-0"
+                leave-active-class="transition-all duration-200 ease-in"
+                leave-from-class="opacity-100 translate-y-0"
+                leave-to-class="opacity-0 -translate-y-2"
+            >
+                <div v-if="seedMessage" class="fixed top-6 left-1/2 -translate-x-1/2 w-full max-w-md px-6 md:px-0 z-50">
+                    <Alert :variant="seedMessageType === 'error' ? 'destructive' : 'default'">
+                        <AlertDescription>{{ seedMessage }}</AlertDescription>
+                    </Alert>
+                </div>
+            </Transition>
+
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div class="flex items-center justify-between">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <!-- Theme Toggle - Far Left -->
                     <ThemeToggle />
 
-                    <!-- Copyright - Center/Right -->
-                    <p class="text-muted-foreground text-sm flex-1 text-center sm:text-right">
-                        The AI Manifesto © 2025 - Curated by Ryan Grissinger
-                    </p>
+                    <!-- Copyright & Version - Center/Right -->
+                    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 flex-1 justify-center sm:justify-end">
+                        <p class="text-muted-foreground text-sm text-center sm:text-right">
+                            The AI Manifesto © 2025 - Curated by Ryan Grissinger
+                        </p>
+                        <button
+                            @click="handleVersionClick"
+                            class="text-muted-foreground/50 text-xs hover:text-muted-foreground transition-colors cursor-pointer"
+                            title="Click 10 times to seed database (local only)"
+                        >
+                            v{{ $page.props.manifestoVersion }}
+                        </button>
+                    </div>
                 </div>
             </div>
         </footer>

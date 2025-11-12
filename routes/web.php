@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\DocsController;
+use App\Http\Controllers\EmergencySeedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\WhyController;
@@ -12,6 +13,11 @@ use Inertia\Inertia;
 
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Emergency database seeding (local development only)
+Route::post('/emergency-seed', [EmergencySeedController::class, 'seed'])
+    ->middleware('throttle:5,1')
+    ->name('emergency.seed');
 
 Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');
 Route::get('/tools/{tool:slug}', [ToolController::class, 'show'])->name('tools.show');

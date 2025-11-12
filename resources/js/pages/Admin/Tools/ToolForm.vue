@@ -35,6 +35,8 @@ interface FormData {
     is_featured: boolean;
     is_active: boolean;
     first_reviewed_at: string;
+    upvotes: number;
+    downvotes: number;
 }
 
 interface Props {
@@ -443,6 +445,46 @@ const handleScreenshotUpload = (event: Event) => {
                 <div class="flex items-center space-x-2">
                     <Checkbox id="is_active" v-model:checked="form.is_active" />
                     <Label for="is_active" class="cursor-pointer">Active (visible on public site)</Label>
+                </div>
+            </CardContent>
+        </Card>
+
+        <!-- Vote Counts -->
+        <Card>
+            <CardHeader>
+                <CardTitle>Vote Counts (Admin Override)</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-4">
+                <p class="text-sm text-muted-foreground">
+                    Manually adjust vote counts if needed to moderate voting activity.
+                </p>
+                <div class="grid gap-4 md:grid-cols-2">
+                    <div class="space-y-2">
+                        <Label for="upvotes">Upvotes</Label>
+                        <Input
+                            id="upvotes"
+                            v-model.number="form.upvotes"
+                            type="number"
+                            min="0"
+                            placeholder="0"
+                        />
+                        <p v-if="form.errors.upvotes" class="text-sm text-destructive">{{ form.errors.upvotes }}</p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <Label for="downvotes">Downvotes</Label>
+                        <Input
+                            id="downvotes"
+                            v-model.number="form.downvotes"
+                            type="number"
+                            min="0"
+                            placeholder="0"
+                        />
+                        <p v-if="form.errors.downvotes" class="text-sm text-destructive">{{ form.errors.downvotes }}</p>
+                    </div>
+                </div>
+                <div class="text-sm text-muted-foreground">
+                    Net Score: {{ form.upvotes - form.downvotes }}
                 </div>
             </CardContent>
         </Card>

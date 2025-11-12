@@ -5,6 +5,22 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.1] - 2025-11-12
+
+### Added
+- **Admin Vote Moderation**: Administrators can now manually edit vote counts
+  - New "Vote Counts (Admin Override)" section in tool edit form
+  - Edit upvotes and downvotes separately
+  - View calculated net score in real-time
+  - Useful for moderating vote manipulation or adjusting counts
+  - Available at `/admin/tools/{slug}/edit`
+
+### Technical
+- Added `upvotes` and `downvotes` fields to admin tool edit validation
+- Updated TypeScript interfaces in Edit.vue and ToolForm.vue
+- New Card section in ToolForm with number inputs (min: 0)
+- Backend validation ensures non-negative integer values
+
 ## [0.18.0] - 2025-11-12
 
 ### Added

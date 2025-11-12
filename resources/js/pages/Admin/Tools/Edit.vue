@@ -32,6 +32,8 @@ interface Tool {
     is_featured: boolean;
     is_active: boolean;
     first_reviewed_at: string | null;
+    upvotes: number;
+    downvotes: number;
 }
 
 interface Props {
@@ -70,6 +72,8 @@ const form = useForm({
     is_featured: props.tool.is_featured,
     is_active: props.tool.is_active,
     first_reviewed_at: props.tool.first_reviewed_at || '',
+    upvotes: props.tool.upvotes,
+    downvotes: props.tool.downvotes,
 });
 
 const submit = () => {

@@ -153,6 +153,8 @@ class ToolController extends Controller
             'is_featured' => ['boolean'],
             'is_active' => ['boolean'],
             'first_reviewed_at' => ['nullable', 'date'],
+            'upvotes' => ['nullable', 'integer', 'min:0'],
+            'downvotes' => ['nullable', 'integer', 'min:0'],
         ]);
 
         // Handle screenshot file upload

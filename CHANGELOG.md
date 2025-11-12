@@ -5,6 +5,20 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.32.5] - 2025-11-12
+
+### Fixed
+- **Admin Tool Edit - Checkbox Binding**: Fixed checkbox reactivity with Inertia forms
+  - Changed from v-model:checked to explicit :checked binding with @update:checked handler
+  - Added explicit boolean comparison (=== true || === 1) for form initialization
+  - Works around Inertia form proxy reactivity issues with Reka UI Checkbox component
+  - Fixes data-state="unchecked" display bug despite correct underlying values
+
+### Technical
+- Inertia's useForm() wrapper interferes with v-model reactivity on Reka UI Checkbox
+- Explicit event handlers bypass the reactivity proxy issue
+- Reka UI CheckboxRoot uses data-state attribute for visual styling, not HTML checked
+
 ## [0.32.4] - 2025-11-12
 
 ### Fixed

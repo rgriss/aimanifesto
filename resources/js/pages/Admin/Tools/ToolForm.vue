@@ -438,12 +438,20 @@ const handleScreenshotUpload = (event: Event) => {
             </CardHeader>
             <CardContent class="space-y-4">
                 <div class="flex items-center space-x-2">
-                    <Checkbox id="is_featured" v-model:checked="form.is_featured" />
+                    <Checkbox
+                        id="is_featured"
+                        :checked="form.is_featured"
+                        @update:checked="(val) => form.is_featured = val"
+                    />
                     <Label for="is_featured" class="cursor-pointer">Featured (show on homepage)</Label>
                 </div>
 
                 <div class="flex items-center space-x-2">
-                    <Checkbox id="is_active" v-model:checked="form.is_active" />
+                    <Checkbox
+                        id="is_active"
+                        :checked="form.is_active"
+                        @update:checked="(val) => form.is_active = val"
+                    />
                     <Label for="is_active" class="cursor-pointer">Active (visible on public site)</Label>
                 </div>
             </CardContent>

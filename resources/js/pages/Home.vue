@@ -222,7 +222,7 @@ const scopes = [
                                     <p class="text-xs font-semibold text-muted-foreground mb-2">Help Wanted:</p>
                                     <div class="flex flex-wrap gap-2">
                                         <a
-                                            href="mailto:hello@aimanifesto.dev?subject=My AI Story"
+                                            :href="`mailto:${$page.props.contactEmail}?subject=My AI Story`"
                                             class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
                                             Share Your AI Story

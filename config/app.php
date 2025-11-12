@@ -26,7 +26,19 @@ return [
     |
     */
 
-    'version' => '0.19.6',
+    'version' => '0.19.7',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Contact Email
+    |--------------------------------------------------------------------------
+    |
+    | This is the primary contact email address for the application. It will
+    | be used throughout the site for contact links and communication.
+    |
+    */
+
+    'contact_email' => env('CONTACT_EMAIL', 'info@polarispixels.com'),
 
     /*
     |--------------------------------------------------------------------------

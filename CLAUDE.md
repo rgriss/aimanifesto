@@ -31,7 +31,7 @@ Key relationships:
 ### Backend Structure
 - **Routes:** Separated into web.php (public + dashboard), auth.php (authentication), settings.php (user settings)
 - **Controllers:** Resource controllers for Tool and Category, separate auth controllers in Auth/, settings in Settings/
-- **Inertia Middleware:** HandleInertiaRequests shares global props: `auth.user`, `name`, `quote` (inspirational), `sidebarOpen` (cookie-based state)
+- **Inertia Middleware:** HandleInertiaRequests shares global props: `auth.user`, `name`, `contactEmail`, `quote` (inspirational), `sidebarOpen` (cookie-based state)
 - **Appearance Handling:** HandleAppearance middleware manages theme (light/dark/system) via cookies
 
 ### Frontend Structure
@@ -138,6 +138,22 @@ The admin:create command can:
 
 **Important:** Always change default passwords after first login for security.
 
+## Configuration
+
+### Environment Variables
+Key environment variables in `.env`:
+
+**Application Settings**
+- `CONTACT_EMAIL` (default: info@polarispixels.com) - Primary contact email displayed throughout the site, available globally as `$page.props.contactEmail`
+
+**Admin User Settings**
+- `ADMIN_EMAIL` (default: admin@aimanifesto.net) - Default admin user email for seeding
+- `ADMIN_PASSWORD` (default: password) - Default admin password for seeding
+- `ADMIN_NAME` (default: Admin User) - Default admin user name for seeding
+
+**API Settings**
+- `API_TOKEN` - Token for API authentication (generate with `php artisan tinker` → `Str::random(64)`)
+
 ## Key Conventions
 
 ### Route Model Binding
@@ -151,6 +167,7 @@ Both Tool and Category use slug-based routing. Routes use `{tool:slug}` and `{ca
 Always available in Vue components via `$page.props`:
 - `auth.user` - Current authenticated user
 - `name` - App name from config
+- `contactEmail` - Primary contact email (from `config('app.contact_email')`)
 - `quote` - Random inspirational quote (message + author)
 - `sidebarOpen` - Sidebar state from cookie
 

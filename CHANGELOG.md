@@ -5,6 +5,31 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.7] - 2025-11-12
+
+### Added
+- **Centralized Contact Email Configuration**: Contact email now managed via environment variable
+  - Added `CONTACT_EMAIL` environment variable (default: info@polarispixels.com)
+  - New config value in `config/app.php` as `contact_email`
+  - Shared globally via Inertia middleware as `$page.props.contactEmail`
+  - Available to all Vue components throughout the site
+  - Easy to update site-wide by changing single .env value
+
+### Changed
+- **Email Address Updates**: Changed all contact emails to info@polarispixels.com
+  - Updated "Share Your AI Story" mailto link in Business Leaders section on homepage
+  - Updated MAIL_FROM_ADDRESS default in .env.example
+  - Previous email: hello@aimanifesto.dev
+
+### Technical
+- Added `contactEmail` to HandleInertiaRequests shared props
+- Updated Home.vue to use dynamic email from `$page.props.contactEmail`
+- Added CONTACT_EMAIL to .env.example with default value
+- Updated CLAUDE.md documentation:
+  - Added Configuration section with Environment Variables subsection
+  - Documented CONTACT_EMAIL in shared Inertia props
+  - Updated middleware props list to include contactEmail
+
 ## [0.19.6] - 2025-11-12
 
 ### Added

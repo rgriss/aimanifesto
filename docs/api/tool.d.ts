@@ -49,6 +49,18 @@ export interface CreateToolRequest {
   /** Screenshot image URL (optional, must be valid URL) */
   screenshot_url?: string | null;
 
+  /** Reddit community or search URL (optional, must be valid URL) */
+  reddit_url?: string | null;
+
+  /** Discord, Slack, forum, or other community URL (optional, must be valid URL) */
+  community_url?: string | null;
+
+  /** G2, Capterra, ProductHunt, or other reviews URL (optional, must be valid URL) */
+  reviews_url?: string | null;
+
+  /** Custom Hacker News search query for tools with generic names (optional, max 255 chars) */
+  hn_search_query?: string | null;
+
   /** Category name - will be created if doesn't exist (required) */
   category: string;
 
@@ -229,6 +241,10 @@ export type CreateToolResponse =
  *   name: "Claude",
  *   description: "AI assistant by Anthropic",
  *   website_url: "https://claude.ai",
+ *   documentation_url: "https://docs.anthropic.com",
+ *   reddit_url: "https://reddit.com/r/ClaudeAI",
+ *   community_url: "https://discord.gg/anthropic",
+ *   reviews_url: "https://www.g2.com/products/claude/reviews",
  *   category: "AI Assistants",
  *   pricing_model: "freemium",
  *   price_description: "$20/month for Pro",
@@ -269,6 +285,10 @@ export interface Tool {
   documentation_url: string | null;
   logo_url: string | null;
   screenshot_url: string | null;
+  reddit_url: string | null;
+  community_url: string | null;
+  reviews_url: string | null;
+  hn_search_query: string | null;
   pricing_model: PricingModel | null;
   price_description: string | null;
   company_name: string | null;

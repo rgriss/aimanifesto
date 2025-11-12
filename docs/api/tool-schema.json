@@ -62,6 +62,63 @@
         "https://cdn.example.com/images/tool-logo.jpg"
       ]
     },
+    "screenshot_url": {
+      "type": ["string", "null"],
+      "description": "Screenshot image URL (optional)",
+      "format": "uri",
+      "maxLength": 500,
+      "pattern": "^https?://",
+      "examples": [
+        "https://example.com/screenshot.png",
+        "https://cdn.example.com/images/tool-screenshot.jpg"
+      ]
+    },
+    "reddit_url": {
+      "type": ["string", "null"],
+      "description": "Reddit community or search URL (optional)",
+      "format": "uri",
+      "maxLength": 500,
+      "pattern": "^https?://",
+      "examples": [
+        "https://reddit.com/r/ClaudeAI",
+        "https://www.reddit.com/search/?q=midjourney"
+      ]
+    },
+    "community_url": {
+      "type": ["string", "null"],
+      "description": "Discord, Slack, forum, or other community URL (optional)",
+      "format": "uri",
+      "maxLength": 500,
+      "pattern": "^https?://",
+      "examples": [
+        "https://discord.gg/anthropic",
+        "https://community.openai.com",
+        "https://forum.example.com"
+      ]
+    },
+    "reviews_url": {
+      "type": ["string", "null"],
+      "description": "G2, Capterra, ProductHunt, or other reviews URL (optional)",
+      "format": "uri",
+      "maxLength": 500,
+      "pattern": "^https?://",
+      "examples": [
+        "https://www.g2.com/products/claude/reviews",
+        "https://www.capterra.com/p/123456/tool-name/",
+        "https://www.producthunt.com/products/tool-name"
+      ]
+    },
+    "hn_search_query": {
+      "type": ["string", "null"],
+      "description": "Custom Hacker News search query for tools with generic names (optional)",
+      "minLength": 1,
+      "maxLength": 255,
+      "examples": [
+        "Clay automation",
+        "Bolt.new",
+        "Cursor IDE"
+      ]
+    },
     "category": {
       "type": "string",
       "description": "Category name (will be created if it doesn't exist)",
@@ -188,6 +245,9 @@
       "website_url": "https://claude.ai",
       "documentation_url": "https://docs.anthropic.com",
       "logo_url": "https://claude.ai/logo.png",
+      "reddit_url": "https://reddit.com/r/ClaudeAI",
+      "community_url": "https://discord.gg/anthropic",
+      "reviews_url": "https://www.g2.com/products/claude/reviews",
       "category": "AI Assistants",
       "pricing_model": "freemium",
       "price_description": "$20/month for Pro plan, free tier available",

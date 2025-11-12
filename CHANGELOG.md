@@ -5,6 +5,15 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.31.1] - 2025-11-12
+
+### Fixed
+- **API Schema Documentation**: Updated TypeScript and JSON schemas with community link fields
+  - Added `reddit_url`, `community_url`, `reviews_url`, `hn_search_query` to tool.d.ts
+  - Added all four fields to tool-schema.json with proper validation rules
+  - Updated examples in both schema files to demonstrate new fields
+  - Resolves documentation lag behind API implementation
+
 ## [0.31.0] - 2025-11-12
 
 ### Added

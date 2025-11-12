@@ -5,6 +5,17 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.3] - 2025-11-12
+
+### Fixed
+- **API Validation for Community Links**: API controller now accepts community link fields
+  - Added validation rules for `reddit_url`, `community_url`, `reviews_url`, `hn_search_query`
+  - MCP server can now update tools with community links via PATCH requests
+  - Fixes issue where MCP updates were silently rejected
+
+### Technical
+- Updated ApiToolController validateToolRequest() method with four new field validations
+
 ## [0.29.2] - 2025-11-12
 
 ### Fixed

@@ -116,6 +116,7 @@ Authorization: Bearer {your-token}
 | `website_url` | string | Yes | valid URL, max:500 | Tool website |
 | `documentation_url` | string | No | valid URL, max:500 | Documentation link |
 | `logo_url` | string | No | valid URL, max:500 | Logo image URL |
+| `screenshot_url` | string | No | valid URL, max:500 | Screenshot image URL |
 | `reddit_url` | string | No | valid URL, max:500 | Reddit community or search link |
 | `community_url` | string | No | valid URL, max:500 | Discord, Slack, or Forum link |
 | `reviews_url` | string | No | valid URL, max:500 | G2, Capterra, ProductHunt, etc. |

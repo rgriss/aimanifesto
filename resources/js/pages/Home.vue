@@ -156,6 +156,83 @@ const scopes = [
                     </Card>
                 </div>
 
+                <!-- Discover AI Tools -->
+                <div class="mb-12 md:mb-16">
+                    <div class="bg-gradient-to-br from-primary/5 via-background to-secondary/5 border-2 border-border rounded-lg p-6 sm:p-8 md:p-10">
+                        <div class="text-center max-w-4xl mx-auto mb-8">
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+                                Discover AI Tools
+                            </h2>
+                            <p class="text-base sm:text-lg text-muted-foreground leading-relaxed mb-2">
+                                Whether you're a <span class="font-semibold text-foreground">beginner</span> exploring AI for the first time,
+                                an <span class="font-semibold text-foreground">intermediate user</span> looking to level up, or an
+                                <span class="font-semibold text-foreground">expert</span> seeking specialized solutions—we've compiled
+                                a curated list of tools to guide you through the next step of your journey.
+                            </p>
+                            <p class="text-sm sm:text-base text-muted-foreground/80 italic">
+                                If you're new here, click on any of these tools to immediately discover something new.
+                            </p>
+                        </div>
+
+                        <!-- Quick Access Tools Grid -->
+                        <div v-if="featuredTools.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+                            <Link
+                                v-for="tool in featuredTools.slice(0, 6)"
+                                :key="tool.id"
+                                :href="`/tools/${tool.slug}`"
+                                class="group block h-full"
+                            >
+                                <div class="h-full bg-background border-2 border-border rounded-lg p-4 hover:shadow-xl hover:border-foreground/20 transition-all">
+                                    <div class="flex items-start justify-between mb-3 gap-2">
+                                        <div class="flex items-center gap-2 flex-1 min-w-0">
+                                            <component
+                                                :is="getMomentumDisplay(tool.momentum_score).icon"
+                                                :size="18"
+                                                :class="getMomentumDisplay(tool.momentum_score).color"
+                                                :title="getMomentumDisplay(tool.momentum_score).title"
+                                                class="flex-shrink-0"
+                                            />
+                                            <h3 class="text-lg md:text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors truncate">
+                                                {{ tool.name }}
+                                            </h3>
+                                        </div>
+                                        <Badge v-if="tool.ryan_rating" variant="success" size="sm" class="flex-shrink-0">
+                                            ⭐ {{ tool.ryan_rating }}
+                                        </Badge>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3">
+                                        {{ tool.description }}
+                                    </p>
+                                    <div class="flex items-center justify-between gap-2">
+                                        <Badge variant="default" size="sm" class="capitalize">
+                                            {{ tool.pricing_model }}
+                                        </Badge>
+                                        <span class="text-xs font-semibold text-foreground group-hover:underline">
+                                            Learn More →
+                                        </span>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <Link
+                                href="/tools"
+                                class="inline-block bg-foreground text-background hover:bg-foreground/90 font-bold py-3 px-8 rounded-lg transition-all text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            >
+                                Browse All {{ featuredTools.length > 0 ? '130+' : '' }} Tools →
+                            </Link>
+                            <Link
+                                href="/categories"
+                                class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-3 px-8 rounded-lg transition-all text-base sm:text-lg"
+                            >
+                                Explore by Category
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Who is The AI Manifesto for? -->
                 <div class="mb-12 md:mb-16">
                     <SectionHeading title="Who is The AI Manifesto for?">

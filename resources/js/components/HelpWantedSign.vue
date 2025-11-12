@@ -1,15 +1,42 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components';
 
-const open = ref(false);
+const props = defineProps({
+    show: {
+        type: Boolean,
+        default: null, // null means use internal state
+    },
+    hideSign: {
+        type: Boolean,
+        default: false, // Hide the visual sign, only show dialog
+    },
+});
+
+const emit = defineEmits(['close']);
+
+const internalOpen = ref(false);
 const contactEmail = 'info@polarispixels.com';
+
+// Use external control if show prop is provided, otherwise use internal state
+const open = computed({
+    get: () => props.show !== null ? props.show : internalOpen.value,
+    set: (value) => {
+        if (props.show !== null) {
+            // Externally controlled - emit close event
+            if (!value) emit('close');
+        } else {
+            // Internally controlled
+            internalOpen.value = value;
+        }
+    }
+});
 </script>
 
 <template>
     <Dialog v-model:open="open">
-        <DialogTrigger as-child>
+        <DialogTrigger v-if="!hideSign" as-child>
             <button class="group block w-full">
                 <!-- Help Wanted Sign -->
                 <div class="relative bg-danger p-5 rounded-lg transition-transform hover:scale-105 cursor-pointer">

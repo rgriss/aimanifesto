@@ -5,13 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import {
@@ -231,30 +224,30 @@ const formatDate = (dateString: string) => {
 
                         <div>
                             <Label for="admin-filter">Admin Status</Label>
-                            <Select v-model="adminFilter" @update:model-value="applyFilters">
-                                <SelectTrigger id="admin-filter" class="mt-1.5">
-                                    <SelectValue placeholder="All users" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="">All users</SelectItem>
-                                    <SelectItem value="1">Admins only</SelectItem>
-                                    <SelectItem value="0">Non-admins only</SelectItem>
-                                </SelectContent>
-                            </Select>
+                            <select
+                                id="admin-filter"
+                                v-model="adminFilter"
+                                @change="applyFilters"
+                                class="mt-1.5 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                            >
+                                <option value="">All users</option>
+                                <option value="1">Admins only</option>
+                                <option value="0">Non-admins only</option>
+                            </select>
                         </div>
 
                         <div>
                             <Label for="verified-filter">Email Status</Label>
-                            <Select v-model="verifiedFilter" @update:model-value="applyFilters">
-                                <SelectTrigger id="verified-filter" class="mt-1.5">
-                                    <SelectValue placeholder="All emails" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="">All emails</SelectItem>
-                                    <SelectItem value="1">Verified only</SelectItem>
-                                    <SelectItem value="0">Unverified only</SelectItem>
-                                </SelectContent>
-                            </Select>
+                            <select
+                                id="verified-filter"
+                                v-model="verifiedFilter"
+                                @change="applyFilters"
+                                class="mt-1.5 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                            >
+                                <option value="">All emails</option>
+                                <option value="1">Verified only</option>
+                                <option value="0">Unverified only</option>
+                            </select>
                         </div>
                     </div>
 

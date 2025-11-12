@@ -85,8 +85,8 @@ class ToolController extends Controller
             'use_cases.*' => ['string'],
             'integrations' => ['nullable', 'array'],
             'integrations.*' => ['string'],
-            'is_featured' => ['boolean'],
-            'is_active' => ['boolean'],
+            'is_featured' => ['nullable', 'boolean'],
+            'is_active' => ['nullable', 'boolean'],
             'first_reviewed_at' => ['nullable', 'date'],
         ]);
 
@@ -150,8 +150,8 @@ class ToolController extends Controller
             'use_cases.*' => ['string'],
             'integrations' => ['nullable', 'array'],
             'integrations.*' => ['string'],
-            'is_featured' => ['boolean'],
-            'is_active' => ['boolean'],
+            'is_featured' => ['nullable', 'boolean'],
+            'is_active' => ['nullable', 'boolean'],
             'first_reviewed_at' => ['nullable', 'date'],
             'upvotes' => ['nullable', 'integer', 'min:0'],
             'downvotes' => ['nullable', 'integer', 'min:0'],
@@ -176,6 +176,10 @@ class ToolController extends Controller
         if (empty($validated['slug'])) {
             $validated['slug'] = Str::slug($validated['name']);
         }
+
+        // Handle boolean fields - checkboxes don't send false values
+        $validated['is_featured'] = $validated['is_featured'] ?? false;
+        $validated['is_active'] = $validated['is_active'] ?? true;
 
         $tool->update($validated);
 

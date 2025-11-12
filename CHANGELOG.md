@@ -5,6 +5,19 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.32.3] - 2025-11-12
+
+### Fixed
+- **Admin Tool Edit - Featured Checkbox**: Fixed bug where unchecking featured/active didn't save
+  - Added default value handling for boolean fields in update method
+  - Changed validation rules to 'nullable' for is_featured and is_active
+  - Unchecked checkboxes now properly save as false
+  - Fixes issue where featured badge remained after unchecking
+
+### Technical
+- Unchecked checkboxes don't send data in FormData, so defaults must be set explicitly
+- Now matches the pattern used in store method
+
 ## [0.32.2] - 2025-11-12
 
 ### Fixed

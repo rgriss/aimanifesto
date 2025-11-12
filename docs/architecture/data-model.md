@@ -1,10 +1,14 @@
 # Data Model & Database Schema
 
-**Document Version:** 1.1
-**Last Updated:** November 11, 2025
+**Document Version:** 1.2
+**Last Updated:** November 12, 2025
 **Status:** Current
 **Database:** MySQL 8.0+ / PostgreSQL 13+
 **Related:** [System Overview](./system-overview.md), [Authentication Flow](./authentication-flow.md)
+
+**Recent Changes (v1.2):**
+- Added community link fields to tools table: `reddit_url`, `community_url`, `reviews_url`
+- Added voting fields to tools table: `upvotes`, `downvotes`
 
 ---
 

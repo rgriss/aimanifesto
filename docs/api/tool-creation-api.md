@@ -116,6 +116,9 @@ Authorization: Bearer {your-token}
 | `website_url` | string | Yes | valid URL, max:500 | Tool website |
 | `documentation_url` | string | No | valid URL, max:500 | Documentation link |
 | `logo_url` | string | No | valid URL, max:500 | Logo image URL |
+| `reddit_url` | string | No | valid URL, max:500 | Reddit community or search link |
+| `community_url` | string | No | valid URL, max:500 | Discord, Slack, or Forum link |
+| `reviews_url` | string | No | valid URL, max:500 | G2, Capterra, ProductHunt, etc. |
 | `category` | string | Yes | max:255 | Category name (auto-created if doesn't exist) |
 | `pricing_model` | string | No | enum: free, freemium, paid, enterprise | Pricing type |
 | `price_description` | string | No | - | Pricing details |

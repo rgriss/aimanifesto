@@ -5,6 +5,87 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.0] - 2025-11-12
+
+### Added
+- **External Research Resources Sidebar**: Tool show pages now include sidebar with external resources
+  - **HackerNewsDiscussions.vue** component fetches and displays recent HN discussions via Algolia API
+  - Shows discussion titles, points, comment counts, and dates
+  - Links to individual discussions and HN search results
+  - Fully client-side - no backend API required
+  - Includes loading, error, and empty states
+  - **CommunityLinks.vue** component displays curated community resources
+  - Three new optional Tool fields: `reddit_url`, `community_url`, `reviews_url`
+  - Only renders if at least one community link is provided
+  - Each link type has appropriate icon (Reddit, Discord/Slack, Reviews)
+  - Modular design allows easy repositioning of components
+  - Responsive layout: 2/3 main + 1/3 sidebar on desktop, stacked on mobile
+
+### Database
+- Added `reddit_url` (nullable string) - Link to subreddit or Reddit search
+- Added `community_url` (nullable string) - Link to Discord, Slack, or Forum
+- Added `reviews_url` (nullable string) - Link to G2, Capterra, ProductHunt, etc.
+
+### Technical
+- Created migration: `2025_11_12_173339_add_community_links_to_tools_table`
+- New components are self-contained and can be repositioned for different layouts
+- HN API integration uses public Algolia search endpoint
+
+## [0.28.3] - 2025-11-12
+
+### Changed
+- **Two-Tier Voting Philosophy System**: Escalating reminders for rapid voting
+  - Tier 1 (5 clicks in 1 minute): First-time users see philosophy dialog
+  - Tier 2 (20 clicks in 1 minute): Dialog re-appears even for acknowledged users
+  - Resets localStorage flag to force re-acknowledgment at Tier 2
+  - Acts as gentle "you're really pushing it" reminder
+  - Extended tracking window from 30s to 60s for proper Tier 2 detection
+  - Progressive warnings help prevent spam while encouraging genuine enthusiasm
+
+## [0.28.2] - 2025-11-12
+
+### Changed
+- **Voting Rate Limit Increased**: API rate limit raised from 10 to 100 votes per minute
+  - Allows enthusiastic multi-clicking as intended by voting philosophy
+  - Prevents legitimate users from hitting artificial limits
+
+### Technical
+- Added console debugging to VoteButtons component for troubleshooting
+- Logs localStorage state, click counts, and dialog trigger logic
+
+## [0.28.1] - 2025-11-12
+
+### Changed
+- **Voting Philosophy Dialog Refinements**: Improved messaging and clarity
+  - Added clear voting guidance section with bullet points
+  - Removed repetitive phrases for more concise warning
+  - Consolidated community experiment message
+  - Maintained casual tone while improving focus
+
+## [0.28.0] - 2025-11-12
+
+### Added
+- **Voting Philosophy Dialog**: Community-focused approach to public voting
+  - Tracks vote clicks with timestamps (30-second window)
+  - Shows dialog after 5+ rapid clicks (first time only)
+  - Stores acknowledgment in localStorage
+  - Explains system is intentionally insecure/imperfect
+  - Emphasizes multiple clicks show motivation (interesting data)
+  - Transparent about future plans and "not social media" philosophy
+  - Gentle reminder to avoid spam/obnoxious behavior
+  - "Got It, I'll Be Cool" acknowledgment button
+
+## [0.27.4] - 2025-11-12
+
+### Added
+- **Dynamic Help Wanted Modal CTAs**: Authentication-aware call-to-action buttons
+  - Non-logged-in users see "Sign the Manifesto" as primary CTA
+  - Logged-in users see "Email Us" as primary CTA
+  - Added GitHub buttons for both auth states:
+    - "View on GitHub" links to main repository
+    - "Report Issues & Contribute" links to issues page
+  - Responsive button layout with mobile-friendly stacking
+
 ## [0.20.1] - 2025-11-12
 
 ### Changed

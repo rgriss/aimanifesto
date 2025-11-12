@@ -19,7 +19,8 @@ This application is a **tool directory/catalog** for AI tools:
   - Personal ratings ("ryan_rating" 1-10 scale) and usage notes
   - Pricing models (free, freemium, paid, enterprise)
   - JSON fields: features, use_cases, integrations
-  - View tracking, featured status, active/inactive state
+  - Community links: reddit_url, community_url, reviews_url (optional)
+  - View tracking, featured status, active/inactive state, voting (upvotes/downvotes)
 
 Key relationships:
 - Category `hasMany` Tools
@@ -50,6 +51,13 @@ Uses Reka UI (Radix-like) components in resources/js/components/ui/:
 - Each component has index.ts barrel export
 - Pre-built components: Button, Card, Dialog, Dropdown, Sidebar, Tooltip, Badge, Alert, etc.
 - Styled with Tailwind + class-variance-authority (CVA)
+
+### External Research Components
+Tool show pages include sidebar components for external resources:
+- **HackerNewsDiscussions.vue** - Fetches and displays recent HN discussions via Algolia API (client-side, no backend required)
+- **CommunityLinks.vue** - Displays curated community resources (Reddit, Discord/Slack, Reviews) when URLs are provided
+- Both components are modular and can be repositioned easily
+- Responsive: sidebar layout on desktop (lg+), stacked on mobile
 
 ### Design System & Theming
 **Philosophy:** Minimalist black/white design with high contrast

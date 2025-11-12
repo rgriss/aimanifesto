@@ -2,7 +2,6 @@
 import { Head, Link, router } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import { PageHeader, SectionHeading, Card, Badge, VoteButtons, HelpWantedSign } from '@/components';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import { TrendingUp, TrendingDown, Activity, Circle, ChevronDown, Plus, Code2 } from 'lucide-vue-next';
 import { ref } from 'vue';
 
@@ -123,37 +122,35 @@ const getMomentumDisplay = (score) => {
                                 </p>
 
                                 <!-- Tech Note for Developers -->
-                                <Alert variant="default" class="border-info/50 bg-info/5 mt-4">
+                                <div class="mt-4 p-4 border border-info/50 bg-info/5 rounded-lg">
                                     <div class="flex gap-3">
                                         <Code2 class="h-5 w-5 text-info flex-shrink-0 mt-0.5" />
-                                        <div class="flex-1">
-                                            <AlertDescription class="text-foreground space-y-2">
-                                                <p class="font-semibold text-sm">Developer Note:</p>
-                                                <p class="text-sm leading-relaxed">
-                                                    Under the hood, we've built a <span class="font-semibold">custom MCP server</span> that powers this directory.
-                                                    This isn't just about "vibe coding"—it's a demonstration of promoting <span class="font-semibold">voice as a first-class user interface</span>.
-                                                </p>
-                                                <p class="text-sm leading-relaxed">
-                                                    We use <span class="font-semibold">Claude Code</span>, <span class="font-semibold">Obsidian</span>,
-                                                    <span class="font-semibold">GitHub</span>, <span class="font-semibold">N8N</span>, and the
-                                                    <span class="font-semibold">MCP protocol</span> to create, populate, and maintain this entire site.
-                                                    This is interesting not just because it's useful for this project—it's a sandbox for advanced patterns
-                                                    and techniques you can apply to your own work.
-                                                </p>
-                                                <p class="text-sm leading-relaxed">
-                                                    Fellow developer interested in modern application architecture and multi-system integration?
-                                                    <button
-                                                        @click="showHelpWanted = true"
-                                                        class="text-info hover:underline font-semibold"
-                                                    >
-                                                        Get in touch
-                                                    </button>
-                                                    —we'd love to talk with you and connect you with other like-minded developers in our community.
-                                                </p>
-                                            </AlertDescription>
+                                        <div class="flex-1 space-y-2">
+                                            <p class="font-semibold text-sm text-foreground">Developer Note:</p>
+                                            <p class="text-sm leading-relaxed text-foreground">
+                                                Under the hood, we've built a <span class="font-semibold">custom MCP server</span> that powers this directory.
+                                                This isn't just about "vibe coding"—it's a demonstration of promoting <span class="font-semibold">voice as a first-class user interface</span>.
+                                            </p>
+                                            <p class="text-sm leading-relaxed text-foreground">
+                                                We use <span class="font-semibold">Claude Code</span>, <span class="font-semibold">Obsidian</span>,
+                                                <span class="font-semibold">GitHub</span>, <span class="font-semibold">N8N</span>, and the
+                                                <span class="font-semibold">MCP protocol</span> to create, populate, and maintain this entire site.
+                                                This is interesting not just because it's useful for this project—it's a sandbox for advanced patterns
+                                                and techniques you can apply to your own work.
+                                            </p>
+                                            <p class="text-sm leading-relaxed text-foreground">
+                                                Fellow developer interested in modern application architecture and multi-system integration?
+                                                <button
+                                                    @click="showHelpWanted = true"
+                                                    class="text-info hover:underline font-semibold"
+                                                >
+                                                    Get in touch
+                                                </button>
+                                                —we'd love to talk with you and connect you with other like-minded developers in our community.
+                                            </p>
                                         </div>
                                     </div>
-                                </Alert>
+                                </div>
                             </div>
                         </Transition>
                     </Card>

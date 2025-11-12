@@ -1,7 +1,9 @@
 <script setup>
 import { ref, watch, computed } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components';
+import { Github } from 'lucide-vue-next';
 
 const props = defineProps({
     show: {
@@ -16,8 +18,12 @@ const props = defineProps({
 
 const emit = defineEmits(['close']);
 
+const page = usePage();
+const user = computed(() => page.props.auth?.user);
 const internalOpen = ref(false);
 const contactEmail = 'info@polarispixels.com';
+const githubUrl = 'https://github.com/rgriss/aimanifesto';
+const githubIssuesUrl = 'https://github.com/rgriss/aimanifesto/issues';
 
 // Use external control if show prop is provided, otherwise use internal state
 const open = computed({
@@ -99,16 +105,92 @@ const open = computed({
                     </ul>
                 </div>
 
-                <div class="text-center pt-4">
-                    <p class="text-sm text-muted-foreground mb-3">Ready to join us?</p>
-                    <a
-                        :href="`mailto:${contactEmail}?subject=I Want to Join The AI Manifesto Community`"
-                        class="inline-block"
-                    >
-                        <Button size="lg" class="font-semibold">
-                            Email Us at {{ contactEmail }}
-                        </Button>
-                    </a>
+                <!-- CTAs for Non-Logged-In Users -->
+                <div v-if="!user" class="pt-4 space-y-4">
+                    <div class="text-center">
+                        <p class="text-sm text-muted-foreground mb-3">Ready to join us?</p>
+                        <Link href="/register">
+                            <Button size="lg" class="font-semibold w-full sm:w-auto">
+                                Sign the Manifesto
+                            </Button>
+                        </Link>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <a
+                            :href="`mailto:${contactEmail}?subject=I Want to Join The AI Manifesto Community`"
+                            class="inline-block"
+                        >
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                                Email Us
+                            </Button>
+                        </a>
+                        <a
+                            :href="githubUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-block"
+                        >
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                                <Github class="mr-2 h-4 w-4" />
+                                View on GitHub
+                            </Button>
+                        </a>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a
+                            :href="githubIssuesUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-block"
+                        >
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                                <Github class="mr-2 h-4 w-4" />
+                                Report Issues & Contribute
+                            </Button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTAs for Logged-In Users -->
+                <div v-else class="pt-4 space-y-4">
+                    <div class="text-center">
+                        <p class="text-sm text-muted-foreground mb-3">Ready to join us?</p>
+                        <a
+                            :href="`mailto:${contactEmail}?subject=I Want to Join The AI Manifesto Community`"
+                            class="inline-block"
+                        >
+                            <Button size="lg" class="font-semibold w-full sm:w-auto">
+                                Email Us at {{ contactEmail }}
+                            </Button>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <a
+                            :href="githubUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-block"
+                        >
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                                <Github class="mr-2 h-4 w-4" />
+                                View on GitHub
+                            </Button>
+                        </a>
+                        <a
+                            :href="githubIssuesUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-block"
+                        >
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                                <Github class="mr-2 h-4 w-4" />
+                                Report Issues & Contribute
+                            </Button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </DialogContent>

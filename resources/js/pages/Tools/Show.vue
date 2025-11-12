@@ -633,7 +633,10 @@ const hasPricingComplexity = computed(() => {
                     <!-- Sidebar (1/3 width on large screens) -->
                     <aside class="space-y-6">
                         <!-- Hacker News Discussions -->
-                        <HackerNewsDiscussions :tool-name="tool.name" />
+                        <HackerNewsDiscussions
+                            :tool-name="tool.name"
+                            :custom-query="tool.hn_search_query"
+                        />
 
                         <!-- Community Links -->
                         <CommunityLinks

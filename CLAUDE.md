@@ -20,6 +20,7 @@ This application is a **tool directory/catalog** for AI tools:
   - Pricing models (free, freemium, paid, enterprise)
   - JSON fields: features, use_cases, integrations
   - Community links: reddit_url, community_url, reviews_url (optional)
+  - Hacker News search override: hn_search_query (optional, for tools with generic names)
   - View tracking, featured status, active/inactive state, voting (upvotes/downvotes)
 
 Key relationships:
@@ -55,6 +56,9 @@ Uses Reka UI (Radix-like) components in resources/js/components/ui/:
 ### External Research Components
 Tool show pages include sidebar components for external resources:
 - **HackerNewsDiscussions.vue** - Fetches and displays recent HN discussions via Algolia API (client-side, no backend required)
+  - Accepts optional `customQuery` prop to override search term for tools with generic names (e.g., "Clay" → "Clay automation")
+  - Falls back to tool name if no custom query provided
+  - Controlled via `hn_search_query` field on Tool model
 - **CommunityLinks.vue** - Displays curated community resources (Reddit, Discord/Slack, Reviews) when URLs are provided
 - Both components are modular and can be repositioned easily
 - Responsive: sidebar layout on desktop (lg+), stacked on mobile

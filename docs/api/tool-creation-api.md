@@ -119,6 +119,7 @@ Authorization: Bearer {your-token}
 | `reddit_url` | string | No | valid URL, max:500 | Reddit community or search link |
 | `community_url` | string | No | valid URL, max:500 | Discord, Slack, or Forum link |
 | `reviews_url` | string | No | valid URL, max:500 | G2, Capterra, ProductHunt, etc. |
+| `hn_search_query` | string | No | max:255 | Custom HN search term (for tools with generic names) |
 | `category` | string | Yes | max:255 | Category name (auto-created if doesn't exist) |
 | `pricing_model` | string | No | enum: free, freemium, paid, enterprise | Pricing type |
 | `price_description` | string | No | - | Pricing details |

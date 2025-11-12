@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ExternalLink, MessageSquare, TrendingUp } from 'lucide-vue-next';
 
 interface Props {
     toolName: string;
+    customQuery?: string | null;
 }
 
 const props = defineProps<Props>();
+
+// Use custom query if provided, otherwise fall back to tool name
+const searchQuery = computed(() => props.customQuery || props.toolName);
 
 interface HNResult {
     objectID: string;
@@ -25,9 +29,9 @@ const error = ref<string | null>(null);
 
 onMounted(async () => {
     try {
-        // Search HN Algolia API for tool name
+        // Search HN Algolia API using custom query or tool name
         const response = await fetch(
-            `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(props.toolName)}&tags=story&hitsPerPage=5`
+            `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(searchQuery.value)}&tags=story&hitsPerPage=5`
         );
 
         if (!response.ok) {
@@ -116,7 +120,7 @@ const formatDate = (dateString: string) => {
 
                 <!-- View All Link -->
                 <a
-                    :href="`https://hn.algolia.com/?q=${encodeURIComponent(toolName)}`"
+                    :href="`https://hn.algolia.com/?q=${encodeURIComponent(searchQuery)}`"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-center gap-1 text-sm text-primary hover:underline"

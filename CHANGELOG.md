@@ -5,6 +5,24 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.1] - 2025-11-12
+
+### Added
+- **Custom Hacker News Search Queries**: New `hn_search_query` field on Tool model
+  - Allows overriding HN search term for tools with generic names
+  - For example: "Clay" → "Clay automation" to avoid irrelevant results
+  - HackerNewsDiscussions component now accepts optional `customQuery` prop
+  - Falls back to tool name if no custom query provided
+  - Helps filter out false positives (e.g., "clay tablets" when searching for Clay.com)
+
+### Database
+- Added `hn_search_query` (nullable string, max 255) - Custom search term for HN API
+
+### Technical
+- Created migration: `2025_11_12_175810_add_hn_search_query_to_tools_table`
+- Updated HackerNewsDiscussions.vue to use computed searchQuery
+- Updated Tool Show page to pass hn_search_query to component
+
 ## [0.29.0] - 2025-11-12
 
 ### Added

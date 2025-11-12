@@ -441,7 +441,7 @@ const handleScreenshotUpload = (event: Event) => {
                     <Label for="is_featured" class="cursor-pointer">Featured (show on homepage)</Label>
                     <Switch
                         id="is_featured"
-                        v-model:checked="form.is_featured"
+                        v-model="form.is_featured"
                     />
                 </div>
 
@@ -449,7 +449,7 @@ const handleScreenshotUpload = (event: Event) => {
                     <Label for="is_active" class="cursor-pointer">Active (visible on public site)</Label>
                     <Switch
                         id="is_active"
-                        v-model:checked="form.is_active"
+                        v-model="form.is_active"
                     />
                 </div>
             </CardContent>

@@ -5,6 +5,14 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.33.1] - 2025-11-12
+
+### Fixed
+- **Switch Component - v-model Binding**: Fixed switch state not syncing
+  - Changed from v-model:checked (Checkbox API) to v-model (Switch API)
+  - Switch uses modelValue prop, not checked prop
+  - Fixes data-state="unchecked" despite checked="true" issue
+
 ## [0.33.0] - 2025-11-12
 
 ### Added

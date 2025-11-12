@@ -5,6 +5,23 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.20.0] - 2025-11-12
+
+### Added
+- **Handwritten Note Section to Help Wanted Sign**: Added white rounded section with cursive text
+  - White background with rounded corners (rounded-lg)
+  - Black cursive text using Brush Script MT with Lucida Handwriting fallback
+  - Displays "reviews, coders, educators" in handwritten style
+  - Positioned between main "HELP WANTED" text and "click here" link
+  - Mimics handwritten ink annotation on vintage sign
+  - Adds personal, approachable touch to call-to-action
+
+### Technical
+- Added handwritten note div with bg-background and rounded-lg styling
+- Used cursive font stack: 'Brush Script MT', 'Lucida Handwriting', cursive
+- Applied italic styling for enhanced handwritten effect
+- Responsive text sizing: text-base on mobile, text-lg on desktop
+
 ## [0.19.9] - 2025-11-12
 
 ### Changed

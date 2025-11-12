@@ -36,6 +36,15 @@ defineProps({
                 </div>
             </div>
 
+            <!-- Handwritten note section -->
+            <div class="relative z-10 flex justify-center mt-3 mb-2">
+                <div class="bg-background px-4 py-2 rounded-lg">
+                    <p class="text-foreground text-base md:text-lg italic" style="font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;">
+                        reviews, coders, educators
+                    </p>
+                </div>
+            </div>
+
             <!-- Subtle "click here" text -->
             <div class="relative z-10 text-center mt-2">
                 <span class="text-xs text-background/70 group-hover:text-background transition-colors">

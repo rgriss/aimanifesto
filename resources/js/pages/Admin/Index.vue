@@ -109,25 +109,27 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </Card>
 
                 <!-- User Management -->
-                <Card class="hover:shadow-lg transition-shadow cursor-pointer opacity-60">
-                    <CardHeader>
-                        <div class="flex items-center justify-between">
-                            <Users class="h-10 w-10 text-orange-500" />
-                            <div class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-                                Coming Soon
+                <Card class="hover:shadow-lg transition-shadow cursor-pointer">
+                    <Link :href="'/admin/users'" class="block">
+                        <CardHeader>
+                            <div class="flex items-center justify-between">
+                                <Users class="h-10 w-10 text-orange-500" />
+                                <div class="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700 dark:bg-orange-900 dark:text-orange-300">
+                                    Active
+                                </div>
                             </div>
-                        </div>
-                        <CardTitle class="mt-4">User Management</CardTitle>
-                        <CardDescription>
-                            Manage users and admin permissions
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Shield class="h-4 w-4" />
-                            <span>User Roles & Permissions</span>
-                        </div>
-                    </CardContent>
+                            <CardTitle class="mt-4">User Management</CardTitle>
+                            <CardDescription>
+                                Manage users and admin permissions
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Shield class="h-4 w-4" />
+                                <span>User Roles & Permissions</span>
+                            </div>
+                        </CardContent>
+                    </Link>
                 </Card>
 
                 <!-- Analytics -->

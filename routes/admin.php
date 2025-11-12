@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DataManagementController;
 use App\Http\Controllers\Admin\ToolController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -27,4 +28,9 @@ Route::prefix('admin')
         Route::post('/data/import', [DataManagementController::class, 'import'])->name('data.import');
         Route::get('/data/download/{filename}', [DataManagementController::class, 'download'])->name('data.download');
         Route::delete('/data/delete/{filename}', [DataManagementController::class, 'delete'])->name('data.delete');
+
+        // User Management
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });

@@ -21,29 +21,27 @@ Use these connectors to:
 - Query tool information
 - Manage categories
 
-## Documentation Resources
-
-The MCP server provides the following documentation resources that you can read on-demand:
+## Documentation
 
 ### API Documentation
-- **Tool Intelligence API**: `resource:///docs/tool-intelligence-api`
+- **Tool Intelligence API**: https://raw.githubusercontent.com/rgriss/aimanifesto/main/docs/api/tool-intelligence-api.md
   - Complete guide for updating cost analysis, company metadata, market position, financial data
   - Includes all field definitions, validation rules, and examples
 
-- **Tool Creation API**: `resource:///docs/tool-creation-api`
+- **Tool Creation API**: https://raw.githubusercontent.com/rgriss/aimanifesto/main/docs/api/tool-creation-api.md
   - Guide for creating and managing AI tool entries
   - CRUD operations, validation, and best practices
 
-- **MCP Setup Guide**: `resource:///docs/mcp-setup-guide`
+- **MCP Setup Guide**: https://raw.githubusercontent.com/rgriss/aimanifesto/main/docs/api/mcp-setup-guide.md
   - Setup and configuration instructions
   - Troubleshooting and best practices
 
 ### Schema Definitions
-- **Tool Intelligence Schema**: `resource:///schemas/tool-intelligence`
+- **Tool Intelligence Schema**: https://raw.githubusercontent.com/rgriss/aimanifesto/main/docs/api/tool-intelligence.d.ts
   - TypeScript type definitions for the intelligence API
   - All field types, enums, and request/response interfaces
 
-- **Tool Schema**: `resource:///schemas/tool`
+- **Tool Schema**: https://raw.githubusercontent.com/rgriss/aimanifesto/main/docs/api/tool.d.ts
   - TypeScript type definitions for the tool creation API
   - Complete type system for tool entries
 

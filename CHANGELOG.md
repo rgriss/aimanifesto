@@ -5,6 +5,17 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.4] - 2025-11-12
+
+### Fixed
+- **MCP Server Schema**: Added community link fields to MCP tool schemas
+  - Added `reddit_url`, `community_url`, `reviews_url`, `hn_search_query` to both `add_ai_tool` and `update_ai_tool` schemas
+  - MCP server now exposes these fields for Claude to use
+  - Requires MCP server restart to pick up new schema
+
+### Technical
+- Updated mcp-server.js with four new field definitions in tool schemas
+
 ## [0.29.3] - 2025-11-12
 
 ### Fixed

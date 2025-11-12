@@ -123,6 +123,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               type: 'string',
               description: 'Screenshot image URL (optional)',
             },
+            reddit_url: {
+              type: 'string',
+              description: 'Reddit community or search URL (optional)',
+            },
+            community_url: {
+              type: 'string',
+              description: 'Discord, Slack, forum, or other community URL (optional)',
+            },
+            reviews_url: {
+              type: 'string',
+              description: 'G2, Capterra, ProductHunt, or other reviews URL (optional)',
+            },
+            hn_search_query: {
+              type: 'string',
+              description: 'Custom Hacker News search query for tools with generic names (optional)',
+            },
             category: {
               type: 'string',
               description: 'Category name (e.g., "AI Assistants", "Code Generation", "Image Generation"). Will be created if it doesn\'t exist.',
@@ -225,6 +241,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             screenshot_url: {
               type: 'string',
               description: 'Updated screenshot URL',
+            },
+            reddit_url: {
+              type: 'string',
+              description: 'Reddit community or search URL',
+            },
+            community_url: {
+              type: 'string',
+              description: 'Discord, Slack, forum, or other community URL',
+            },
+            reviews_url: {
+              type: 'string',
+              description: 'G2, Capterra, ProductHunt, or other reviews URL',
+            },
+            hn_search_query: {
+              type: 'string',
+              description: 'Custom Hacker News search query (for tools with generic names)',
             },
             category: {
               type: 'string',

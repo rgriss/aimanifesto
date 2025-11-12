@@ -246,12 +246,7 @@ const hasPricingComplexity = computed(() => {
                 <!-- Business Intelligence -->
                 <div v-if="hasIntelligenceData">
                     <Card class="mb-8 bg-gradient-to-br from-foreground/5 to-foreground/10 border-2 border-foreground/20">
-                        <div class="flex justify-between items-start mb-6">
-                            <SectionHeading title="Business Intelligence" />
-                            <Badge v-if="hasExtendedIntelligence" variant="info" class="text-sm">
-                                {{ tool.intelligence.data_completeness_score }}% Complete
-                            </Badge>
-                        </div>
+                        <SectionHeading title="Business Intelligence" class="mb-6" />
 
                         <!-- Phase 1: Basic Intelligence -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

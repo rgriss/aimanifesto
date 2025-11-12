@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import { PageHeader, SectionHeading, Card, Badge } from '@/components';
+import { TrendingUp, TrendingDown, Activity, Circle } from 'lucide-vue-next';
 
 defineProps({
     featuredTools: {
@@ -13,6 +14,23 @@ defineProps({
         default: () => []
     },
 });
+
+// Get momentum icon and styling based on score
+const getMomentumDisplay = (score) => {
+    if (!score) {
+        return { icon: Circle, color: 'text-muted-foreground/30', title: 'No momentum data' };
+    }
+
+    const displays = {
+        1: { icon: TrendingDown, color: 'text-danger', title: 'Strongly Declining' },
+        2: { icon: TrendingDown, color: 'text-warning', title: 'Declining' },
+        3: { icon: Activity, color: 'text-foreground/50', title: 'Stable' },
+        4: { icon: TrendingUp, color: 'text-success', title: 'Growing' },
+        5: { icon: TrendingUp, color: 'text-success', title: 'Rapidly Growing' },
+    };
+
+    return displays[score] || { icon: Circle, color: 'text-muted-foreground/30', title: 'Unknown' };
+};
 
 const coreValues = [
     { priority: 'Human judgment', over: 'algorithmic automation' },
@@ -382,9 +400,17 @@ const scopes = [
                             >
                                 <Card class="flex-1 flex flex-col">
                                     <div class="flex items-start justify-between mb-2 gap-2">
-                                        <h3 class="text-base md:text-lg font-bold text-foreground group-hover:text-foreground/70 transition-colors leading-tight">
-                                            {{ tool.name }}
-                                        </h3>
+                                        <div class="flex items-center gap-2">
+                                            <component
+                                                :is="getMomentumDisplay(tool.momentum_score).icon"
+                                                :size="18"
+                                                :class="getMomentumDisplay(tool.momentum_score).color"
+                                                :title="getMomentumDisplay(tool.momentum_score).title"
+                                            />
+                                            <h3 class="text-base md:text-lg font-bold text-foreground group-hover:text-foreground/70 transition-colors leading-tight">
+                                                {{ tool.name }}
+                                            </h3>
+                                        </div>
                                         <Badge v-if="tool.ryan_rating" variant="success" size="sm" class="flex-shrink-0">
                                             ⭐ {{ tool.ryan_rating }}/10
                                         </Badge>

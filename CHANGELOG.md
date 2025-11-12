@@ -5,6 +5,35 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.6] - 2025-11-12
+
+### Added
+- **Momentum Icons on Homepage**: Added visual momentum indicators to featured tools section
+  - Matches implementation from Tools Index page
+  - Displays dynamic icons (TrendingUp, Activity, TrendingDown, Circle) based on momentum_score
+  - Icon positioned to left of tool name with consistent spacing
+  - Provides quick visual feedback on tool growth trajectory
+  - Maintains alignment when no momentum data is available
+
+### Technical
+- Imported Lucide icons (TrendingUp, TrendingDown, Activity, Circle) in Home.vue
+- Added `getMomentumDisplay()` helper function matching Tools/Index.vue implementation
+- Updated featured tools card layout with momentum icon component
+- Icon size: 18px with 8px gap for consistent visual weight
+
+## [0.19.5] - 2025-11-12
+
+### Removed
+- **Data Completeness Badge**: Removed unreliable completeness percentage badge from Business Intelligence section
+  - Badge was frequently showing 0% despite having valid data in database
+  - Actual intelligence data fields are more valuable than a percentage score
+  - Cleaner section header without distracting badge
+  - Users can see what specific information is available directly in the sections
+
+### Technical
+- Simplified Business Intelligence section header in Tools/Show.vue
+- Removed conditional Badge component and flex-between wrapper
+
 ## [0.19.4] - 2025-11-12
 
 ### Added

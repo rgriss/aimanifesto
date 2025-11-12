@@ -298,15 +298,6 @@ const scopes = [
                     </div>
                 </div>
 
-                <!-- Help Wanted Sign -->
-                <div class="mb-12 md:mb-16">
-                    <div class="flex justify-center">
-                        <div class="w-full max-w-xs md:max-w-sm">
-                            <HelpWantedSign :href="`mailto:${$page.props.contactEmail}?subject=I Want to Help`" />
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Core Values -->
                 <div id="core-values" class="mb-12 md:mb-16">
                     <SectionHeading title="Core Values">
@@ -568,6 +559,13 @@ const scopes = [
                                 A framework for responsible AI development that prioritizes human judgment,
                                 transparency, and ethical accountability.
                             </p>
+                        </div>
+                    </div>
+
+                    <!-- Help Wanted Sign -->
+                    <div class="flex justify-center mb-8">
+                        <div class="w-full max-w-xs md:max-w-sm">
+                            <HelpWantedSign />
                         </div>
                     </div>
 

@@ -5,6 +5,13 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.5] - 2025-11-12
+
+### Fixed
+- **Tool Show Page Spacing**: Added proper margin above Related Tools section
+  - Added `mt-12` class to Related Tools container
+  - Fixes spacing issue where section appeared squished after sidebar was added
+
 ## [0.29.4] - 2025-11-12
 
 ### Fixed

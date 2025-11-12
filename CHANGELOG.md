@@ -5,6 +5,18 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.9] - 2025-11-12
+
+### Changed
+- **Help Wanted Sign Styling Improvements**: Enhanced visual impact and readability
+  - Increased font weight to font-black (900 weight) for bolder appearance
+  - Changed font family to Impact with Arial Black and sans-serif fallbacks
+  - Reduced padding around text (py-8 → py-4) for tighter composition
+  - Changed line-height to leading-none for more compact text
+  - Added small spacing (mt-1) between "HELP" and "WANTED" lines
+  - Adjusted letter spacing to 0.05em for optimal Impact font rendering
+  - Overall more impactful, vintage help wanted sign aesthetic
+
 ## [0.19.8] - 2025-11-12
 
 ### Added

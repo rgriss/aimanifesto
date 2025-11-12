@@ -5,6 +5,21 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.32.0] - 2025-11-12
+
+### Changed
+- **Homepage Category Integration**: Moved category boxes into "Discover AI Tools" section
+  - Categories now appear below featured tools with subtle "or browse by category" divider
+  - Removed duplicate categories section from bottom of page
+  - Simplified CTA - single prominent "Browse All Tools" button
+  - Improved visual hierarchy and user flow
+
+### Improved
+- More elegant category presentation in hero section
+- Reduced page length and scrolling
+- Categories are now visible without scrolling on most screens
+- Better integration of tools and categories in discovery flow
+
 ## [0.31.3] - 2025-11-12
 
 ### Changed

@@ -215,19 +215,38 @@ const scopes = [
                             </Link>
                         </div>
 
-                        <!-- CTA Buttons -->
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <!-- Or Explore by Category -->
+                        <div v-if="categories.length > 0" class="mb-8">
+                            <div class="text-center mb-6">
+                                <p class="text-sm text-muted-foreground/70 italic">or browse by category</p>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+                                <Link
+                                    v-for="category in categories.slice(0, 6)"
+                                    :key="category.id"
+                                    :href="`/categories/${category.slug}`"
+                                    class="group block h-full"
+                                >
+                                    <div class="h-full bg-background border-2 border-border rounded-lg p-4 hover:shadow-md hover:border-foreground/20 transition-all text-center">
+                                        <div class="text-3xl sm:text-4xl mb-2">{{ category.icon }}</div>
+                                        <h4 class="text-xs sm:text-sm font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-2 leading-tight">
+                                            {{ category.name }}
+                                        </h4>
+                                        <Badge variant="default" size="sm">
+                                            {{ category.active_tools_count }}
+                                        </Badge>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <div class="text-center">
                             <Link
                                 href="/tools"
                                 class="inline-block bg-foreground text-background hover:bg-foreground/90 font-bold py-3 px-8 rounded-lg transition-all text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                             >
                                 Browse All {{ featuredTools.length > 0 ? '130+' : '' }} Tools →
-                            </Link>
-                            <Link
-                                href="/categories"
-                                class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-3 px-8 rounded-lg transition-all text-base sm:text-lg"
-                            >
-                                Explore by Category
                             </Link>
                         </div>
                     </div>
@@ -513,38 +532,6 @@ const scopes = [
                         </div>
                     </div>
 
-                    <!-- Categories Preview -->
-                    <div v-if="categories.length > 0" class="mt-8 md:mt-12">
-                        <h3 class="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">Explore by Category</h3>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
-                            <Link
-                                v-for="category in categories.slice(0, 6)"
-                                :key="category.id"
-                                :href="`/categories/${category.slug}`"
-                                class="group h-full flex"
-                            >
-                                <Card class="text-center hover:shadow-lg transition-shadow flex-1 flex flex-col">
-                                    <div class="text-3xl sm:text-4xl mb-2">{{ category.icon }}</div>
-                                    <h4 class="text-xs sm:text-sm font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-1 leading-tight px-1 flex-grow">
-                                        {{ category.name }}
-                                    </h4>
-                                    <div class="mt-auto">
-                                        <Badge variant="default" size="sm">
-                                            {{ category.active_tools_count }}
-                                        </Badge>
-                                    </div>
-                                </Card>
-                            </Link>
-                        </div>
-                        <div class="text-center mt-6">
-                            <Link
-                                href="/categories"
-                                class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition-colors text-sm sm:text-base"
-                            >
-                                View All Categories →
-                            </Link>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Footer Navigation -->

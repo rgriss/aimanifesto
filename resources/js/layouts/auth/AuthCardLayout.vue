@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppLogoIcon from '@/components/AppLogoIcon.vue';
 import {
     Card,
     CardContent,
@@ -25,10 +24,9 @@ defineProps<{
                 :href="home()"
                 class="flex items-center gap-2 self-center font-medium"
             >
-                <div class="flex h-9 w-9 items-center justify-center">
-                    <AppLogoIcon
-                        class="size-9 fill-current text-black dark:text-white"
-                    />
+                <div class="flex h-12 items-center justify-center">
+                    <img src="/images/wave-logo-black.png" alt="The AI Manifesto" class="h-12 w-auto dark:hidden" />
+                    <img src="/images/wave-logo-white.png" alt="The AI Manifesto" class="h-12 w-auto hidden dark:block" />
                 </div>
             </Link>
 

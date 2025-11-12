@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppLogoIcon from '@/components/AppLogoIcon.vue';
 import { home } from '@/routes';
 import { Link } from '@inertiajs/vue3';
 
@@ -21,11 +20,10 @@ defineProps<{
                         class="flex flex-col items-center gap-2 font-medium"
                     >
                         <div
-                            class="mb-1 flex h-9 w-9 items-center justify-center rounded-md"
+                            class="mb-1 flex h-12 items-center justify-center"
                         >
-                            <AppLogoIcon
-                                class="size-9 fill-current text-[var(--foreground)] dark:text-white"
-                            />
+                            <img src="/images/wave-logo-black.png" alt="The AI Manifesto" class="h-12 w-auto dark:hidden" />
+                            <img src="/images/wave-logo-white.png" alt="The AI Manifesto" class="h-12 w-auto hidden dark:block" />
                         </div>
                         <span class="sr-only">{{ title }}</span>
                     </Link>

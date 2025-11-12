@@ -5,6 +5,29 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.1] - 2025-11-11
+
+### Added
+- **MCP Resources Support**: MCP server now exposes documentation as readable resources
+  - `resource:///docs/tool-intelligence-api` - Complete API documentation
+  - `resource:///docs/tool-creation-api` - Tool creation guide
+  - `resource:///docs/mcp-setup-guide` - Setup and troubleshooting guide
+  - `resource:///schemas/tool-intelligence` - TypeScript schema definitions
+  - `resource:///schemas/tool` - Tool creation TypeScript schemas
+- **Claude Desktop Project Instructions**: Template file for setting up Claude Desktop projects
+  - Located at `docs/CLAUDE_DESKTOP_PROJECT_INSTRUCTIONS.md`
+  - Includes MCP connector usage, documentation resources, and key concepts
+  - Ready to copy-paste into Claude Desktop Project settings
+
+### Changed
+- MCP server version bumped to 1.1.0
+- MCP server now declares `resources` capability
+
+### Technical
+- Added `ListResourcesRequestSchema` and `ReadResourceRequestSchema` handlers
+- Resources read directly from filesystem using `readFileSync`
+- Supports both markdown and TypeScript file types
+
 ## [0.17.0] - 2025-11-11
 
 ### Added

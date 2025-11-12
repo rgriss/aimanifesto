@@ -12,7 +12,15 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
+  ListResourcesRequestSchema,
+  ReadResourceRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Read API token and base URL from environment
 const API_TOKEN = process.env.AIMANIFESTO_API_TOKEN;
@@ -27,11 +35,12 @@ if (!API_TOKEN) {
 const server = new Server(
   {
     name: 'aimanifesto',
-    version: '1.0.0',
+    version: '1.1.0',
   },
   {
     capabilities: {
       tools: {},
+      resources: {},
     },
   }
 );
@@ -609,6 +618,126 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
     ],
   };
+});
+
+// List available documentation resources
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+  return {
+    resources: [
+      {
+        uri: 'resource:///docs/tool-intelligence-api',
+        name: 'Tool Intelligence API Documentation',
+        description: 'Complete API documentation for updating business intelligence and market research data for AI tools. Includes cost analysis, company metadata, market position, financial data, and competitive intelligence.',
+        mimeType: 'text/markdown',
+      },
+      {
+        uri: 'resource:///docs/tool-creation-api',
+        name: 'Tool Creation API Documentation',
+        description: 'API documentation for creating and managing AI tool entries in the directory. Covers CRUD operations, validation, and best practices.',
+        mimeType: 'text/markdown',
+      },
+      {
+        uri: 'resource:///docs/mcp-setup-guide',
+        name: 'MCP Setup Guide',
+        description: 'Step-by-step guide for setting up Claude Desktop to use the AI Manifesto MCP server. Includes installation, configuration, and troubleshooting.',
+        mimeType: 'text/markdown',
+      },
+      {
+        uri: 'resource:///schemas/tool-intelligence',
+        name: 'Tool Intelligence TypeScript Schema',
+        description: 'TypeScript type definitions for the Tool Intelligence API. Includes all field types, enums, and request/response interfaces.',
+        mimeType: 'application/typescript',
+      },
+      {
+        uri: 'resource:///schemas/tool',
+        name: 'Tool TypeScript Schema',
+        description: 'TypeScript type definitions for the Tool Creation API. Includes all field types, enums, and request/response interfaces.',
+        mimeType: 'application/typescript',
+      },
+    ],
+  };
+});
+
+// Read documentation resource content
+server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+  const uri = request.params.uri;
+
+  try {
+    let filePath;
+    let content;
+
+    switch (uri) {
+      case 'resource:///docs/tool-intelligence-api':
+        filePath = join(__dirname, 'docs', 'api', 'tool-intelligence-api.md');
+        content = readFileSync(filePath, 'utf-8');
+        return {
+          contents: [
+            {
+              uri,
+              mimeType: 'text/markdown',
+              text: content,
+            },
+          ],
+        };
+
+      case 'resource:///docs/tool-creation-api':
+        filePath = join(__dirname, 'docs', 'api', 'tool-creation-api.md');
+        content = readFileSync(filePath, 'utf-8');
+        return {
+          contents: [
+            {
+              uri,
+              mimeType: 'text/markdown',
+              text: content,
+            },
+          ],
+        };
+
+      case 'resource:///docs/mcp-setup-guide':
+        filePath = join(__dirname, 'docs', 'api', 'mcp-setup-guide.md');
+        content = readFileSync(filePath, 'utf-8');
+        return {
+          contents: [
+            {
+              uri,
+              mimeType: 'text/markdown',
+              text: content,
+            },
+          ],
+        };
+
+      case 'resource:///schemas/tool-intelligence':
+        filePath = join(__dirname, 'docs', 'api', 'tool-intelligence.d.ts');
+        content = readFileSync(filePath, 'utf-8');
+        return {
+          contents: [
+            {
+              uri,
+              mimeType: 'application/typescript',
+              text: content,
+            },
+          ],
+        };
+
+      case 'resource:///schemas/tool':
+        filePath = join(__dirname, 'docs', 'api', 'tool.d.ts');
+        content = readFileSync(filePath, 'utf-8');
+        return {
+          contents: [
+            {
+              uri,
+              mimeType: 'application/typescript',
+              text: content,
+            },
+          ],
+        };
+
+      default:
+        throw new Error(`Unknown resource: ${uri}`);
+    }
+  } catch (error) {
+    throw new Error(`Failed to read resource ${uri}: ${error.message}`);
+  }
 });
 
 // Helper function to make API calls

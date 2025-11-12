@@ -177,21 +177,57 @@ const getMomentumDisplay = (score) => {
                     </div>
 
                     <!-- Pagination -->
-                    <div v-if="tools.links" class="flex justify-center gap-2">
-                        <component
-                            v-for="(link, index) in tools.links"
-                            :key="index"
-                            :is="link.url ? Link : 'span'"
-                            :href="link.url || undefined"
-                            :class="[
-                                'px-4 py-2 rounded-md font-semibold transition-colors',
-                                link.active
-                                    ? 'bg-foreground text-background'
-                                    : 'bg-card text-foreground border border-border',
-                                link.url ? 'hover:bg-secondary' : 'opacity-50 cursor-not-allowed'
-                            ]"
-                            v-html="link.label"
-                        />
+                    <div v-if="tools.links" class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <!-- Mobile: Simple Prev/Next with Page Info -->
+                        <div class="md:hidden flex flex-col items-center gap-2 w-full">
+                            <div class="text-sm text-muted-foreground">
+                                Page {{ tools.current_page }} of {{ tools.last_page }}
+                            </div>
+                            <div class="flex gap-2 w-full max-w-sm">
+                                <component
+                                    :is="tools.links[0].url ? Link : 'span'"
+                                    :href="tools.links[0].url || undefined"
+                                    :class="[
+                                        'flex-1 px-4 py-2 rounded-md font-semibold transition-colors text-center',
+                                        tools.links[0].url
+                                            ? 'bg-card text-foreground border border-border hover:bg-secondary'
+                                            : 'bg-card/50 text-muted-foreground border border-border opacity-50 cursor-not-allowed'
+                                    ]"
+                                >
+                                    Previous
+                                </component>
+                                <component
+                                    :is="tools.links[tools.links.length - 1].url ? Link : 'span'"
+                                    :href="tools.links[tools.links.length - 1].url || undefined"
+                                    :class="[
+                                        'flex-1 px-4 py-2 rounded-md font-semibold transition-colors text-center',
+                                        tools.links[tools.links.length - 1].url
+                                            ? 'bg-card text-foreground border border-border hover:bg-secondary'
+                                            : 'bg-card/50 text-muted-foreground border border-border opacity-50 cursor-not-allowed'
+                                    ]"
+                                >
+                                    Next
+                                </component>
+                            </div>
+                        </div>
+
+                        <!-- Desktop: Full Pagination -->
+                        <div class="hidden md:flex gap-2 flex-wrap justify-center">
+                            <component
+                                v-for="(link, index) in tools.links"
+                                :key="index"
+                                :is="link.url ? Link : 'span'"
+                                :href="link.url || undefined"
+                                :class="[
+                                    'px-4 py-2 rounded-md font-semibold transition-colors',
+                                    link.active
+                                        ? 'bg-foreground text-background'
+                                        : 'bg-card text-foreground border border-border',
+                                    link.url ? 'hover:bg-secondary' : 'opacity-50 cursor-not-allowed'
+                                ]"
+                                v-html="link.label"
+                            />
+                        </div>
                     </div>
                 </div>
 

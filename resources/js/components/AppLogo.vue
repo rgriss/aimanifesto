@@ -2,7 +2,16 @@
     <div
         class="flex aspect-square size-8 items-center justify-center"
     >
-        <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels" class="size-8" />
+        <img
+            src="/images/wave-logo-blue.png"
+            alt="AI Manifesto"
+            class="size-8 dark:hidden"
+        />
+        <img
+            src="/images/wave-logo-white.png"
+            alt="AI Manifesto"
+            class="size-8 hidden dark:block"
+        />
     </div>
     <div class="ml-1 grid flex-1 text-left text-sm">
         <span class="mb-0.5 truncate leading-tight font-semibold"

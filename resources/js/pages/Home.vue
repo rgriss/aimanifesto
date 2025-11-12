@@ -54,7 +54,8 @@ const scopes = [
                 <!-- Manifesto Hero -->
                 <div class="bg-background border-2 border-border rounded-lg shadow-lg p-6 sm:p-8 mb-8 text-center">
                     <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight flex items-center justify-center gap-3 md:gap-4 text-foreground">
-                        <img src="/images/Polaris Pixels Star Logo.png" alt="Polaris Pixels" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0" />
+                        <img src="/images/wave-logo-blue.png" alt="AI Manifesto" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0 dark:hidden" />
+                        <img src="/images/wave-logo-white.png" alt="AI Manifesto" class="h-10 w-auto sm:h-12 md:h-14 lg:h-16 flex-shrink-0 hidden dark:block" />
                         <span>Artificial Intelligence Manifesto</span>
                     </h1>
                     <p class="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-3 md:mb-4 px-2">

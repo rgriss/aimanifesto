@@ -35,26 +35,26 @@
         <!-- Favicon -->
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/favicon.png" type="image/png">
-        <link rel="apple-touch-icon" href="/images/Polaris Pixels Star Logo.png">
+        <link rel="apple-touch-icon" href="/images/wave-logo-blue.png">
 
         <!-- Meta Tags -->
         <meta name="description" content="AI Manifesto - A framework for responsible AI development. Curated tools, ethical principles, and guidance for building with artificial intelligence.">
         <meta name="keywords" content="AI, artificial intelligence, AI tools, AI ethics, AI manifesto, responsible AI, machine learning, AI development">
-        <meta name="author" content="Polaris Pixels">
+        <meta name="author" content="AI Manifesto">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url('/') }}">
         <meta property="og:title" content="AI Manifesto - Responsible AI Development Framework">
         <meta property="og:description" content="A framework for responsible AI development. Curated tools, ethical principles, and guidance for building with artificial intelligence.">
-        <meta property="og:image" content="{{ url('/images/Polaris Pixels Star Logo.png') }}">
+        <meta property="og:image" content="{{ url('/images/wave-logo-blue.png') }}">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url('/') }}">
         <meta property="twitter:title" content="AI Manifesto - Responsible AI Development Framework">
         <meta property="twitter:description" content="A framework for responsible AI development. Curated tools, ethical principles, and guidance for building with artificial intelligence.">
-        <meta property="twitter:image" content="{{ url('/images/Polaris Pixels Star Logo.png') }}">
+        <meta property="twitter:image" content="{{ url('/images/wave-logo-blue.png') }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

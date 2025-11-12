@@ -137,7 +137,7 @@ const copyToClipboard = (text) => {
                 <!-- Header -->
                 <div class="bg-card border-2 border-border rounded-lg shadow-lg p-8 mb-8">
                     <div class="flex items-center gap-6 mb-6">
-                        <img src="/images/Polaris Pixels Star Logo.png" alt="AI Manifesto Logo" class="h-20 w-auto" />
+                        <img src="/images/wave-logo-blue.png" alt="AI Manifesto Logo" class="h-20 w-auto" />
                         <div>
                             <h1 class="text-5xl font-bold text-foreground">
                                 AI Manifesto

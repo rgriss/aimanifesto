@@ -5,6 +5,28 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.8] - 2025-11-12
+
+### Changed
+- **Brand Identity Update**: Replaced Polaris Pixels logo with new Wave logo
+  - New Wave logo in three variants: blue (primary), black, and white
+  - Optimized logo files from 3600x3600 (170-181KB) to 800x800 (8-11KB)
+  - Theme-aware logo display: blue in light mode, white in dark mode
+  - Updated across all application surfaces:
+    - Sidebar (AppLogo.vue)
+    - Home page hero
+    - Admin dashboard header
+    - Brand guidelines page
+    - Meta tags (Open Graph, Twitter cards)
+    - Apple touch icon
+  - Blue wave logo chosen as primary brand identity
+
+### Technical
+- Created optimization script to resize logos from 3600x3600px to 800x800px
+- Added sharp package for image optimization
+- Implemented dual-image approach with CSS classes (dark:hidden, hidden dark:block)
+- Updated meta author from "Polaris Pixels" to "AI Manifesto"
+
 ## [0.18.7] - 2025-11-12
 
 ### Fixed

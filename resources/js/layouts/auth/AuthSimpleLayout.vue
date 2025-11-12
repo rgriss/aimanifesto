@@ -57,13 +57,35 @@ const handleLogoClick = async (e: MouseEvent) => {
         showMessage('info', 'Creating emergency admin...', 'Please wait...');
 
         try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+            if (!csrfToken) {
+                showMessage('error', 'Error', 'CSRF token not found. Please refresh the page.');
+                return;
+            }
+
             const response = await fetch('/emergency-admin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
                 },
             });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Emergency admin error:', response.status, errorText);
+
+                if (response.status === 404) {
+                    showMessage('error', 'Error', 'Emergency admin feature is disabled.');
+                } else if (response.status === 429) {
+                    showMessage('error', 'Rate Limited', 'Too many attempts. Please try again later.');
+                } else {
+                    showMessage('error', 'Error', `Request failed (${response.status}). Check console for details.`);
+                }
+                return;
+            }
 
             const data = await response.json();
 
@@ -73,7 +95,8 @@ const handleLogoClick = async (e: MouseEvent) => {
                 showMessage('info', 'Info', data.message);
             }
         } catch (error) {
-            showMessage('error', 'Error', 'Emergency admin creation is not available.');
+            console.error('Emergency admin exception:', error);
+            showMessage('error', 'Error', `Emergency admin creation failed: ${error.message}`);
         }
     }
 };

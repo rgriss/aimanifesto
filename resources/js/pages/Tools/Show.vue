@@ -148,9 +148,17 @@ const hasPricingComplexity = computed(() => {
                     </template>
 
                     <template #actions>
-                        <Badge v-if="tool.is_featured" variant="warning">
-                            Featured
-                        </Badge>
+                        <div class="flex flex-col items-end gap-3">
+                            <Badge v-if="tool.is_featured" variant="warning">
+                                Featured
+                            </Badge>
+                            <VoteButtons
+                                :tool-slug="tool.slug"
+                                :upvotes="tool.upvotes || 0"
+                                :downvotes="tool.downvotes || 0"
+                                size="sm"
+                            />
+                        </div>
                     </template>
 
                     <template #metadata>
@@ -183,14 +191,6 @@ const hasPricingComplexity = computed(() => {
                             <span class="ml-2 text-background font-semibold">
                                 {{ new Date(tool.updated_at).toLocaleDateString() }}
                             </span>
-                        </div>
-                        <div class="col-span-full pt-2 border-t border-background/20">
-                            <VoteButtons
-                                :tool-slug="tool.slug"
-                                :upvotes="tool.upvotes || 0"
-                                :downvotes="tool.downvotes || 0"
-                                size="md"
-                            />
                         </div>
                     </template>
 

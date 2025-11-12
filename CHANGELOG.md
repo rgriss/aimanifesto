@@ -5,6 +5,21 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.2] - 2025-11-12
+
+### Changed
+- **Tool Show Page Vote Buttons Position**: Moved voting buttons to top right of page header
+  - Voting buttons now positioned in the actions area (top right)
+  - Stacked vertically with Featured badge when present
+  - Changed size from medium to small for better header proportions
+  - More prominent and conventional placement for interactive elements
+  - Removed from metadata section for cleaner layout
+
+### Technical
+- Updated Tools/Show.vue template to move VoteButtons to #actions slot
+- Applied flex-col and items-end for proper vertical stacking
+- Simplified metadata template by removing vote section
+
 ## [0.19.1] - 2025-11-12
 
 ### Fixed

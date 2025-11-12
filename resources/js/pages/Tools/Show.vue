@@ -667,7 +667,7 @@ const hasPricingComplexity = computed(() => {
                             :key="relatedTool.id"
                             :tool="relatedTool"
                             :show-voting="false"
-                            :show-momentum="false"
+                            :show-momentum="true"
                             :show-category="false"
                         />
                     </div>

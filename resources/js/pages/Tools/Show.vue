@@ -2,6 +2,8 @@
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import { PageHero, Card, Badge, SectionHeading, VoteButtons } from '@/components';
+import HackerNewsDiscussions from '@/components/HackerNewsDiscussions.vue';
+import CommunityLinks from '@/components/CommunityLinks.vue';
 import { Building2, TrendingUp, TrendingDown, Activity } from 'lucide-vue-next';
 import { computed } from 'vue';
 
@@ -222,8 +224,12 @@ const hasPricingComplexity = computed(() => {
                     </template>
                 </PageHero>
 
-                <!-- Long Description -->
-                <Card v-if="tool.long_description" class="mb-8">
+                <!-- Main Content with Sidebar Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Main Content (2/3 width on large screens) -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <!-- Long Description -->
+                <Card v-if="tool.long_description">
                     <SectionHeading title="About" />
                     <p class="text-foreground whitespace-pre-line">
                         {{ tool.long_description }}
@@ -231,7 +237,7 @@ const hasPricingComplexity = computed(() => {
                 </Card>
 
                 <!-- Screenshot -->
-                <Card v-if="tool.screenshot_url" class="mb-8">
+                <Card v-if="tool.screenshot_url">
                     <SectionHeading title="Screenshot" />
                     <div class="rounded-lg overflow-hidden border-2 border-border">
                         <img
@@ -245,7 +251,7 @@ const hasPricingComplexity = computed(() => {
 
                 <!-- Business Intelligence -->
                 <div v-if="hasIntelligenceData">
-                    <Card class="mb-8 bg-gradient-to-br from-foreground/5 to-foreground/10 border-2 border-foreground/20">
+                    <Card class="bg-gradient-to-br from-foreground/5 to-foreground/10 border-2 border-foreground/20">
                         <SectionHeading title="Business Intelligence" class="mb-6" />
 
                         <!-- Phase 1: Basic Intelligence -->
@@ -559,7 +565,7 @@ const hasPricingComplexity = computed(() => {
                 </div>
 
                 <!-- Ryan's Notes -->
-                <div v-if="tool.ryan_notes" class="bg-foreground/5 rounded-lg shadow p-8 mb-8 border-2 border-foreground/10">
+                <div v-if="tool.ryan_notes" class="bg-foreground/5 rounded-lg shadow p-8 border-2 border-foreground/10">
                     <SectionHeading title="Ryan's Take" />
                     <p class="text-foreground italic text-lg leading-relaxed">
                         "{{ tool.ryan_notes }}"
@@ -570,7 +576,7 @@ const hasPricingComplexity = computed(() => {
                 </div>
 
                 <!-- Features, Use Cases, Integrations -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <!-- Features -->
                     <Card v-if="tool.features && tool.features.length > 0">
                         <h3 class="text-xl font-bold text-foreground mb-4">
@@ -621,6 +627,23 @@ const hasPricingComplexity = computed(() => {
                         </div>
                     </Card>
                 </div>
+                    </div>
+                    <!-- End Main Content -->
+
+                    <!-- Sidebar (1/3 width on large screens) -->
+                    <aside class="space-y-6">
+                        <!-- Hacker News Discussions -->
+                        <HackerNewsDiscussions :tool-name="tool.name" />
+
+                        <!-- Community Links -->
+                        <CommunityLinks
+                            :reddit-url="tool.reddit_url"
+                            :community-url="tool.community_url"
+                            :reviews-url="tool.reviews_url"
+                        />
+                    </aside>
+                </div>
+                <!-- End Grid Layout -->
 
                 <!-- Related Tools -->
                 <div v-if="relatedTools && relatedTools.length > 0">

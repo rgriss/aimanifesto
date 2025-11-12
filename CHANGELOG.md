@@ -5,6 +5,25 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.4] - 2025-11-12
+
+### Added
+- **Momentum Icons on Tools Index**: Visual momentum indicators for each tool card
+  - Displays TrendingUp icon (green) for growing tools (scores 4-5)
+  - Displays Activity icon (gray) for stable tools (score 3)
+  - Displays TrendingDown icon (red/yellow) for declining tools (scores 1-2)
+  - Shows neutral Circle icon (light gray) when no momentum data available
+  - Icon positioned to the left of tool name for easy scanning
+  - Tooltip shows momentum status on hover
+  - Maintains consistent spacing across all cards
+
+### Technical
+- Imported TrendingUp, TrendingDown, Activity, Circle icons from lucide-vue-next
+- Added `getMomentumDisplay()` helper function to map scores to icon/color
+- Dynamic component rendering based on momentum_score
+- Icon size: 18px, positioned with 8px gap from tool name
+- Added flex-shrink-0 to badge container to prevent wrapping
+
 ## [0.19.3] - 2025-11-12
 
 ### Fixed

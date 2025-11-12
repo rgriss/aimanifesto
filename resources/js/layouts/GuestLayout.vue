@@ -69,7 +69,7 @@ const user = computed(() => page.props.auth?.user);
                                         </div>
                                     </DropdownMenuLabel>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem as-child>
+                                    <DropdownMenuItem v-if="user.is_admin" as-child>
                                         <Link href="/dashboard" class="flex items-center cursor-pointer">
                                             <LayoutDashboard class="mr-2 h-4 w-4" />
                                             Dashboard

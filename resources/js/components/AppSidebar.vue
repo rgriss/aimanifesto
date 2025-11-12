@@ -23,15 +23,14 @@ const user = computed(() => page.props.auth?.user as any);
 const isAdmin = computed(() => user.value?.is_admin === true);
 
 const mainNavItems = computed<NavItem[]>(() => {
-    const items: NavItem[] = [
-        {
+    const items: NavItem[] = [];
+
+    if (isAdmin.value) {
+        items.push({
             title: 'Dashboard',
             href: dashboard(),
             icon: LayoutGrid,
-        },
-    ];
-
-    if (isAdmin.value) {
+        });
         items.push({
             title: 'Admin',
             href: '/admin',

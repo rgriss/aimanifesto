@@ -2,7 +2,7 @@
 defineProps({
     title: {
         type: String,
-        required: true
+        required: false
     },
     subtitle: String
 });
@@ -11,7 +11,7 @@ defineProps({
 <template>
     <div class="mb-4 md:mb-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-3 leading-tight">
-            {{ title }}
+            <slot name="title">{{ title }}</slot>
         </h2>
         <p v-if="subtitle" class="text-sm sm:text-base text-muted-foreground leading-relaxed">
             {{ subtitle }}

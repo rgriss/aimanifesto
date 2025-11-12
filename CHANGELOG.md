@@ -5,6 +5,25 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.6] - 2025-11-12
+
+### Added
+- **Clickable Category in Related Tools**: Category name in "More in {Category}" heading is now a clickable link
+  - Takes users directly to the category page
+  - Styled with underline on hover for clear affordance
+
+### Fixed
+- **Related Tools Card Height**: Fixed inconsistent card heights in Related Tools grid
+  - Added flexbox layout to Link wrapper and Card component
+  - Added `flex-grow` to description paragraph to push badges to bottom
+  - All cards now align properly regardless of content length
+
+### Changed
+- **SectionHeading Component**: Now supports both prop and slot for title
+  - Title prop is now optional
+  - Added `title` slot for custom title content
+  - Falls back to prop if slot not provided (backward compatible)
+
 ## [0.29.5] - 2025-11-12
 
 ### Fixed

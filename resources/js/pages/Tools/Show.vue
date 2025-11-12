@@ -650,27 +650,36 @@ const hasPricingComplexity = computed(() => {
 
                 <!-- Related Tools -->
                 <div v-if="relatedTools && relatedTools.length > 0" class="mt-12">
-                    <SectionHeading
-                        :title="`More in ${tool.category.name}`"
-                        subtitle="Other tools you might find useful"
-                    />
+                    <SectionHeading subtitle="Other tools you might find useful">
+                        <template #title>
+                            More in
+                            <Link
+                                :href="`/categories/${tool.category.slug}`"
+                                class="text-foreground hover:text-foreground/70 transition-colors underline decoration-foreground/30 hover:decoration-foreground/50"
+                            >
+                                {{ tool.category.name }}
+                            </Link>
+                        </template>
+                    </SectionHeading>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Link
                             v-for="relatedTool in relatedTools"
                             :key="relatedTool.id"
                             :href="`/tools/${relatedTool.slug}`"
-                            class="group"
+                            class="group flex"
                         >
-                            <Card>
+                            <Card class="flex flex-col h-full w-full">
                                 <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-2">
                                     {{ relatedTool.name }}
                                 </h3>
-                                <p class="text-muted-foreground mb-4 text-sm">
+                                <p class="text-muted-foreground mb-4 text-sm flex-grow">
                                     {{ relatedTool.description }}
                                 </p>
-                                <Badge v-if="relatedTool.ryan_rating" variant="success" size="sm">
-                                    ⭐ {{ relatedTool.ryan_rating }}/10
-                                </Badge>
+                                <div v-if="relatedTool.ryan_rating">
+                                    <Badge variant="success" size="sm">
+                                        ⭐ {{ relatedTool.ryan_rating }}/10
+                                    </Badge>
+                                </div>
                             </Card>
                         </Link>
                     </div>

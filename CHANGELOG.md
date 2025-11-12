@@ -5,6 +5,15 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.3] - 2025-11-12
+
+### Changed
+- **Home Page Featured Tools**: Now displays all 6 featured tools instead of only 3
+  - Removed slice limit that was restricting display to 3 tools
+  - Grid layout automatically wraps to show 2 rows of 3 columns on desktop
+  - Backend was already fetching 6 tools, frontend now displays all of them
+  - Better showcase of curated tool recommendations
+
 ## [0.18.2] - 2025-11-12
 
 ### Added

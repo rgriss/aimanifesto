@@ -374,7 +374,7 @@ const scopes = [
                     <div v-if="featuredTools.length > 0" class="mb-8">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                             <Link
-                                v-for="tool in featuredTools.slice(0, 3)"
+                                v-for="tool in featuredTools"
                                 :key="tool.id"
                                 :href="`/tools/${tool.slug}`"
                                 class="group"

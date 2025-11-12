@@ -31,7 +31,7 @@ class ToolController extends Controller
         match ($sort) {
             'rating' => $query->highestRated(),
             'views' => $query->orderByDesc('views_count'),
-            'recent' => $query->latest('first_reviewed_at'),
+            'recent' => $query->latest('created_at'),
             default => $query->orderBy('name'),
         };
 

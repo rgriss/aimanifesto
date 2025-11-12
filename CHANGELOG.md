@@ -5,6 +5,15 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.3] - 2025-11-11
+
+### Fixed
+- **Tools Index "Recent" Sort**: Now properly sorts by creation timestamp instead of review date
+  - Changed from `first_reviewed_at` to `created_at` for recent sort
+  - Fixes issue where tools added on same day appeared in random order
+  - `first_reviewed_at` is often set to midnight (00:00:00), losing time precision
+  - `created_at` has accurate timestamps for proper chronological sorting
+
 ## [0.17.2] - 2025-11-11
 
 ### Fixed

@@ -110,9 +110,14 @@ const applyFilters = () => {
                                     <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors">
                                         {{ tool.name }}
                                     </h3>
-                                    <Badge v-if="tool.is_featured" variant="warning" size="sm">
-                                        Featured
-                                    </Badge>
+                                    <div class="flex gap-2">
+                                        <Badge v-if="tool.intelligence" variant="info" size="sm">
+                                            💼 CTO Insights
+                                        </Badge>
+                                        <Badge v-if="tool.is_featured" variant="warning" size="sm">
+                                            Featured
+                                        </Badge>
+                                    </div>
                                 </div>
                                 <p class="text-muted-foreground mb-4 text-sm">
                                     {{ tool.description }}

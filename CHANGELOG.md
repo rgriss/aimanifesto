@@ -5,6 +5,20 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.2] - 2025-11-12
+
+### Added
+- **Business Intelligence Indicator**: Tools with business intelligence data now show a "💼 CTO Insights" badge
+  - Badge appears in upper-right corner of tool cards on the directory page
+  - Helps users quickly identify which tools have comprehensive CTO-level insights
+  - Includes cost analysis, company metadata, market position, and competitive intelligence
+  - Blue info badge variant for professional appearance
+
+### Technical
+- Added `intelligence` relationship to tools index query
+- Updated Tools/Index.vue with conditional badge display
+- Badge uses existing `variant="info"` styling
+
 ## [0.18.1] - 2025-11-12
 
 ### Added

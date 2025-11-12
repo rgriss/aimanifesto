@@ -11,7 +11,7 @@ class ToolController extends Controller
 {
     public function index(Request $request): Response
     {
-        $query = Tool::with('category')
+        $query = Tool::with(['category', 'intelligence'])
             ->active();
 
         // Get total count before filtering

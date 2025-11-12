@@ -50,8 +50,8 @@ const acknowledgePhilosophy = () => {
 
 const checkVoteThreshold = () => {
     const now = Date.now();
-    // Clean up clicks older than 30 seconds
-    voteClicks.value = voteClicks.value.filter(timestamp => now - timestamp < 30000);
+    // Clean up clicks older than 1 minute
+    voteClicks.value = voteClicks.value.filter(timestamp => now - timestamp < 60000);
 
     // Add current click
     voteClicks.value.push(now);
@@ -59,12 +59,21 @@ const checkVoteThreshold = () => {
     console.log('Vote click tracking:', {
         clickCount: voteClicks.value.length,
         hasSeenPhilosophy: hasSeenPhilosophy.value,
-        willShowDialog: voteClicks.value.length >= 5 && !hasSeenPhilosophy.value
+        tier1Threshold: 5,
+        tier2Threshold: 20
     });
 
-    // Show dialog if they've clicked 5+ times in 30 seconds and haven't seen it yet
-    if (voteClicks.value.length >= 5 && !hasSeenPhilosophy.value) {
-        console.log('Showing philosophy dialog!');
+    // Tier 2: If they've hammered 20+ times in a minute, show again even if they've seen it
+    // This is the "you're really pushing it" reminder
+    if (voteClicks.value.length >= 20) {
+        console.log('Tier 2 triggered: 20+ clicks in a minute - resetting acknowledgment');
+        hasSeenPhilosophy.value = false;
+        localStorage.removeItem('voting_philosophy_acknowledged');
+        showPhilosophyDialog.value = true;
+    }
+    // Tier 1: First-time users see it after 5 clicks
+    else if (voteClicks.value.length >= 5 && !hasSeenPhilosophy.value) {
+        console.log('Tier 1 triggered: First-time user at 5 clicks');
         showPhilosophyDialog.value = true;
     }
 };

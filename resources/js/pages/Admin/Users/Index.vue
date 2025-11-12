@@ -2,14 +2,6 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -20,17 +12,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import {
@@ -131,15 +112,17 @@ const toggleVerified = (user: User) => {
     });
 };
 
-const deleteUser = (user: User) => {
+const confirmDelete = (user: User) => {
     if (user.id === currentUser.value?.id) {
         alert('You cannot delete your own account from here.');
         return;
     }
 
-    router.delete(`/admin/users/${user.id}`, {
-        preserveScroll: true,
-    });
+    if (confirm(`Are you sure you want to delete ${user.name}? This action cannot be undone.`)) {
+        router.delete(`/admin/users/${user.id}`, {
+            preserveScroll: true,
+        });
+    }
 };
 
 const formatDate = (dateString: string) => {
@@ -288,7 +271,7 @@ const formatDate = (dateString: string) => {
             </Card>
 
             <!-- Users Table -->
-            <Card>
+            <Card class="overflow-hidden">
                 <CardHeader>
                     <div class="flex items-center justify-between">
                         <div>
@@ -299,35 +282,45 @@ const formatDate = (dateString: string) => {
                         </div>
                     </div>
                 </CardHeader>
-                <CardContent>
-                    <div class="rounded-md border">
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>User</TableHead>
-                                    <TableHead>Email</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead>Joined</TableHead>
-                                    <TableHead class="text-right">Actions</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                <TableRow v-for="user in users.data" :key="user.id">
-                                    <TableCell>
+                <CardContent class="p-0">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-muted/50 border-b">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                                        User
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                                        Email
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                                        Status
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                                        Joined
+                                    </th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-border bg-background">
+                                <tr v-for="user in users.data" :key="user.id" class="hover:bg-muted/50 transition-colors">
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="font-medium">{{ user.name }}</div>
                                         <div v-if="user.id === currentUser?.id" class="text-xs text-muted-foreground">
                                             (You)
                                         </div>
-                                    </TableCell>
-                                    <TableCell>
+                                    </td>
+                                    <td class="px-6 py-4">
                                         <div class="flex items-center gap-2">
                                             {{ user.email }}
                                             <Badge v-if="user.newsletter_subscribed" variant="outline" class="text-xs">
                                                 Newsletter
                                             </Badge>
                                         </div>
-                                    </TableCell>
-                                    <TableCell>
+                                    </td>
+                                    <td class="px-6 py-4">
                                         <div class="flex flex-col gap-1">
                                             <Badge v-if="user.is_admin" variant="default">
                                                 <ShieldCheck class="h-3 w-3 mr-1" />
@@ -342,14 +335,14 @@ const formatDate = (dateString: string) => {
                                                 Unverified
                                             </Badge>
                                         </div>
-                                    </TableCell>
-                                    <TableCell>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center gap-2 text-sm text-muted-foreground">
                                             <Calendar class="h-4 w-4" />
                                             {{ formatDate(user.created_at) }}
                                         </div>
-                                    </TableCell>
-                                    <TableCell class="text-right">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
                                         <div class="flex justify-end gap-2">
                                             <Button
                                                 variant="outline"
@@ -370,46 +363,29 @@ const formatDate = (dateString: string) => {
                                                 {{ user.email_verified_at ? 'Unverify' : 'Verify' }}
                                             </Button>
 
-                                            <AlertDialog>
-                                                <AlertDialogTrigger as-child>
-                                                    <Button
-                                                        variant="destructive"
-                                                        size="sm"
-                                                        :disabled="user.id === currentUser?.id"
-                                                    >
-                                                        <Trash2 class="h-4 w-4" />
-                                                    </Button>
-                                                </AlertDialogTrigger>
-                                                <AlertDialogContent>
-                                                    <AlertDialogHeader>
-                                                        <AlertDialogTitle>Delete User</AlertDialogTitle>
-                                                        <AlertDialogDescription>
-                                                            Are you sure you want to delete {{ user.name }}? This action cannot be undone.
-                                                        </AlertDialogDescription>
-                                                    </AlertDialogHeader>
-                                                    <AlertDialogFooter>
-                                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                        <AlertDialogAction @click="deleteUser(user)">
-                                                            Delete
-                                                        </AlertDialogAction>
-                                                    </AlertDialogFooter>
-                                                </AlertDialogContent>
-                                            </AlertDialog>
+                                            <Button
+                                                variant="destructive"
+                                                size="sm"
+                                                :disabled="user.id === currentUser?.id"
+                                                @click="confirmDelete(user)"
+                                            >
+                                                <Trash2 class="h-4 w-4" />
+                                            </Button>
                                         </div>
-                                    </TableCell>
-                                </TableRow>
+                                    </td>
+                                </tr>
 
-                                <TableRow v-if="users.data.length === 0">
-                                    <TableCell colspan="5" class="text-center py-8 text-muted-foreground">
+                                <tr v-if="users.data.length === 0">
+                                    <td colspan="5" class="px-6 py-8 text-center text-muted-foreground">
                                         No users found
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <!-- Pagination -->
-                    <div v-if="users.last_page > 1" class="flex items-center justify-between mt-4">
+                    <div v-if="users.last_page > 1" class="flex items-center justify-between p-6 border-t">
                         <div class="text-sm text-muted-foreground">
                             Showing {{ (users.current_page - 1) * users.per_page + 1 }} to
                             {{ Math.min(users.current_page * users.per_page, users.total) }} of {{ users.total }} users

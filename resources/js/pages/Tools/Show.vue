@@ -649,7 +649,7 @@ const hasPricingComplexity = computed(() => {
                 <!-- End Grid Layout -->
 
                 <!-- Related Tools -->
-                <div v-if="relatedTools && relatedTools.length > 0">
+                <div v-if="relatedTools && relatedTools.length > 0" class="mt-12">
                     <SectionHeading
                         :title="`More in ${tool.category.name}`"
                         subtitle="Other tools you might find useful"

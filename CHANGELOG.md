@@ -5,6 +5,19 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.7] - 2025-11-12
+
+### Fixed
+- **Dashboard/Admin Sidebar Logo Link**: Master logo link now navigates to site root instead of dashboard
+  - Changed AppSidebar.vue logo link from `dashboard()` route to `/` (site root)
+  - Affects both `/dashboard` and `/admin` layouts which share the same sidebar
+  - Clicking the logo now returns users to the main homepage
+  - Dashboard and Admin navigation links remain in sidebar for quick access
+
+### Technical
+- Updated `resources/js/components/AppSidebar.vue` line 65
+- Changed from `:href="dashboard()"` to `href="/"`
+
 ## [0.18.6] - 2025-11-12
 
 ### Fixed

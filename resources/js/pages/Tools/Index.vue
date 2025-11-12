@@ -1,8 +1,8 @@
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHeader, SectionHeading, Card, Badge, VoteButtons, HelpWantedSign } from '@/components';
-import { TrendingUp, TrendingDown, Activity, Circle, ChevronDown, Plus, Code2 } from 'lucide-vue-next';
+import { PageHeader, SectionHeading, Card, Badge, ToolCard, HelpWantedSign } from '@/components';
+import { ChevronDown, Plus, Code2 } from 'lucide-vue-next';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -33,23 +33,6 @@ const applyFilters = () => {
         preserveState: true,
         preserveScroll: true,
     });
-};
-
-// Get momentum icon and styling based on score
-const getMomentumDisplay = (score) => {
-    if (!score) {
-        return { icon: Circle, color: 'text-muted-foreground/30', title: 'No momentum data' };
-    }
-
-    const displays = {
-        1: { icon: TrendingDown, color: 'text-danger', title: 'Strongly Declining' },
-        2: { icon: TrendingDown, color: 'text-warning', title: 'Declining' },
-        3: { icon: Activity, color: 'text-foreground/50', title: 'Stable' },
-        4: { icon: TrendingUp, color: 'text-success', title: 'Growing' },
-        5: { icon: TrendingUp, color: 'text-success', title: 'Rapidly Growing' },
-    };
-
-    return displays[score] || { icon: Circle, color: 'text-muted-foreground/30', title: 'Unknown' };
 };
 </script>
 
@@ -320,63 +303,11 @@ const getMomentumDisplay = (score) => {
                 <!-- Tools Grid -->
                 <div v-if="tools.data && tools.data.length > 0">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                        <Link
+                        <ToolCard
                             v-for="tool in tools.data"
                             :key="tool.id"
-                            :href="`/tools/${tool.slug}`"
-                            class="group h-full flex"
-                        >
-                            <Card class="flex-1 flex flex-col">
-                                <div class="flex items-start justify-between mb-3">
-                                    <div class="flex items-center gap-2">
-                                        <component
-                                            :is="getMomentumDisplay(tool.momentum_score).icon"
-                                            :size="18"
-                                            :class="getMomentumDisplay(tool.momentum_score).color"
-                                            :title="getMomentumDisplay(tool.momentum_score).title"
-                                        />
-                                        <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors">
-                                            {{ tool.name }}
-                                        </h3>
-                                    </div>
-                                    <div class="flex gap-2 flex-shrink-0">
-                                        <Badge v-if="tool.intelligence" variant="info" size="sm">
-                                            💼 CTO Insights
-                                        </Badge>
-                                        <Badge v-if="tool.is_featured" variant="warning" size="sm">
-                                            Featured
-                                        </Badge>
-                                    </div>
-                                </div>
-                                <p class="text-muted-foreground mb-4 text-sm flex-grow">
-                                    {{ tool.description }}
-                                </p>
-
-                                <!-- Voting Buttons -->
-                                <div class="mb-4" @click.prevent.stop>
-                                    <VoteButtons
-                                        :tool-slug="tool.slug"
-                                        :upvotes="tool.upvotes || 0"
-                                        :downvotes="tool.downvotes || 0"
-                                        size="sm"
-                                    />
-                                </div>
-
-                                <div class="mt-auto">
-                                    <div class="flex items-center justify-between text-sm mb-2">
-                                        <span class="text-muted-foreground">
-                                            {{ tool.category?.name }}
-                                        </span>
-                                        <Badge v-if="tool.ryan_rating" variant="success" size="sm">
-                                            ⭐ {{ tool.ryan_rating }}/10
-                                        </Badge>
-                                    </div>
-                                    <Badge variant="default" size="sm" class="capitalize">
-                                        {{ tool.pricing_model }}
-                                    </Badge>
-                                </div>
-                            </Card>
-                        </Link>
+                            :tool="tool"
+                        />
                     </div>
 
                     <!-- Pagination -->

@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHero, Card, Badge, SectionHeading, VoteButtons } from '@/components';
+import { PageHero, Card, Badge, SectionHeading, VoteButtons, ToolCard } from '@/components';
 import HackerNewsDiscussions from '@/components/HackerNewsDiscussions.vue';
 import CommunityLinks from '@/components/CommunityLinks.vue';
 import { Building2, TrendingUp, TrendingDown, Activity } from 'lucide-vue-next';
@@ -662,26 +662,14 @@ const hasPricingComplexity = computed(() => {
                         </template>
                     </SectionHeading>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Link
+                        <ToolCard
                             v-for="relatedTool in relatedTools"
                             :key="relatedTool.id"
-                            :href="`/tools/${relatedTool.slug}`"
-                            class="group flex"
-                        >
-                            <Card class="flex flex-col h-full w-full">
-                                <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-2">
-                                    {{ relatedTool.name }}
-                                </h3>
-                                <p class="text-muted-foreground mb-4 text-sm flex-grow">
-                                    {{ relatedTool.description }}
-                                </p>
-                                <div v-if="relatedTool.ryan_rating">
-                                    <Badge variant="success" size="sm">
-                                        ⭐ {{ relatedTool.ryan_rating }}/10
-                                    </Badge>
-                                </div>
-                            </Card>
-                        </Link>
+                            :tool="relatedTool"
+                            :show-voting="false"
+                            :show-momentum="false"
+                            :show-category="false"
+                        />
                     </div>
                 </div>
             </div>

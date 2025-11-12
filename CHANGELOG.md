@@ -5,6 +5,25 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.31.0] - 2025-11-12
+
+### Added
+- **Reusable ToolCard Component**: Created unified component for consistent tool display
+  - Consolidates tool card markup from Tools Index and Related Tools
+  - Flexible props to control display: `showVoting`, `showMomentum`, `showCategory`, `compact`
+  - Includes momentum indicators, badges, voting buttons, pricing, and ratings
+  - Consistent hover states and transitions across all tool cards
+
+### Changed
+- **Tools Index**: Now uses ToolCard component instead of inline markup
+- **Tool Show (Related Tools)**: Now uses ToolCard component with simplified props
+- Removed duplicate getMomentumDisplay logic from Tools Index
+
+### Improved
+- Consistent tool card styling across entire application
+- Easier to maintain - one source of truth for tool card design
+- DRY principle applied to tool card markup
+
 ## [0.30.1] - 2025-11-12
 
 ### Fixed

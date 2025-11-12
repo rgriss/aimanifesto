@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHeader, SectionHeading, Card, Badge } from '@/components';
+import { PageHeader, SectionHeading, Card, Badge, HelpWantedSign } from '@/components';
 import { TrendingUp, TrendingDown, Activity, Circle } from 'lucide-vue-next';
 
 defineProps({
@@ -295,6 +295,15 @@ const scopes = [
                                 </div>
                             </div>
                         </Card>
+                    </div>
+                </div>
+
+                <!-- Help Wanted Sign -->
+                <div class="mb-12 md:mb-16">
+                    <div class="flex justify-center">
+                        <div class="w-full max-w-xs md:max-w-sm">
+                            <HelpWantedSign :href="`mailto:${$page.props.contactEmail}?subject=I Want to Help`" />
+                        </div>
                     </div>
                 </div>
 

@@ -5,6 +5,26 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.8] - 2025-11-12
+
+### Added
+- **Help Wanted Sign Component**: Eye-catching call-to-action component
+  - Red background with white inset border for vintage sign aesthetic
+  - Bold white uppercase "HELP WANTED" text across two lines
+  - Subtle "click here" text below for user guidance
+  - Hover animation with scale effect
+  - Clickable with support for both internal routes and external links
+  - Placed prominently on homepage between audience sections and core values
+  - Links to contact email with "I Want to Help" subject line
+
+### Technical
+- Created reusable HelpWantedSign.vue component
+- Supports both Link (internal) and anchor (external) elements via props
+- Added to components/index.ts barrel export
+- Styled with Tailwind using danger color for red background
+- Inset border achieved with absolute positioning and border classes
+- Responsive sizing: max-w-xs on mobile, max-w-sm on desktop
+
 ## [0.19.7] - 2025-11-12
 
 ### Added

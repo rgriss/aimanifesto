@@ -83,10 +83,20 @@ const handleLogoClick = async (e: MouseEvent) => {
     <div
         class="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10"
     >
-        <div class="w-full max-w-sm">
-            <!-- Emergency Admin Message -->
-            <div v-if="message" class="mb-4">
-                <Alert :variant="message.type === 'error' ? 'destructive' : 'default'">
+        <!-- Emergency Admin Message - Floating, doesn't cause layout shift -->
+        <Transition
+            enter-active-class="transition ease-out duration-200"
+            enter-from-class="opacity-0 -translate-y-4"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition ease-in duration-150"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 -translate-y-4"
+        >
+            <div
+                v-if="message"
+                class="fixed top-6 left-1/2 -translate-x-1/2 w-full max-w-sm px-6 md:px-0 z-50"
+            >
+                <Alert :variant="message.type === 'error' ? 'destructive' : 'default'" class="shadow-lg">
                     <CheckCircle2 v-if="message.type === 'success'" class="h-4 w-4" />
                     <Info v-else-if="message.type === 'info'" class="h-4 w-4" />
                     <AlertCircle v-else class="h-4 w-4" />
@@ -94,7 +104,9 @@ const handleLogoClick = async (e: MouseEvent) => {
                     <AlertDescription>{{ message.description }}</AlertDescription>
                 </Alert>
             </div>
+        </Transition>
 
+        <div class="w-full max-w-sm">
             <div class="flex flex-col gap-8">
                 <div class="flex flex-col items-center gap-4">
                     <Link

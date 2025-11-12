@@ -5,6 +5,17 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.20.1] - 2025-11-12
+
+### Changed
+- **Help Wanted Sign Readability Improvements**: Enhanced text sizing and layout
+  - Increased cursive handwritten text size dramatically (text-base/lg → text-2xl/3xl)
+  - Added font-semibold to cursive text for better readability
+  - Combined "HELP" and "WANTED" onto single line for cleaner composition
+  - Reduced main text size slightly (text-4xl/5xl → text-3xl/4xl)
+  - Increased white box padding (px-4 py-2 → px-6 py-3) to accommodate larger text
+  - Cursive text now highly readable and prominent instead of subtle
+
 ## [0.20.0] - 2025-11-12
 
 ### Added

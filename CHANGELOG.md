@@ -5,6 +5,17 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.2] - 2025-11-12
+
+### Fixed
+- **Tool Model Fillable Fields**: Added missing fields to Tool model's $fillable array
+  - Added `reddit_url`, `community_url`, `reviews_url`, `hn_search_query`
+  - These fields were in database but couldn't be mass-assigned
+  - Community & Reviews card now displays properly when URLs are provided
+
+### Technical
+- Updated Tool model $fillable array with four new fields
+
 ## [0.29.1] - 2025-11-12
 
 ### Added

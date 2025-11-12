@@ -340,7 +340,7 @@ const handleVersionClick = async () => {
                     <!-- Copyright & Version - Center/Right -->
                     <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 flex-1 justify-center sm:justify-end">
                         <p class="text-muted-foreground text-sm text-center sm:text-right">
-                            The AI Manifesto © 2025 - Curated by Ryan Grissinger
+                            The AI Manifesto © 2025
                         </p>
                         <button
                             @click="handleVersionClick"

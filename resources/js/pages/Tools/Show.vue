@@ -165,7 +165,7 @@ const hasPricingComplexity = computed(() => {
 
                     <template #metadata>
                         <div v-if="tool.ryan_rating">
-                            <span class="text-background/80">Ryan's Rating:</span>
+                            <span class="text-background/80">Our Rating:</span>
                             <Badge variant="success" class="ml-2">
                                 ⭐ {{ tool.ryan_rating }}/10
                             </Badge>
@@ -566,7 +566,7 @@ const hasPricingComplexity = computed(() => {
 
                 <!-- Ryan's Notes -->
                 <div v-if="tool.ryan_notes" class="bg-foreground/5 rounded-lg shadow p-8 border-2 border-foreground/10">
-                    <SectionHeading title="Ryan's Take" />
+                    <SectionHeading title="Our Take" />
                     <p class="text-foreground italic text-lg leading-relaxed">
                         "{{ tool.ryan_notes }}"
                     </p>

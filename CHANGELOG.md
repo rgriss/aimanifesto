@@ -5,6 +5,15 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.29.7] - 2025-11-12
+
+### Changed
+- **Branding Updates**: Depersonalized tool ratings and editorial content
+  - Changed "Ryan's Rating" to "Our Rating" on tool show pages
+  - Changed "Ryan's Take" to "Our Take" for editorial notes
+  - Removed "Curated by Ryan Grissinger" from footer
+  - Footer now shows only "The AI Manifesto © 2025"
+
 ## [0.29.6] - 2025-11-12
 
 ### Added

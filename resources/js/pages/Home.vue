@@ -377,9 +377,9 @@ const scopes = [
                                 v-for="tool in featuredTools"
                                 :key="tool.id"
                                 :href="`/tools/${tool.slug}`"
-                                class="group"
+                                class="group h-full flex"
                             >
-                                <Card>
+                                <Card class="flex-1 flex flex-col">
                                     <div class="flex items-start justify-between mb-2 gap-2">
                                         <h3 class="text-base md:text-lg font-bold text-foreground group-hover:text-foreground/70 transition-colors leading-tight">
                                             {{ tool.name }}
@@ -388,12 +388,14 @@ const scopes = [
                                             ⭐ {{ tool.ryan_rating }}/10
                                         </Badge>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-muted-foreground mb-3 leading-relaxed">
+                                    <p class="text-xs sm:text-sm text-muted-foreground mb-3 leading-relaxed flex-grow">
                                         {{ tool.description }}
                                     </p>
-                                    <Badge variant="default" size="sm" class="capitalize">
-                                        {{ tool.pricing_model }}
-                                    </Badge>
+                                    <div class="mt-auto">
+                                        <Badge variant="default" size="sm" class="capitalize">
+                                            {{ tool.pricing_model }}
+                                        </Badge>
+                                    </div>
                                 </Card>
                             </Link>
                         </div>

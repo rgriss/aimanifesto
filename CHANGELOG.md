@@ -5,6 +5,21 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.1] - 2025-11-12
+
+### Fixed
+- **Category Show Page Card Heights**: Tool cards now have equal heights within each row
+  - Cards stretch to match the tallest card in their row
+  - Pricing and rating badges align at the bottom of each card
+  - Consistent with equal height behavior across the entire site
+  - Improved visual consistency on category detail pages
+
+### Technical
+- Added `h-full flex` to Link wrapper for full height stretching
+- Added `flex-1 flex flex-col` to Card component for flexbox layout
+- Added `flex-grow` to description paragraph for expanding space
+- Added `mt-auto` to badge container to push badges to bottom
+
 ## [0.19.0] - 2025-11-12
 
 ### Changed

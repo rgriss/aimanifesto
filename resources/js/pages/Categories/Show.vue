@@ -49,16 +49,16 @@ defineProps({
                             v-for="tool in category.active_tools"
                             :key="tool.id"
                             :href="`/tools/${tool.slug}`"
-                            class="group"
+                            class="group h-full flex"
                         >
-                            <Card>
+                            <Card class="flex-1 flex flex-col">
                                 <h3 class="text-xl font-bold text-foreground group-hover:text-foreground/70 transition-colors mb-2">
                                     {{ tool.name }}
                                 </h3>
-                                <p class="text-muted-foreground mb-4 text-sm">
+                                <p class="text-muted-foreground mb-4 text-sm flex-grow">
                                     {{ tool.description }}
                                 </p>
-                                <div class="flex items-center justify-between">
+                                <div class="flex items-center justify-between mt-auto">
                                     <Badge variant="default" size="sm" class="capitalize">
                                         {{ tool.pricing_model }}
                                     </Badge>

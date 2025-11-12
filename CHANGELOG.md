@@ -5,6 +5,15 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.2] - 2025-11-11
+
+### Fixed
+- **Frontend Cost Analysis Display**: Tool show page now properly displays mid-market pricing tier
+  - Added mid-market column to cost analysis section
+  - Updated grid layout from 3 columns to 4 columns (responsive)
+  - Changed section title from "Pricing Complexity" to "Cost Analysis"
+  - Mid-market data now visible when present in intelligence records
+
 ## [0.17.1] - 2025-11-11
 
 ### Added

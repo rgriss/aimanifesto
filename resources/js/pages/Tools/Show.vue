@@ -106,11 +106,12 @@ const formatPricingComplexity = (level) => {
     return '$'.repeat(level);
 };
 
-// Check if pricing complexity data exists
+// Check if cost analysis data exists
 const hasPricingComplexity = computed(() => {
     return props.tool.intelligence && (
         props.tool.intelligence.pricing_individual_cost ||
         props.tool.intelligence.pricing_smb_cost ||
+        props.tool.intelligence.pricing_midmarket_cost ||
         props.tool.intelligence.pricing_enterprise_cost
     );
 });
@@ -346,14 +347,14 @@ const hasPricingComplexity = computed(() => {
                                 </div>
                             </div>
 
-                            <!-- Pricing Complexity -->
+                            <!-- Cost Analysis -->
                             <div v-if="hasPricingComplexity" class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg p-6 border-2 border-primary/20">
                                 <div class="flex items-center gap-3 mb-6">
                                     <span class="text-3xl">💰</span>
-                                    <h3 class="text-lg font-bold text-foreground">Pricing Complexity</h3>
+                                    <h3 class="text-lg font-bold text-foreground">Cost Analysis</h3>
                                 </div>
 
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                     <!-- Individual Pricing -->
                                     <div v-if="tool.intelligence.pricing_individual_cost" class="bg-background/50 rounded-lg p-4">
                                         <p class="text-sm text-muted-foreground mb-2">Individual</p>
@@ -373,6 +374,17 @@ const hasPricingComplexity = computed(() => {
                                         </p>
                                         <p v-if="tool.intelligence.pricing_smb_range" class="text-sm text-foreground">
                                             {{ tool.intelligence.pricing_smb_range }}
+                                        </p>
+                                    </div>
+
+                                    <!-- Mid-Market Pricing -->
+                                    <div v-if="tool.intelligence.pricing_midmarket_cost" class="bg-background/50 rounded-lg p-4">
+                                        <p class="text-sm text-muted-foreground mb-2">Mid-Market (50-500 users)</p>
+                                        <p class="text-3xl font-bold text-primary mb-1">
+                                            {{ formatPricingComplexity(tool.intelligence.pricing_midmarket_cost) }}
+                                        </p>
+                                        <p v-if="tool.intelligence.pricing_midmarket_range" class="text-sm text-foreground">
+                                            {{ tool.intelligence.pricing_midmarket_range }}
                                         </p>
                                     </div>
 

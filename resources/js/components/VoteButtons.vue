@@ -36,6 +36,10 @@ const hasSeenPhilosophy = ref(false);
 onMounted(() => {
     const seen = localStorage.getItem('voting_philosophy_acknowledged');
     hasSeenPhilosophy.value = seen === 'true';
+    console.log('VoteButtons mounted:', {
+        localStorageValue: seen,
+        hasSeenPhilosophy: hasSeenPhilosophy.value
+    });
 });
 
 const acknowledgePhilosophy = () => {
@@ -52,8 +56,15 @@ const checkVoteThreshold = () => {
     // Add current click
     voteClicks.value.push(now);
 
+    console.log('Vote click tracking:', {
+        clickCount: voteClicks.value.length,
+        hasSeenPhilosophy: hasSeenPhilosophy.value,
+        willShowDialog: voteClicks.value.length >= 5 && !hasSeenPhilosophy.value
+    });
+
     // Show dialog if they've clicked 5+ times in 30 seconds and haven't seen it yet
     if (voteClicks.value.length >= 5 && !hasSeenPhilosophy.value) {
+        console.log('Showing philosophy dialog!');
         showPhilosophyDialog.value = true;
     }
 };

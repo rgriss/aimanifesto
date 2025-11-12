@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Public voting endpoint (no auth required)
+// Throttle allows 100 votes per minute per IP - we encourage multiple clicks!
 Route::post('/tools/{slug}/vote', [ApiToolController::class, 'vote'])
-    ->middleware('throttle:10,1')
+    ->middleware('throttle:100,1')
     ->name('api.tools.vote');
 
 Route::middleware(['api.token', 'throttle:60,1'])->group(function () {

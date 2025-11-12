@@ -258,6 +258,57 @@ class ApiToolController extends Controller
     }
 
     /**
+     * Vote on a tool (public endpoint - no auth required).
+     */
+    public function vote(Request $request, string $slug): JsonResponse
+    {
+        try {
+            $validated = $request->validate([
+                'type' => ['required', 'string', 'in:up,down'],
+            ]);
+
+            $tool = Tool::where('slug', $slug)->first();
+
+            if (! $tool) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tool not found',
+                ], 404);
+            }
+
+            // Increment the appropriate counter
+            if ($validated['type'] === 'up') {
+                $tool->increment('upvotes');
+            } else {
+                $tool->increment('downvotes');
+            }
+
+            // Refresh to get updated values
+            $tool->refresh();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Vote recorded',
+                'data' => [
+                    'upvotes' => $tool->upvotes,
+                    'downvotes' => $tool->downvotes,
+                    'net_score' => $tool->upvotes - $tool->downvotes,
+                ],
+            ]);
+
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (\Exception $e) {
+            return $this->errorResponse('An error occurred while recording the vote', $e);
+        }
+    }
+
+    /**
      * Validate the incoming tool request.
      *
      * @param  bool  $isCreating  Whether this is a creation (required fields) or update (optional fields)

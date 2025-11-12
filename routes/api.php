@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Public voting endpoint (no auth required)
+Route::post('/tools/{slug}/vote', [ApiToolController::class, 'vote'])
+    ->middleware('throttle:10,1')
+    ->name('api.tools.vote');
+
 Route::middleware(['api.token', 'throttle:60,1'])->group(function () {
     // Tools Resource
     Route::get('/tools', [ApiToolController::class, 'index'])->name('api.tools.index');

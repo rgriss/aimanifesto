@@ -5,6 +5,26 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.0] - 2025-11-12
+
+### Added
+- **Public Voting Feature**: Users can now vote on tools without authentication
+  - Thumbs up/down voting buttons on tool cards in directory (Tools/Index)
+  - Thumbs up/down voting buttons on tool detail pages (Tools/Show)
+  - Real-time vote counts with optimistic UI updates
+  - Displays upvotes, downvotes, and net score
+  - Public API endpoint: `POST /api/tools/{slug}/vote`
+  - Rate limited to 10 votes per minute per IP
+  - No authentication required - open voting system
+  - VoteButtons component with three size variants (sm/md/lg)
+
+### Technical
+- Added `upvotes` and `downvotes` columns to tools table
+- New VoteButtons.vue component with optimistic updates and error handling
+- Vote endpoint uses atomic `increment()` for thread safety
+- Votes are anonymous and not tracked to individual users
+- Component prevents navigation when clicking vote buttons on tool cards
+
 ## [0.17.3] - 2025-11-11
 
 ### Fixed

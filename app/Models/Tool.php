@@ -35,6 +35,8 @@ class Tool extends Model
         'is_featured',
         'is_active',
         'views_count',
+        'upvotes',
+        'downvotes',
         'first_reviewed_at',
     ];
 
@@ -45,6 +47,8 @@ class Tool extends Model
         'is_featured' => 'boolean',
         'is_active' => 'boolean',
         'views_count' => 'integer',
+        'upvotes' => 'integer',
+        'downvotes' => 'integer',
         'ryan_rating' => 'integer',
         'momentum_score' => 'integer',
         'ryan_last_used' => 'date',

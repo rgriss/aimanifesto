@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHeader, SectionHeading, Card, Badge } from '@/components';
+import { PageHeader, SectionHeading, Card, Badge, VoteButtons } from '@/components';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -117,6 +117,17 @@ const applyFilters = () => {
                                 <p class="text-muted-foreground mb-4 text-sm">
                                     {{ tool.description }}
                                 </p>
+
+                                <!-- Voting Buttons -->
+                                <div class="mb-4" @click.prevent.stop>
+                                    <VoteButtons
+                                        :tool-slug="tool.slug"
+                                        :upvotes="tool.upvotes || 0"
+                                        :downvotes="tool.downvotes || 0"
+                                        size="sm"
+                                    />
+                                </div>
+
                                 <div class="flex items-center justify-between text-sm mb-2">
                                     <span class="text-muted-foreground">
                                         {{ tool.category?.name }}

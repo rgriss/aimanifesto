@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHero, Card, Badge, SectionHeading } from '@/components';
+import { PageHero, Card, Badge, SectionHeading, VoteButtons } from '@/components';
 import { Building2, TrendingUp, TrendingDown, Activity } from 'lucide-vue-next';
 import { computed } from 'vue';
 
@@ -183,6 +183,14 @@ const hasPricingComplexity = computed(() => {
                             <span class="ml-2 text-background font-semibold">
                                 {{ new Date(tool.updated_at).toLocaleDateString() }}
                             </span>
+                        </div>
+                        <div class="col-span-full pt-2 border-t border-background/20">
+                            <VoteButtons
+                                :tool-slug="tool.slug"
+                                :upvotes="tool.upvotes || 0"
+                                :downvotes="tool.downvotes || 0"
+                                size="md"
+                            />
                         </div>
                     </template>
 

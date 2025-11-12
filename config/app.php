@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'version' => '0.22.0',
+    'version' => '0.23.0',
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +39,22 @@ return [
     */
 
     'contact_email' => env('CONTACT_EMAIL', 'info@polarispixels.com'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Emergency Admin Creation
+    |--------------------------------------------------------------------------
+    |
+    | Enable emergency admin creation via the login page (10 clicks on logo).
+    | This is a recovery mechanism for when admin access is lost.
+    | Recommended: only enable in local/staging environments.
+    |
+    */
+
+    'emergency_admin_enabled' => env('EMERGENCY_ADMIN_ENABLED', env('APP_ENV') === 'local'),
+    'admin_email' => env('ADMIN_EMAIL', 'admin@aimanifesto.net'),
+    'admin_password' => env('ADMIN_PASSWORD', 'password'),
+    'admin_name' => env('ADMIN_NAME', 'Admin User'),
 
     /*
     |--------------------------------------------------------------------------

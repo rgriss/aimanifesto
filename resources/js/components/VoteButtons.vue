@@ -213,24 +213,25 @@ const vote = async (type: 'up' | 'down') => {
                         </p>
                     </div>
 
-                    <div class="bg-warning/10 border border-warning/30 rounded-lg p-4 space-y-3">
-                        <p class="font-semibold text-warning">The Downside: Please Don't Be Obnoxious</p>
-                        <p class="leading-relaxed text-foreground">
-                            The danger is somebody being obnoxious—somebody spamming. That's why you're seeing this popup.
-                        </p>
-                        <p class="leading-relaxed text-foreground">
-                            <strong>The bottom line:</strong> Please don't be obnoxious. Don't be that guy. Don't be the problem.
+                    <div class="bg-info/10 border border-info/30 rounded-lg p-4 space-y-3">
+                        <p class="font-semibold text-info">How to Vote:</p>
+                        <ul class="space-y-2 text-foreground">
+                            <li><strong>Like it a little?</strong> Click once.</li>
+                            <li><strong>Really like it?</strong> Click it 5 times.</li>
+                            <li><strong>Absolutely love it?</strong> Click more!</li>
+                        </ul>
+                        <p class="leading-relaxed text-foreground text-sm">
+                            Your enthusiasm matters. Multiple clicks show genuine excitement.
                         </p>
                     </div>
 
-                    <p class="leading-relaxed">
-                        In some ways, this public voting system is <strong>an experiment to see if as a community we can all get along</strong>.
-                    </p>
-
-                    <p class="leading-relaxed font-semibold">
-                        So please participate! Click thumbs up on items you like. If you feel like clicking more than once, great—but don't spam click it.
-                        Just don't be a jerk. 🤝
-                    </p>
+                    <div class="bg-warning/10 border border-warning/30 rounded-lg p-4">
+                        <p class="font-semibold text-warning mb-2">The Downside: Don't Spam</p>
+                        <p class="leading-relaxed text-foreground">
+                            The danger is somebody being obnoxious and spamming votes. In some ways, this public voting system is
+                            <strong>an experiment to see if as a community we can get along</strong>. So please don't be that person. 🤝
+                        </p>
+                    </div>
 
                     <div class="text-center pt-4">
                         <Button @click="acknowledgePhilosophy" size="lg" class="font-semibold">

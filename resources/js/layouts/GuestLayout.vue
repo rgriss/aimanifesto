@@ -116,7 +116,7 @@ const user = computed(() => page.props.auth?.user);
                             </Link>
                             <Link href="/register">
                                 <Button size="sm">
-                                    Sign Up
+                                    Sign the Manifesto
                                 </Button>
                             </Link>
                         </div>

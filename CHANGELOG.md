@@ -5,6 +5,22 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.33.2] - 2025-11-13
+
+### Added
+- **Google Analytics Integration**: Production-only tracking for visitor analytics
+  - Created reusable `_analytics.blade.php` partial with Google Analytics 4 tracking code
+  - Environment-aware: only loads when `APP_ENV=production` to prevent tracking local/staging traffic
+  - Configurable via `GA_TRACKING_ID` environment variable in `config/services.php`
+  - Automatically included in main `app.blade.php` template immediately after `<head>` tag
+  - Safe for local development: tracking ID should only be set in production environment
+
+### Technical
+- Added `google_analytics.tracking_id` configuration in `config/services.php`
+- Analytics partial uses conditional rendering: `@if(config('services.google_analytics.tracking_id') && app()->environment('production'))`
+- Follows Google's recommended implementation with async script loading and gtag.js
+- Documentation added to `.env.example` explaining production-only usage
+
 ## [0.33.1] - 2025-11-12
 
 ### Fixed

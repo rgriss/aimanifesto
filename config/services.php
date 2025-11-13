@@ -39,4 +39,8 @@ return [
         'token' => env('API_TOKEN'),
     ],
 
+    'google_analytics' => [
+        'tracking_id' => env('GA_TRACKING_ID'),
+    ],
+
 ];

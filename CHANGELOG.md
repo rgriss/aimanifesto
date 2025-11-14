@@ -5,6 +5,22 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.35.4] - 2025-11-14
+
+### Changed
+- **What is The AI Manifesto? - Sticky Footer Cards**: Improved card layout consistency
+  - Added sticky footer to all three cards in "What is The AI Manifesto?" section
+  - Links now consistently positioned at bottom right of each card
+  - Content areas use flex-col with h-full and flex-1 for proper vertical layout
+  - Links use mt-auto to stick to bottom and text-right for right alignment
+  - Eliminates inconsistent vertical positioning across cards with varying content lengths
+
+### Technical
+- Updated card content divs to use `flex flex-col h-full flex-1`
+- Wrapped link spans in div with `mt-auto text-right` for sticky footer effect
+- Maintains horizontal emoji + content layout while adding vertical flex to content area
+- Ensures equal height cards with consistently positioned CTAs
+
 ## [0.35.3] - 2025-11-14
 
 ### Changed

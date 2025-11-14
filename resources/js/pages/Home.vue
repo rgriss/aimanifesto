@@ -110,7 +110,7 @@ const scopes = [
                                 <Link href="/tools" class="group block h-full">
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
                                         <div class="text-3xl flex-shrink-0">🔍</div>
-                                        <div>
+                                        <div class="flex flex-col h-full flex-1">
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                                                 Browse AI Software & Apps
                                             </h3>
@@ -118,16 +118,18 @@ const scopes = [
                                                 Explore ChatGPT, Claude, Midjourney, and hundreds of other AI applications.
                                                 Each one includes our personal review, rating, and pricing details.
                                             </p>
-                                            <span class="text-sm font-semibold text-foreground group-hover:underline">
-                                                View All AI Tools →
-                                            </span>
+                                            <div class="mt-auto text-right">
+                                                <span class="text-sm font-semibold text-foreground group-hover:underline">
+                                                    View All AI Tools →
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </Link>
                                 <a href="#core-values" class="group block h-full">
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
                                         <div class="text-3xl flex-shrink-0">✨</div>
-                                        <div>
+                                        <div class="flex flex-col h-full flex-1">
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                                                 Learn Our Principles
                                             </h3>
@@ -135,16 +137,18 @@ const scopes = [
                                                 Understand the core values and guidelines for using AI responsibly—prioritizing
                                                 transparency, fairness, and human judgment.
                                             </p>
-                                            <span class="text-sm font-semibold text-foreground group-hover:underline">
-                                                View Core Values →
-                                            </span>
+                                            <div class="mt-auto text-right">
+                                                <span class="text-sm font-semibold text-foreground group-hover:underline">
+                                                    View Core Values →
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </a>
                                 <Link href="/tools" class="group block h-full">
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
                                         <div class="text-3xl flex-shrink-0">🎯</div>
-                                        <div>
+                                        <div class="flex flex-col h-full flex-1">
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                                                 Make Informed Choices
                                             </h3>
@@ -152,9 +156,11 @@ const scopes = [
                                                 Find the right AI software for your needs—whether you're writing, coding,
                                                 creating images, or analyzing data.
                                             </p>
-                                            <span class="text-sm font-semibold text-foreground group-hover:underline">
-                                                Explore AI Tools →
-                                            </span>
+                                            <div class="mt-auto text-right">
+                                                <span class="text-sm font-semibold text-foreground group-hover:underline">
+                                                    Explore AI Tools →
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </Link>

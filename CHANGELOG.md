@@ -5,6 +5,30 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.34.0] - 2025-11-14
+
+### Added
+- **Site Guide Modal - Interactive Onboarding**: New help system in "Discover AI Tools" section
+  - Created comprehensive `SiteGuideModal.vue` component with tabbed interface
+  - Help button in upper right corner with question mark icon design
+  - Five informative tabs covering all site features:
+    - **Overview:** Getting started guide with key features and navigation
+    - **Tool Cards:** Anatomy of tool cards with momentum indicators, ratings, and pricing
+    - **Details:** Deep dive into tool detail pages, business intelligence, and community links
+    - **Voting:** Complete explanation of the public voting system and philosophy
+    - **Video:** Optional video walkthrough capability (when `videoUrl` prop provided)
+  - Explains voting system, categories navigation, card anatomy, and business intelligence features
+  - Built with Reka UI Dialog and Tabs components for smooth UX
+  - Responsive design works on mobile and desktop
+  - Accessible and keyboard-navigable interface
+
+### Technical
+- New component at `resources/js/components/SiteGuideModal.vue`
+- Integrated into Home.vue "Discover AI Tools" section with absolute positioning
+- Uses existing Dialog, Tabs, Badge, and Button UI components
+- Supports optional video embed via `videoUrl` prop
+- Exported via components index for reusability across site
+
 ## [0.33.2] - 2025-11-13
 
 ### Added

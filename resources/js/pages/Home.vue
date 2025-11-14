@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHeader, SectionHeading, Card, Badge, HelpWantedSign } from '@/components';
+import { PageHeader, SectionHeading, Card, Badge, HelpWantedSign, SiteGuideModal } from '@/components';
 import { TrendingUp, TrendingDown, Activity, Circle } from 'lucide-vue-next';
 
 defineProps({
@@ -162,7 +162,12 @@ const scopes = [
 
                 <!-- Discover AI Tools -->
                 <div class="mb-12 md:mb-16">
-                    <div class="bg-gradient-to-br from-primary/5 via-background to-secondary/5 border-2 border-border rounded-lg p-6 sm:p-8 md:p-10">
+                    <div class="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 border-2 border-border rounded-lg p-6 sm:p-8 md:p-10">
+                        <!-- Help Button - Upper Right Corner -->
+                        <div class="absolute top-4 right-4 z-10">
+                            <SiteGuideModal />
+                        </div>
+
                         <div class="text-center max-w-4xl mx-auto mb-8">
                             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
                                 Discover AI Tools

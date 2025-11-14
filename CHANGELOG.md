@@ -5,6 +5,14 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.35.3] - 2025-11-14
+
+### Changed
+- **Rotating CTA Messages - Stronger Call to Action**: Updated "Register" to "Register Now"
+  - Changed third rotating message from "Register" to "Register Now"
+  - Creates stronger sense of urgency and immediacy
+  - Final rotation sequence: "Sign the Manifesto" → "Join the Community" → "Register Now" → "Join for Free"
+
 ## [0.35.2] - 2025-11-14
 
 ### Fixed

@@ -40,7 +40,7 @@ const navItems = [
 const registerMessages = [
     'Sign the Manifesto',
     'Join the Community',
-    'Register',
+    'Register Now',
     'Join for Free',
 ];
 

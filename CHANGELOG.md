@@ -5,6 +5,15 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.35.2] - 2025-11-14
+
+### Fixed
+- **RotatingText - Improved Centering**: Added extra width to button for better text centering
+  - Invisible placeholder now includes two additional non-breaking spaces
+  - Provides extra breathing room (approximately 1-2 characters width)
+  - Ensures "Join the Community" and other messages appear perfectly centered
+  - Prevents text from appearing cramped or off-center
+
 ## [0.35.1] - 2025-11-14
 
 ### Fixed

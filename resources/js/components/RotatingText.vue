@@ -51,9 +51,9 @@ onUnmounted(() => {
 
 <template>
     <span class="inline-block relative">
-        <!-- Invisible text to reserve space (prevents layout shift) -->
+        <!-- Invisible text to reserve space (prevents layout shift) - adds extra space for proper centering -->
         <span v-if="fixedWidth" class="invisible" aria-hidden="true">
-            {{ longestMessage }}
+            {{ longestMessage }}&nbsp;&nbsp;
         </span>
         <!-- Rotating text positioned absolutely over the reserved space -->
         <span :class="fixedWidth ? 'absolute inset-0' : ''">

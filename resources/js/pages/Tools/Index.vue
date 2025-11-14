@@ -1,8 +1,8 @@
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHeader, SectionHeading, Card, Badge, ToolCard, HelpWantedSign } from '@/components';
-import { ChevronDown, Plus, Code2 } from 'lucide-vue-next';
+import { PageHeader, SectionHeading, Card, Badge, ToolCard, HelpWantedSign, ToolsGuideModal } from '@/components';
+import { Plus } from 'lucide-vue-next';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -16,11 +16,6 @@ const props = defineProps({
 
 const search = ref(props.filters?.search || '');
 const sort = ref(props.filters?.sort || 'name');
-
-// Expandable sections state
-const showHowWeBuild = ref(false);
-const showHowYouCanHelp = ref(false);
-const showForToolCreators = ref(false);
 
 // Help Wanted modal state
 const showHelpWanted = ref(false);
@@ -42,12 +37,15 @@ const applyFilters = () => {
     <GuestLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Header -->
-                <PageHeader
-                    title="The AI Tools Directory"
-                    description="A living, community-driven directory of AI tools built to help business owners, developers, and anyone curious about exploring modern AI."
-                    :gradient="true"
-                />
+                <!-- Header with Guide Button -->
+                <div class="relative overflow-hidden">
+                    <ToolsGuideModal :on-contact-click="() => showHelpWanted = true" />
+                    <PageHeader
+                        title="The AI Tools Directory"
+                        description="A living, community-driven directory of AI tools built to help business owners, developers, and anyone curious about exploring modern AI."
+                        :gradient="true"
+                    />
+                </div>
 
                 <!-- Tool Count -->
                 <div class="mb-6 text-center">
@@ -57,185 +55,6 @@ const applyFilters = () => {
                             (showing {{ tools.total }} {{ tools.total === 1 ? 'result' : 'results' }})
                         </span>
                     </p>
-                </div>
-
-                <!-- Expandable Information Sections -->
-                <div class="mb-8 space-y-3">
-                    <!-- How We Build This Directory -->
-                    <Card class="overflow-hidden">
-                        <button
-                            @click="showHowWeBuild = !showHowWeBuild"
-                            class="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors text-left"
-                        >
-                            <div class="flex items-center gap-3">
-                                <span class="text-2xl">🛠️</span>
-                                <h3 class="text-lg font-bold text-foreground">How We Build This Directory</h3>
-                            </div>
-                            <ChevronDown
-                                :class="['w-5 h-5 text-muted-foreground transition-transform', showHowWeBuild && 'rotate-180']"
-                            />
-                        </button>
-                        <Transition
-                            enter-active-class="transition-all duration-300 ease-out"
-                            enter-from-class="max-h-0 opacity-0"
-                            enter-to-class="max-h-[1000px] opacity-100"
-                            leave-active-class="transition-all duration-200 ease-in"
-                            leave-from-class="max-h-[1000px] opacity-100"
-                            leave-to-class="max-h-0 opacity-0"
-                        >
-                            <div v-show="showHowWeBuild" class="px-4 pb-4 text-muted-foreground space-y-3 text-sm sm:text-base leading-relaxed overflow-hidden">
-                                <p>
-                                    This directory came to life through an "eat your own dogfood" approach—we use AI tools to curate AI tools.
-                                    New tools are launching literally every week, so we built a system that harnesses several AI applications
-                                    for different steps in the curation journey.
-                                </p>
-                                <p>
-                                    We started by asking: <span class="font-semibold text-foreground">what are the major categories of AI tools people should know in 2025?</span>
-                                    We got a list, then asked the AI to categorize them. Then we asked again: "What's missing?" We kept iterating—polishing
-                                    our list, refining our categories, and adding tools to the directory.
-                                </p>
-                                <p>
-                                    Then comes the deep dive on individual tools. Each tool is classified with <span class="font-semibold text-foreground">momentum scoring</span>,
-                                    categorized into an appropriate primary category, and includes detailed pricing information. Tools with the
-                                    <Badge variant="info" size="sm" class="mx-1">💼 CTO Insights</Badge> badge feature in-depth business analysis to help
-                                    you make informed decisions based on your company size and needs.
-                                </p>
-                                <p>
-                                    The aim? To be a practical resource for business owners, developers, and anyone exploring the world of modern AI tools.
-                                </p>
-
-                                <!-- Tech Note for Developers -->
-                                <div class="mt-4 p-4 border border-info/50 bg-info/5 rounded-lg">
-                                    <div class="flex gap-3">
-                                        <Code2 class="h-5 w-5 text-info flex-shrink-0 mt-0.5" />
-                                        <div class="flex-1 space-y-2">
-                                            <p class="font-semibold text-sm text-foreground">Developer Note:</p>
-                                            <p class="text-sm leading-relaxed text-foreground">
-                                                Under the hood, we've built a <span class="font-semibold">custom MCP server</span> that powers this directory.
-                                                This isn't just about "vibe coding"—it's a demonstration of promoting <span class="font-semibold">voice as a first-class user interface</span>.
-                                            </p>
-                                            <p class="text-sm leading-relaxed text-foreground">
-                                                We use <span class="font-semibold">Claude Code</span>, <span class="font-semibold">Obsidian</span>,
-                                                <span class="font-semibold">GitHub</span>, <span class="font-semibold">N8N</span>, and the
-                                                <span class="font-semibold">MCP protocol</span> to create, populate, and maintain this entire site.
-                                                This is interesting not just because it's useful for this project—it's a sandbox for advanced patterns
-                                                and techniques you can apply to your own work.
-                                            </p>
-                                            <p class="text-sm leading-relaxed text-foreground">
-                                                Fellow developer interested in modern application architecture and multi-system integration?
-                                                <button
-                                                    @click="showHelpWanted = true"
-                                                    class="text-info hover:underline font-semibold"
-                                                >
-                                                    Get in touch
-                                                </button>
-                                                —we'd love to talk with you and connect you with other like-minded developers in our community.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Transition>
-                    </Card>
-
-                    <!-- How You Can Help -->
-                    <Card class="overflow-hidden">
-                        <button
-                            @click="showHowYouCanHelp = !showHowYouCanHelp"
-                            class="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors text-left"
-                        >
-                            <div class="flex items-center gap-3">
-                                <span class="text-2xl">🤝</span>
-                                <h3 class="text-lg font-bold text-foreground">How You Can Help</h3>
-                            </div>
-                            <ChevronDown
-                                :class="['w-5 h-5 text-muted-foreground transition-transform', showHowYouCanHelp && 'rotate-180']"
-                            />
-                        </button>
-                        <Transition
-                            enter-active-class="transition-all duration-300 ease-out"
-                            enter-from-class="max-h-0 opacity-0"
-                            enter-to-class="max-h-[1000px] opacity-100"
-                            leave-active-class="transition-all duration-200 ease-in"
-                            leave-from-class="max-h-[1000px] opacity-100"
-                            leave-to-class="max-h-0 opacity-0"
-                        >
-                            <div v-show="showHowYouCanHelp" class="px-4 pb-4 text-muted-foreground space-y-3 text-sm sm:text-base leading-relaxed overflow-hidden">
-                                <p class="font-semibold text-foreground">We need your help in three ways:</p>
-
-                                <div class="space-y-2">
-                                    <p>
-                                        <span class="font-semibold text-foreground">1. Vote on tools:</span> We have a unique public voting system—just click
-                                        the thumbs up or down on any tool, whether you're logged in or not. Your votes help others discover the best tools.
-                                    </p>
-
-                                    <p>
-                                        <span class="font-semibold text-foreground">2. Add missing tools:</span> Know a tool we don't have? Click the
-                                        <span class="inline-flex items-center gap-1 font-semibold text-foreground">Add Tool</span> button and enter the tool's name.
-                                        Our system will do the rest to curate and add it to the directory.
-                                    </p>
-
-                                    <p>
-                                        <span class="font-semibold text-foreground">3. Become a contributor:</span> We need maintainers, developers, and designers.
-                                        If you have any inclination to contribute time or feedback—whether it's about individual tools or the directory as a whole—we'd
-                                        be honored to work with you.
-                                        <button
-                                            @click="showHelpWanted = true"
-                                            class="text-foreground hover:underline font-semibold"
-                                        >
-                                            Get in touch
-                                        </button>
-                                        and let's make your acquaintance.
-                                    </p>
-                                </div>
-                            </div>
-                        </Transition>
-                    </Card>
-
-                    <!-- For Tool Creators -->
-                    <Card class="overflow-hidden">
-                        <button
-                            @click="showForToolCreators = !showForToolCreators"
-                            class="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors text-left"
-                        >
-                            <div class="flex items-center gap-3">
-                                <span class="text-2xl">🚀</span>
-                                <h3 class="text-lg font-bold text-foreground">For Tool Creators</h3>
-                            </div>
-                            <ChevronDown
-                                :class="['w-5 h-5 text-muted-foreground transition-transform', showForToolCreators && 'rotate-180']"
-                            />
-                        </button>
-                        <Transition
-                            enter-active-class="transition-all duration-300 ease-out"
-                            enter-from-class="max-h-0 opacity-0"
-                            enter-to-class="max-h-[1000px] opacity-100"
-                            leave-active-class="transition-all duration-200 ease-in"
-                            leave-from-class="max-h-[1000px] opacity-100"
-                            leave-to-class="max-h-0 opacity-0"
-                        >
-                            <div v-show="showForToolCreators" class="px-4 pb-4 text-muted-foreground space-y-3 text-sm sm:text-base leading-relaxed overflow-hidden">
-                                <p>
-                                    If you're an owner, manager, or representative of a tool in this directory, we'd love to engage with you.
-                                    We're interested in potentially adding statements from you and your company to provide more context and insight.
-                                </p>
-                                <p>
-                                    We want this directory to remain <span class="font-semibold text-foreground">objective forever</span>—we don't anticipate
-                                    any sponsorship or monetization. But if you've built a tool that appears here, we probably share the same passion for
-                                    building modern software and helping people. So let's help each other.
-                                </p>
-                                <p>
-                                    <button
-                                        @click="showHelpWanted = true"
-                                        class="text-foreground hover:underline font-semibold"
-                                    >
-                                        Get in touch
-                                    </button>
-                                    and let's start a conversation.
-                                </p>
-                            </div>
-                        </Transition>
-                    </Card>
                 </div>
 
                 <!-- Search & Sort -->

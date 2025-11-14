@@ -5,6 +5,34 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.36.0] - 2025-11-14
+
+### Added
+- **Tools Page - Guide Modal with Folded Corner**: Replaced expandable dropdowns with compact modal solution
+  - Created `ToolsGuideModal.vue` with three tabbed sections
+  - Added info-colored folded corner button to tools page header
+  - Modal contains all directory information in organized tabs:
+    - **How We Build** (🛠️): Explains AI-powered curation process, MCP server, tech stack
+    - **How You Help** (🤝): Community voting, tool submissions, becoming a contributor
+    - **For Creators** (🚀): Information for tool owners and representatives
+  - Significantly reduces page real estate usage
+  - Information remains easily accessible but no longer dominates the page
+  - Modal integrates with HelpWanted sign for contact functionality
+
+### Removed
+- Three expandable dropdown sections from tools page (How We Build, How You Help, For Tool Creators)
+- ChevronDown icon import (no longer needed)
+- Code2 icon import (moved to modal component)
+- Dropdown state management (showHowWeBuild, showHowYouCanHelp, showForToolCreators)
+
+### Technical
+- New component at `resources/js/components/ToolsGuideModal.vue`
+- Uses Tabs component for organized content presentation
+- Folded corner button positioned absolute in header wrapper
+- Info color variant for visual distinction from site guide (primary color)
+- onContactClick prop connects modal to HelpWanted functionality
+- Maintains all original content and functionality in more compact presentation
+
 ## [0.35.5] - 2025-11-14
 
 ### Changed

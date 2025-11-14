@@ -38,12 +38,12 @@ const handleContactClick = () => {
     <Dialog v-model:open="open">
         <DialogTrigger as-child>
             <button
-                class="group absolute top-0 right-0 w-20 h-20 overflow-hidden cursor-pointer"
+                class="group absolute top-0 right-0 w-20 h-20 overflow-hidden cursor-pointer rounded-tr-lg"
                 style="clip-path: polygon(100% 0, 100% 100%, 0 0);"
                 title="Directory Guide & Information"
             >
                 <!-- Folded Corner Triangle -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-info hover:bg-info/90 transition-colors shadow-lg">
+                <div class="absolute top-0 right-0 w-20 h-20 bg-info hover:bg-info/90 transition-colors shadow-lg rounded-tr-lg">
                     <!-- Diagonal fold line shadow -->
                     <div class="absolute inset-0 bg-gradient-to-br from-transparent via-black/10 to-black/20"></div>
                 </div>

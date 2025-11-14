@@ -5,6 +5,16 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.36.2] - 2025-11-14
+
+### Removed
+- **Home Page - Redundant 'Curated AI Tools' Section**: Removed duplicate featured tools section
+  - Eliminated "Curated AI Tools" section near bottom of homepage
+  - Section was redundant with "Discover AI Tools" at top of page
+  - Both sections displayed same featured tools data
+  - Reduces page length and eliminates duplication
+  - "Discover AI Tools" section remains as primary tool showcase
+
 ## [0.36.1] - 2025-11-14
 
 ### Fixed

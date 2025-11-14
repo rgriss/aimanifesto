@@ -499,65 +499,6 @@ const scopes = [
                     </div>
                 </div>
 
-                <!-- Divider -->
-                <div class="border-t-2 border-border my-12 md:my-16"></div>
-
-                <!-- Supporting Content: Tools & Categories -->
-                <div class="mb-8 md:mb-12">
-                    <SectionHeading
-                        title="Curated AI Tools"
-                        subtitle="Save hours of research—we've tested hundreds of AI tools so you can quickly find the right one for your needs"
-                    />
-
-                    <!-- Featured Tools Preview -->
-                    <div v-if="featuredTools.length > 0" class="mb-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                            <Link
-                                v-for="tool in featuredTools"
-                                :key="tool.id"
-                                :href="`/tools/${tool.slug}`"
-                                class="group h-full flex"
-                            >
-                                <Card class="flex-1 flex flex-col">
-                                    <div class="flex items-start justify-between mb-2 gap-2">
-                                        <div class="flex items-center gap-2">
-                                            <component
-                                                :is="getMomentumDisplay(tool.momentum_score).icon"
-                                                :size="18"
-                                                :class="getMomentumDisplay(tool.momentum_score).color"
-                                                :title="getMomentumDisplay(tool.momentum_score).title"
-                                            />
-                                            <h3 class="text-base md:text-lg font-bold text-foreground group-hover:text-foreground/70 transition-colors leading-tight">
-                                                {{ tool.name }}
-                                            </h3>
-                                        </div>
-                                        <Badge v-if="tool.ryan_rating" variant="success" size="sm" class="flex-shrink-0">
-                                            ⭐ {{ tool.ryan_rating }}/10
-                                        </Badge>
-                                    </div>
-                                    <p class="text-xs sm:text-sm text-muted-foreground mb-3 leading-relaxed flex-grow">
-                                        {{ tool.description }}
-                                    </p>
-                                    <div class="mt-auto">
-                                        <Badge variant="default" size="sm" class="capitalize">
-                                            {{ tool.pricing_model }}
-                                        </Badge>
-                                    </div>
-                                </Card>
-                            </Link>
-                        </div>
-                        <div class="text-center mt-6">
-                            <Link
-                                href="/tools"
-                                class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition-colors text-sm sm:text-base"
-                            >
-                                Browse All Tools →
-                            </Link>
-                        </div>
-                    </div>
-
-                </div>
-
                 <!-- Footer Navigation -->
                 <div class="border-t-2 border-border mt-12 md:mt-16 pt-8 md:pt-12">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">

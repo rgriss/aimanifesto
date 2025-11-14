@@ -5,6 +5,24 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.35.5] - 2025-11-14
+
+### Changed
+- **Discover AI Tools - Sticky Footer Cards**: Added sticky footer to tool cards for consistent layout
+  - Tool cards in "Discover AI Tools" section now use sticky footer layout
+  - Main card container uses `flex flex-col` for vertical stacking
+  - Description has `flex-grow` to take available space
+  - Footer (pricing badge + "Learn More" link) uses `mt-auto` to stick to bottom
+  - Ensures consistent positioning of pricing and CTA regardless of description length
+  - Matches layout consistency with ToolCard component used elsewhere on site
+
+### Technical
+- Updated tool card divs in Home.vue "Discover AI Tools" section
+- Added `flex flex-col` to card container
+- Added `flex-grow` to description paragraph
+- Added `mt-auto` to footer div with pricing and link
+- ToolCard component already implements this pattern correctly
+
 ## [0.35.4] - 2025-11-14
 
 ### Changed

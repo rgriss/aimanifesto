@@ -198,7 +198,7 @@ const scopes = [
                                 :href="`/tools/${tool.slug}`"
                                 class="group block h-full"
                             >
-                                <div class="h-full bg-background border-2 border-border rounded-lg p-4 hover:shadow-xl hover:border-foreground/20 transition-all">
+                                <div class="h-full bg-background border-2 border-border rounded-lg p-4 hover:shadow-xl hover:border-foreground/20 transition-all flex flex-col">
                                     <div class="flex items-start justify-between mb-3 gap-2">
                                         <div class="flex items-center gap-2 flex-1 min-w-0">
                                             <component
@@ -216,10 +216,10 @@ const scopes = [
                                             ⭐ {{ tool.ryan_rating }}
                                         </Badge>
                                     </div>
-                                    <p class="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3">
+                                    <p class="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3 flex-grow">
                                         {{ tool.description }}
                                     </p>
-                                    <div class="flex items-center justify-between gap-2">
+                                    <div class="flex items-center justify-between gap-2 mt-auto">
                                         <Badge variant="default" size="sm" class="capitalize">
                                             {{ tool.pricing_model }}
                                         </Badge>

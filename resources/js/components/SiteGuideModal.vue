@@ -31,14 +31,19 @@ const currentTab = ref('overview');
     <Dialog v-model:open="open">
         <DialogTrigger as-child>
             <button
-                class="group relative inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-10 h-10 transition-all shadow-md hover:shadow-lg"
+                class="group absolute top-0 right-0 w-20 h-20 overflow-hidden cursor-pointer"
+                style="clip-path: polygon(100% 0, 100% 100%, 0 0);"
                 title="How to use this site"
             >
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <!-- Triangle shape using CSS -->
-                    <div class="w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[35px] border-b-primary-foreground/20 absolute -rotate-12"></div>
+                <!-- Folded Corner Triangle -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-primary group-hover:bg-primary/90 transition-colors shadow-lg">
+                    <!-- Diagonal fold line shadow -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-transparent via-black/10 to-black/20"></div>
                 </div>
-                <HelpCircle :size="20" class="relative z-10" />
+                <!-- Question Mark Icon -->
+                <div class="absolute top-2 right-2 text-primary-foreground">
+                    <HelpCircle :size="20" class="drop-shadow-md" />
+                </div>
             </button>
         </DialogTrigger>
 

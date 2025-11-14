@@ -5,6 +5,23 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.34.1] - 2025-11-14
+
+### Changed
+- **Site Guide Button - Folded Corner Design**: Refined help button visual to "page peel" effect
+  - Redesigned from circular button to triangular folded corner in upper right
+  - Creates visual metaphor of peeling back the corner to reveal helpful information
+  - Uses CSS clip-path for clean triangular shape
+  - Added gradient shadow for depth and 3D folded appearance
+  - Question mark icon positioned on visible triangle corner
+  - Maintains hover states and accessibility
+
+### Technical
+- Button now uses `clip-path: polygon()` for triangle shape
+- Absolute positioning anchored to top-right corner of parent container
+- Added `overflow-hidden` to parent for clean corner integration
+- Gradient overlay simulates fold shadow for realistic effect
+
 ## [0.34.0] - 2025-11-14
 
 ### Added

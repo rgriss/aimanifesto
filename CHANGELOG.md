@@ -5,6 +5,29 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.35.0] - 2025-11-14
+
+### Added
+- **Rotating CTA Text - Register Button**: Dynamic text rotation for increased engagement
+  - Created `RotatingText.vue` component for smooth text cycling with fade transitions
+  - Register button now rotates between four compelling messages:
+    - "Sign the Manifesto" (primary message)
+    - "Join the Community" (community focus)
+    - "Register" (direct action)
+    - "Join for Free" (removes barriers)
+  - Cycles every 2.5 seconds with smooth fade in/out transitions
+  - Applied to both desktop and mobile navigation buttons
+  - Catches user attention and communicates multiple value propositions
+
+### Technical
+- New component at `resources/js/components/RotatingText.vue`
+- Uses Vue Transition API for smooth fade effects
+- Configurable interval prop (defaults to 2500ms)
+- Accepts array of messages via prop for reusability
+- Automatically cleans up interval on component unmount
+- CSS transitions for opacity changes (200ms duration)
+- Exported via components index for site-wide use
+
 ## [0.34.2] - 2025-11-14
 
 ### Added

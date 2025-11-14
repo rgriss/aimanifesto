@@ -21,6 +21,7 @@ import {
 import { getInitials } from '@/composables/useInitials';
 import { User, Settings, LogOut, LayoutDashboard, Shield, Menu } from 'lucide-vue-next';
 import ThemeToggle from '@/components/ThemeToggle.vue';
+import { RotatingText } from '@/components';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import axios from 'axios';
 
@@ -33,6 +34,14 @@ const navItems = [
     { label: 'Categories', href: '/categories' },
     // Future items can be added here:
     // { label: 'Learn', href: '/learn' },
+];
+
+// Rotating CTA messages for register button
+const registerMessages = [
+    'Sign the Manifesto',
+    'Join the Community',
+    'Register',
+    'Join for Free',
 ];
 
 // Emergency seed mechanism
@@ -178,7 +187,7 @@ const handleVersionClick = async () => {
                             </Link>
                             <Link href="/register">
                                 <Button size="sm">
-                                    Sign the Manifesto
+                                    <RotatingText :messages="registerMessages" />
                                 </Button>
                             </Link>
                         </div>
@@ -281,7 +290,7 @@ const handleVersionClick = async () => {
                                         </Link>
                                         <Link href="/register" @click="mobileMenuOpen = false">
                                             <Button class="w-full justify-start" size="lg">
-                                                Sign the Manifesto
+                                                <RotatingText :messages="registerMessages" />
                                             </Button>
                                         </Link>
                                     </div>

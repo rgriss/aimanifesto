@@ -10,3 +10,4 @@ export { default as HelpWantedSign } from './HelpWantedSign.vue';
 export { default as ToolCard } from './ToolCard.vue';
 export { default as SiteGuideModal } from './SiteGuideModal.vue';
 export { default as FoldedCornerLink } from './FoldedCornerLink.vue';
+export { default as RotatingText } from './RotatingText.vue';

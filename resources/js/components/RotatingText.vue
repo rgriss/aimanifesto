@@ -1,19 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 
 interface Props {
     messages: string[];
     interval?: number; // milliseconds between rotations
+    fixedWidth?: boolean; // Use fixed width to prevent layout shift
 }
 
 const props = withDefaults(defineProps<Props>(), {
     interval: 2500, // 2.5 seconds default
+    fixedWidth: true,
 });
 
 const currentIndex = ref(0);
 const isVisible = ref(true);
 
 let rotationInterval: ReturnType<typeof setInterval> | null = null;
+
+// Calculate min-width based on longest message to prevent layout shift
+const longestMessage = computed(() => {
+    return props.messages.reduce((longest, current) =>
+        current.length > longest.length ? current : longest
+    , '');
+});
 
 const rotateText = () => {
     // Fade out
@@ -42,11 +51,18 @@ onUnmounted(() => {
 
 <template>
     <span class="inline-block relative">
-        <Transition name="fade" mode="out-in">
-            <span :key="currentIndex" class="inline-block">
-                {{ messages[currentIndex] }}
-            </span>
-        </Transition>
+        <!-- Invisible text to reserve space (prevents layout shift) -->
+        <span v-if="fixedWidth" class="invisible" aria-hidden="true">
+            {{ longestMessage }}
+        </span>
+        <!-- Rotating text positioned absolutely over the reserved space -->
+        <span :class="fixedWidth ? 'absolute inset-0' : ''">
+            <Transition name="fade" mode="out-in">
+                <span :key="currentIndex" class="inline-block">
+                    {{ messages[currentIndex] }}
+                </span>
+            </Transition>
+        </span>
     </span>
 </template>
 

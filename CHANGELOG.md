@@ -5,6 +5,23 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.35.1] - 2025-11-14
+
+### Fixed
+- **RotatingText - Fixed Width Layout**: Prevents menu items from shifting during text rotation
+  - Added fixed-width functionality to RotatingText component
+  - Renders longest message invisibly to reserve space
+  - Rotating text positioned absolutely over reserved space
+  - Eliminates jarring layout shifts on desktop navigation
+  - New `fixedWidth` prop (defaults to true) for layout stability
+  - Automatically calculates width based on longest message in array
+
+### Technical
+- Component now uses invisible placeholder text technique
+- Computed property finds longest message for width calculation
+- Absolute positioning overlay prevents reflow
+- Configurable via `fixedWidth` prop for flexible use cases
+
 ## [0.35.0] - 2025-11-14
 
 ### Added

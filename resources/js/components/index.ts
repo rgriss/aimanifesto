@@ -9,3 +9,4 @@ export { default as VoteButtons } from './VoteButtons.vue';
 export { default as HelpWantedSign } from './HelpWantedSign.vue';
 export { default as ToolCard } from './ToolCard.vue';
 export { default as SiteGuideModal } from './SiteGuideModal.vue';
+export { default as FoldedCornerLink } from './FoldedCornerLink.vue';

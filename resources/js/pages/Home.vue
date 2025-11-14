@@ -1,8 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHeader, SectionHeading, Card, Badge, HelpWantedSign, SiteGuideModal } from '@/components';
-import { TrendingUp, TrendingDown, Activity, Circle } from 'lucide-vue-next';
+import { PageHeader, SectionHeading, Card, Badge, HelpWantedSign, SiteGuideModal, FoldedCornerLink } from '@/components';
+import { TrendingUp, TrendingDown, Activity, Circle, BookOpen } from 'lucide-vue-next';
 
 defineProps({
     featuredTools: {
@@ -92,7 +92,10 @@ const scopes = [
 
                 <!-- What is The AI Manifesto? -->
                 <div class="mb-12 md:mb-16">
-                    <Card class="bg-background border border-border">
+                    <Card class="relative bg-background border border-border overflow-hidden">
+                        <!-- Folded Corner - Why This Manifesto -->
+                        <FoldedCornerLink href="/why" label="Why This Manifesto" :icon="BookOpen" color="info" />
+
                         <div class="text-center max-w-4xl mx-auto">
                             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
                                 What is The AI Manifesto?

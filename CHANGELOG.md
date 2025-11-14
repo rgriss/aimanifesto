@@ -5,6 +5,23 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.34.2] - 2025-11-14
+
+### Added
+- **FoldedCornerLink Component**: Reusable navigation component with folded corner design
+  - Created `FoldedCornerLink.vue` for linking to pages with the same folded corner aesthetic
+  - Supports customizable colors (primary, success, warning, danger, info)
+  - Accepts custom icons via prop (defaults to ArrowRight)
+  - Added to "What is The AI Manifesto?" section linking to /why page
+  - Uses info color (blue) with BookOpen icon for thematic consistency
+
+### Technical
+- New component at `resources/js/components/FoldedCornerLink.vue`
+- Uses Inertia Link component for SPA navigation
+- Same clip-path triangle design as SiteGuideModal button
+- Configurable color system with predefined theme color variants
+- Exported via components index for site-wide reusability
+
 ## [0.34.1] - 2025-11-14
 
 ### Changed

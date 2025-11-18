@@ -110,11 +110,13 @@ Visit **http://localhost:8000** 🎉
 
 ### Alternative: Development with SSR
 
-For server-side rendering:
+For server-side rendering during development:
 
 ```bash
 composer dev:ssr
 ```
+
+> **Note:** Production deployment uses SSR by default for optimal performance and SEO.
 
 ---
 

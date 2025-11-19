@@ -18,7 +18,14 @@ return [
     'ssr' => [
         'enabled' => true,
         'url' => 'http://127.0.0.1:13714',
-        'bundle' => base_path('bootstrap/ssr/ssr.js'),
+        'bundle' => (function () {
+            $basePath = base_path('bootstrap/ssr/ssr.js');
+            // For Forge zero-downtime deployments, use the 'current' symlink
+            if (str_contains($basePath, '/releases/')) {
+                return preg_replace('#/releases/\d+/#', '/current/', $basePath);
+            }
+            return $basePath;
+        })(),
     ],
 
     /*

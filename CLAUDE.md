@@ -150,6 +150,39 @@ The admin:create command can:
 
 **Important:** Always change default passwords after first login for security.
 
+## Production Deployment
+
+### Server-Side Rendering (SSR)
+This application uses Inertia.js SSR for improved performance and SEO. SSR is enabled in production via `config/inertia.php`.
+
+**Laravel Forge Setup:**
+1. Enable "Inertia SSR" checkbox in site overview
+2. Forge automatically manages the SSR background process
+3. Update deployment script to build SSR assets:
+   ```bash
+   npm ci && npm run build:ssr
+   ```
+
+**Nginx Configuration Requirements:**
+SSR responses contain full pre-rendered HTML and are significantly larger than JSON responses. Nginx must be configured with increased fastcgi buffers:
+
+```nginx
+fastcgi_buffers 16 16k;
+fastcgi_buffer_size 32k;
+fastcgi_busy_buffers_size 32k;
+```
+
+Without these settings, direct page loads will fail with 502 Bad Gateway errors. In Laravel Forge, add these to the nginx configuration file for your site.
+
+**Zero-Downtime Deployments:**
+The SSR bundle path automatically detects Forge's release structure and uses the `current` symlink instead of specific release directories. This prevents "bundle not found" errors during deployments.
+
+**Troubleshooting:**
+- Check SSR process status: Forge → Processes → Inertia SSR
+- View SSR logs: Click "View Logs" on the process
+- Verify bundle exists: `ls /home/forge/yourdomain.com/current/bootstrap/ssr/ssr.js`
+- Test SSR server: `curl http://127.0.0.1:13714` (should return JSON response)
+
 ## Configuration
 
 ### Environment Variables

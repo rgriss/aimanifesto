@@ -116,7 +116,7 @@ For server-side rendering during development:
 composer dev:ssr
 ```
 
-> **Note:** Production deployment uses SSR by default for optimal performance and SEO.
+> **Production SSR:** This application uses SSR in production for optimal performance and SEO. Direct links work perfectly - pages are pre-rendered on the server before being sent to the browser. See [CLAUDE.md](CLAUDE.md#production-deployment) for deployment configuration details.
 
 ---
 

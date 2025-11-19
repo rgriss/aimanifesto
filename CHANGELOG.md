@@ -5,6 +5,34 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.37.0] - 2025-01-19
+
+### Added
+- **Server-Side Rendering (SSR)**: Full production SSR implementation with Inertia.js
+  - Direct page links now work perfectly with pre-rendered HTML
+  - Improved SEO - search engines see full page content
+  - Faster initial page loads - HTML arrives pre-rendered from server
+  - Integrated with Laravel Forge's native Inertia SSR management
+  - Automatic SSR bundle path resolution for zero-downtime deployments
+  - SSR process automatically restarts during deployments
+
+### Changed
+- Build process updated to generate SSR bundles in production (`npm run build:ssr`)
+- Nginx configuration enhanced with increased fastcgi buffers for large SSR payloads
+- Bundle path dynamically resolves Forge's `current` symlink for deployment stability
+
+### Technical
+- Added SSR bundle configuration in `config/inertia.php`
+- Implemented automatic path detection for Forge release directories
+- SSR server runs on port 13714 (Inertia.js default)
+- Added comprehensive SSR deployment documentation to CLAUDE.md
+- Updated README with production SSR information
+
+### Fixed
+- Resolved 502 Bad Gateway errors on direct page links
+- Fixed SSR bundle path resolution for zero-downtime deployments
+- Configured nginx fastcgi buffers to handle large HTML payloads
+
 ## [0.36.2] - 2025-11-14
 
 ### Removed

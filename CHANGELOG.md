@@ -5,6 +5,32 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.38.0] - 2025-01-19
+
+### Added
+- **Learn Section**: New learning path selector for users at different AI experience levels
+  - Added "Learn" to main navigation (desktop and mobile)
+  - Created Learn index page at `/learn` with three learner level cards:
+    - **Beginner**: New to AI, no technical background needed
+      - Examples: Recipe generation, writing assistance, language translation
+      - Focus on browser-based tools requiring no account
+    - **Intermediate**: Exploring AI possibilities and advanced techniques
+      - Examples: Prompt engineering, custom GPTs, context management
+      - Focus on customization and best practices
+    - **Advanced**: Power users building AI-powered solutions
+      - Examples: MCP servers, self-hosted LLMs, agentic development
+      - Focus on development tools and programmatic control
+  - Each card includes characteristics, learning examples, and CTA buttons
+  - Responsive design with color-coded levels (info, success, warning)
+  - Coming soon notice for future content expansion
+
+### Technical
+- Added `/learn` route to web.php rendering Learn/Index.vue
+- Created Learn/Index.vue page component with three learner level cards
+- Updated GuestLayout.vue navigation to include Learn link
+- Used existing UI components: Card, Badge, Button
+- Added lucide-vue-next icons: Sparkles, Zap, Rocket
+
 ## [0.37.0] - 2025-01-19
 
 ### Added

@@ -25,6 +25,10 @@ Route::get('/tools/{tool:slug}', [ToolController::class, 'show'])->name('tools.s
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
+Route::get('/learn', function () {
+    return Inertia::render('Learn/Index');
+})->name('learn.index');
+
 Route::get('/brand', [BrandController::class, 'index'])->name('brand');
 Route::get('/why', [WhyController::class, 'index'])->name('why');
 

@@ -32,8 +32,7 @@ const mobileMenuOpen = ref(false);
 const navItems = [
     { label: 'Tools', href: '/tools' },
     { label: 'Categories', href: '/categories' },
-    // Future items can be added here:
-    // { label: 'Learn', href: '/learn' },
+    { label: 'Learn', href: '/learn' },
 ];
 
 // Rotating CTA messages for register button

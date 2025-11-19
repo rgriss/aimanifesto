@@ -180,12 +180,12 @@ const handleVersionClick = async () => {
                         </div>
                         <div v-else class="hidden md:flex items-center space-x-2">
                             <Link href="/login">
-                                <Button variant="ghost" size="sm">
+                                <Button variant="ghost" size="sm" class="transition-colors hover:bg-muted">
                                     Log In
                                 </Button>
                             </Link>
                             <Link href="/register">
-                                <Button size="sm">
+                                <Button size="sm" class="transition-colors hover:opacity-90">
                                     <RotatingText :messages="registerMessages" />
                                 </Button>
                             </Link>
@@ -283,12 +283,12 @@ const handleVersionClick = async () => {
                                     <!-- Auth Actions for non-logged-in users -->
                                     <div v-if="!user" class="flex flex-col space-y-2 px-4">
                                         <Link href="/login" @click="mobileMenuOpen = false">
-                                            <Button variant="ghost" class="w-full justify-start" size="lg">
+                                            <Button variant="ghost" class="w-full justify-start transition-colors hover:bg-muted" size="lg">
                                                 Log In
                                             </Button>
                                         </Link>
                                         <Link href="/register" @click="mobileMenuOpen = false">
-                                            <Button class="w-full justify-start" size="lg">
+                                            <Button class="w-full justify-start transition-colors hover:opacity-90" size="lg">
                                                 <RotatingText :messages="registerMessages" />
                                             </Button>
                                         </Link>

@@ -29,6 +29,18 @@ Route::get('/learn', function () {
     return Inertia::render('Learn/Index');
 })->name('learn.index');
 
+Route::get('/learn/beginner', function () {
+    return Inertia::render('Learn/Beginner');
+})->name('learn.beginner');
+
+Route::get('/learn/intermediate', function () {
+    return Inertia::render('Learn/Intermediate');
+})->name('learn.intermediate');
+
+Route::get('/learn/advanced', function () {
+    return Inertia::render('Learn/Advanced');
+})->name('learn.advanced');
+
 Route::get('/brand', [BrandController::class, 'index'])->name('brand');
 Route::get('/why', [WhyController::class, 'index'])->name('why');
 

@@ -5,6 +5,63 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.39.0] - 2025-01-19
+
+### Added
+- **Complete Learn Section**: Comprehensive learning system with progressive paths and specialized topics
+  - **Learn Index** (`/learn`): Landing page with three main learning paths
+    - Beginner, Intermediate, and Advanced cards with descriptions and characteristics
+    - Specialized Topics section with six 400-500 level courses
+  - **Beginner Path** (`/learn/beginner`):
+    - Friendly, conversational introduction to AI
+    - AI tool recommendations (ChatGPT, Claude, Gemini, Copilot)
+    - Practical advice on free vs paid subscriptions
+    - Three lessons (101-103): Conversations, Better Responses, Practical Uses
+    - Three exercises: First Conversation, Recipe Generator, Email Helper
+  - **Intermediate Path** (`/learn/intermediate`):
+    - Advanced prompting and context management techniques
+    - Three lessons (201-203): Prompt Engineering, Context Management, Custom GPTs
+    - Three exercises: Advanced Prompting, Context Window Management, Instruction Templates
+  - **Advanced Path** (`/learn/advanced`):
+    - Technical, power-user focused content
+    - Three lessons (301-303): MCP Servers, Self-Hosted LLMs, Agentic Development
+    - Three exercises with prerequisites: MCP Setup, Local LLM, AI Agent Building
+  - **Specialized Topics** (400-500 level):
+    - 401: RAG Systems & Knowledge Bases
+    - 451: AI Governance & Compliance
+    - 452: Intelligent Process Automation
+    - 404: Multi-Agent Orchestration
+    - 405: Evaluation & Testing
+    - 502: Security & Privacy
+    - All courses show prerequisites and "Coming Soon" status
+
+### Changed
+- **Button Component**: Added three new color variants (info, success, warning)
+  - Blue info buttons for beginner-level content
+  - Green success buttons for intermediate-level content
+  - Orange warning buttons for advanced-level content
+  - All variants include hover effects and proper contrast
+- **Global Button Cursor**: All buttons now show pointer cursor on hover
+  - Added `cursor-pointer` to base button classes
+  - Consistent behavior across entire application
+  - Matches link behavior for better UX
+
+### Fixed
+- **Navigation Button Hover**: Added proper hover states to auth buttons
+  - Login button shows background highlight on hover
+  - Register button has opacity transition on hover
+  - Both desktop and mobile navigation updated
+
+### Technical
+- Created four new Vue pages: Learn/Index.vue, Learn/Beginner.vue, Learn/Intermediate.vue, Learn/Advanced.vue
+- Added routes: `/learn`, `/learn/beginner`, `/learn/intermediate`, `/learn/advanced`
+- Extended Button component variants in `resources/js/components/ui/button/index.ts`
+- Used college course numbering system (100s, 200s, 300s, 400s, 500s) for lessons
+- All lesson and exercise content is placeholder-ready for future expansion
+- Responsive design with mobile, tablet, and desktop layouts
+- Color-coded paths for visual hierarchy and user guidance
+- Incremented version to 0.39.0
+
 ## [0.38.0] - 2025-01-19
 
 ### Added

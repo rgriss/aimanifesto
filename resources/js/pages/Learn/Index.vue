@@ -4,7 +4,7 @@ import GuestLayout from '@/layouts/GuestLayout.vue';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Zap, Rocket } from 'lucide-vue-next';
+import { Sparkles, Zap, Rocket, Database, Shield, Workflow, Users, Target, Lock } from 'lucide-vue-next';
 
 const learnerLevels = [
     {
@@ -69,6 +69,57 @@ const learnerLevels = [
             'Custom AI workflows',
         ],
         nextSteps: 'Development tools and self-hosted solutions',
+    },
+];
+
+const specializedTopics = [
+    {
+        number: '401',
+        title: 'RAG Systems & Knowledge Bases',
+        icon: Database,
+        description: 'Build AI systems that work with your proprietary data. Learn vector databases, embeddings, and retrieval strategies.',
+        prerequisites: ['Lesson 301: MCP Servers'],
+        color: 'warning',
+    },
+    {
+        number: '451',
+        title: 'AI Governance & Compliance',
+        icon: Shield,
+        description: 'Enterprise-grade AI oversight. Policy frameworks, risk management, audit trails, and regulatory compliance.',
+        prerequisites: ['Lesson 201: Prompt Engineering'],
+        color: 'info',
+    },
+    {
+        number: '452',
+        title: 'Intelligent Process Automation',
+        icon: Workflow,
+        description: 'Make AI work within business processes. Workflow orchestration, decision automation, and RPA integration.',
+        prerequisites: ['Lesson 303: Agentic Development'],
+        color: 'success',
+    },
+    {
+        number: '404',
+        title: 'Multi-Agent Orchestration',
+        icon: Users,
+        description: 'Coordinate teams of specialized AI agents. Delegation, communication protocols, and conflict resolution.',
+        prerequisites: ['Lesson 303: Agentic Development'],
+        color: 'warning',
+    },
+    {
+        number: '405',
+        title: 'Evaluation & Testing',
+        icon: Target,
+        description: 'Quality assurance for AI systems. Benchmarking outputs, regression testing, and measuring accuracy.',
+        prerequisites: ['Lesson 202: Context Management'],
+        color: 'info',
+    },
+    {
+        number: '502',
+        title: 'Security & Privacy',
+        icon: Lock,
+        description: 'Protect data and systems. PII handling, adversarial attacks, prompt injection prevention, and privacy-preserving AI.',
+        prerequisites: ['Lesson 303: Agentic Development'],
+        color: 'success',
     },
 ];
 
@@ -170,15 +221,14 @@ const getColorClasses = (color: string) => {
 
                         <!-- CTA Button -->
                         <div class="mt-auto pt-4 border-t border-border">
-                            <Button
-                                :variant="level.color"
-                                class="w-full"
-                                as-child
-                            >
-                                <Link :href="`/learn/${level.title.toLowerCase()}`">
+                            <Link :href="`/learn/${level.title.toLowerCase()}`">
+                                <Button
+                                    :variant="level.color"
+                                    class="w-full"
+                                >
                                     Explore {{ level.title }} Path
-                                </Link>
-                            </Button>
+                                </Button>
+                            </Link>
                             <p class="text-xs text-muted-foreground text-center mt-2">
                                 {{ level.nextSteps }}
                             </p>
@@ -193,6 +243,89 @@ const getColorClasses = (color: string) => {
                             <span class="font-semibold text-foreground">Coming Soon:</span> Curated learning paths, interactive tutorials, and tool recommendations based on your experience level.
                         </p>
                     </Card>
+                </div>
+
+                <!-- Specialized Topics Section -->
+                <div class="mt-16">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
+                            Specialized Topics
+                        </h2>
+                        <p class="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+                            Ready to specialize? Dive deep into specific domains with 400-500 level courses. Choose topics based on your goals and interests.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <Card
+                            v-for="topic in specializedTopics"
+                            :key="topic.number"
+                            :class="[
+                                'p-6 transition-all duration-300 hover:shadow-lg flex flex-col',
+                                getColorClasses(topic.color)
+                            ]"
+                        >
+                            <!-- Header -->
+                            <div class="flex items-start justify-between mb-3">
+                                <Badge :variant="topic.color" class="text-sm font-bold px-2 py-1">
+                                    {{ topic.number }}
+                                </Badge>
+                                <component
+                                    :is="topic.icon"
+                                    :class="[
+                                        'h-6 w-6 flex-shrink-0',
+                                        topic.color === 'info' && 'text-info',
+                                        topic.color === 'success' && 'text-success',
+                                        topic.color === 'warning' && 'text-warning',
+                                    ]"
+                                />
+                            </div>
+
+                            <!-- Title -->
+                            <h3 class="text-lg font-bold text-foreground mb-2">
+                                {{ topic.title }}
+                            </h3>
+
+                            <!-- Description -->
+                            <p class="text-sm text-muted-foreground mb-4 flex-grow">
+                                {{ topic.description }}
+                            </p>
+
+                            <!-- Prerequisites -->
+                            <div class="mb-4">
+                                <p class="text-xs font-semibold text-foreground mb-1">
+                                    Prerequisites:
+                                </p>
+                                <ul class="space-y-1">
+                                    <li
+                                        v-for="(prereq, idx) in topic.prerequisites"
+                                        :key="idx"
+                                        class="text-xs text-muted-foreground"
+                                    >
+                                        • {{ prereq }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- CTA Button -->
+                            <div class="mt-auto">
+                                <Button
+                                    variant="outline"
+                                    class="w-full"
+                                    disabled
+                                >
+                                    Coming Soon
+                                </Button>
+                            </div>
+                        </Card>
+                    </div>
+
+                    <!-- Specialized Topics Note -->
+                    <div class="mt-8 text-center">
+                        <p class="text-sm text-muted-foreground max-w-2xl mx-auto">
+                            These specialized courses can be taken in any order based on your needs. Each builds on the core 100-300 level curriculum.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

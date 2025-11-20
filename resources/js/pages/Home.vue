@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import { PageHeader, SectionHeading, Card, Badge, HelpWantedSign, SiteGuideModal, FoldedCornerLink } from '@/components';
@@ -18,6 +19,9 @@ defineProps({
         default: 0
     },
 });
+
+// Help Wanted modal control
+const showHelpWantedModal = ref(false);
 
 // Get momentum icon and styling based on score
 const getMomentumDisplay = (score) => {
@@ -107,35 +111,16 @@ const scopes = [
                                 alongside principles for using AI responsibly.
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left">
-                                <Link href="/tools" class="group block h-full">
-                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
-                                        <div class="text-3xl flex-shrink-0">🔍</div>
-                                        <div class="flex flex-col h-full flex-1">
-                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
-                                                Browse AI Software & Apps
-                                            </h3>
-                                            <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
-                                                Explore ChatGPT, Claude, Midjourney, and hundreds of other AI applications.
-                                                Each one includes our personal review, rating, and pricing details.
-                                            </p>
-                                            <div class="mt-auto text-right">
-                                                <span class="text-sm font-semibold text-foreground group-hover:underline">
-                                                    View All AI Tools →
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
                                 <a href="#core-values" class="group block h-full">
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
                                         <div class="text-3xl flex-shrink-0">✨</div>
                                         <div class="flex flex-col h-full flex-1">
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
-                                                Learn Our Principles
+                                                Why? Our Principles & Values
                                             </h3>
                                             <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
-                                                Understand the core values and guidelines for using AI responsibly—prioritizing
-                                                transparency, fairness, and human judgment.
+                                                The philosophy behind responsible AI. Understand our core values and guidelines—prioritizing
+                                                transparency, fairness, and human judgment over unchecked automation.
                                             </p>
                                             <div class="mt-auto text-right">
                                                 <span class="text-sm font-semibold text-foreground group-hover:underline">
@@ -147,18 +132,39 @@ const scopes = [
                                 </a>
                                 <Link href="/tools" class="group block h-full">
                                     <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
-                                        <div class="text-3xl flex-shrink-0">🎯</div>
+                                        <div class="text-3xl flex-shrink-0">🔍</div>
                                         <div class="flex flex-col h-full flex-1">
                                             <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
-                                                Make Informed Choices
+                                                What? AI Tools Directory
                                             </h3>
                                             <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
-                                                Find the right AI software for your needs—whether you're writing, coding,
-                                                creating images, or analyzing data.
+                                                Discover what's available today. Explore our curated directory of ChatGPT, Claude,
+                                                Midjourney, and hundreds more—each with honest reviews, personal ratings, and
+                                                pricing details to help you make informed choices.
                                             </p>
                                             <div class="mt-auto text-right">
                                                 <span class="text-sm font-semibold text-foreground group-hover:underline">
-                                                    Explore AI Tools →
+                                                    Browse Tools →
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                                <Link href="/learn" class="group block h-full">
+                                    <div class="flex items-start gap-3 p-4 rounded-lg border border-border hover:shadow-md transition-all h-full">
+                                        <div class="text-3xl flex-shrink-0">🎓</div>
+                                        <div class="flex flex-col h-full flex-1">
+                                            <h3 class="font-bold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
+                                                How? Learning Paths
+                                            </h3>
+                                            <p class="text-sm text-muted-foreground mb-2 leading-relaxed">
+                                                Learn how to use AI effectively. Whether you're a complete beginner or an experienced
+                                                developer, we have something for you—from 101 basics to advanced techniques like
+                                                "vibe coding" and custom enterprise development.
+                                            </p>
+                                            <div class="mt-auto text-right">
+                                                <span class="text-sm font-semibold text-foreground group-hover:underline">
+                                                    Explore Learning Paths →
                                                 </span>
                                             </div>
                                         </div>
@@ -288,37 +294,36 @@ const scopes = [
                         </template>
                     </SectionHeading>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <!-- Developers & Builders -->
+                        <!-- AI Beginners -->
                         <Card class="hover:shadow-lg transition-shadow">
                             <div class="flex flex-col h-full">
                                 <div class="flex items-start gap-3 mb-4">
-                                    <div class="text-3xl flex-shrink-0">👨‍💻</div>
+                                    <div class="text-3xl flex-shrink-0">🌱</div>
                                     <div class="flex-1">
-                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">Developers & Builders</h3>
+                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">AI Beginners</h3>
                                         <p class="text-sm text-muted-foreground leading-relaxed mb-3">
-                                            Find tools to accelerate your workflow, compare AI coding assistants, and discover
-                                            APIs that power the next generation of applications. Your insights help others
-                                            choose wisely.
+                                            Just getting started? Perfect. We break down the jargon, show you what's actually
+                                            useful, and help you take your first steps with AI tools that won't overwhelm you.
+                                            Browse beginner-friendly tools and follow our learning path designed specifically
+                                            for those new to AI. Start simple, learn fast.
                                         </p>
                                     </div>
                                 </div>
                                 <div class="mt-auto pt-4 border-t border-border">
-                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Help Wanted:</p>
+                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Get Started:</p>
                                     <div class="flex flex-wrap gap-2">
                                         <Link
-                                            href="/tools"
+                                            href="/learn/beginner"
                                             class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
-                                            Suggest a Tool
+                                            Start Learning
                                         </Link>
-                                        <a
-                                            href="https://github.com/rgriss/aimanifesto"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                        <Link
+                                            href="/tools"
                                             class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
-                                            Contribute Code
-                                        </a>
+                                            Browse Tools
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -333,36 +338,9 @@ const scopes = [
                                         <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">Business Leaders</h3>
                                         <p class="text-sm text-muted-foreground leading-relaxed mb-3">
                                             Navigate AI adoption with confidence. Learn which tools deliver ROI, understand
-                                            responsible implementation, and make informed decisions that align with your values
-                                            and business goals.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="mt-auto pt-4 border-t border-border">
-                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Help Wanted:</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <a
-                                            :href="`mailto:${$page.props.contactEmail}?subject=My AI Story`"
-                                            class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
-                                        >
-                                            Share Your AI Story
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-
-                        <!-- AI Beginners -->
-                        <Card class="hover:shadow-lg transition-shadow">
-                            <div class="flex flex-col h-full">
-                                <div class="flex items-start gap-3 mb-4">
-                                    <div class="text-3xl flex-shrink-0">🌱</div>
-                                    <div class="flex-1">
-                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">AI Beginners</h3>
-                                        <p class="text-sm text-muted-foreground leading-relaxed mb-3">
-                                            Just getting started? Perfect. We break down the jargon, show you what's actually
-                                            useful, and help you take your first steps with AI tools that won't overwhelm you.
-                                            Start simple, learn fast.
+                                            responsible implementation, and offer our learning resources to your employees to
+                                            improve outcomes and facilitate adoption across your organization. Make informed
+                                            decisions that align with your values and business goals.
                                         </p>
                                     </div>
                                 </div>
@@ -373,44 +351,84 @@ const scopes = [
                                             href="/tools"
                                             class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
-                                            Browse Beginner-Friendly Tools
+                                            Explore Tools
+                                        </Link>
+                                        <Link
+                                            href="/learn"
+                                            class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Team Learning
                                         </Link>
                                     </div>
                                 </div>
                             </div>
                         </Card>
 
-                        <!-- AI Experts -->
+                        <!-- Developers & Builders -->
+                        <Card class="hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col h-full">
+                                <div class="flex items-start gap-3 mb-4">
+                                    <div class="text-3xl flex-shrink-0">👨‍💻</div>
+                                    <div class="flex-1">
+                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">Developers & Builders</h3>
+                                        <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                                            Find tools to accelerate your workflow, compare AI coding assistants, and discover
+                                            APIs that power the next generation of applications. Upskill with our learning paths—from
+                                            intermediate prompt engineering to advanced agentic development patterns. Your insights
+                                            help others choose wisely.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-border">
+                                    <p class="text-xs font-semibold text-muted-foreground mb-2">Get Started:</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <Link
+                                            href="/learn/advanced"
+                                            class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                        >
+                                            Advanced Learning
+                                        </Link>
+                                        <button
+                                            @click="showHelpWantedModal = true"
+                                            class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm cursor-pointer"
+                                        >
+                                            Join the Project
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+
+                        <!-- AI Experts & Educators -->
                         <Card class="hover:shadow-lg transition-shadow">
                             <div class="flex flex-col h-full">
                                 <div class="flex items-start gap-3 mb-4">
                                     <div class="text-3xl flex-shrink-0">🚀</div>
                                     <div class="flex-1">
-                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">AI Experts</h3>
+                                        <h3 class="text-lg md:text-xl font-bold text-foreground mb-2">AI Experts & Educators</h3>
                                         <p class="text-sm text-muted-foreground leading-relaxed mb-3">
                                             You've mastered the tools. Now help others. Share your deep knowledge, review
                                             emerging platforms, and contribute to building responsible AI practices that
-                                            scale across the industry.
+                                            scale across the industry. Have a passion for teaching? We're seeking educational
+                                            content creators to develop courses and facilitate workshops.
                                         </p>
                                     </div>
                                 </div>
                                 <div class="mt-auto pt-4 border-t border-border">
                                     <p class="text-xs font-semibold text-muted-foreground mb-2">Help Wanted:</p>
                                     <div class="flex flex-wrap gap-2">
-                                        <Link
-                                            href="/tools"
+                                        <a
+                                            :href="`mailto:${$page.props.contactEmail}?subject=Educational Content Creation`"
                                             class="inline-block bg-foreground text-background hover:bg-foreground/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
                                         >
-                                            Review & Rate Tools
-                                        </Link>
-                                        <a
-                                            href="https://github.com/rgriss/aimanifesto"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm"
+                                            Create Courses
+                                        </a>
+                                        <button
+                                            @click="showHelpWantedModal = true"
+                                            class="inline-block bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold py-2 px-4 rounded-lg transition-colors text-xs sm:text-sm cursor-pointer"
                                         >
                                             Join the Project
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -525,6 +543,45 @@ const scopes = [
                             </ul>
                         </div>
 
+                        <!-- Learning Section -->
+                        <div>
+                            <h3 class="text-lg font-bold text-foreground mb-4">Learning</h3>
+                            <ul class="space-y-2">
+                                <li>
+                                    <Link
+                                        href="/learn"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        Start Your Journey
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/learn/beginner"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        Beginner Path
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/learn/intermediate"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        Intermediate Path
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/learn/advanced"
+                                        class="text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        Advanced Path
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+
                         <!-- Resources Section -->
                         <div>
                             <h3 class="text-lg font-bold text-foreground mb-4">Resources</h3>
@@ -580,15 +637,6 @@ const scopes = [
                                 </li>
                             </ul>
                         </div>
-
-                        <!-- Manifesto Section -->
-                        <div>
-                            <h3 class="text-lg font-bold text-foreground mb-4">The Manifesto</h3>
-                            <p class="text-sm text-muted-foreground leading-relaxed">
-                                A framework for responsible AI development that prioritizes human judgment,
-                                transparency, and ethical accountability.
-                            </p>
-                        </div>
                     </div>
 
                     <!-- Help Wanted Sign -->
@@ -607,5 +655,12 @@ const scopes = [
                 </div>
             </div>
         </div>
+
+        <!-- Help Wanted Modal (triggered by buttons) -->
+        <HelpWantedSign
+            :show="showHelpWantedModal"
+            :hide-sign="true"
+            @close="showHelpWantedModal = false"
+        />
     </GuestLayout>
 </template>

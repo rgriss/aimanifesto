@@ -5,6 +5,56 @@ All notable changes to AI Manifesto will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.40.0] - 2025-01-19
+
+### Changed
+- **Homepage "What is The AI Manifesto?" Section**: Refactored with Why/What/How framework
+  - Card 1: "Why? Our Principles & Values" - Philosophy behind responsible AI
+  - Card 2: "What? AI Tools Directory" - Consolidated two tool cards into one comprehensive card
+  - Card 3: "How? Learning Paths" - NEW card highlighting beginner to advanced learning paths
+  - Clear narrative progression: philosophy → tools → learning implementation
+  - Each card maintains consistent structure with icon, title, description, and CTA
+
+- **Homepage "Who is The AI Manifesto for?" Section**: Updated all four audience cards with learning integration
+  - **AI Beginners** (moved to first position):
+    - Added mention of learning path designed for newcomers
+    - Primary CTA: "Start Learning" (links to beginner path)
+    - Secondary CTA: "Browse Tools"
+  - **Business Leaders** (second position):
+    - Added value proposition: offer learning resources to employees
+    - Emphasizes improving outcomes and facilitating organizational adoption
+    - CTAs: "Explore Tools" and "Team Learning"
+  - **Developers & Builders** (third position):
+    - Added upskilling message: intermediate to advanced learning paths
+    - Mentions prompt engineering and agentic development patterns
+    - CTAs: "Advanced Learning" and "Join the Project" (modal)
+  - **AI Experts & Educators** (fourth position):
+    - Updated title to include "Educators"
+    - Added call for educational content creators
+    - Invitation to develop courses and facilitate workshops
+    - CTAs: "Create Courses" (email) and "Join the Project" (modal)
+  - Card ordering now flows from beginner to expert for natural progression
+
+- **Footer Navigation**: Added new "Learning" section
+  - Positioned second (after About, before Resources)
+  - Four links: "Start Your Journey", "Beginner Path", "Intermediate Path", "Advanced Path"
+  - Provides easy access to all learning resources from every page
+
+### Fixed
+- **Help Wanted Modal**: Restored modal functionality for community contribution
+  - Added modal state management to homepage
+  - "Join the Project" buttons now trigger Help Wanted modal instead of direct GitHub links
+  - Modal displays community information, GitHub links, and email CTAs
+  - Appears on both Developers and Experts cards
+
+### Technical
+- Updated Home.vue with new three-card structure (Why/What/How)
+- Reordered audience cards and updated content for all four segments
+- Added `showHelpWantedModal` ref for modal state control
+- Added HelpWantedSign component with `hideSign` prop for button-triggered modal
+- Extended footer navigation with Learning section and four path links
+- Incremented version to 0.40.0
+
 ## [0.39.0] - 2025-01-19
 
 ### Added

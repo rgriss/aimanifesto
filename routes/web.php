@@ -54,9 +54,9 @@ Route::get('/docs/{slug}', [DocsController::class, 'show'])->name('docs.show');
 Route::get('/developer/tool-schema', [DeveloperController::class, 'toolSchema'])->name('developer.tool-schema');
 
 // Admin-only dashboard
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
+Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified', 'admin'])
+    ->name('dashboard');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

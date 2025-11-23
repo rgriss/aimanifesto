@@ -43,4 +43,8 @@ return [
         'tracking_id' => env('GA_TRACKING_ID'),
     ],
 
+    'anthropic' => [
+        'key' => env('ANTHROPIC_API_KEY'),
+    ],
+
 ];

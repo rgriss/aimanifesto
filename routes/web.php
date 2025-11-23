@@ -21,6 +21,9 @@ Route::post('/emergency-seed', [EmergencySeedController::class, 'seed'])
 
 Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');
 Route::get('/tools/{tool:slug}', [ToolController::class, 'show'])->name('tools.show');
+Route::post('/tools/request', [App\Http\Controllers\ToolRequestController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('tools.request');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');

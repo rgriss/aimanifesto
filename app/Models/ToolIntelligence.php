@@ -68,6 +68,7 @@ class ToolIntelligence extends Model
         'key_differentiators' => 'array',
         'strengths' => 'array',
         'weaknesses' => 'array',
+        // market_threats and growth_opportunities are TEXT fields, not JSON
         'pricing_individual_cost' => 'integer',
         'pricing_smb_cost' => 'integer',
         'pricing_midmarket_cost' => 'integer',

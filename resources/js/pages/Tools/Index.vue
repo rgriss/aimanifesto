@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { PageHeader, SectionHeading, Card, Badge, ToolCard, HelpWantedSign, ToolsGuideModal } from '@/components';
+import { PageHeader, SectionHeading, Card, Badge, ToolCard, HelpWantedSign, ToolsGuideModal, AddToolModal } from '@/components';
 import { Plus } from 'lucide-vue-next';
 import { ref } from 'vue';
 
@@ -17,8 +17,9 @@ const props = defineProps({
 const search = ref(props.filters?.search || '');
 const sort = ref(props.filters?.sort || 'name');
 
-// Help Wanted modal state
+// Modal states
 const showHelpWanted = ref(false);
+const showAddTool = ref(false);
 
 const applyFilters = () => {
     router.get('/tools', {
@@ -106,7 +107,7 @@ const applyFilters = () => {
                         <!-- Add Tool Button -->
                         <div class="flex justify-center sm:justify-start pt-2 border-t border-border">
                             <button
-                                @click="showHelpWanted = true"
+                                @click="showAddTool = true"
                                 class="inline-flex items-center gap-2 px-6 py-2.5 bg-foreground text-background hover:bg-foreground/90 font-semibold rounded-lg transition-all shadow-sm hover:shadow-md"
                             >
                                 <Plus class="w-4 h-4" />
@@ -209,5 +210,8 @@ const applyFilters = () => {
 
         <!-- Help Wanted Modal (for "Get in touch" buttons) -->
         <HelpWantedSign :show="showHelpWanted" @close="showHelpWanted = false" hide-sign />
+        
+        <!-- Add Tool Modal -->
+        <AddToolModal :open="showAddTool" @update:open="showAddTool = $event" />
     </GuestLayout>
 </template>

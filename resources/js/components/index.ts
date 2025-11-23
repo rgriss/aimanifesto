@@ -6,6 +6,7 @@ export { default as Card } from './Card.vue';
 export { default as Badge } from './Badge.vue';
 export { default as Button } from './Button.vue';
 export { default as VoteButtons } from './VoteButtons.vue';
+export { default as AddToolModal } from './AddToolModal.vue';
 export { default as HelpWantedSign } from './HelpWantedSign.vue';
 export { default as ToolCard } from './ToolCard.vue';
 export { default as SiteGuideModal } from './SiteGuideModal.vue';

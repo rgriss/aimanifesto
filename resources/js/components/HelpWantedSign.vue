@@ -2,7 +2,7 @@
 import { ref, watch, computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Button } from '@/components';
+import { Button, RotatingText } from '@/components';
 import { Github } from 'lucide-vue-next';
 
 const props = defineProps({
@@ -24,6 +24,14 @@ const internalOpen = ref(false);
 const contactEmail = 'info@polarispixels.com';
 const githubUrl = 'https://github.com/rgriss/aimanifesto';
 const githubIssuesUrl = 'https://github.com/rgriss/aimanifesto/issues';
+
+// Rotating CTA messages for register button
+const registerMessages = [
+    'Sign the Manifesto',
+    'Join the Community',
+    'Register Now',
+    'Join for Free',
+];
 
 // Use external control if show prop is provided, otherwise use internal state
 const open = computed({
@@ -110,28 +118,20 @@ const open = computed({
                     <div class="text-center">
                         <p class="text-sm text-muted-foreground mb-3">Ready to join us?</p>
                         <Link href="/register">
-                            <Button size="lg" class="font-semibold w-full sm:w-auto">
-                                Sign the Manifesto
+                            <Button size="lg" class="font-semibold w-full sm:w-auto min-w-[220px] whitespace-nowrap cursor-pointer hover:opacity-90 transition-opacity">
+                                <RotatingText :messages="registerMessages" />
                             </Button>
                         </Link>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                            :href="`mailto:${contactEmail}?subject=I Want to Join The AI Manifesto Community`"
-                            class="inline-block"
-                        >
-                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
-                                Email Us
-                            </Button>
-                        </a>
-                        <a
                             :href="githubUrl"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="inline-block"
                         >
-                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto cursor-pointer hover:bg-secondary/80">
                                 <Github class="mr-2 h-4 w-4" />
                                 View on GitHub
                             </Button>
@@ -145,7 +145,7 @@ const open = computed({
                             rel="noopener noreferrer"
                             class="inline-block"
                         >
-                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto cursor-pointer hover:bg-secondary/80">
                                 <Github class="mr-2 h-4 w-4" />
                                 Report Issues & Contribute
                             </Button>
@@ -157,14 +157,6 @@ const open = computed({
                 <div v-else class="pt-4 space-y-4">
                     <div class="text-center">
                         <p class="text-sm text-muted-foreground mb-3">Ready to join us?</p>
-                        <a
-                            :href="`mailto:${contactEmail}?subject=I Want to Join The AI Manifesto Community`"
-                            class="inline-block"
-                        >
-                            <Button size="lg" class="font-semibold w-full sm:w-auto">
-                                Email Us at {{ contactEmail }}
-                            </Button>
-                        </a>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -174,7 +166,7 @@ const open = computed({
                             rel="noopener noreferrer"
                             class="inline-block"
                         >
-                            <Button variant="outline" size="lg" class="w-full sm:w-auto">
+                            <Button variant="outline" size="lg" class="w-full sm:w-auto cursor-pointer hover:bg-secondary/80">
                                 <Github class="mr-2 h-4 w-4" />
                                 View on GitHub
                             </Button>

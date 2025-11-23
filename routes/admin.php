@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DataManagementController;
 use App\Http\Controllers\Admin\ToolController;
+use App\Http\Controllers\Admin\ToolRequestController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,6 +22,9 @@ Route::prefix('admin')
 
         // Tools CRUD
         Route::resource('tools', ToolController::class)->except(['show']);
+
+        // Tool Requests
+        Route::resource('tool-requests', ToolRequestController::class)->only(['index', 'show']);
 
         // Data Management (Import/Export)
         Route::get('/data', [DataManagementController::class, 'index'])->name('data.index');

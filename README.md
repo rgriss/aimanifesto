@@ -227,6 +227,35 @@ php artisan content:import {file}      # Import from specific snapshot file
 
 ---
 
+## 🚀 Deployment
+
+**AI Manifesto** uses **[Laravel Forge](https://forge.laravel.com)** for automated deployments.
+
+### Automatic Deployment
+
+Simply push your changes to the `main` branch on GitHub:
+
+```bash
+git push origin main
+```
+
+Laravel Forge automatically detects the push and triggers deployment:
+1. Pulls latest code from GitHub
+2. Installs Composer dependencies
+3. Runs database migrations
+4. Builds frontend assets with Vite
+5. Restarts PHP-FPM and queue workers
+
+### Manual Deployment
+
+If needed, you can trigger a manual deployment from the Laravel Forge dashboard.
+
+### Environment Configuration
+
+Production environment variables (including `ANTHROPIC_API_KEY` for AI features) are configured in Laravel Forge's environment settings.
+
+---
+
 ## 🔄 Database Synchronization
 
 Keep your local and production tool databases in sync with our export/import system.

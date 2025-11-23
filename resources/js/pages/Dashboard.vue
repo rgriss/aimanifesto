@@ -71,7 +71,12 @@ const getStatusColor = (status: string) => {
                 <div
                     class="relative overflow-hidden rounded-xl border border-sidebar-border/70 bg-background p-6 dark:border-sidebar-border"
                 >
-                    <h3 class="mb-4 text-lg font-semibold">Tool Requests</h3>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Tool Requests</h3>
+                        <Link href="/admin/tool-requests">
+                            <Button variant="ghost" size="sm">View All</Button>
+                        </Link>
+                    </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div class="text-center">
                             <div class="text-2xl font-bold">{{ toolRequestStats.total }}</div>

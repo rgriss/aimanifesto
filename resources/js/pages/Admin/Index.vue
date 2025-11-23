@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
-import { Database, Settings, Users, BarChart3, FileJson, Shield } from 'lucide-vue-next';
+import { Database, Settings, Users, BarChart3, FileJson, Shield, FileQuestion } from 'lucide-vue-next';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -127,6 +127,30 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <div class="flex items-center gap-2 text-sm text-muted-foreground">
                                 <Shield class="h-4 w-4" />
                                 <span>User Roles & Permissions</span>
+                            </div>
+                        </CardContent>
+                    </Link>
+                </Card>
+
+                <!-- Tool Requests -->
+                <Card class="hover:shadow-lg transition-shadow cursor-pointer">
+                    <Link :href="'/admin/tool-requests'" class="block">
+                        <CardHeader>
+                            <div class="flex items-center justify-between">
+                                <FileQuestion class="h-10 w-10 text-blue-500" />
+                                <div class="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900 dark:text-blue-300">
+                                    Active
+                                </div>
+                            </div>
+                            <CardTitle class="mt-4">Tool Requests</CardTitle>
+                            <CardDescription>
+                                View and manage user-submitted tool requests
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Database class="h-4 w-4" />
+                                <span>Request Management</span>
                             </div>
                         </CardContent>
                     </Link>

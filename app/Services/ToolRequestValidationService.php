@@ -124,15 +124,16 @@ EOT;
                 return $toolName;
             }
             
-            // Check if user input is contained in tool name
+            // Check if user input is contained in tool name (whole-word only)
             // e.g., "photoshop" matches "Adobe Photoshop"
-            if (str_contains($normalizedTool, $normalizedInput)) {
+            if (preg_match('/\b' . preg_quote($normalizedInput, '/') . '\b/', $normalizedTool)) {
                 return $toolName;
             }
-            
-            // Check if tool name is contained in user input
-            // e.g., "Adobe Photoshop CC 2024" might match existing "Photoshop"
-            if (str_contains($normalizedInput, $normalizedTool)) {
+
+            // Check if tool name is contained in user input (whole-word only)
+            // e.g., "Adobe Photoshop CC 2024" matches existing "Photoshop"
+            // Using \b prevents "udio" from matching inside "lmstudio"
+            if (preg_match('/\b' . preg_quote($normalizedTool, '/') . '\b/', $normalizedInput)) {
                 return $toolName;
             }
             

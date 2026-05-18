@@ -142,12 +142,18 @@ EOT;
             $toolWords = preg_split('/\s+/', $normalizedTool);
             
             // If they share the main keyword (longest word)
-            $mainInputWord = $this->getLongestWord($inputWords);
-            $mainToolWord = $this->getLongestWord($toolWords);
-            
+            // Strip non-alphanumeric chars so "lmstudio-" becomes "lmstudio"
+            $mainInputWord = preg_replace('/\W/', '', $this->getLongestWord($inputWords));
+            $mainToolWord = preg_replace('/\W/', '', $this->getLongestWord($toolWords));
+
             if (strlen($mainInputWord) > 3 && strlen($mainToolWord) > 3) {
-                // Check if one contains the other
-                if (str_contains($mainToolWord, $mainInputWord) || str_contains($mainInputWord, $mainToolWord)) {
+                $longer = max(strlen($mainInputWord), strlen($mainToolWord));
+                $shorter = min(strlen($mainInputWord), strlen($mainToolWord));
+                // Require the shorter word to be at least 60% of the longer to avoid
+                // short tool names (e.g. "Udio" 4 chars) matching inside unrelated
+                // compound words (e.g. "lmstudio" 8 chars) — 4/8 = 50% < 60%
+                if ($shorter / $longer >= 0.6 &&
+                    (str_contains($mainToolWord, $mainInputWord) || str_contains($mainInputWord, $mainToolWord))) {
                     return $toolName;
                 }
             }

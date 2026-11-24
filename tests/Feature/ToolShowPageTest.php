@@ -88,3 +88,21 @@ test('viewing a tool increments views_count without changing updated_at', functi
     expect($fresh->views_count)->toBe(6);
     expect($fresh->updated_at->toDateTimeString())->toBe($tool->updated_at->toDateTimeString());
 });
+
+test('tool show page exposes the research date and not a "Last Updated" date', function () {
+    $tool = Tool::factory()->create([
+        'category_id' => Category::factory()->create()->id,
+        'is_active' => true,
+    ]);
+    $tool->intelligence()->create(['last_researched_at' => '2026-03-15 12:00:00']);
+
+    $this->get(route('tools.show', $tool))
+        ->assertInertia(fn ($page) => $page
+            ->component('Tools/Show')
+            ->where('tool.intelligence.last_researched_at', fn ($v) => str_starts_with($v, '2026-03-15'))
+        );
+
+    expect(file_get_contents(resource_path('js/pages/Tools/Show.vue')))
+        ->not->toContain('tool.updated_at')
+        ->not->toContain('Last Updated');
+});

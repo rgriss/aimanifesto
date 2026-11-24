@@ -188,10 +188,10 @@ const hasPricingComplexity = computed(() => {
                                 {{ tool.views_count.toLocaleString() }}
                             </span>
                         </div>
-                        <div v-if="tool.updated_at">
-                            <span class="text-background/80">Last Updated:</span>
+                        <div v-if="tool.intelligence?.last_researched_at">
+                            <span class="text-background/80">Last researched:</span>
                             <span class="ml-2 text-background font-semibold">
-                                {{ new Date(tool.updated_at).toLocaleDateString() }}
+                                {{ new Date(tool.intelligence.last_researched_at).toLocaleDateString() }}
                             </span>
                         </div>
                     </template>

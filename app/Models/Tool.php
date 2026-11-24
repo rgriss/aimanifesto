@@ -119,10 +119,11 @@ class Tool extends Model
     }
 
     /**
-     * Increment the views count
+     * Increment the views count without touching updated_at,
+     * so a page view never makes a tool look freshly updated.
      */
     public function incrementViews(): void
     {
-        $this->increment('views_count');
+        static::withoutTimestamps(fn () => $this->increment('views_count'));
     }
 }

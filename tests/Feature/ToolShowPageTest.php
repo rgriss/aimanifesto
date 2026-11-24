@@ -3,7 +3,7 @@
 use App\Models\Category;
 use App\Models\Tool;
 
-test('tool show page displays updated_at timestamp', function () {
+test('tool show page includes updated_at in its props', function () {
     $category = Category::factory()->create();
 
     $tool = Tool::factory()->create([
@@ -71,4 +71,20 @@ test('tool show page includes all timestamp metadata', function () {
         ->has('tool.created_at')
         ->has('tool.updated_at')
     );
+});
+
+test('viewing a tool increments views_count without changing updated_at', function () {
+    $tool = Tool::factory()->create([
+        'category_id' => Category::factory()->create()->id,
+        'is_active' => true,
+        'views_count' => 5,
+    ]);
+
+    $this->travel(3)->days();
+
+    $this->get(route('tools.show', $tool))->assertStatus(200);
+
+    $fresh = $tool->fresh();
+    expect($fresh->views_count)->toBe(6);
+    expect($fresh->updated_at->toDateTimeString())->toBe($tool->updated_at->toDateTimeString());
 });
